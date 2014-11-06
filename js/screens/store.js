@@ -21,7 +21,7 @@ var IAP = {
 
 	onReady: function () {
         // Once setup is done, load all product data.
-        Request.send({'object':'store', 'action':'applelist', });
+        Request.send({'object':'store', 'action':'applelist' });
 		if(responseObj.status != 100){
 			alertify.alert(lang._T(responseObj.error));
 			return false;
@@ -181,7 +181,7 @@ var AIAP = {
         // Once setup is done, load all product data.
         
         
-        inappbilling.getProductDetails(function(data, data2,data2){
+        inappbilling.getProductDetails(function(data, data2,data3){
         console.log(data);
         console.log(data2);
         console.log(data3);

@@ -172,7 +172,7 @@
 		$('.page-galaxy-page').html('<div class="b-main overthrow" id="galaxyScrollPage">\
 					<ul>\
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">'+data.name+' ['+data.g+':'+data.s+':'+data.p+']</h4><div class="user-profile">'+user_row+ally_row+planet_row+moon_row+'</div></li>\
-				</ul>\
+				</ul></div>\
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="Galaxy.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show().css('z-index','10');

@@ -25,6 +25,7 @@ function empty(val){
 		return true;
 	}
 }
+
 function strpos (haystack, needle, offset) {
   var i = (haystack + '').indexOf(needle, (offset || 0));
   return i === -1 ? false : i;
@@ -200,13 +201,7 @@ function explode (delimiter, string, limit) {
   s.splice( s.length + limit );
   return s;
 }
-function empty(val){
-	if(Check.isEmpty(val)){
-		return false;
-	}else{
-		return true;
-	}
-}
+
 function ShowBuildTime(time){
 	return '('+prettyTime(time)+')';
 }
@@ -417,7 +412,7 @@ function production(el, BuildLevel){
 		'metal' : metal,
 		'crystal' : crystal,
 		'deuterium' : deuterium,
-		'energy' : energy,
+		'energy' : energy
 	};
 	Prod[el] = prod_el;
 	
@@ -481,10 +476,10 @@ function GetElementPrice (el, userfactor, level){
 			}
 
 			if (cost > planet[res]){
-				text += '<b style=\"color:red;\"><span class=\"noresources\">'+parseInt(cost)+'</span></b><br/>';
+				text += '<b style=\"color:red;\"><span class=\"noresources\">'+prettyNumber(cost)+'</span></b><br/>';
 				is_buyeable = false;
 			}else{
-				text += '<b style=\"color:lime;\">'+parseInt(cost)+'</b><br/> ';
+				text += '<b style=\"color:lime;\">'+prettyNumber(cost)+'</b><br/> ';
 			}
 		}
 	});

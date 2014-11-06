@@ -147,14 +147,14 @@ function toggleRound(rel){
 };
 
 function showACSBtn(rel){
-	$('.asc-block-'+rel).html('<b>Invite to ASC</b><div class="asc-add-block">\
-		<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+rel+'"><div rel="'+rel+'" class="btn" onclick="ascAdd('+rel+');">Add</div>\
-		<div class="clear"></div>\
-	</div>\
-	<div class="acs-users">\
-		<b>Already Invited:</b>\
-		<div class="asc-invited asc-invited-'+rel+'"><div>\
-	</div>');
+	$('.asc-block-'+rel).html('<b>Invite to ASC</b><div class="asc-add-block">'+
+		'<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+rel+'"><div rel="'+rel+'" class="btn" onclick="ascAdd('+rel+');">Add</div>'+
+		'<div class="clear"></div>'+
+	'</div>'+
+	'<div class="acs-users">'+
+		'<b>Already Invited:</b>'+
+		'<div class="asc-invited asc-invited-'+rel+'"><div>'+
+	'</div>');
 };
 
 function ascAdd(rel){

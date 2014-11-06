@@ -47,10 +47,7 @@
 		$('.chat-holder').html(c);	
 		
 		refreshScroll(this.scrollID);
-		//toScrollElement(this.scrollID,'p:last-child',200);
-		//scrollers['chatScroll'].scrollToElement('p:nth-child('+total_msgs+')', 200);
 		var height = $('.chat-holder').height() + 8 - 320;
-		//scrollers[this.scrollID].scrollTo(0, (Math.abs(height) * -1),0);
 		
 		if($('#chat-screen').css('display') == 'block'){
 			Chat.interval = setTimeout ("Chat.refresh(true)", Chat.intervalTimeout);
@@ -98,5 +95,5 @@
 			}
 		}	
 		return false;
-	},	
+	}	
 };

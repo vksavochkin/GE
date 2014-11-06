@@ -12,7 +12,7 @@
 						<h4 style="text-align:center;margin:0px 0px 5px;">Phalanx Report</h4>\
 							<div class="user-profile">'+Phalanx.generateReport(responseObj.phalanxreport.report)+'</div>\
 						</li>\
-				</ul>\
+				</ul></div>\
 				<nav class="b-menu" style="background:#323849;">\
 					<a class="fr btn" onclick="Phalanx.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();

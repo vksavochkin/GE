@@ -157,10 +157,15 @@ var Mail= {
 		
 		Overview.resetModals();
 		$('.page-message-page').html('<div class="b-main overthrow" id="messageScrollPage">\
-					<ul><li><div class="new-message">\
-						<div><b>'+lang._T('Username')+'</b> <input type="text" name="name" class="new-mail-username" value="'+to+'"/></div>\
-						<div><b>'+lang._T('Message')+'</b> <textarea name="subject" class="new-mail-message"></textarea></div>\
-				</div></div></li></ul>\
+					<ul>\
+					    <li>\
+					        <div class="new-message">\
+                                <div><b>'+lang._T('Username')+'</b> <input type="text" name="name" class="new-mail-username" value="'+to+'"/></div>\
+                                <div><b>'+lang._T('Message')+'</b> <textarea name="subject" class="new-mail-message"></textarea></div>\
+                            </div>\
+                        </li>\
+                    </ul>\
+                </div>\
 				<nav class="b-menu">\
 					<a class="fl btn" style="margin-left:10px;" onclick="Mail.closePage();">'+lang._T('close')+'</a>\
 					<a class="fr btn" onclick="Mail.send();">'+lang._T('Send')+'</a>\

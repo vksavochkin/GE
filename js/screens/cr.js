@@ -26,7 +26,7 @@
 		$('.page-cr-page').html('<div class="b-main overthrow" id="crScrollPage">\
 					<ul>\
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">Combat Report</h4><div class="user-profile">'+CR.generateReport(responseObj.actionreport.report)+'</div></li>\
-				</ul>\
+				</ul></div>\
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();
@@ -39,7 +39,7 @@
 		$('.page-cr-page').html('<div class="b-main overthrow" id="crScrollPage">\
 					<ul>\
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">Combat Report</h4><div class="user-profile">'+CR.generateReport(report)+'</div></li>\
-				</ul>\
+				</ul></div>\
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();

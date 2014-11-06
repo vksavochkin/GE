@@ -34,7 +34,7 @@ var Recordboard= {
 				out += '<div class="row">\
 							<div class="record-table-name">'+lang._T('info_'+data[k]['record']+'_name')+'</div>\
 							<div class="record-table-username">'+data[k]['username']+'</div>\
-							<div class="record-table-count">'+data[k]['count']+'</div>\
+							<div class="record-table-count">'+prettyNumber(data[k]['count'])+'</div>\
 						</div>';
 			});
 			
@@ -49,7 +49,7 @@ var Recordboard= {
 				out += '<div class="row">\
 							<div class="record-table-name">'+lang._T('info_'+data[k]['record']+'_name')+'</div>\
 							<div class="record-table-username">'+data[k]['username']+'</div>\
-							<div class="record-table-count">'+data[k]['count']+'</div>\
+							<div class="record-table-count">'+prettyNumber(data[k]['count'])+'</div>\
 						</div>';
 			});
 			
@@ -59,7 +59,7 @@ var Recordboard= {
 				out += '<div class="row">\
 							<div class="record-table-name">'+lang._T('info_'+data[k]['record']+'_name')+'</div>\
 							<div class="record-table-username">'+data[k]['username']+'</div>\
-							<div class="record-table-count">'+data[k]['count']+'</div>\
+							<div class="record-table-count">'+prettyNumber(data[k]['count'])+'</div>\
 						</div>';
 			});
 			
@@ -69,7 +69,7 @@ var Recordboard= {
 				out += '<div class="row">\
 							<div class="record-table-name">'+lang._T('info_'+data[k]['record']+'_name')+'</div>\
 							<div class="record-table-username">'+data[k]['username']+'</div>\
-							<div class="record-table-count">'+data[k]['count']+'</div>\
+							<div class="record-table-count">'+prettyNumber(data[k]['count'])+'</div>\
 						</div>';
 			});
 			
@@ -79,7 +79,7 @@ var Recordboard= {
 				out += '<div class="row">\
 							<div class="record-table-name">'+lang._T('info_'+data[k]['record']+'_name')+'</div>\
 							<div class="record-table-username">'+data[k]['username']+'</div>\
-							<div class="record-table-count">'+data[k]['count']+'</div>\
+							<div class="record-table-count">'+prettyNumber(data[k]['count'])+'</div>\
 						</div>';
 			});
 			
