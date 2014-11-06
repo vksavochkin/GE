@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<title>GE</title>
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<link rel="apple-touch-startup-image" href="images/startup.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon" href="icons/ios/icon.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="icons/ios/icon-72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="icons/ios/icon_at_2x.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="icons/ios/icon-72_at_2x.png" />
+	<link rel="apple-touch-startup-image" href="splash.png">
+    <link rel="apple-touch-icon-precomposed" href="icon.png">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache"><!-- CSS -->
+	<link type="text/css" rel="stylesheet" href="css/normalize.css">
+	<link type="text/css" rel="stylesheet" href="css/global.css">
+	<link type="text/css" rel="stylesheet" href="css/mmenu.css?v=1">
+	<link type="text/css" rel="stylesheet" href="css/alertify.core.css">
+	<script type="text/javascript">
+		//document.addEventListener('touchmove', function (e) { e.preventDefault();}, false);
+	</script>
+</head>
+<body>
+	<div id="page">		
+		<div class="overlay"></div>
+		<div class="planet-control-modal">
+			<p class="closeBtn"><img src="images/close.png" alt=""></p>
+			<div class="btn" onclick="Overview.renamePlanet();">Rename Planet</div>
+			<div class="btn" onclick="Overview.movePlanet();">Move Planet</div>
+			<div class="btn" onclick="Overview.deletePlanet();">Destroy Planet</div>
+		</div>
+		
+		<div class="modal info-modal overthrow">
+			<p class="closeBtn"><img src="images/close.png" alt=""></p>
+			<div id="info-modal"><div class="modal-content"></div></div>
+		</div>
+		<div class="modal user-profile overthrow">
+			<p class="closeBtn"><img src="images/close.png" alt=""></p>
+			<div class="modal-content"></div>
+		</div>
+		
+		<div class="register-servers-inside">
+		    <h1>Select Server</h1>
+		    <div class="servers-box">
+				<div class="servers-box-inside overthrow" id="page-servers-login-inside-scroll">
+					<div>      
+					</div>
+				</div>    
+		    </div>
+	    </div>
+
+	    
+	    <div class="login">
+	    	<div class="login-screen">
+			    <div class="login-box">
+				    <div class="row" style="background:none;">
+				    	Email:
+					    <input type="text" value="" name="login-username" class="login-username">
+				    </div>
+				    <div class="row" style="background:none;">
+				    	Password:
+					    <input type="password" value="" name="login-password" class="login-password">
+				    </div>
+				    <div class="row">
+				    	<a class="btn login-btn" onclick="Login.doLogin();">Login</a>
+				    </div>
+			    </div>
+			    <div class="login-bar">
+				    <a class="login-signup" onclick="Login.showRegister();">Sign Up</a>
+				    <a class="login-forgot" onclick="Login.showForgot();">Forgot Password?</a>
+			    </div>
+		    </div>
+	    	<div class="forgot-screen">
+			    <div class="forgot-box">
+				    <div class="row" style="background:none;">
+				    	Email:
+					    <input type="email" value="" name="forgot-email" class="forgot-email">
+				    </div>
+				    <div class="row">
+				    	<a class="btn forgot-btn" onclick="Login.doForgot();">Send Password</a>
+				    	<a class="btn back-btn" onclick="Login.init();">Back</a>
+				    </div>
+			    </div>
+		    </div>
+	    	<div class="register-screen">
+			    <div class="register-box">
+				    <div class="row" style="background:none;">
+				    	Email:
+					    <input type="email" value="" name="register-email" class="register-email">
+				    </div>
+				    <div class="row" style="background:none;">
+				    	Password:
+					    <input type="password" value="" name="register-password" class="register-password">
+				    </div>
+				    <div class="row" style="background:none;">
+				    	Repeat Password:
+					    <input type="password" value="" name="register-password2" class="register-password2">
+				    </div>
+				    <div class="row" style="background:none;">
+				    	Commander Name:
+					    <input type="text" value="" name="register-username" class="register-username">
+				    </div>
+				    <div class="row">
+				    	<a class="btn back-btn" onclick="Login.init();">Back</a>
+				    	<a class="btn register-btn" onclick="Login.doRegister();">Register</a>
+				    </div>
+			    </div>
+		    </div>
+	    	<div class="register-servers">
+			    <h1>Select Server</h1>
+			    <div class="servers-box">
+					<div class="servers-box-inside overthrow" id="page-servers-login-scroll">
+						<div>      
+						</div>
+					</div>    
+			    </div>
+		    </div>
+	    </div>
+	    
+		<div id="header">
+			<a href="#" class="open-left"></a>
+			<div class="header-bg-middle">
+				<div class="metal">
+					<span class="title">Metal</span>
+					<span class="value"></span>
+				</div>
+				<div class="crystal">
+					<span class="title">Crystal</span>
+					<span class="value"></span>
+				</div>
+				<div class="deuterium">
+					<span class="title">Deuterium</span>
+					<span class="value"></span>
+				</div>
+				<div class="energy">
+					<span class="title">Energy</span>
+					<span class="value"></span>
+				</div>
+			</div>
+			<div class="header-bg-right"></div>
+			
+			<div id="help-bar">
+				<div class="bar-title">
+					<h1>Overview</h1>
+					<span></span>
+				</div>
+				<div class="mailbox" onClick="Mail.init();"></div>
+				<div class="help-icon page-link" onClick="Overview.showHelp();"></div>
+			</div>
+		</div>
+		<div id="content">
+			<!--<p id="confirmation"></p>-->
+			<div class="outer">
+				<div class="page-content page-overview">
+					
+					<div class="outer-fleet-bar">
+						<a>
+							Flying Fleet <em class="fleet-counter"></em>
+						</a>
+					</div>
+					<div class="home-overview">
+						<h1 class="title" ><span class="overview-planet-name"></span> <span class="overview-planet-coords"></span></h1>
+						<div class="planet-info">
+							<div class="left">
+								<h3>Fields:</h3>
+								<p class="overview-planet-fields"></p>
+								<h3>Temperature:</h3>
+								<p class="overview-planet-temp"></p>
+								<h3>Points:</h3>
+								<p class="overview-planet-rank"></p>
+								<h3>Online:</h3>
+								<p class="green overview-planet-online"></p>
+							</div>
+							<div class="right">
+								<div class="planet-img">
+									<div class="moon-img"></div>
+								</div>
+								<div class="planet-timer"></div>
+							</div>
+						</div>
+						<div class="global-message-holder"></div>
+					</div>
+				</div>
+				
+				<div class="page-content page-empire">
+					<div class="empire-list overthrow" id="page-empire-scroll"></div>
+				</div>
+				
+				<div class="page-content page-shipyard">
+					<div class="list-shipyard">
+						
+					</div>
+				</div>
+				
+				<div class="page-content page-galaxy">
+					<div class="outer-galaxy-bar">
+						<div class="galaxy-bar-content">
+							<div class="bar-item">
+								<div class="galaxy-arrow-left" onclick="decrement('galaxy-bar-galaxy');"></div>
+								<input type="number" value="" class="galaxy-bar-galaxy" pattern="[0-9]*"/>
+								<div class="galaxy-arrow-right" onclick="increment('galaxy-bar-galaxy');"></div>
+							</div>
+							<div class="bar-item" style="width:104px;">
+								<div class="system-arrow-left" onclick="decrement('galaxy-bar-system');"></div>
+								<input type="number" value="" class="galaxy-bar-system" pattern="[0-9]*" style="width:40px;"/>
+								<div class="system-arrow-right" onclick="increment('galaxy-bar-system');"></div>
+							</div>
+							<div class="bar-item-btn">
+								<a href="#" class="btn galaxy-go">GO</a>
+							</div>	
+						</div>
+					</div>
+					<div class="galaxy-list overthrow" id="page_galaxy_scroll"></div>
+				</div>
+				<div class="page-content page-buildings">
+					<div class="outer-tab-bar">
+						<div class="tab-bar-content">
+							<div class="tab-buildings sel" onclick="Buildings.init();"><img src="images/i-buildings.png" alt=""></div>
+							<div class="tab-research" onclick="Research.init();"><img src="images/i-research.png" alt=""></div>
+							<div class="tab-defense" onclick="Defense.init();"><img src="images/i-defense.png" alt=""></div>
+							<div class="tab-ships" onclick="Ships.init();"><img src="images/i-ships.png" alt=""></div>	
+						</div>
+					</div>
+					<div class="buildings-list overthrow" id="page_buildings_scroll"></div>
+				</div>			
+				
+				
+				<div class="page-content page-settings">
+					<div class="settings-list overthrow" id="page-settings-scroll"></div>
+				</div>	
+				
+				
+				<div class="page-content page-recordboard">
+					<div class="recordboard-list overthrow" id="page-recordboard-scroll">
+						<div></div>	
+					</div>
+				</div>
+				
+				
+				<div class="page-content page-officers">
+					<div class="officers-list overthrow" id="page-officers-scroll">
+						<div></div>	
+					</div>
+				</div>
+				
+				<div class="page-content page-store">
+					<div class="store-list overthrow" id="page-store-scroll">
+						<div></div>	
+					</div>
+				</div>
+				
+				<div class="page-content page-alliance"></div>
+				
+				<!-- Forum -->
+				<div id="forum-screen" class="page-content page-forum forum"><div class="overthrow" id="page-forum-scroll"></div></div>
+				<div id="forum-topics-screen" class="page-content page-forum forum"><div class="overthrow" id="page-forum-topics-scroll"></div></div>
+				<div id="forum-posts-screen" class="page-content page-forum forum"><div class="overthrow" id="page-forum-posts-scroll"></div></div>
+				<div id="forum-newposts-screen" class="page-content page-forum forum"><div class="overthrow" id="page-newposts-scroll"></div></div>			
+				<!-- Chat -->
+				<div id="chat-screen" class="page-content page-chat"><div class="overthrow" id="page-chat-scroll"></div></div>	
+				
+				
+				
+				
+				<!-- Statistics -->
+				<div id="statistics-screen" class="page-content page-statistic">
+					<div class="outer-statistic-bar">
+						<div class="statistic-bar-content">
+							<div class="bar-item">
+								Show
+								<select class="statistic-select-show" onChange="Scoreboard.showStatistics()">
+									<option value="user">Users</option>
+									<option value="ally">Alliances</option>
+								</select>
+							</div>
+							<div class="bar-item">
+								By
+								<select class="statistic-select-by" onChange="Scoreboard.showStatistics()">
+									<option value="1">Points</option>
+									<option value="2">Fleet</option>
+									<option value="3">Research</option>
+									<option value="4">Building</option>
+									<option value="5">Defense</option>
+								</select>
+							</div>
+							<div class="bar-item">
+								Rank
+								<select class="statistic-select-rank" onChange="Scoreboard.showStatistics()"></select>
+							</div>	
+						</div>
+					</div>
+					<div class="statistic-list overthrow" id="page_statistic_scroll"></div>
+				</div>
+				
+				<!-- Search -->
+				<div id="search-screen" class="page-content page-search">
+					<div class="users-search">
+						<div class="users-search-content">
+							<b>Search by: </b>
+							<label class="fl" style="width:80px;"><input type="radio" name="users_search_type" value="1" checked="checked"/>Users</label>
+							<label class="fl"><input type="radio" name="users_search_type" value="2"/>Alliances</label><br/><br/>
+							<input type="text" id="users_search_value" class="users_search_value"/>
+							<button class="btn" onclick="Search.doSearch();">Search</button>
+						</div>
+					</div>
+					<div class="search-list overthrow" id="page_search_scroll"></div>
+				</div>
+				
+				<!-- Mail -->
+				<div id="mail-screen" class="page-content page-mail">
+					<div class="mail-list overthrow" id="page_mail_scroll"></div>
+				</div>
+				<div id="mail-screen2" class="page-content page-mail2">
+					<div class="mail2-list overthrow" id="page_mail2_scroll"></div>
+				</div>
+				<div id="mail3-screen" class="page-content page-mail3">
+					<div class="mail3-list overthrow" id="page_mail3_scroll"></div>
+				</div>
+				<div id="mail4-screen" class="page-content page-mail4">
+					<div class="mail4-list overthrow" id="page_mail4_scroll"></div>
+				</div>
+
+				
+				<div class="page-content page-resources">
+					<div class="resources-list overthrow" id="page_resources_scroll"></div>
+				</div>
+				
+				
+				
+				<div class="page-content page-sim-page"></div>
+				<div class="page-content page-galaxy-page"></div>
+				<div class="page-content page-user-page"></div>
+				<div class="page-content page-alliance-page"></div>
+				<div class="page-content page-message-page"></div>
+				<div class="page-content page-cr-page"></div>
+				<div class="page-content page-pr-page" style="z-index:999;"></div>
+				<div class="page-content page-help-page"></div>
+				
+			</div>
+		</div>
+		
+		<nav id="menu-left">
+			<ul>
+				<li><p class="planet-select-holder" style="padding:0px 10px;height:20px;"></p></li>
+				<li><a href="#" onclick="Overview.init();">Overview</a></li>
+				<!--<li><a href="#" onclick="Empire.init();">Empire</a></li>-->
+				<li><a href="#" onclick="Galaxy.init();">Galaxy</a></li>
+				<li><a href="#" onclick="Shipyard.init();">Fleet</a></li>
+				<li><a href="#" onclick="Ally.init();">Alliance</a></li>
+				<li class="Label">Production</li>
+				<li><a href="#" onclick="Buildings.init();">Buildings</a></li>
+				<li><a href="#" onclick="Research.init();">Research</a></li>
+				<li><a href="#" onclick="Defense.init();">Defense</a></li>
+				<li><a href="#" onclick="Ships.init();">Shipyard</a></li>
+				<li class="Label">Communication</li>
+				<li><a href="#" onclick="Forum.init();">Forum</a></li>
+				<li><a href="#" onclick="Chat.init();">Chat</a></li>
+				<li class="Label">Statistic</li>
+				<li><a href="#" onclick="Scoreboard.init();">Scoreboard</a></li>
+				<li><a href="#" onclick="Recordboard.init();">Recordboard</a></li>
+				<li><a href="#" onclick="Search.init();">Search</a></li>
+				<li class="Label">Officers</li>
+				<li><a href="#" onclick="Officers.init();">Officers</a></li>
+				<li><a href="#" onclick="Store.init();">Store</a></li>
+				<li class="Label">Settings</li>
+				<li><a href="#" onclick="Settings.init();">Settings</a></li>
+				<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
+				<li class="Label">Server Settings</li>
+				<li class="server_status">
+					<div class="table">
+						<div>
+							<div style="text-align:center">Server Time:</div><div class="server_time" style="text-align:center">unknown</div>
+						</div>
+					</div>
+					<div class="table small">
+						<div>
+							<div>Game Speed:<br/> <span class="server_game_speed"></span></div>
+							<div>Fleet Speed:<br/> <span class="server_fleet_speed"></span></div>
+							<div>Resources:<br/> <span class="server_resources"></span></div>
+							<div>Attacks:<br/> <span class="server_attacks"></span></div>
+							<div>Debris:<br/> <span class="server_df_percent"></span></div>
+						</div>
+					</div>
+				</li>
+				<li><a href="#" class="btn" onclick="Login.showServersInside();" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</a></li>
+				<li class="Label"></li>
+				<li class="Label"></li>
+			</ul>
+		</nav>
+		<nav id="menu-right" style="padding-top:0px;">
+		</nav>
+	</div>	
+	<!-- SCRIPTS -->
+	<!--Config JS-->
+	<script src="js/config.js" type="text/javascript"></script>
+	<script src="js/settings.js" type="text/javascript"></script>
+	<!--Library JS-->
+	<script src="js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.mmenu.min.js"></script>
+	<script type="text/javascript" src="js/jquery.modal.min.js"></script>
+	<script type="text/javascript" src="js/jquery.transit.js"></script>
+	<script type="text/javascript" src="js/alertify.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<script type="text/javascript" src="js/overthrow.js"></script>
+	<script type="text/javascript" src="js/timers.js"></script>
+	<!--Cordova-->
+	<script src="cordova.js"></script>
+	<!--<script src="childbrowser.js"></script>
+	<script src="PushNotification.js"></script>
+	<script src="inappbilling.js"></script>
+	<script src="InAppPurchase.js"></script>-->
+	<!--Actions JS-->
+	<script src="js/language.js" type="text/javascript"></script>
+	<script src="js/request.js" type="text/javascript"></script>
+	<script src="js/log.js" type="text/javascript"></script>
+	<script src="js/check.js" type="text/javascript"></script>
+	<script src="js/functions.js" type="text/javascript"></script>
+	<script src="js/fb.js" type="text/javascript"></script>
+	<script src="js/ui.js" type="text/javascript"></script>
+	<script src="js/smartpaginator.js" type="text/javascript"></script>
+	<!--UI JS-->
+	<script src="js/screens/login.js" type="text/javascript"></script>
+	<script src="js/screens/overview.js" type="text/javascript"></script>
+	<script src="js/screens/empire.js" type="text/javascript"></script>
+	<script src="js/screens/galaxy.js" type="text/javascript"></script>
+	<script src="js/screens/info.js" type="text/javascript"></script>
+	<script src="js/screens/ally.js" type="text/javascript"></script>
+	<script src="js/screens/buildings.js" type="text/javascript"></script>
+	<script src="js/screens/research.js" type="text/javascript"></script>
+	<script src="js/screens/defense.js" type="text/javascript"></script>
+	<script src="js/screens/ships.js" type="text/javascript"></script>
+	<script src="js/screens/shipyard.js" type="text/javascript"></script>
+	<script src="js/screens/forum.js" type="text/javascript"></script>
+	<script src="js/screens/chat.js" type="text/javascript"></script>
+	<script src="js/screens/scoreboard.js" type="text/javascript"></script>
+	<script src="js/screens/recordboard.js" type="text/javascript"></script>
+	<script src="js/screens/officers.js" type="text/javascript"></script>
+	<script src="js/screens/store.js" type="text/javascript"></script>
+	<script src="js/screens/settings.js" type="text/javascript"></script>
+	<script src="js/screens/resources.js" type="text/javascript"></script>
+	<script src="js/screens/mail.js" type="text/javascript"></script>
+	<script src="js/screens/search.js" type="text/javascript"></script>
+	<script src="js/screens/cr.js" type="text/javascript"></script>
+	<script src="js/screens/userinfo.js" type="text/javascript"></script>
+	<script src="js/screens/phalanx.js" type="text/javascript"></script>
+	<!--Init JS-->
+	<script src="js/pull-refresh.js" type="text/javascript"></script>
+	<script src="http://ge.seazonegames.com/js/init-before.js" type="text/javascript"></script>
+	<script src="js/init.js" type="text/javascript"></script>
+	<script src="js/init-pages.js" type="text/javascript"></script>
+	<script src="http://ge.seazonegames.com/js/init-after.js" type="text/javascript"></script>
+	<script>
+		//app.initialize();
+	</script>
+	
+</body>
+</html>
