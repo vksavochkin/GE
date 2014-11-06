@@ -116,7 +116,14 @@
 			if(have_ships == false){
 				out += '<p>'+lang._T('fl_no_ships')+'</p>';
 			}else{
-				out_page1 = '<div class="table shipyard-ships">'+out_page1+'</div>\
+				out_page1 = '<div class="table shipyard-ships">\
+							'+out_page1+'\
+							<div class="row" style="display:none;">\
+								<div class="cell"></div>\
+								<div class="cell cell-max"></div>\
+								<div class="cell cell-input"><input data-max="0" data-fuel="0" data-speed="0" data-cargo="0" data-name="0" pattern="[0-9]*" type="number" class="ship_ shipyard_inputx" name="ship_"  placeholder="0"/></div>\
+							</div>\
+						</div>\
 						<div class="shipyard-ships-control">\
 							<div>\
 								<a class="btn remove-ships" onclick="removeAllShipsBtn();">Remove Ships</a>\
@@ -207,6 +214,12 @@
 							</select>\
 						</div>\
 					</div>\
+					<div class="row" style="display:none;">\
+						<div class="cell"></div>\
+						<div class="cell cell-input">\
+							<input pattern="[0-9]*" type="number" class="shipyard_planetx" name="shipyard_planetx"  placeholder="0" value="0"/>\
+						</div>\
+					</div>\
 					<div class="row"><div class="cell">Distance</div><div class="cell shipyard_distance">-</div></div>\
 					<div class="row"><div class="cell">Flying Time</div><div class="cell shipyard_time">-</div></div>\
 					<div class="row"><div class="cell">Fuel</div><div class="cell shipyard_fuel">-</div></div>\
@@ -264,6 +277,11 @@
 						<div class="cell">Deuterium</div>\
 						<div class="cell cell-max"><a class="btn max-resources-btn" rel="deuterium" onclick="maxResource(\'deuterium\');">Max.</a></div>\
 						<div class="cell cell-input"><input pattern="[0-9]*" type="number" class="shipyard_deuterium" name="shipyard_deuterium"  placeholder="0"/></div>\
+					</div>\
+					<div class="row" style="display:none;">\
+						<div class="cell"></div>\
+						<div class="cell cell-max"></div>\
+						<div class="cell cell-input"><input pattern="[0-9]*" type="number" class="shipyard_deuteriumx" name="shipyard_deuteriumx"  placeholder="0"/></div>\
 					</div>\
 					<div class="row">\
 						<div class="cell">Space Left</div>\
