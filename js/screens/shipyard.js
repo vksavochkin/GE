@@ -21,36 +21,36 @@
 	},
 	content: function(g,s,p,t,m){
 		$('.list-shipyard').html('<div id="wrapper">\
-			                <div id="steps">\
-			                    <div id="formElem" name="formElem" method="post">\
-			                        <fieldset class="step shipsStep" style="display:block;">\
-			                           <form><legend>Choose Ships: <span class="available_slots"></span></legend>\
-			                            <div class="step-ships overthrow" id="step_ships_scroll"></div></form>\
-			                        </fieldset>\
-			                        <fieldset class="step destinationStep" style="display:none;">\
-			                           	<form><legend>Destination:</legend>\
-			                           	<div class="step-destination overthrow" id="step_destination_scroll"></div></form>\
-			                        </fieldset>\
+							<div id="steps">\
+								<div id="formElem" name="formElem" method="post">\
+									<fieldset class="step shipsStep" style="display:block;">\
+									   <form><legend>Choose Ships: <span class="available_slots"></span></legend>\
+										<div class="step-ships overthrow" id="step_ships_scroll"></div></form>\
+									</fieldset>\
+									<fieldset class="step destinationStep" style="display:none;">\
+									   	<form><legend>Destination:</legend>\
+									   	<div class="step-destination overthrow" id="step_destination_scroll"></div></form>\
+									</fieldset>\
 									<fieldset class="step missionsStep" style="display:none;">\
-			                            <form><legend>Mission and Resources:</legend>\
-			                           	<div class="step-mission overthrow" id="step_mission_scroll"></div></form>\
-			                        </fieldset>\
-			                    </div>\
-			                </div>\
-			                <div id="navigation">\
-			                    <ul>\
-			                        <li class="selected shipsStepfocus"><a class="btn" onclick="Shipyard.initForm(1);">Ships</a></li>\
-			                        <li class="destinationStepfocus"><a class="btn" onclick="Shipyard.initForm(2);">Target</a></li>\
-			                        <li class="missionsStepfocus"><a class="btn" onclick="Shipyard.initForm(3);">Mission</a></li>\
-			                        <li><a class="btn" onclick="Shipyard.send();">Send</a></li></ul>\
-			                </div>\
-			            </div>');
+										<form><legend>Mission and Resources:</legend>\
+									   	<div class="step-mission overthrow" id="step_mission_scroll"></div></form>\
+									</fieldset>\
+								</div>\
+							</div>\
+							<div id="navigation">\
+								<ul>\
+									<li class="selected shipsStepfocus"><a class="btn" onclick="Shipyard.initForm(1);">Ships</a></li>\
+									<li class="destinationStepfocus"><a class="btn" onclick="Shipyard.initForm(2);">Target</a></li>\
+									<li class="missionsStepfocus"><a class="btn" onclick="Shipyard.initForm(3);">Mission</a></li>\
+									<li><a class="btn" onclick="Shipyard.send();">Send</a></li></ul>\
+							</div>\
+						</div>');
 		
 		
 		
 		/*$('#steps').stop().animate({
-	            marginLeft: '-0px'
-	    },500,function(){});*/
+				marginLeft: '-0px'
+		},500,function(){});*/
 
 		var out = '';
 		var out_page1 = '';
@@ -146,7 +146,7 @@
 				if(!Check.isEmpty(own_planets)){
 					own_planets = '<select class="shipyard_own_planets"><option value=""></option>'+own_planets+'</select>';
 				}else{
-    				own_planets = '<select class="shipyard_own_planets" style="display:none;"><option value=""></option></select>';
+					own_planets = '<select class="shipyard_own_planets" style="display:none;"><option value=""></option></select>';
 				}
 				
 				var acs = '';
@@ -167,7 +167,7 @@
 								</select>\
 						</div></div>';
 				}else{
-    				acs = '<div class="row" style="display:none;">\
+					acs = '<div class="row" style="display:none;">\
 							<div class="cell">ACS</div>\
 							<div class="cell"></div>\
 							<div class="cell">\
@@ -305,9 +305,6 @@
 		return false;
 	},
 	send:function(){
-		//if(validateStep(3, false) == false){
-		//	return false;
-		//}
 		var ship_count = 0;
 		var ships = {};
 		$('.shipyard_input').each(function(){
@@ -337,9 +334,9 @@
 		var deuterium = parseInt($('.shipyard_deuterium').val());
 		
 		if(ship_count < 1){
-    		alertify.alert(lang._T('You must to choose at least one ship'));
-    		return false;
-    	}
+			alertify.alert(lang._T('You must to choose at least one ship'));
+			return false;
+		}
 		
 		if(g < 1 || s < 1 || p < 1){
 			alertify.alert(lang._T('You must to enter planet coordinates'));
@@ -374,8 +371,8 @@
 	initForm: function(step){//shipsStep destinationStep missionsStep
 		
 		if(step > 0 && validateStep(step) == false){
-		        return false;
-        }
+				return false;
+		}
 		
 		var stepName = 'shipsStep';
 		if(step == 2){stepName = 'destinationStep';}
@@ -391,86 +388,6 @@
 		$('.'+stepName+'focus').addClass('selected');
 		
 		return;
-		
-		
-		/*
-		number of fieldsets
-		*/
-		var fieldsetCount = $('#formElem').children().length;
-		
-		/*
-		current position of fieldset / navigation link
-		*/
-		var current 	= 1;
-	    
-		/*
-		sum and save the widths of each one of the fieldsets
-		set the final sum as the total width of the steps element
-		*/
-		var stepsWidth	= 0;
-	    var widths 		= new Array();
-		$('#steps .step').each(function(i){
-	        var $step 		= $(this);
-			widths[i]  		= stepsWidth;
-	        stepsWidth	 	+= $step.width();
-	    });
-	    //var width = $('#wrapper').width()*3;
-		//$('#steps').width(width);
-		
-	
-		/*
-		when clicking on a navigation link 
-		the form slides to the corresponding fieldset
-		*/
-	    $('#navigation a').bind('click',function(e){
-			var $this	= $(this);
-			var prev	= current;
-			/*
-			we store the position of the link
-			in the current variable	
-			*/
-			current = $this.parent().index() + 1;
-			/*
-			animate / slide to the next or to the corresponding
-			fieldset. The order of the links in the navigation
-			is the order of the fieldsets.
-			Also, after sliding, we trigger the focus on the first 
-			input element of the new fieldset
-			If we clicked on the last link (confirmation), then we validate
-			all the fieldsets, otherwise we validate the previous one
-			before the form slided
-			*/
-	        if(validateStep(current) == false){
-		        return false;
-	        }
-	        
-			$this.closest('ul').find('li').removeClass('selected');
-	        $this.parent().addClass('selected');
-	        
-	        
-	        $('#steps').stop().animate({
-	            marginLeft: '-' + widths[current-1] + 'px'
-	        },500,function(){});
-	    });
-		
-		/*
-		clicking on the tab (on the last input of each fieldset), makes the form
-		slide to the next step
-		*/
-		/*$('#formElem > fieldset').each(function(){
-			var $fieldset = $(this);
-			$fieldset.children(':last').find(':input').keydown(function(e){
-				console.log(e.which)
-				if (e.which == 9){
-					return false;
-					//$('#navigation li:nth-child(' + (parseInt(current)+1) + ') a').click();
-					// force the blur for validation 
-					//$(this).blur();
-					//e.preventDefault();
-				}
-			});
-		});	*/	
-		
 	},
 	
 	showSim: function(){
@@ -848,12 +765,12 @@ function tsdpkt(f) {
   f = abs(f);
   r = f % 1000;
   while (f >= 1000){
-    k1 = "";
-    if ((f % 1000) < 100) { k1 = "0"; }
-    if ((f % 1000) < 10) { k1 = "00"; }
-    if ((f % 1000) == 0) { k1 = "00"; }
-    f = abs((f-(f % 1000)) / 1000);
-    r = f % 1000 + "." + k1 + r;
+	k1 = "";
+	if ((f % 1000) < 100) { k1 = "0"; }
+	if ((f % 1000) < 10) { k1 = "00"; }
+	if ((f % 1000) == 0) { k1 = "00"; }
+	f = abs((f-(f % 1000)) / 1000);
+	r = f % 1000 + "." + k1 + r;
   }
   r = vz + r;
   return r;
@@ -898,29 +815,9 @@ function distanse() {
 }
 
 function maxResources() {
-    /*var _planet = {};
-		_planet = responseObj.state.planets[responseObj.state.user.current_planet];
-    
-	var fuel = parseInt($('.shipyard_all_fuel').val());
-	var total_cargo = parseInt($('.shipyard_storage').val());
-	var metalToTransport = _planet.metal;
-	var crystalToTransport = _planet.crystal;
-	var deuteriumToTransport = _planet.deuterium;
-	
-	var freeCapacity = total_cargo - metalToTransport - crystalToTransport - deuteriumToTransport-fuel;
-	if (freeCapacity < 0) {
-		metalToTransport = Math.min(metalToTransport, total_cargo);
-		crystalToTransport = Math.min(crystalToTransport, total_cargo - metalToTransport);
-		deuteriumToTransport = Math.min(deuteriumToTransport, total_cargo - metalToTransport - crystalToTransport-fuel);
-	}
-	
-	$(".shipyard_metal").val(Math.floor(Math.max(metalToTransport, 0)));
-	$(".shipyard_crystal").val(Math.floor(Math.max(crystalToTransport, 0)));
-	$(".shipyard_deuterium").val(Math.floor(Math.max(deuteriumToTransport, 0)));*/
 	maxResource('metal');
 	maxResource('crystal');
 	maxResource('deuterium');
-	//calculateTransportCapacity();
 }
 
 function maxResource(res) {
@@ -959,8 +856,6 @@ function maxResource(res) {
 	}else{
 		cargo[res] += Math.floor(available_space);
 	}
-
-	//console.log(available_space);
 	
 	$('.shipyard_'+res).val(Math.floor(cargo[res]));
 	
