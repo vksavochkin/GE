@@ -108,48 +108,16 @@
 			var arrival_time = '';
 			
 			var fleet_status = 'own';
-			if(parseInt(f.fleet_owner) == parseInt(user.id)){
-				if(parseInt(f.fleet_mess) == 0 && parseInt(f.fleet_mission) != 10){
-					buttons += '<button class="side-fleet-return btn" rel="'+f.fleet_id+'" onclick="fleetCallback(\''+f.fleet_id+'\');">Recall</button>';
-					if(parseInt(f.fleet_mission) == 1 || parseInt(f.fleet_mission) == 2 || parseInt(f.fleet_mission) == 9 || parseInt(f.fleet_mission) == 10){
-						buttons += '<a class="galaxy-link-spy btn" rel="'+f.fleet_end_galaxy+';'+f.fleet_end_system+';'+f.fleet_end_planet+';'+f.fleet_end_type+'" style="margin-left:10px;" onclick="galaxyMissionSpy(\''+f.fleet_end_galaxy+';'+f.fleet_end_system+';'+f.fleet_end_planet+';'+f.fleet_end_type+'\');">Spy</a>';
-					}
-				}
-				if(parseInt(f.fleet_mission) == 1 && parseInt(f.fleet_mess) == 0  && parseInt(f.fleet_group) < 1){
-					buttons += '<button class="side-fleet-acs btn" rel="'+f.fleet_id+'" onclick="showACSBtn('+f.fleet_id+');" style="margin-left:10px;">ACS Attack</button>';
-				}
-				
-				if(parseInt(f.fleet_group) > 1 && parseInt(f.fleet_mess) == 0){
-					var acs_users='';
-					foreach(f.acs.users, function(k,v){
-						acs_users += '<p>'+v+'</p>';
-					});
-				}
-				
-			}else{
-				if(parseInt(f.fleet_mission) == 1 || parseInt(f.fleet_mission) == 2 || parseInt(f.fleet_mission) == 9 || parseInt(f.fleet_mission) == 10){
-					fleet_status = 'enemy';
-				}else{
-					fleet_status = 'friend';
-				}
-			}
 			
 			
 			//Show arrival rite
-			if(parseInt(f.fleet_owner) == parseInt(user.id)){
-				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Target:</b>: '+f.fleet_start_time_real+'<br/>';
-					if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
-						arrival_time += '<b>Arrival back to Home:</b>: '+f.fleet_end_time_real+'<br/>';
-					}					
-				}else{
+			if(parseInt(f.fleet_mess) == 0){
+				arrival_time += '<b>Arrival to Target:</b>: '+f.fleet_start_time_real+'<br/>';
+				if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
 					arrival_time += '<b>Arrival back to Home:</b>: '+f.fleet_end_time_real+'<br/>';
-				}
-				
+				}					
 			}else{
-				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Planet:</b>: '+f.fleet_start_time_real+'<br/>';
-				}
+				arrival_time += '<b>Arrival back to Home:</b>: '+f.fleet_end_time_real+'<br/>';
 			}
 			
 			var from = '';
