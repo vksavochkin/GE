@@ -25,7 +25,7 @@
 		$('.overview-planet-coords').html('['+planet.g+':'+planet.s+':'+planet.p+']');
 		$('.overview-planet-fields').html(planet.diameter+' km ('+planet.field_current+'/'+planet.field_max+')');
 		$('.overview-planet-temp').html('Approx. '+planet.temp_min+'&deg; to '+planet.temp_max+'&deg;');
-		$('.overview-planet-rank').html(''+responseObj.state.user.points+' (Rank '+responseObj.state.user.rank+' of '+responseObj.total_users+')');
+		$('.overview-planet-rank').html(''+prettyNumber(responseObj.state.user.points)+' (Rank '+responseObj.state.user.rank+' of '+responseObj.total_users+')');
 		$('.overview-planet-online').html(''+responseObj.online_users+' Users');
 		$('.planet-info .planet-img').css('background-image', 'url("images/planets/'+planet.image+'.png")');
 		if (parseInt(planet.moon_id) > 0) {

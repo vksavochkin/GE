@@ -109,27 +109,32 @@
 				}
 				
 				var debries_row = '';
-				
-				if(parseInt(data.debries_metal)>0 || parseInt(data.debries_crystal)>0){
-					debries_row = '<div class="debries">\
-							<h2>Debris:</h2>\
-							<div>Metal:<br/> '+data.debries_metal+'</div>\
-							<div>Crystal:<br/> '+data.debries_crystal+'</div>\
-						</div>';
-						
-					planet_links += '<a class="btn galaxy-link-recycle" rel="'+data.g+';'+data.s+';'+data.p+'" onclick="galaxyMissionRecycle(\''+data.g+';'+data.s+';'+data.p+'\');"><img src="images/icon-recycling.png"></a>';	
-				}
+
+				// trying to fix positions of as much buttons as possible
 				//console.log(data.user_id+':'+user.id);
 				if(parseInt(data.user_id) != parseInt(user.id)){
 					planet_links += parseInt(planet.espionage_probe) > 0 ? '<a class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';1"  onclick="galaxyMissionSpy(\''+data.g+';'+data.s+';'+data.p+';1\');"><img src="images/icon-spy.png"></a>' : '';
 					planet_links += '<a class="btn galaxy-link-attack" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,1);"><img src="images/icon-attack.png"></a>';
 					planet_links += '<a class="btn galaxy-link-stay" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,4);"><img src="images/icon-stay.png"></a>';
+				}
+				planet_links += '<a class="btn galaxy-link-transportation" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,3);"><img src="images/icon-transportation.png"></a>';
+
+				if(parseInt(data.user_id) != parseInt(user.id)){
 					if(missiles_range(data.user_id, data.g, data.s)){
 						planet_links += '<a class="btn galaxy-link-missles" rel="'+data.g+';'+data.s+';'+data.p+';1" onclick="Galaxy.showMissles('+data.g+','+data.s+','+data.p+',1);"><img src="images/icon-missles.png"></a>';
 					}
 				}
-				planet_links += '<a class="btn galaxy-link-transportation" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,3);"><img src="images/icon-transportation.png"></a>';
-				
+
+				if(parseInt(data.debries_metal)>0 || parseInt(data.debries_crystal)>0){
+					debries_row = '<div class="debries">\
+							<h2>Debris:</h2>\
+							<div>Metal:<br/> '+prettyNumber(data.debries_metal)+'</div>\
+							<div>Crystal:<br/> '+prettyNumber(data.debries_crystal)+'</div>\
+						</div>';
+
+					planet_links += '<a class="btn galaxy-link-recycle" rel="'+data.g+';'+data.s+';'+data.p+'" onclick="galaxyMissionRecycle(\''+data.g+';'+data.s+';'+data.p+'\');"><img src="images/icon-recycling.png"></a>';
+				}
+
 				var phalanx = '';
 				if(!Check.isEmpty(data.phalanx)){
 					phalanx = '(<span class="phalanx-link" rel="'+data.id+'" data-g="'+data.g+'" data-s="'+data.s+'" data-p="'+data.p+'" onclick="galaxyPhalanx('+data.id+','+data.g+','+data.s+','+data.p+');" style="text-decoration:underline;">Phalanx</span>)';
@@ -150,10 +155,12 @@
 						moon_links += parseInt(planet.espionage_probe) > 0 ? '<a class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';3"  onclick="galaxyMissionSpy(\''+data.g+';'+data.s+';'+data.p+';3\');"><img src="images/icon-spy.png"></a>' : '';
 						moon_links += '<a class="btn galaxy-link-attack" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,1);"><img src="images/icon-attack.png"></a>';
 						moon_links += '<a class="btn galaxy-link-stay" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,4);"><img src="images/icon-stay.png"></a>';
-						moon_links += '<a class="btn galaxy-link-destroy" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,9);"><img src="images/icon-destroy.png"></a>';
 					}
 					moon_links += '<a class="btn galaxy-link-transportation" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,3);"><img src="images/icon-transportation.png"></a>';
-					
+					if(parseInt(data.user_id) != parseInt(user.id)){
+						moon_links += '<a class="btn galaxy-link-destroy" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,9);"><img src="images/icon-destroy.png"></a>';
+					}
+
 					moon_row = '<div class="moon-row">\
 						<div class="moonpic"><img src="images/planets/1.png"></div>\
 						<div class="mooninfo">\

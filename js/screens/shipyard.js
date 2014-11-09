@@ -1,6 +1,6 @@
  var Shipyard= {
 	pageID: '.page-shipyard',
-	missionType: 1,
+	missionType: 3,
 	init: function (g,s,p,t,m) {	
 		
 		$('.page-content').hide();
@@ -65,7 +65,7 @@
 		var s = typeof s !== 'undefined' ? s : _planet.s;
 		var p = typeof p !== 'undefined' ? p : _planet.p;
 		var t = typeof t !== 'undefined' ? t : _planet.planet_type;
-		var m = typeof m !== 'undefined' ? m : 1;
+		var m = typeof m !== 'undefined' ? m : this.missionType;
 		this.missionType = parseInt(m);
 		
 		//Count user fleet
@@ -655,7 +655,7 @@ function validateStep(step){
 				}
 			}
 			if (count(ships) > 0) {					
-				if(parseInt(user.attack_enabled) == 1){
+				if(parseInt(user.attack_enabled) == 1 && myPlanet == false){
 					missiontype[1] = 'Attack';
 				} 
 	
