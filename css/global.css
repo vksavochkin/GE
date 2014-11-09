@@ -536,7 +536,6 @@ input, textarea, select {
 	display:block;
 	position:absolute;
 	left:0px;
-	right:80px;
 	padding-left:10px;
 }
 	#help-bar .bar-title h1{
@@ -558,6 +557,18 @@ input, textarea, select {
 		color:#fff;
 		text-decoration:underline;
 	}
+
+#help-bar .planetchooser-source {
+    display:block;
+    float:right;
+    height:35px;
+}
+#help-bar .planetchooser-source .btn{
+    height:15px;
+    margin:5px;
+    background:transparent;
+    color:#26b4e9;
+}
 
 #help-bar .mailbox{
 	display:block;
@@ -2168,7 +2179,10 @@ Statistic
 			width:100px;
 			text-align:center;
 		}
-		
+
+.planetchooser-destination .btn {
+    width:122px;
+}
 .shipyard-destination input[type=number]{
 	width:30px;
 }		
@@ -2176,8 +2190,38 @@ Statistic
 .shipyard_galaxy, .shipyard_system, .shipyard_planet{
 	margin-top:5px;
 }
-       
-       
+
+.page-planetchooser .galaxy-list{
+    z-index: 10;
+    background: url(../images/bg3.png) repeat;
+    border: 1px solid rgb(16, 186, 200);
+}
+.page-planetchooser .cell{
+    padding: 3px;
+}
+.planetchooser-current{
+    border: 1px solid #10bac8;
+    border-radius: 4px;
+}
+.planetchooser-planet-label{
+    font-size: 12px;
+}
+.planetchooser-planet-coords{
+    font-size: 11px;
+    text-align: right;
+}
+.planetchooser-moon-label{
+    font-size: 12px;
+    text-align: right;
+}
+.table .planetchooser-planet-construction div{
+    font-size: 9px;
+}
+.table .planetchooser-moon-construction div{
+    font-size: 9px;
+    text-align: right;
+}
+
 /*
 	MAIL
 */       

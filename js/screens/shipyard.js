@@ -136,11 +136,14 @@
 				
 								
 				// DO step 2 and 3
-				
-				own_planets = '';
-				foreach(responseObj.state.planets_sorted, function(k,p){
-					if(parseInt(p.id) != parseInt(_planet.id)){
-						own_planets += '<option value="'+p.g+';'+p.s+';'+p.p+';'+p.planet_type+'">'+p.name+' ['+p.g+':'+p.s+':'+p.p+']</option>';
+				var own_planets = '';
+				var target_own_planet = undefined;
+				foreach(responseObj.state.planets_sorted, function(k,pl){
+					if(parseInt(pl.id) != parseInt(_planet.id)){
+						own_planets += '<option value="'+pl.g+';'+pl.s+';'+pl.p+';'+pl.planet_type+'">'+pl.name+' ['+pl.g+':'+pl.s+':'+pl.p+']</option>';
+					}
+					if(pl.g == g && pl.s == s && pl.p == p && pl.planet_type == t){
+						target_own_planet = pl;
 					}
 				});
 				if(!Check.isEmpty(own_planets)){
@@ -148,7 +151,7 @@
 				}else{
 					own_planets = '<select class="shipyard_own_planets" style="display:none;"><option value=""></option></select>';
 				}
-				
+
 				var acs = '';
 				if(!Check.isEmpty(responseObj.state.user.acs)){
 					foreach(responseObj.state.user.acs, function(k,v){
@@ -180,7 +183,9 @@
 				out_page2 = '<div class="table shipyard-destination">\
 					<div class="row">\
 						<div class="cell">Planet Coordinates<br/><small>Not required for ACS</small></div>\
-						<div class="cell cell-input">\
+						<div class="cell cell-input planetchooser-destination">\
+							<a class="btn" onclick="PlanetChooser.init(Shipyard.destination);">\
+							'+(isset(target_own_planet) ? target_own_planet.name : 'Choose...')+'</a>\
 							'+own_planets+'\
 							<input pattern="[0-9]*" type="number" class="shipyard_galaxy" name="shipyard_galaxy"  placeholder="0" value="'+g+'"/>\
 							<input pattern="[0-9]*" type="number" class="shipyard_system" name="shipyard_system"  placeholder="0" value="'+s+'"/>\
@@ -303,6 +308,14 @@
 		
 	
 		return false;
+	},
+	destination: function(planet){
+		$('.planetchooser-destination .btn').text(planet.name);
+		$('.shipyard_galaxy').val(planet.g);
+		$('.shipyard_system').val(planet.s);
+		$('.shipyard_planet').val(planet.p);
+		$('.shipyard_type').val(parseInt(planet.planet_type));
+		validateStep(2);
 	},
 	send:function(){
 		var ship_count = 0;

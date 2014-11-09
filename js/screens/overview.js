@@ -8,6 +8,7 @@
 		Request.send({});	
 		this.content();
 		Login.close();
+		PlanetChooser.onChangePlanet();
 		$('#header').show();
 		$('#help-bar').show();
 		$('#content').show();
@@ -97,7 +98,7 @@
 			   //$('.mailbox').css('background-image', 'url(../images/i-mail-new.png)');
 			   $('.mailbox').addClass('new-message-icon');
 			}
-			
+
 			var planet_list = '';
 			
 			foreach (responseObj.state.planets_sorted, function(k, p){
@@ -108,7 +109,7 @@
 				planet_list += '<option value="'+p.id+'" '+current+'>'+p.name+' ['+p.g+':'+p.s+':'+p.p+']</option>';
 				
 			});
-			
+
 			/*foreach(responseObj.state.planets, function(k, p){console.log(count(p));
 				var current = '';
 				if(parseInt(planet.id) == parseInt(p.id)){
@@ -119,7 +120,7 @@
 			});*/
 			
 			$('.planet-select-holder').html('<select class="planet-select" onchange="Overview.changePlanet();">'+planet_list+'</select>');
-			
+
 			var timer_building = '';
 			var timer_research = '';
 			if(!Check.isEmpty(planet.b_building_id)){
@@ -141,8 +142,8 @@
 			
 		}
 	},
-	changePlanet: function(){
-    	var pid = $('.planet-select option:selected').val();
+	changePlanet: function(pid){
+		pid = typeof pid !== 'undefined' ? pid : $('.planet-select option:selected').val();
 		Request.send({object:'planet', action:'set', pid:pid});
 		if(responseObj.status != 100){
 			alertify.alert(lang._T(responseObj.error));
@@ -170,6 +171,10 @@
 			return false;
 		}
 		return false;
+	},
+	changePlanetBtn: function(planet){
+		Overview.changePlanet(planet.id);
+		PlanetChooser.onChangePlanet();
 	},
 	renamePlanet:function(){
 		alertify.prompt("Rename Planet", function (e, str) {
