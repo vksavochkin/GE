@@ -564,8 +564,9 @@ input, textarea, select {
     height:35px;
 }
 #help-bar .planetchooser-source .btn{
-    height:15px;
-    margin:5px;
+    height: 20px;
+    line-height: 18px;
+    margin: 0px 8px;
     background:transparent;
     color:#26b4e9;
 }
@@ -2191,13 +2192,26 @@ Statistic
 	margin-top:5px;
 }
 
-.page-planetchooser .galaxy-list{
-    z-index: 10;
-    background: url(../images/bg3.png) repeat;
-    border: 1px solid rgb(16, 186, 200);
-}
 .page-planetchooser .cell{
     padding: 3px;
+}
+.planetchooser-bar{
+    padding: 12px;
+    background: url(../images/bg2.png) repeat;
+}
+.planetchooser-bar span{
+    font-size: 15px;
+}
+.planetchooser-list{
+    display:block;
+    clear:both;
+    position:absolute;
+    top:40px;
+    left:0px; bottom:0px;
+    right:0px;
+    overflow: hidden;
+    z-index: 10;
+    background: url(../images/bg3.png) repeat;
 }
 .planetchooser-current{
     border: 1px solid #10bac8;
@@ -2214,12 +2228,15 @@ Statistic
     font-size: 12px;
     text-align: right;
 }
-.table .planetchooser-planet-construction div{
+.table .planetchooser-construction div{
     font-size: 9px;
+    color: #aabbcc;
 }
-.table .planetchooser-moon-construction div{
-    font-size: 9px;
-    text-align: right;
+.table .planetchooser-construction .construction-label{
+    float: left;
+}
+.table .planetchooser-construction .construction-timer{
+    float: right;
 }
 
 /*

@@ -310,6 +310,8 @@
 		return false;
 	},
 	destination: function(planet){
+		// planetchooser hides all pages
+		$(Shipyard.pageID).show();
 		$('.planetchooser-destination .btn').text(planet.name);
 		$('.shipyard_galaxy').val(planet.g);
 		$('.shipyard_system').val(planet.s);

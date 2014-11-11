@@ -32,11 +32,8 @@
 			var list = '';
 			for(var i=1; i<=15; i++){
 				if(!Check.isEmpty(planetsList[i])){
-					var debriesSum = parseInt(planetsList[i]['debries_metal']) + parseInt(planetsList[i]['debries_crystal']);
-					var status =
-						(debriesSum > 2000000) ? '<div class="status" style="color: red">D</div>' :
-						((debriesSum > 200000) ? '<div class="status" style="color: yellow">D</div>' :
-						((debriesSum > 0) ? '<div class="status" style="color: lightgreen">D</div>' : ''));
+					var dColor = debriesColor(parseInt(planetsList[i]['debries_metal']), parseInt(planetsList[i]['debries_crystal']));
+					var status = dColor ? '<div class="status" style="color: '+dColor+'">D</div>' : '';
 					var status2 = (!Check.isEmpty(planetsList[i]['last_activity_update']) ? '<div class="status2">'+planetsList[i]['last_activity_update']+'</div>' : '');
 					var moon = (!Check.isEmpty(planetsList[i]['moon']) ? '<div class="moon"></div>' : '');
 					

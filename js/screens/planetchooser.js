@@ -4,8 +4,10 @@ var PlanetChooser = {
 
 	init: function(f){
 		PlanetChooser.onChoose = f;
+		$('.page-content').hide();
 		PlanetChooser.content();
 		$(this.pageID).show();
+		makeScroll('planetchooser_scroll');
 		return false;
 	},
 	close: function(){
@@ -31,21 +33,18 @@ var PlanetChooser = {
 				var buildArr = curBuild.split(',');
 
 				var restTime = parseInt(c_planet.b_building) - parseInt(responseObj.timestamp);
-				timer_building = '<div style="float:left;"">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div>\
+				timer_building = '<div class="construction-label"">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div>\
 				    &nbsp;\
-					<div style="float:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1"></div></div>';
+					<div class="construction-timer"><div class="js_timer" timer="'+restTime+'|1"></div></div>';
 			}
 
 			if (planet_type == 1){
-				var status = (parseInt(c_planet['debries_metal'])>0 || parseInt(c_planet['debries_crystal'])>0 ? '<div class="status">D</div>' : '');
+				var dColor = debriesColor(parseInt(c_planet['debries_metal']), parseInt(c_planet['debries_crystal']));
+				var status = dColor ? '<div class="status" style="color: '+dColor+'">D</div>' : '';
 				//var status2 = (!Check.isEmpty(c_planet['last_activity_update']) ? '<div class="status2">'+c_planet['last_activity_update']+'</div>' : '');
 				var moon = c_planet.moon_id > 0 ? '<div class="moon"></div>' : '';
 
-
 				rows[formatPlanetCoords(c_planet)] = '<div class="cell" onclick="PlanetChooser.choose('+planet_id+');">\
-						<div class="planetchooser-planet-coords">'+formatPlanetCoords(c_planet)+'</div>\
-					</div>\
-					<div class="cell" onclick="PlanetChooser.choose('+planet_id+');">\
 						<div class="galaxy-table-planet">\
 							<div class="planet" style="background-image:url(images/planets/'+c_planet['image']+'.png); width: 35px; height: 35px">\
 								'+status+'\
@@ -54,8 +53,8 @@ var PlanetChooser = {
 						</div>\
 					</div>';
 				rows[formatPlanetCoords(c_planet)] += '<div class="cell '+is_current+'" onclick="PlanetChooser.choose('+planet_id+');">\
-						<div class="planetchooser-planet-label">'+c_planet['name']+'</div>\
-						<div class="planetchooser-planet-construction">'+timer_building+'</div>\
+						<div class="planetchooser-planet-label">'+c_planet['name']+' '+formatPlanetCoords(c_planet)+'</div>\
+						<div class="planetchooser-construction">'+timer_building+'</div>\
 					</div>';
 
 				if (!(c_planet.moon_id > 0)){
@@ -64,7 +63,7 @@ var PlanetChooser = {
 			}else if (planet_type == 3){
 				rows[formatPlanetCoords(c_planet)] += '<div class="cell '+is_current+'" onclick="PlanetChooser.choose('+planet_id+');">\
 						<div class="planetchooser-moon-label">'+c_planet['name']+'</div>\
-						<div class="planetchooser-moon-construction">'+timer_building+'</div>\
+						<div class="planetchooser-construction">'+timer_building+'</div>\
 					</div>';
 			}
 		});
@@ -73,11 +72,13 @@ var PlanetChooser = {
 		foreach (rows, function(row) {
 			page += '<div class="row">'+row+'</div>';
 		});
-		page = '<div class="galaxy-list overthrow">\
+		page = '<div class="planetchooser-bar">\
+				<span>Choose a planet or moon:</span>\
+			</div>\
+			<div class="planetchooser-list overthrow" id="planetchooser_scroll">\
 				<div class="table">\
 					'+page+'\
 					<div class="row">\
-						<div class="cell" style=""></div>\
 						<div class="cell" style="width: 50px"></div>\
 						<div class="cell" style="width: 50%"></div>\
 						<div class="cell" style="width: 50%"></div>\

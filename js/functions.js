@@ -608,6 +608,12 @@ function GetBuildingTime (el, level, total_lab_level){
 	return time;
 }
 
+function debriesColor(metal, crystal){
+	var debriesSum = parseInt(metal) + parseInt(crystal);
+	return debriesSum > 2000000 ? 'red' :
+			debriesSum > 200000 ? 'yellow' :
+			debriesSum > 0 ? 'lightgreen' : '';
+}
 
 function officerCheck(){
 	officers = {};
