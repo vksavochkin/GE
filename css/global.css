@@ -743,9 +743,13 @@ input, textarea, select {
 	.home-overview .title{
 		display:block;
 		clear:both;
-		font-size:18px;
 		margin:0px;
 	}
+    .home-overview .title,
+    .home-overview .title .overview-planet-name,
+    .home-overview .title .overview-planet-coords{
+        font-size:18px;
+    }
 	
 	.planet-info{
 		display:block;
@@ -1272,7 +1276,10 @@ GALAXY
 			font-weight: 200;
 			padding:2px 5px;
 			text-align: left;
-		} 
+		}
+        .page-resources table td{
+            text-align: right;
+        }
 		.page-resources table font{
 			font-size: 9px;
 			font-weight: 200;

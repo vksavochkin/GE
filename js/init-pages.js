@@ -46,8 +46,8 @@ $('.planet-select').on('change', function(){
 	return false;
 });
 
-$('.moon-img').on('click', function(){
-	var pid = planet.moon_id;
+$('.planet-img, .moon-img').on('click', function(event){
+	var pid = parseInt(event.target.attributes.rel.value);
 	Request.send({object:'planet', action:'set', pid:pid});
 	if(responseObj.status != 100){
 		alertify.alert(lang._T(responseObj.error));
