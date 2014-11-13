@@ -564,8 +564,6 @@ input, textarea, select {
     height:35px;
 }
 #help-bar .planetchooser-source .btn{
-    height: 16px;
-    line-height: 18px;
     margin: 0px 8px;
     background:transparent;
     color:#26b4e9;
@@ -2219,6 +2217,9 @@ Statistic
 }
 .planetchooser-planet-label{
     font-size: 12px;
+}
+.planetchooser-inline-coords{
+    color: #667788;
 }
 .planetchooser-planet-coords{
     font-size: 11px;
