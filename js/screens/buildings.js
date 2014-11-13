@@ -151,7 +151,7 @@
 
 		var BuildingsList        = BuildingPage;
 
-		$('.buildings-list').html('<ul><li>'+BuildList+'</li>'+BuildingsList+'</ul>');	
+		$('.buildings-list').html('<ul><li>'+BuildList+'</li>'+BuildingsList+'<li><br/><br/></li><li style="display:none;"><input type="text" value="" name="fix_field" class="fix_field"></li></ul>');	
 		return false;
 	},
 	ShowBuildingQueue: function( sprice ){

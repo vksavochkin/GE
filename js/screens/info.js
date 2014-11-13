@@ -82,6 +82,7 @@
 							</div>\
 							<div></div>\
 						</div>\
+						<div style="display:none;"><input type="text" value="" name="input_fix" class="input_fix"></div>\
 						<div>\
 							<div></div>\
 							<div><a class="btn" onclick="Info.jump();"> '+lang._T('in_jump_gate_jump')+'</a></div>\

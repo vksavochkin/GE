@@ -179,7 +179,7 @@
 		var Page                    = technolist+que;
 
 		
-		$('.buildings-list').html('<ul><li>'+BuildList+'</li>'+Page+'<li><br/><br/></li></ul>');	
+		$('.buildings-list').html('<ul><li>'+BuildList+'</li>'+Page+'<li><br/><br/></li><li style="display:none;"><input type="text" value="" name="fix_field" class="fix_field"></li></ul>');	
 		return false;
 	},
 	CheckLabSettingsInQueue: function(){
