@@ -186,7 +186,7 @@
 						<div class="cell cell-input planetchooser-destination">\
 							<a class="btn" onclick="PlanetChooser.init(Shipyard.destination);">\
 							'+(isset(target_own_planet) ? target_own_planet.name : 'Choose...')+'</a>\
-							'+own_planets+'\
+							<!--'+own_planets+'-->\
 							<input pattern="[0-9]*" type="number" class="shipyard_galaxy" name="shipyard_galaxy"  placeholder="0" value="'+g+'"/>\
 							<input pattern="[0-9]*" type="number" class="shipyard_system" name="shipyard_system"  placeholder="0" value="'+s+'"/>\
 							<input pattern="[0-9]*" type="number" class="shipyard_planet" name="shipyard_planet"  placeholder="0" value="'+p+'"/>\
@@ -405,7 +405,19 @@
 		return;
 	},
 	
-	showSim: function(){
+	showSim: function(m){
+		
+		var m = typeof m !== 'undefined' ? m : false;
+		var target = false;
+		if(m != false){
+			Request.send({object:'mail', action:'get', idn:m});
+			if(responseObj.status != 100){
+				alertify.alert(lang._T(responseObj.error));
+				return false;
+			}else{
+				target = responseObj.mailget.message_data;
+			}
+		}
 		Overview.resetModals();
 		
 		var sim = '<div class="table">';
@@ -420,17 +432,17 @@
 			<div>\
 				<div>Weapons</div>\
 				<div><input data-name="tech_weapons" pattern="[0-9]*" type="number" class="tech_weapons " name="tech_weapons"  placeholder="0" value="'+user.weapons_tech+'"/></div>\
-				<div><input data-name="tech_weapons2" pattern="[0-9]*" type="number" class="tech_weapons2 " name="tech_weapons2"  placeholder="0" value=""/></div>\
+				<div><input data-name="tech_weapons2" pattern="[0-9]*" type="number" class="tech_weapons2 " name="tech_weapons2"  placeholder="0" value="'+(target && !Check.isEmpty(target.tech) && !Check.isEmpty(target.tech.weapons_tech) ? target.tech.weapons_tech : '')+'"/></div>\
 			</div>\
 			<div>\
 				<div>Shields</div>\
 				<div><input data-name="tech_shields" pattern="[0-9]*" type="number" class="tech_shields " name="tech_shields"  placeholder="0" value="'+user.shielding_tech+'"/></div>\
-				<div><input data-name="tech_shields2" pattern="[0-9]*" type="number" class="tech_shields2 " name="tech_shields2"  placeholder="0" value=""/></div>\
+				<div><input data-name="tech_shields2" pattern="[0-9]*" type="number" class="tech_shields2 " name="tech_shields2"  placeholder="0" value="'+(target && !Check.isEmpty(target.tech) && !Check.isEmpty(target.tech.shielding_tech) ? target.tech.shielding_tech : '')+'"/></div>\
 			</div>\
 			<div>\
 				<div>Armour</div>\
 				<div><input data-name="tech_armour" pattern="[0-9]*" type="number" class="tech_armour " name="tech_armour"  placeholder="0" value="'+user.armour_tech+'"/></div>\
-				<div><input data-name="tech_armour2" pattern="[0-9]*" type="number" class="tech_armour2 " name="tech_armour"  placeholder="0" value=""/></div>\
+				<div><input data-name="tech_armour2" pattern="[0-9]*" type="number" class="tech_armour2 " name="tech_armour"  placeholder="0" value="'+(target && !Check.isEmpty(target.tech) && !Check.isEmpty(target.tech.armour_tech) ? target.tech.armour_tech : '')+'"/></div>\
 			</div>';
 		
 		
@@ -444,7 +456,7 @@
 			sim += '<div>\
 					<div>'+lang._T('tech_'+ship)+'</div>\
 					<div><input data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+'  attacker_input" name="ship_'+ship+'"  placeholder="0" value="'+planet[ship]+'"/></div>\
-					<div><input data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+'  defender_input" name="ship_'+ship+'2"  placeholder="0" value=""/></div>\
+					<div><input data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+'  defender_input" name="ship_'+ship+'2"  placeholder="0" value="'+(target && !Check.isEmpty(target.ships) && !Check.isEmpty(target.ships[ship]) ? target.ships[ship] : '')+'"/></div>\
 				</div>\
 			';
 		});
@@ -464,7 +476,7 @@
 			';
 		});
 		
-		sim += '</div>';
+		sim += '<div style="display:none;"><input type="text" value="" name="input_fix" class="input_fix"></div></div>';
 		
 		
 		$('.page-sim-page').html('<div class="b-main overthrow" id="simScrollPage">\

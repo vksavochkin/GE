@@ -108,6 +108,13 @@ var Mail= {
 					message_form = '<i>'+ m.message_from+'</i>';
 				}
 				
+				var message_text = '';
+				if(parseInt(m.message_type) == 0 && !Check.isEmpty(m.message_data)){
+					message_text = Mail.formatSpyReport(m.message_id, m.message_data);
+				}else{
+					message_text = m.message_text;
+				} 
+				
 				out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 					<div class="cell mail-message">\
 						<a class="delete-message" onclick="Mail._delete('+m.message_id+')">Delete</a>\
@@ -115,7 +122,7 @@ var Mail= {
 							<b>'+localDate.format("m/dd/yy h:MM:ss TT")+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 							</b>\
 						</small>\
-						<p class="allow_selection">'+m.message_text+'</p>\
+						<div class="allow_selection">'+message_text+'</div>\
 					</div>\
 				</div>';
 			});
@@ -132,6 +139,13 @@ var Mail= {
 					}else{
 						message_form = '<i>'+ m.message_from+'</i>';
 					}
+				
+					var message_text = '';
+					if(parseInt(m.message_type) == 0 && !Check.isEmpty(m.message_data)){
+						message_text = Mail.formatSpyReport(m.message_id, m.message_data);
+					}else{
+						message_text = m.message_text;
+					}
 					
 					out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 						<div class="cell mail-message">\
@@ -140,7 +154,7 @@ var Mail= {
 								<b>'+localDate.format("m/dd/yy h:MM:ss TT")+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 								</b>\
 							</small>\
-							<p class="allow_selection">'+m.message_text+'</p>\
+							<p class="allow_selection">'+message_text+'</p>\
 						</div>\
 					</div>';
 				}	
@@ -249,6 +263,77 @@ var Mail= {
 		
 
 		return false;
-	}	
-	
+	},
+		
+	formatSpyReport: function(k, data){
+		var report = '<h1>\
+				'+data.target_name+' ['+data.target_g+':'+data.target_s+':'+data.target_p+'] \
+			</h1>\
+			<div class="table spy-report-resources">\
+				<div class="caption">Resources</div>\
+				<div class="row">\
+					<div class="cell">'+lang._T('Metal')+'<br/>'+prettyNumber(Math.round(data.resources.metal))+'</div>\
+					<div class="cell">'+lang._T('Crystal')+'<br/>'+prettyNumber(Math.round(data.resources.crystal))+'</div>\
+					<div class="cell">'+lang._T('Deuterium')+'<br/>'+prettyNumber(Math.round(data.resources.deuterium))+'</div>\
+					<div class="cell">'+lang._T('Energy')+'<br/>'+prettyNumber(Math.round(data.resources.energy))+'</div>\
+				</div>\
+			</div>';
+		
+		//Fleet
+		report  += '<div class="table spy-report-data"><div class="caption">'+lang._T('Fleet')+'</div>';
+		if(!Check.isEmpty(data.ships)){
+			foreach(data.ships, function(k, v){
+				report  += '<div class="row"><div class="cell">'+lang._T('tech_'+k)+'</div><div class="cell number">'+v+'</div></div>';
+			});
+		}else{
+			report  += '<div class="row"><div class="cell">'+lang._T('Please upgrade Espionage Technology to see target Fleet.')+'</div></div>';
+		}	
+		report  += '</div>';
+		
+		//Defense
+		report  += '<div class="table spy-report-data"><div class="caption">'+lang._T('Defense')+'</div>';
+		if(!Check.isEmpty(data.defense)){
+			foreach(data.defense, function(k, v){
+				report  += '<div class="row"><div class="cell">'+lang._T('tech_'+k)+'</div><div class="cell number">'+v+'</div></div>';
+			});
+		}else{
+			report  += '<div class="row"><div class="cell">'+lang._T('Please upgrade Espionage Technology to see target Defense.')+'</div></div>';
+		}	
+		report  += '</div>';
+		
+		//Buildings
+		report  += '<div class="table spy-report-data"><div class="caption">'+lang._T('Buildings')+'</div>';
+		if(!Check.isEmpty(data.buildings)){
+			foreach(data.buildings, function(k, v){
+				report  += '<div class="row"><div class="cell">'+lang._T('tech_'+k)+'</div><div class="cell number">'+v+'</div></div>';
+			});
+		}else{
+			report  += '<div class="row"><div class="cell">'+lang._T('Please upgrade Espionage Technology to see target Buildings.')+'</div></div>';
+		}	
+		report  += '</div>';
+		
+		//Technology
+		report  += '<div class="table spy-report-data"><div class="caption">'+lang._T('Technology')+'</div>';
+		if(!Check.isEmpty(data.tech)){
+			foreach(data.tech, function(k, v){
+				report  += '<div class="row"><div class="cell">'+lang._T('tech_'+k)+'</div><div class="cell number">'+v+'</div></div>';
+			});
+		}else{
+			report  += '<div class="row"><div class="cell">'+lang._T('Please upgrade Espionage Technology to see target Technology.')+'</div></div>';
+		}	
+		report  += '</div>';
+		
+		//destruction message
+		if(!Check.isEmpty(data.destruction_message)){
+			report += '<span class="detection" style="display:block;text-align:center;"><font color="red">'+lang._T('Your Spy\'s has been destroyed')+'</font></span>';
+		}else if(!Check.isEmpty(data.destruction_chance)){
+			report += '<font color="red">'+lang._T('Probability of Spy\'s detection: ')+data.destruction_chance+'%</font>';
+		}
+		
+		//control
+		report += '<a class="btn shipyard-link"  onclick="Shipyard.init('+data.target_g+','+data.target_s+','+data.target_p+','+data.target_planet_type+');" rel="'+data.target_g+','+data.target_s+','+data.target_p+','+data.target_planet_type+'">'+lang._T('Attack')+'</a>'; //<a class="btn sim-link"  onclick="Shipyard.showSim();">'._T('Combat Simulator').'</a>	
+		report += '<a class="btn sim-link"  onclick="Shipyard.showSim('+k+');">'+lang._T('Combat Simulator')+'</a>';
+
+		return '<div class="spy-report">'+report+'</div>';
+	}
 };

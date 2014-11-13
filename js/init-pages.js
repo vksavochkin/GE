@@ -273,13 +273,21 @@ function fleetCallback(rel){
     Production - Buildings
 */
 function buildingBuild(el){
-	Request.send({object:'production', action:'build', prod:el});
-	if(responseObj.status != 100){
-		alertify.alert(lang._T(responseObj.error));
-		return false;
-	}else{			
-		Buildings.init();
-	}
+	var current_level = parseInt(planet[el])+1;
+	var msg = 'Are you sure you want to start constraction of '+lang._T('tech_'+el)+' Level '+current_level+'?';
+	alertify.confirm(msg, function (e) {
+	    if (e) {
+	    	Request.send({object:'production', action:'build', prod:el});
+	        if(responseObj.status != 100){
+				alertify.alert(lang._T(responseObj.error));
+				return false;
+			}else{			
+				Buildings.init();
+			}
+	    } else {
+	        // user clicked "cancel"
+	    }
+	});
 };
 function buildingCancel(el){
 	var arr = el.split(':');
@@ -306,13 +314,21 @@ function buildingDestroy(el){
     Production - Research
 */
 function doResearch(el){
-	Request.send({object:'research', action:'research', cmd:'build', prod:el});
-	if(responseObj.status != 100){
-		alertify.alert(lang._T(responseObj.error));
-		return false;
-	}else{			
-		Research.init();
-	}
+	var current_level = parseInt(user[el])+1;
+	var msg = 'Are you sure you want to research '+lang._T('tech_'+el)+' Level '+current_level+'?';
+	alertify.confirm(msg, function (e) {
+	    if (e) {
+	    	Request.send({object:'research', action:'research', cmd:'build', prod:el});
+			if(responseObj.status != 100){
+				alertify.alert(lang._T(responseObj.error));
+				return false;
+			}else{			
+				Research.init();
+			}
+	    } else {
+	        // user clicked "cancel"
+	    }
+	});
 };
 function cancelResearch(el){
 	Request.send({object:'research', action:'research', cmd:'cancel', prod:el});
