@@ -267,7 +267,7 @@
 						fleet_out += '<div>';
 						end = false;
 					}
-					fleet_out += '<div><b>'+lang._T('tech_'+ship)+'</b>: '+amount+'</div>';
+					fleet_out += '<div><b>'+lang._T('tech_'+ship)+'</b>: '+exactNumber(amount)+'</div>';
 					
 					if(i==2){
 						fleet_out += '</div>';
@@ -285,14 +285,14 @@
 				fleet_out = '<div class="table fleet-resources-table">'+fleet_out+'</div>';
 			}else if(Check.isEmpty(f.fleet_types) && !Check.isEmpty(f.fleet_amount)){
 			
-				fleet_out = '<p>'+f.fleet_amount+' Ships in total</p>';
+				fleet_out = '<p>'+exactNumber(f.fleet_amount)+' Ships in total</p>';
 			}else{
 				fleet_out = '<p>Fleet is invisible</p>';
 			}
 			
 			var ships_total = '';
 			if(!Check.isEmpty(f.fleet_amount)){
-				ships_total = 'of '+f.fleet_amount+' Ships';
+				ships_total = 'of '+exactNumber(f.fleet_amount)+' Ships';
 			}
 			
 			
@@ -402,9 +402,14 @@
 				resources = '<h3>Resources</h3>\
 									<div class="table fleet-resources-table">\
 										<div>\
-											<div><b>Metal:</b> '+(parseInt(f.fleet_resource_metal) > 0 ? f.fleet_resource_metal : '')+'</div>\
-											<div><b>Crystal:</b> '+(parseInt(f.fleet_resource_crystal) > 0 ? f.fleet_resource_crystal : '')+'</div>\
-											<div><b>Deuterium:</b> '+(parseInt(f.fleet_resource_deuterium) > 0 ? f.fleet_resource_deuterium : '')+'</div>\
+											<div><b>Metal:</b></div>\
+											<div><b>Crystal:</b></div>\
+											<div><b>Deuterium:</b></div>\
+										</div>\
+										<div>\
+											<div style="text-align: right">'+(parseInt(f.fleet_resource_metal) > 0 ? exactNumber(f.fleet_resource_metal) : '')+'</div>\
+											<div style="text-align: right">'+(parseInt(f.fleet_resource_crystal) > 0 ? exactNumber(f.fleet_resource_crystal) : '')+'</div>\
+											<div style="text-align: right">'+(parseInt(f.fleet_resource_deuterium) > 0 ? exactNumber(f.fleet_resource_deuterium) : '')+'</div>\
 										</div>\
 									</div>';
 			}
@@ -430,10 +435,10 @@
 										<b>To</b>: '+to+'<br/>\
 										'+arrival_time+'\
 									</p>\
-									<h3>Fleet '+ships_total+'</h3>\
+									<h3>Fleet '+exactNumber(ships_total)+'</h3>\
 									'+fleet_out+'\
 									'+resources+'\
-									<p>'+buttons+'</p>\
+									<p style="margin-top:5px">'+buttons+'</p>\
 									<div class="clear"></div>\
 									<div class="side-acs-block asc-block-'+f.fleet_id+'">'+acs+'</div>\
 									<br><br/><br/><br/><br/><br/><br/><br/><br/>\

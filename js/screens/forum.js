@@ -54,10 +54,12 @@
 	showTopics: function(n){
 		Request.send({'object':'forum', 'action':'topics', 'fid':n});	
 		if(responseObj.status == 100){
-			$('#forum-topics-screen').html('<div class="b-main overthrow" id="forumTopicsScroll" style="bottom:80px;">\
-					<div class="scroll-holder" ><div class="forum-holder" id="forum-topics">'+this.showTopicsContent()+'</div></div>\
+			$('#forum-topics-screen').html('<div class="b-main overthrow" id="forumTopicsScroll" style="bottom:40px;">\
+					<div class="scroll-holder">\
+						<div class="forum-holder" id="forum-topics">'+this.showTopicsContent()+'</div>\
+						<div id="topics-nav"></div>\
+					</div>\
 				</div>\
-				<div id="topics-nav"></div>\
 				<div class="b-menu">\
 					'+(parseInt(responseObj.forumtopics.category.auth_post) > parseInt(responseObj.state.user.level) ? '' : '<button class="fl btn" style="margin-left:10px;" onclick="Forum.newTopic('+responseObj.forumtopics.category.fid+');">'+lang._T('New Topic')+'</button>')+'\
 					<button class="fr btn" onclick="Forum.closeTopics();">'+lang._T('Close')+'</button>\
@@ -198,13 +200,13 @@
     			}
 			}
 			
-			$('#forum-posts-screen').html('<div class="b-main overthrow" id="forumPostsScroll" style="bottom:80px;">\
+			$('#forum-posts-screen').html('<div class="b-main overthrow" id="forumPostsScroll" style="bottom:40px;">\
 					<div class="scroll-holder" >\
 						<div class="forum-holder" id="forum-posts">'+this.showPostsContent()+'</div>\
 						'+( can_delete == false ? '' : '<button class="btn" onClick="Forum.DeleteTopic('+n+');" class="fl">Delete</button>')+'\
+						<div id="post-nav"></div>\
 					</div>\
 				</div>\
-				<div id="post-nav"></div>\
 				<div class="b-menu">\
 					<button class="fl btn" style="margin-left:10px;" onclick="Forum.newReply('+responseObj.forumposts.topic.tid+');">'+lang._T('Reply')+'</button>\
 					<button class="fr btn" onclick="Forum.closePosts();">'+lang._T('Close')+'</button>\

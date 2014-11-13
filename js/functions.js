@@ -333,6 +333,22 @@ function prettyNumber2( number ) {
         }
         return numberString;
     }
+
+function exactNumber(number, sep, grp) {
+	var sx = (''+number).split('.'), s = '', i, j;
+	sep || (sep = ' '); // default seperator TODO from user settings?
+	grp || grp === 0 || (grp = 3); // default grouping
+	i = sx[0].length;
+	while (i > grp) {
+		j = i - grp;
+		s = sep + sx[0].slice(j, i) + s;
+		i = j;
+	}
+	s = sx[0].slice(0, i) + s;
+	sx[0] = s;
+	return sx.join('.')
+}
+
 function colorNumber(n, s){
 	var s = typeof s !== 'undefined' ? s : '';
 	if (n > 0)

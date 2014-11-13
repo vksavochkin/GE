@@ -101,10 +101,10 @@ pre
 
 
 .btn {
-		border-radius: 4px;
+		border-radius: 8px;
 		color: #FFF;
 		font-weight: bold;
-		padding: 4px 10px;
+		padding: 8px 12px;
 		text-decoration: none;
 		border: 1px solid #124c72;
 		background: url(../images/bg3.png) repeat;
@@ -1001,6 +1001,7 @@ GALAXY
 					-webkit-border-radius: 12px;
 					border-radius: 12px;
 					font-size:9px;
+                    font-weight: bold;
 					text-align: center;
 				}
 				
@@ -1080,8 +1081,7 @@ GALAXY
 	height:200px;
 }
 	.user-profile .btn{
-		font-size:13px;
-		padding: 4px 5px;
+		margin:0px 4px;
 	}
 	
 	.user-profile h1{
@@ -1163,8 +1163,8 @@ GALAXY
 			}
 			.debries{
 				display:block;
-				width:150px;
-				height:50px;
+				/*width:150px;*/
+				/*height:50px;*/
 			}
 			.debries > div{
 				display:block;
@@ -1180,7 +1180,7 @@ GALAXY
 				border:none;
 				border-radius: 0px;
 				-webkit-border-radius: 0px;
-				margin-right:10px;
+				margin:6px;
 			}
 			.user-profile .planet-row .planetinfo .btn img{
 				width: 32px;
@@ -1215,7 +1215,7 @@ GALAXY
 				border:none;
 				border-radius: 0px;
 				-webkit-border-radius: 0px;
-				margin-right:10px;
+				margin:6px;
 			}
 			.user-profile .moon-row .mooninfo .btn img{
 				width: 32px;
@@ -1552,6 +1552,9 @@ Production
 	.info-modal .description .table div, .info-modal .description .table div *{
 		font-size: 9px;
 	}
+    .info-modal .description .table .btn{
+        padding: 2px 4px;
+    }
 
 		.info-modal .destroy-box h3{
 			font-size: 15px;
@@ -1569,7 +1572,7 @@ Production
 			left:0px;
 			right:0px;
 			padding:3px 0px;
-			height:25px;
+			height:32px;
 			background: #486c92;
 		}
 
@@ -1806,12 +1809,12 @@ Production
 .pager ul li a.normal:active{color:#200b04;}
 .pager
 {
-	width: 100%;
+	/*width: 100%;*/
 	height: 30px;
 	padding: 0;
-	position:absolute;
+	/*position:absolute;*/
 	left:0px;
-	bottom:35px;
+	/*bottom:35px;*/
 	padding-top: 5px;
 	padding-left: 6px;
 	
@@ -2129,7 +2132,7 @@ Statistic
 	width:100%;
 }	
 	.shipyard-ships input{
-		width:40px;
+		width:60px;
 	}
 		.shipyard-ships .cell-max,.shipyard-mission .cell-max{
 			width:30px;
@@ -2139,9 +2142,12 @@ Statistic
 			width:50px;
 		}
 		.shipyard-mission .cell-input{
-			width:90px;
+			width:120px;
 			padding:2px 2px;
 		}
+        .shipyard-mission .cell-input input{
+            width:85%;
+        }
 		.shipyard-destination .cell-input{
 			width:135px;
 		}
@@ -2167,7 +2173,7 @@ Statistic
 	width:30px;
 }		
 
-.shipyard_galaxy, shipyard_system, .shipyard_planet{
+.shipyard_galaxy, .shipyard_system, .shipyard_planet{
 	margin-top:5px;
 }
        
@@ -2480,7 +2486,7 @@ Statistic
 		font-size:9px !important;	
 	}
 		.fleet-resources-table div div{
-			padding:2px;
+			padding:0px 8px;
 			text-align:left;
 		}
 

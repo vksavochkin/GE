@@ -32,7 +32,11 @@
 			var list = '';
 			for(var i=1; i<=15; i++){
 				if(!Check.isEmpty(planetsList[i])){
-					var status = (parseInt(planetsList[i]['debries_metal'])>0 || parseInt(planetsList[i]['debries_crystal'])>0 ? '<div class="status">D</div>' : '');
+					var debriesSum = parseInt(planetsList[i]['debries_metal']) + parseInt(planetsList[i]['debries_crystal']);
+					var status =
+						(debriesSum > 2000000) ? '<div class="status" style="color: red">D</div>' :
+						((debriesSum > 200000) ? '<div class="status" style="color: yellow">D</div>' :
+						((debriesSum > 0) ? '<div class="status" style="color: lightgreen">D</div>' : ''));
 					var status2 = (!Check.isEmpty(planetsList[i]['last_activity_update']) ? '<div class="status2">'+planetsList[i]['last_activity_update']+'</div>' : '');
 					var moon = (!Check.isEmpty(planetsList[i]['moon']) ? '<div class="moon"></div>' : '');
 					
@@ -91,7 +95,7 @@
 							<h1>'+data.username+' ['+data.rank+'] '+data.status+'</h1>\
 							<a class="btn send-message-btn" onclick="Mail.new_message(\''+data.username+'\',\'\');" rel="'+data.user_id+'">Send Message</a>\
 							<a class="btn user-statistic-btn" rel="'+data.user_id+'" onclick="Scoreboard.init('+data.user_id+');">Statistics</a>\
-						</div>\
+							</div>\
 						<div class="clear"></div>\
 					</div>'; 
 				
@@ -127,9 +131,7 @@
 
 				if(parseInt(data.debries_metal)>0 || parseInt(data.debries_crystal)>0){
 					debries_row = '<div class="debries">\
-							<h2>Debris:</h2>\
-							<div>Metal:<br/> '+prettyNumber(data.debries_metal)+'</div>\
-							<div>Crystal:<br/> '+prettyNumber(data.debries_crystal)+'</div>\
+							<h2>Debris: '+prettyNumber(data.debries_metal)+' Metal, '+prettyNumber(data.debries_crystal)+' Crystal</h2>\
 						</div>';
 
 					planet_links += '<a class="btn galaxy-link-recycle" rel="'+data.g+';'+data.s+';'+data.p+'" onclick="galaxyMissionRecycle(\''+data.g+';'+data.s+';'+data.p+'\');"><img src="images/icon-recycling.png"></a>';

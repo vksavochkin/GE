@@ -104,8 +104,8 @@
 				if(parseInt(planet[ship]) > 0 && ship != 'solar_satellite'){
 					out_page1 += '<div class="row">\
 						<div class="cell">\
-							'+lang._T('tech_'+ship)+' ('+planet[ship]+')<br/>\
-							<span style="font-size:9px;">'+lang._T('fl_speed_title')+GetFleetMaxSpeed( {}, ship, user )+' &nbsp;&nbsp;&nbsp; Fuel:'+GetShipConsumption ( ship, user )+'</span>\
+							'+lang._T('tech_'+ship)+' ('+exactNumber(planet[ship])+')<br/>\
+							<span style="font-size:9px;">'+lang._T('fl_speed_title')+exactNumber(GetFleetMaxSpeed( {}, ship, user ))+' &nbsp;&nbsp;&nbsp; Fuel:'+exactNumber(GetShipConsumption ( ship, user ))+'</span>\
 						</div>\
 						<div class="cell cell-max"><a class="btn max-ship-btn" rel="'+ship+'" onclick="maxShipBtn(\''+ship+'\');">Max.</a></div>\
 						<div class="cell cell-input"><input data-max="'+planet[ship]+'" data-fuel="'+GetShipConsumption ( ship, user )+'" data-speed="'+GetFleetMaxSpeed ({}, ship, user)+'" data-cargo="'+pricelist[ship]['capacity']+'" data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+' shipyard_input" name="ship_'+ship+'"  placeholder="0"/></div>\
@@ -610,18 +610,22 @@ function validateStep(step){
 		$('.shipyard_time').html(time);
 		
 		//Fuel
-		
-		
-		$('.shipyard_fuel').html(fuel);
+		$('.shipyard_fuel').html(exactNumber(fuel));
 		$('.shipyard_all_fuel').val(fuel);
+
+		if (total_cargo < fuel){
+			$('.shipyard_fuel').css('color', 'red');
+		}else{
+			$('.shipyard_fuel').css('color', 'white');
+		}
 	}
 	
 	
 	//Calculate Max Speed
-	$('.shipyard_max_speed').html(max_speed);
+	$('.shipyard_max_speed').html(exactNumber(max_speed));
 	
 	//Calculate Cargo
-	$('.shipyard_cargo').html(total_cargo);
+	$('.shipyard_cargo').html(exactNumber(total_cargo));
 	$('.shipyard_storage').val(total_cargo);
 	
 	if(step > 2){
@@ -876,9 +880,9 @@ function calculateTransportCapacity() {
 	transportCapacity =  storage - metal - crystal - deuterium - fuel;
 
 	if (transportCapacity < 0) {
-		$(".shipyard_space_left").html("<font color=red>"+transportCapacity+"</font>");
+		$(".shipyard_space_left").html("<font color=red>"+exactNumber(transportCapacity)+"</font>");
 	} else {
-		$(".shipyard_space_left").html("<font color=lime>"+transportCapacity+"</font>");
+		$(".shipyard_space_left").html("<font color=lime>"+exactNumber(transportCapacity)+"</font>");
 	}
 	return transportCapacity;
 }
