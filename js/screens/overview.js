@@ -440,7 +440,7 @@
 										<b>To</b>: '+to+'<br/>\
 										'+arrival_time+'\
 									</p>\
-									<h3>Fleet '+exactNumber(ships_total)+'</h3>\
+									<h3>Fleet '+ships_total+'</h3>\
 									'+fleet_out+'\
 									'+resources+'\
 									<p style="margin-top:5px">'+buttons+'</p>\

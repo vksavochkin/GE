@@ -53,7 +53,7 @@ var PlanetChooser = {
 						</div>\
 					</div>';
 				rows[formatPlanetCoords(c_planet)] += '<div class="cell '+is_current+'" onclick="PlanetChooser.choose('+planet_id+');">\
-						<div class="planetchooser-planet-label">'+c_planet['name']+' '+formatPlanetCoords(c_planet)+'</div>\
+						<div class="planetchooser-planet-label">'+c_planet['name']+' <span class="planetchooser-inline-coords">'+formatPlanetCoords(c_planet)+'</span></div>\
 						<div class="planetchooser-construction">'+timer_building+'</div>\
 					</div>';
 

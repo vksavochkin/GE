@@ -610,8 +610,10 @@ function GetBuildingTime (el, level, total_lab_level){
 
 function debriesColor(metal, crystal){
 	var debriesSum = parseInt(metal) + parseInt(crystal);
-	return debriesSum > 2000000 ? 'red' :
-			debriesSum > 200000 ? 'yellow' :
+	return debriesSum > 1000*1000000 ? 'purple' : // crash
+			debriesSum > 50*1000000 ? 'red' : // small crash
+			debriesSum > 2*1000000 ? 'orange' : // correct moonshot
+			debriesSum > 100000 ? 'yellow' : //
 			debriesSum > 0 ? 'lightgreen' : '';
 }
 
