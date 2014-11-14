@@ -564,7 +564,9 @@ input, textarea, select {
     width:32px;
     height:32px;
     margin:2px 7px 0px 0px;
-    background-size:contain;
+    background:url(../images/i-globe.png) no-repeat;
+	-webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 /*
 #help-bar .planetchooser-source {
