@@ -234,6 +234,9 @@ function prettyTime ( seconds ){
 
 function prettyNumber(number, maxPlaces, forcePlaces, forceLetter) {
   number = Number(number);
+  if (number < 0){
+	  return '-' + prettyNumber(-number, maxPlaces, forcePlaces, forceLetter);
+  }
   forceLetter = forceLetter || false;
   forcePlaces = forcePlaces || 2;
   maxPlaces = maxPlaces || 2;

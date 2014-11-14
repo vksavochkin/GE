@@ -561,6 +561,15 @@ input, textarea, select {
 #help-bar .planetchooser-source {
     display:block;
     float:right;
+    width:32px;
+    height:32px;
+    margin:2px 7px 0px 0px;
+    background-size:contain;
+}
+/*
+#help-bar .planetchooser-source {
+    display:block;
+    float:right;
     height:35px;
 }
 #help-bar .planetchooser-source .btn{
@@ -568,6 +577,7 @@ input, textarea, select {
     background:transparent;
     color:#26b4e9;
 }
+*/
 
 #help-bar .mailbox{
 	display:block;
@@ -743,9 +753,13 @@ input, textarea, select {
 	.home-overview .title{
 		display:block;
 		clear:both;
-		font-size:18px;
 		margin:0px;
 	}
+    .home-overview .title,
+    .home-overview .title .overview-planet-name,
+    .home-overview .title .overview-planet-coords{
+        font-size:18px;
+    }
 	
 	.planet-info{
 		display:block;
@@ -1272,7 +1286,10 @@ GALAXY
 			font-weight: 200;
 			padding:2px 5px;
 			text-align: left;
-		} 
+		}
+        .page-resources table td{
+            text-align: right;
+        }
 		.page-resources table font{
 			font-size: 9px;
 			font-weight: 200;

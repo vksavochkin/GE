@@ -24,14 +24,22 @@
 		$('.fleet-counter').html(fleet.own+'/<b>'+fleet.enemy+'</b>'); 
 		$('.overview-planet-name').html(planet.name);
 		$('.overview-planet-coords').html('['+planet.g+':'+planet.s+':'+planet.p+']');
-		$('.overview-planet-fields').html(planet.diameter+' km ('+planet.field_current+'/'+planet.field_max+')');
+		$('.overview-planet-fields').html(exactNumber(planet.diameter)+' km ('+planet.field_current+'/'+planet.field_max+')');
 		$('.overview-planet-temp').html('Approx. '+planet.temp_min+'&deg; to '+planet.temp_max+'&deg;');
-		$('.overview-planet-rank').html(''+prettyNumber(responseObj.state.user.points)+' (Rank '+responseObj.state.user.rank+' of '+responseObj.total_users+')');
+		$('.overview-planet-rank').html(''+prettyNumber(responseObj.state.user.points)+' (Rank&nbsp;'+responseObj.state.user.rank+' of&nbsp;'+responseObj.total_users+')');
 		$('.overview-planet-online').html(''+responseObj.online_users+' Users');
 		$('.planet-info .planet-img').css('background-image', 'url("images/planets/'+planet.image+'.png")');
 		if (parseInt(planet.moon_id) > 0) {
 			$('.moon-img').show();
+			$('.planet-img').attr('rel', planet.moon_id);
 			$('.moon-img').attr('rel', planet.moon_id);
+		}else if (parseInt(planet.planet_type) == 3){
+			$('.moon-img').hide();
+			foreach(responseObj.state.planets, function(pl){
+				if (pl.moon_id == planet.id){
+					$('.planet-img').attr('rel', pl.id);
+				}
+			});
 		}else{
 			$('.moon-img').hide();
 			$('.moon-img').attr('rel', '');

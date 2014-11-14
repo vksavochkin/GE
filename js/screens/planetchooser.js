@@ -94,7 +94,8 @@ var PlanetChooser = {
 	},
 	onChangePlanet: function(){
 		//$('.planetchooser-source .btn').text(planet.name+' '+formatPlanetCoords(planet));
-		$('.planetchooser-source .btn').text(planet.name);
+		//$('.planetchooser-source .btn').text(planet.name);
+		$('.planetchooser-source').css('background-image', 'url(images/planets/'+planet.image+'.png)');
 		$('.planetchooser-destination .btn').text(planet.name);
 
 	}
