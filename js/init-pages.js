@@ -300,14 +300,22 @@ function buildingCancel(el){
 	}
 };
 function buildingDestroy(el){
-	Request.send({object:'production', action:'destroy', prod:el});
-	if(responseObj.status != 100){
-		alertify.alert(lang._T(responseObj.error));
-		return false;
-	}else{		
-		Modal.close();	
-		Buildings.init();
-	}
+	var current_level = parseInt(planet[el]);
+	var msg = 'Are you sure you want to destoy '+lang._T('tech_'+el)+' Level '+current_level+'?';
+	alertify.confirm(msg, function (e) {
+	    if (e) {
+	    	Request.send({object:'production', action:'destroy', prod:el});
+			if(responseObj.status != 100){
+				alertify.alert(lang._T(responseObj.error));
+				return false;
+			}else{		
+				Modal.close();	
+				Buildings.init();
+			}
+	    } else {
+	        // user clicked "cancel"
+	    }
+	});
 };
 
 /*
