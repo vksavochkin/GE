@@ -38,8 +38,10 @@
 					var moon = (!Check.isEmpty(planetsList[i]['moon']) ? '<div class="moon"></div>' : '');
 					
 					var vacation = '';
+					var vacationClass = '';
 					if(parseInt(planetsList[i]['vacation'])){
 						vacation = '(Vacation)';
+						vacationClass = 'vacation';
 					}
 					
 					list += '<div class="row full" rel="'+i+'" onclick="Galaxy.showPage('+i+');">\
@@ -51,7 +53,7 @@
 												'+moon+'\
 											</div>\
 										</div>\
-										<div class="galaxy-table-info"><p>'+planetsList[i]['username']+' (Ranked '+planetsList[i]['rank']+') '+planetsList[i]['status']+' '+vacation+'<br/>'+planetsList[i]['name']+'</p></div>\
+										<div class="galaxy-table-info"><p class="'+vacationClass+'">'+planetsList[i]['username']+' (Ranked '+planetsList[i]['rank']+') '+planetsList[i]['status']+' '+vacation+'<br/>'+planetsList[i]['name']+'</p></div>\
 									</div>';
 				}else{
 					var colonize = (parseInt(planet.colony_ship) > 0 ? '<a class="galaxy-colonize" rel="'+g+';'+s+';'+i+'" onclick="galaxyMissionColonize(\''+g+';'+s+';'+i+'\');"></a>' : '');
@@ -87,7 +89,7 @@
 					return false;
 				}
 				user_row = '<div class="user-row">\
-						<div class="userpic"><img src="images/avatars/'+data.avatar+'.gif"></div>\
+					<div class="userpic user-link""><img src="images/avatars/'+data.avatar+'.gif" rel="'+data.username+'" onclick="UserInfo.showPage(\''+data.username+'\');"></div>\
 						<div class="userinfo">\
 							<h1>'+data.username+' ['+data.rank+'] '+data.status+'</h1>\
 							<a class="btn send-message-btn" onclick="Mail.new_message(\''+data.username+'\',\'\');" rel="'+data.user_id+'">Send Message</a>\

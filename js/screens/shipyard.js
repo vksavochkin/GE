@@ -105,7 +105,7 @@
 					out_page1 += '<div class="row">\
 						<div class="cell">\
 							'+lang._T('tech_'+ship)+' ('+exactNumber(planet[ship])+')<br/>\
-							<span style="font-size:9px;">'+lang._T('fl_speed_title')+exactNumber(GetFleetMaxSpeed( {}, ship, user ))+' &nbsp;&nbsp;&nbsp; Fuel:'+exactNumber(GetShipConsumption ( ship, user ))+'</span>\
+							<span style="font-size:9px;">'+lang._T('fl_speed_title')+exactNumber(GetFleetMaxSpeed( {}, ship, user ))+' &nbsp;&nbsp;&nbsp; Fuel: '+exactNumber(GetShipConsumption ( ship, user ))+'</span>\
 						</div>\
 						<div class="cell cell-max"><a class="btn max-ship-btn" rel="'+ship+'" onclick="maxShipBtn(\''+ship+'\');">Max.</a></div>\
 						<div class="cell cell-input"><input data-max="'+planet[ship]+'" data-fuel="'+GetShipConsumption ( ship, user )+'" data-speed="'+GetFleetMaxSpeed ({}, ship, user)+'" data-cargo="'+pricelist[ship]['capacity']+'" data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+' shipyard_input" name="ship_'+ship+'"  placeholder="0"/></div>\
