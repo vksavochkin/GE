@@ -1800,6 +1800,10 @@ Production
 		background-size: 50px 50px !important;
 	}
 	
+	#topics-nav, #post-nav{
+		background: #486c92;
+	}
+	
 	#forum-newposts-screen .forum-holder{padding:4px;height:370px;}
 
 #chat-screen .b-main{
