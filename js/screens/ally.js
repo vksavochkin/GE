@@ -36,7 +36,7 @@ var Ally= {
 			//User with Ally
 			var user_rank = defineRank(responseObj.state.user.ally_stat);
 			Request.send({'object':'ally', 'action':'show'});
-			$(this.pageID).html('<div class="b-main overthrow" id="allyScroll">\
+			$(this.pageID).html('<div class="b-main overthrow" style="bottom:38px;" id="allyScroll">\
 					<div class="scroll-holder">\
 						<div class="clear">\
 							<div class="ally-bar table">\
@@ -47,13 +47,16 @@ var Ally= {
 							</div>\
 							<p class="ally-message">'+responseObj.allyshow.ally_message_inside_coded+'</p>\
 						</div>\
+						<div align="center" style="margin: 10px;">\
+							'+(user_rank.rank <= 2 ? '<a href="#" class="btn" onclick="Ally.hall();">'+lang._T('Settings')+'</a>' : '')+'\
+						</div>\
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<a class="btn fr" onclick="Ally.Plats();">'+lang._T('Members')+'<a>\
-					'+(user_rank.rank <= 2 ? '<a href="#" class="btn fl" onclick="Ally.hall();" style="margin-left:10px;">'+lang._T('Settings')+'<a>' : '')+'\
-					<a class="btn fl" onclick="Mail.new_message(\'Alliance\',\'\');">'+lang._T('Group Message')+'<a>\
-				</nav>');
+					<a class="btn fl" onclick="Mail.new_message(\'Alliance\',\'\');" style="margin-left:10px;">'+lang._T('Group Message')+'</a>\
+					<a class="btn fr" onclick="Ally.Plats();">'+lang._T('Members')+'</a>\
+				</nav>\
+				');
 				$('.bar-title span').html('<a onclick="Ally.init()">Alliance > '+responseObj.allyshow.ally_name+' ['+responseObj.allyshow.ally_tag+']</a>');
 		}else{
 			//User without Ally
@@ -678,9 +681,14 @@ var Ally= {
 		
 		Overview.resetModals();
 		$('.page-alliance-page').html('<div class="b-main overthrow" id="allyScrollPage">\
-					<ul>\
-						<li style="padding:5px 5px 50px 5px;"><h3 style="text-align:center;">'+responseObj.allyshowinfo.ally_name+' ['+responseObj.allyshowinfo.ally_tag+']</h3>'+message+'</li>\
+				<ul>\
+					<li style="padding:5px 5px 50px 5px;">\
+						<h3 style="text-align:center;">'+responseObj.allyshowinfo.ally_name+' ['+responseObj.allyshowinfo.ally_tag+']</h3>\
+						'+message+'\
+					</li>\
+					\
 				</ul>\
+				</div>\
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="Ally.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show().css('z-index','1');

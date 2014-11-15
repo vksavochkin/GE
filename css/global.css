@@ -1608,7 +1608,12 @@ Production
 			background: #486c92;
 		}
 
-.b-menu .btn{margin-right:10px;}
+.b-menu .btn.fl{
+    margin-left:10px;
+}
+.b-menu .btn.fr{
+    margin-right:10px;
+}
 
 .page-galaxy-page,
 .page-user-page,
