@@ -32,8 +32,9 @@
 			var list = '';
 			for(var i=1; i<=15; i++){
 				if(!Check.isEmpty(planetsList[i])){
-					var dColor = debriesColor(parseInt(planetsList[i]['debries_metal']), parseInt(planetsList[i]['debries_crystal']));
-					var status = dColor ? '<div class="status" style="color: '+dColor+'">D</div>' : '';
+					var debris_color = debriesColor(planetsList[i]['debries_metal'], planetsList[i]['debries_crystal']);
+					var debris_status = debris_color ? '<div class="status" style="color: '+debris_color+'">D</div>' : '';
+					var debris_line = debris_color ? '<div class="fr" style="color:'+debris_color+'">'+prettyNumber(planetsList[i]['debries_metal'])+'&nbsp;Metal, '+prettyNumber(planetsList[i]['debries_crystal'])+'&nbsp;Crystal</div>' : '';
 					var status2 = (!Check.isEmpty(planetsList[i]['last_activity_update']) ? '<div class="status2">'+planetsList[i]['last_activity_update']+'</div>' : '');
 					var moon = (!Check.isEmpty(planetsList[i]['moon']) ? '<div class="moon"></div>' : '');
 					
@@ -48,12 +49,22 @@
 										<div class="galaxy-table-id">'+i+'</div>\
 										<div class="galaxy-table-planet">\
 											<div class="planet" style="background-image:url(images/planets/'+planetsList[i]['image']+'.png);">\
-												'+status+'\
+												'+debris_status+'\
 												'+status2+'\
 												'+moon+'\
 											</div>\
 										</div>\
-										<div class="galaxy-table-info"><p class="'+vacationClass+'">'+planetsList[i]['username']+' (Ranked '+planetsList[i]['rank']+') '+planetsList[i]['status']+' '+vacation+'<br/>'+planetsList[i]['name']+'</p></div>\
+										<div class="galaxy-table-info">\
+											<div>\
+												<p class="'+vacationClass+'">'+planetsList[i]['username']+' (Ranked '+planetsList[i]['rank']+') '+planetsList[i]['status']+' '+vacation+'</p>\
+											</div>\
+											<div>\
+												<div class="fl">\
+													<span class="'+vacationClass+'">'+planetsList[i]['name']+'</span>\
+												</div>\
+												'+debris_line+'\
+											</div>\
+										</div>\
 									</div>';
 				}else{
 					var colonize = (parseInt(planet.colony_ship) > 0 ? '<a class="galaxy-colonize" rel="'+g+';'+s+';'+i+'" onclick="galaxyMissionColonize(\''+g+';'+s+';'+i+'\');"></a>' : '');
