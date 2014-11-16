@@ -399,20 +399,37 @@
 			
 			
 			var resources = '';
-			if(parseInt(f.fleet_resource_metal) > 0 || parseInt(f.fleet_resource_crystal) > 0 || parseInt(f.fleet_resource_deuterium) > 0){
+			var metal = parseInt(f.fleet_resource_metal);
+			var crystal = parseInt(f.fleet_resource_crystal);
+			var deuterium = parseInt(f.fleet_resource_deuterium);
+			var deuterium_recall = parseInt(f.fleet_resource_deuterium_recall);
+			//var deuterium_recall = 100;
+			if(metal > 0 || crystal > 0 || deuterium > 0 || deuterium_recall > 0){
+
+				var resources_cargo = metal > 0 || crystal > 0 || deuterium > 0 ? '\
+					<div>\
+						<div style="text-align: right">'+(metal > 0 ? exactNumber(metal) : '')+'</div>\
+						<div style="text-align: right">'+(crystal > 0 ? exactNumber(crystal) : '')+'</div>\
+						<div style="text-align: right">'+(deuterium > 0 || deuterium_recall > 0 ? exactNumber(deuterium) : '')+'</div>\
+					</div>' : '';
+
+				var resources_recall = deuterium_recall > 0 ? '\
+					<div>\
+						<div></div>\
+						<div></div>\
+						<div style="text-align: right">'+deuterium_recall+'</div>\
+					</div>' : '';
+
 				resources = '<h3>Resources</h3>\
-									<div class="table fleet-resources-table">\
-										<div>\
-											<div><b>Metal:</b></div>\
-											<div><b>Crystal:</b></div>\
-											<div><b>Deuterium:</b></div>\
-										</div>\
-										<div>\
-											<div style="text-align: right">'+(parseInt(f.fleet_resource_metal) > 0 ? exactNumber(f.fleet_resource_metal) : '')+'</div>\
-											<div style="text-align: right">'+(parseInt(f.fleet_resource_crystal) > 0 ? exactNumber(f.fleet_resource_crystal) : '')+'</div>\
-											<div style="text-align: right">'+(parseInt(f.fleet_resource_deuterium) > 0 ? exactNumber(f.fleet_resource_deuterium) : '')+'</div>\
-										</div>\
-									</div>';
+					<div class="table fleet-resources-table">\
+						<div>\
+							<div><b>Metal:</b></div>\
+							<div><b>Crystal:</b></div>\
+							<div><b>Deuterium:</b></div>\
+						</div>\
+						'+resources_cargo+'\
+						'+resources_recall+'\
+					</div>';
 			}
 			
 			out += '<li class="side-fleet-row '+fleet_status+'" rel="'+f.fleet_id+'">\

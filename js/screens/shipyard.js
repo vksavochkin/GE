@@ -332,7 +332,7 @@
 					amount = max;
 					$(this).val(max);
 				}
-				ship_count += amount
+				ship_count += amount;
 				ships[name] = amount;
 				//planet[name] = parseInt(planet[name]) - amount;
 			}
@@ -859,6 +859,9 @@ function maxResource(res) {
 		crystal: 0,
 		deuterium: parseInt($('.shipyard_all_fuel').val())
 	};
+	//if (parseInt($(".shipyard_mission").val()) == 4) {
+	//	fuel.deuterium /= 2; // deploy recalls are now free
+	//}
 	var cargo = {};
 
 	if(res == 'metal'){
@@ -900,12 +903,15 @@ function maxResource(res) {
 function calculateTransportCapacity() {
 	var storage = parseInt($('.shipyard_storage').val());
 	var fuel = parseInt($('.shipyard_all_fuel').val());
+	//if (parseInt($(".shipyard_mission").val()) == 4) {
+	//	fuel /= 2; // deploy recalls are now free
+	//}
 	
 	var metal = (!Check.isEmpty($(".shipyard_metal").val()) ? $(".shipyard_metal").val() : 0);
 	var crystal = (!Check.isEmpty($(".shipyard_crystal").val()) ? $(".shipyard_crystal").val() : 0);
 	var deuterium = (!Check.isEmpty($(".shipyard_deuterium").val()) ? $(".shipyard_deuterium").val() : 0);
 
-	transportCapacity =  storage - metal - crystal - deuterium - fuel;
+	var transportCapacity =  storage - metal - crystal - deuterium - fuel;
 
 	if (transportCapacity < 0) {
 		$(".shipyard_space_left").html("<font color=red>"+exactNumber(transportCapacity)+"</font>");
