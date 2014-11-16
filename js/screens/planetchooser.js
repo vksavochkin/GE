@@ -5,6 +5,7 @@ var PlanetChooser = {
 	init: function(){
 		// use PlanetChooser.toggle(onChoose) instead!
 		$('.page-content').hide();
+		$(".planetchooser-source-icon-active").show();
 		this.content();
 		$(this.pageID).show();
 		makeScroll('planetchooser_scroll');
@@ -12,14 +13,13 @@ var PlanetChooser = {
 	},
 	close: function(){
 		$(this.pageID).hide();
-		$(".planetchooser-source").removeClass('active');
+		$(".planetchooser-source-icon-active").hide();
 		Overview.restorePage();
 		return false;
 	},
 	toggle: function(onChoose) {
 		if ($(this.pageID).css('display') == 'none') {
 			this.onChoose = onChoose;
-			$(".planetchooser-source").addClass('active');
 			return this.init();
 		} else {
 			return this.close();
