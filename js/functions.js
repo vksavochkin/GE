@@ -338,7 +338,12 @@ function prettyNumber2( number ) {
     }
 
 function exactNumber(number, sep, grp) {
-	var sx = (''+number).split('.'), s = '', i, j;
+	if (!isFinite(number)) {
+		return '' + number;
+	} else if (number < 0) {
+		return '-' + exactNumber(-number);
+	}
+	var sx = ('' + number).split('.'), s = '', i, j;
 	sep || (sep = ' '); // default seperator TODO from user settings?
 	grp || grp === 0 || (grp = 3); // default grouping
 	i = sx[0].length;
