@@ -274,7 +274,7 @@ function fleetCallback(rel){
 */
 function buildingBuild(el){
 	var current_level = parseInt(planet[el])+1;
-	var msg = 'Are you sure you want to start constraction of '+lang._T('tech_'+el)+' Level '+current_level+'?';
+	var msg = 'Are you sure you want to start construction of '+lang._T('tech_'+el)+' Level '+current_level+'?';
 	alertify.confirm(msg, function (e) {
 	    if (e) {
 	    	Request.send({object:'production', action:'build', prod:el});
@@ -301,7 +301,7 @@ function buildingCancel(el){
 };
 function buildingDestroy(el){
 	var current_level = parseInt(planet[el]);
-	var msg = 'Are you sure you want to destoy '+lang._T('tech_'+el)+' Level '+current_level+'?';
+	var msg = 'Are you sure you want to destroy '+lang._T('tech_'+el)+' Level '+current_level+'?';
 	alertify.confirm(msg, function (e) {
 	    if (e) {
 	    	Request.send({object:'production', action:'destroy', prod:el});
@@ -528,7 +528,7 @@ function buyStarter(){
 function serverLink(srv, registered, server_name){
 	
 	if(registered == 0){
-		var msg = 'Do You want to create new account on "'+server_name+'" server?';
+		var msg = 'Do you want to create new account on "'+server_name+'" server?';
 		alertify.confirm(msg, function (e) {
 		    if (e) {
 		        Request.send({object:'auth', action:'chooseserver', server:srv});
