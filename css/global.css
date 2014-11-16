@@ -724,6 +724,7 @@ input, textarea, select {
 .outer-fleet-bar{
 	display:block;
 	clear:both;
+    height:40px;
 	width:100%;
     background: url(../images/bg2.png) repeat;
 }
