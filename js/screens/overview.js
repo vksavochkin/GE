@@ -8,7 +8,6 @@
 		Request.send({});	
 		this.content();
 		Login.close();
-		PlanetChooser.onChangePlanet();
 		$('#header').show();
 		$('#help-bar').show();
 		$('#content').show();
@@ -150,39 +149,28 @@
 			
 		}
 	},
-	changePlanet: function(pid){
+	changePlanet:function(pid){
 		pid = typeof pid !== 'undefined' ? pid : $('.planet-select option:selected').val();
 		Request.send({object:'planet', action:'set', pid:pid});
 		if(responseObj.status != 100){
 			alertify.alert(lang._T(responseObj.error));
 			return false;
 		}else{
-			if(onPage == 'shipyard'){
-				Shipyard.init();
-			}else if(onPage == 'buildings'){
-				Buildings.init();
-			}else if(onPage == 'defense'){
-				Defense.init();
-			}else if(onPage == 'galaxy'){
-				Galaxy.init();
-			}else if(onPage == 'officers'){
-				Officers.init();
-			}else if(onPage == 'overview'){
-				Overview.init();
-			}else if(onPage == 'research'){
-				Research.init();
-			}else if(onPage == 'resources'){
-				Resources.init();
-			}else if(onPage == 'ships'){
-				Ships.init();
-			}		
+			if (isset(planetPages[onPage])){
+				planetPages[onPage].init();
+			} else if (isset(globalPages[onPage])){
+				$(globalPages[onPage].pageID).show();
+			}
 			return false;
 		}
-		return false;
 	},
-	changePlanetBtn: function(planet){
-		Overview.changePlanet(planet.id);
-		PlanetChooser.onChangePlanet();
+	restorePage:function(){
+		if (isset(planetPages[onPage])){
+			$(planetPages[onPage].pageID).show();
+		} else if (isset(globalPages[onPage])){
+			$(globalPages[onPage].pageID).show();
+		}
+		return false;
 	},
 	renamePlanet:function(){
 		alertify.prompt("Rename Planet", function (e, str) {

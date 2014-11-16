@@ -2,17 +2,28 @@ var PlanetChooser = {
 	pageID: '.page-planetchooser',
 	onChoose: undefined,
 
-	init: function(f){
-		PlanetChooser.onChoose = f;
+	init: function(){
+		// use PlanetChooser.toggle(onChoose) instead!
 		$('.page-content').hide();
-		PlanetChooser.content();
+		this.content();
 		$(this.pageID).show();
 		makeScroll('planetchooser_scroll');
 		return false;
 	},
 	close: function(){
 		$(this.pageID).hide();
+		$(".planetchooser-source").removeClass('active');
+		Overview.restorePage();
 		return false;
+	},
+	toggle: function(onChoose) {
+		if ($(this.pageID).css('display') == 'none') {
+			this.onChoose = onChoose;
+			$(".planetchooser-source").addClass('active');
+			return this.init();
+		} else {
+			return this.close();
+		}
 	},
 	content: function(){
 		var _planet = responseObj.state.planets[responseObj.state.user.current_planet];
@@ -72,32 +83,23 @@ var PlanetChooser = {
 		foreach (rows, function(row) {
 			page += '<div class="row">'+row+'</div>';
 		});
-		page = '<div class="planetchooser-bar">\
-				<span>Choose a planet or moon:</span>\
-			</div>\
-			<div class="planetchooser-list overthrow" id="planetchooser_scroll">\
-				<div class="table">\
-					'+page+'\
-					<div class="row">\
-						<div class="cell" style="width: 50px"></div>\
-						<div class="cell" style="width: 50%"></div>\
-						<div class="cell" style="width: 50%"></div>\
-					</div>\
+
+		page = '<div class="table">\
+				'+page+'\
+				<div class="row">\
+					<div class="cell" style="width: 50px"></div>\
+					<div class="cell" style="width: 50%"></div>\
+					<div class="cell" style="width: 50%"></div>\
 				</div>\
 			</div>';
 
-		$(this.pageID).html(page);
+		var fleet = Overview.countFleet(responseObj.state.fleet, responseObj.state.user.id);
+		$('.fleet-counter').html(fleet.own+'/<b>'+fleet.enemy+'</b>');
+		$('#planetchooser_scroll').html(page);
 	},
 	choose: function(planet_id){
-		PlanetChooser.onChoose(responseObj.state.planets[planet_id]);
+		PlanetChooser.onChoose(planet_id);
 		return PlanetChooser.close();
-	},
-	onChangePlanet: function(){
-		//$('.planetchooser-source .btn').text(planet.name+' '+formatPlanetCoords(planet));
-		//$('.planetchooser-source .btn').text(planet.name);
-		//$('.planetchooser-source').css('background-image', 'url(images/planets/'+planet.image+'.png)');
-		$('.planetchooser-destination .btn').text(planet.name);
-
 	}
 };
 

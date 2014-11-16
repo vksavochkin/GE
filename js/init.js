@@ -37,6 +37,29 @@ var isMobile = {
 };
 
 
+planetPages = {
+	'shipyard': Shipyard,
+	'buildings': Buildings,
+	'defense': Defense,
+	'galaxy': Galaxy,
+	'overview': Overview,
+	'research': Research,
+	'resources': Resources,
+	'ships': Ships
+};
+
+globalPages = {
+	'alliance': Ally,
+	'chat': Chat,
+	'forum': Forum,
+	'mail': Mail,
+	'officers': Officers,
+	'recordboard': Recordboard,
+	'statistics': Scoreboard,
+	'search': Search,
+	'settings': Settings,
+	'store': Store
+};
 
 
 $(document).ready(function() {

@@ -568,6 +568,9 @@ input, textarea, select {
 	-webkit-background-size: 100% 100%;
     background-size: 100% 100%;
 }
+#help-bar .planetchooser-source.active {
+    background-image:url(../images/i-globe-active.png);
+}
 /*
 #help-bar .planetchooser-source {
     display:block;
@@ -715,7 +718,7 @@ input, textarea, select {
 	.outer-fleet-bar a{
 		display:block;
 		clear:both;
-		padding:10px;
+		padding:12px;
 		font-size:15px;
 		background:url(../images/chevron.png) no-repeat center right;
 		-webkit-background-size: 10px 9px;
@@ -739,7 +742,7 @@ input, textarea, select {
 		padding: 0 2px;
 		position: absolute;
 		right: 15px;
-		top: 7px;
+		top: 9px;
 	}
 		em.fleet-counter b{
 			font-size: 14px;
@@ -2225,11 +2228,6 @@ Statistic
     padding: 3px;
 }
 .planetchooser-bar{
-    padding: 12px;
-    background: url(../images/bg2.png) repeat;
-}
-.planetchooser-bar span{
-    font-size: 15px;
 }
 .planetchooser-list{
     display:block;

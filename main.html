@@ -25,7 +25,7 @@
 	</script>
 </head>
 <body>
-	<div id="page">		
+	<div id="page">
 		<div class="overlay"></div>
 		<div class="planet-control-modal">
 			<p class="closeBtn"><img src="images/close.png" alt=""></p>
@@ -150,12 +150,7 @@
 				</div>
 				<div class="mailbox" onClick="Mail.init();"></div>
 				<div class="help-icon page-link" onClick="Overview.showHelp();"></div>
-				<!--
-				<div class="planetchooser-source">
-					<a class="btn" onclick="PlanetChooser.init(Overview.changePlanetBtn);"></a>
-				</div>
-				-->
-				<div class="planetchooser-source" onclick="PlanetChooser.init(Overview.changePlanetBtn);"></div>
+				<div class="planetchooser-source" onclick="PlanetChooser.toggle(Overview.changePlanet);"></div>
 			</div>
 		</div>
 
@@ -190,6 +185,14 @@
 							</div>
 						</div>
 						<div class="global-message-holder"></div>
+					</div>
+				</div>
+
+				<div class="page-content page-planetchooser">
+					<div class="planetchooser-bar outer-fleet-bar">
+						<a>Choose a planet or moon: <em class="fleet-counter"></em></a>
+					</div>\
+					<div class="planetchooser-list overthrow" id="planetchooser_scroll">
 					</div>
 				</div>
 
@@ -347,8 +350,6 @@
 				<div class="page-content page-cr-page"></div>
 				<div class="page-content page-pr-page" style="z-index:999;"></div>
 				<div class="page-content page-help-page"></div>
-				<div class="page-content page-planetchooser"></div>
-
 			</div>
 		</div>
 		

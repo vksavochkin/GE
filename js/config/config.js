@@ -6,8 +6,10 @@ var planet = {};
 var scrollers = {};
 var onPage = 'Main';
 var onSubPage = '';
+var planetPages = {};
+var globalPages = {};
 var iconsPath = 'images/theme/items/';
-var graphicPath = 'images/theme/320/';  
+var graphicPath = 'images/theme/320/';
 
 var config = {
     device: 'ios', // 'ios', 'android', 'wp', 'browser'

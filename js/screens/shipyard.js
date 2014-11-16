@@ -184,7 +184,7 @@
 					<div class="row">\
 						<div class="cell">Planet Coordinates<br/><small>Not required for ACS</small></div>\
 						<div class="cell cell-input planetchooser-destination">\
-							<a class="btn" onclick="PlanetChooser.init(Shipyard.destination);">\
+							<a class="btn" onclick="PlanetChooser.toggle(Shipyard.destination);">\
 							'+(isset(target_own_planet) ? target_own_planet.name : 'Choose...')+'</a>\
 							<!--'+own_planets+'-->\
 							<input pattern="[0-9]*" type="number" class="shipyard_galaxy" name="shipyard_galaxy"  placeholder="0" value="'+g+'"/>\
@@ -309,7 +309,8 @@
 	
 		return false;
 	},
-	destination: function(planet){
+	destination: function(planet_id){
+		var planet = responseObj.state.planets[planet_id];
 		// planetchooser hides all pages
 		$(Shipyard.pageID).show();
 		$('.planetchooser-destination .btn').text(planet.name);
