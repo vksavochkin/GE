@@ -199,6 +199,7 @@ THEME
 		border: 1px solid #10bac8;
 		}
 
+.noty_message,
 .alertify-log {
 	background: #1F1F1F;
 	background: rgba(0,0,0,.9);
@@ -207,10 +208,12 @@ THEME
 	color: #FFF;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
+    .noty_type_error .noty_message,
 	.alertify-log-error {
 		background: #FE1A00;
 		background: rgba(254,26,0,.9);
 	}
+    .noty_type_success .noty_message,
 	.alertify-log-success {
 		background: #5CB811;
 		background: rgba(92,184,17,.9);

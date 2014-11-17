@@ -380,7 +380,13 @@
 			return false;
 		}else{			
 			Shipyard.init(g,s,p,t,mission);
-			alertify.success(lang._T('You successfully sent fleet to planet ['+g+':'+s+':'+p+']'));
+			//alertify.success(lang._T('You successfully sent fleet to planet ['+g+':'+s+':'+p+']'));
+			noty({
+				type: 'success',
+				layout: 'bottom',
+				text: lang._T('You successfully sent fleet to planet ['+g+':'+s+':'+p+']'),
+				timeout: 20000
+			});
 		}
 		
 	},
