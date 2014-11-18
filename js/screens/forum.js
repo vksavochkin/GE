@@ -281,7 +281,7 @@
 				</div>\
 				<div class="post-message">\
 					<div class="post-avatar user-link" rel="'+m.post_username+'" onclick="UserInfo.showPage(\''+m.post_username+'\');" style="background:url(images/avatars/'+m.avatar+'.gif) no-repeat;"></div>\
-					'+m.message+'\
+					'+recover(m.message)+'\
 				</div>\
 			</div>';
 		});

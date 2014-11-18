@@ -386,7 +386,20 @@ function roundUp(value, precision){
 		precisionFactor = Math.pow( 10, precision );
 
 	return Math.ceil( value * precisionFactor )/precisionFactor;
-}  
+}
+
+/**
+ * Hope server will be fixed some day, and this function removed.
+ */
+function recover(str) {
+	try {
+		// Old escape() function treats incoming text as latin1,
+		// new decodeURIComponent() handles text correctly, just what we need to hack.
+		return decodeURIComponent(escape(str));
+	} catch (e) {
+		return str;
+	}
+}
 
 function production(el, BuildLevel){
 	var BuildLevelFactor = planet[el+"_percent"];

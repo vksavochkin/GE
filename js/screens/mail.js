@@ -112,8 +112,8 @@ var Mail= {
 				if(parseInt(m.message_type) == 0 && !Check.isEmpty(m.message_data)){
 					message_text = Mail.formatSpyReport(m.message_id, m.message_data);
 				}else{
-					message_text = m.message_text;
-				} 
+					message_text = recover(m.message_text);
+				}
 				
 				out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 					<div class="cell mail-message">\
@@ -144,7 +144,7 @@ var Mail= {
 					if(parseInt(m.message_type) == 0 && !Check.isEmpty(m.message_data)){
 						message_text = Mail.formatSpyReport(m.message_id, m.message_data);
 					}else{
-						message_text = m.message_text;
+						message_text = recover(m.message_text);
 					}
 					
 					out += '<div class="row message'+m.message_id+' '+mail_class+'">\
