@@ -245,7 +245,7 @@ function galaxyMissionSpy(rel){
 			type: 'success',
 			layout: 'bottom',
 			text: lang._T(lang._T('You successfully sent Spy\'s to planet ['+data[0]+':'+data[1]+':'+data[2]+']')),
-			timeout: 2000
+			timeout: 1500
 		});
 	}
 };

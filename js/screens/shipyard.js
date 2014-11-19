@@ -385,7 +385,7 @@
 				type: 'success',
 				layout: 'bottom',
 				text: lang._T('You successfully sent fleet to planet ['+g+':'+s+':'+p+']'),
-				timeout: 20000
+				timeout: 1500
 			});
 		}
 		
