@@ -239,7 +239,7 @@
 						<div class="cell">Mission</div>\
 						<div class="cell"></div>\
 						<div class="cell">\
-							<select name="shipyard_mission" class="shipyard_mission">\
+							<select name="shipyard_mission" class="shipyard_mission" onchange="Shipyard.mission();">\
 								<option value="1" class="shipyard_mission_attack">Attack</option>\
 								<option value="2" class="shipyard_mission_acs_attack">ACS Attack</option>\
 								<option value="3" class="shipyard_mission_transport">Transport</option>\
@@ -319,6 +319,10 @@
 		$('.shipyard_planet').val(planet.p);
 		$('.shipyard_type').val(parseInt(planet.planet_type));
 		validateStep(2);
+	},
+	mission: function(){
+		Shipyard.missionType = $('.shipyard_mission').val();
+		return false;
 	},
 	send:function(){
 		var ship_count = 0;
