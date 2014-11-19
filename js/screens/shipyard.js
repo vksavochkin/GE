@@ -322,6 +322,7 @@
 	},
 	mission: function(){
 		Shipyard.missionType = $('.shipyard_mission').val();
+		calculateTransportCapacity();
 		return false;
 	},
 	send:function(){
@@ -611,7 +612,7 @@ function validateStep(step){
 	}
 	
 	//show step 2
-	var speedfactor = GetGameSpeedFactor();
+	var speedfactor = getGameSpeedFactor();
 	
 	//Calculate dustance
 	var distance = distanse();
@@ -818,7 +819,7 @@ function tsdpkt(f) {
   return r;
 }
 
-function GetGameSpeedFactor(){
+function getGameSpeedFactor(){
 	return user.fleet_speed / 2500;
 }
 
@@ -856,6 +857,20 @@ function distanse() {
 	return distance;
 }
 
+defaultMissionFuelCostFactors = {
+	// 0.5 --- currently deploys don't consume deut on recalls
+	// 1.0 --- when or if they will. See also fleet.fleet_resource_deuterium_recall
+	"4": 0.5
+};
+function adjustMissionFuelCost(mission_type, fuel) {
+	var m = parseInt(mission_type);
+	var factor = user.mission_fuel_cost_factors ? user.mission_fuel_cost_factors[m] : undefined;
+	factor = factor || defaultMissionFuelCostFactors[m];
+	factor = factor || 1;
+	// 0.99 avoid "cargo space" error due to difference of 1 deut
+	return parseInt(fuel * factor + 0.99);
+}
+
 function maxResources() {
 	maxResource('metal');
 	maxResource('crystal');
@@ -869,9 +884,7 @@ function maxResource(res) {
 		crystal: 0,
 		deuterium: parseInt($('.shipyard_all_fuel').val())
 	};
-	//if (parseInt($(".shipyard_mission").val()) == 4) {
-	//	fuel.deuterium /= 2; // deploy recalls are now free
-	//}
+	fuel.deuterium = adjustMissionFuelCost($(".shipyard_mission").val(), fuel.deuterium);
 	var cargo = {};
 
 	if(res == 'metal'){
@@ -913,10 +926,8 @@ function maxResource(res) {
 function calculateTransportCapacity() {
 	var storage = parseInt($('.shipyard_storage').val());
 	var fuel = parseInt($('.shipyard_all_fuel').val());
-	//if (parseInt($(".shipyard_mission").val()) == 4) {
-	//	fuel /= 2; // deploy recalls are now free
-	//}
-	
+	fuel = adjustMissionFuelCost($(".shipyard_mission").val(), fuel);
+
 	var metal = (!Check.isEmpty($(".shipyard_metal").val()) ? $(".shipyard_metal").val() : 0);
 	var crystal = (!Check.isEmpty($(".shipyard_crystal").val()) ? $(".shipyard_crystal").val() : 0);
 	var deuterium = (!Check.isEmpty($(".shipyard_deuterium").val()) ? $(".shipyard_deuterium").val() : 0);
