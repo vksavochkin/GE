@@ -2572,6 +2572,10 @@ Statistic
 			margin:0px;
 			font-size:10px;
 		}
+        .spy-report .table{
+            width:auto;
+            max-width:none;
+        }
 		.spy-report .row{
 			padding:0px !important;
 			height:13px !important;
@@ -2584,7 +2588,39 @@ Statistic
 			padding:7px 3px 3px !important;
 			font-size:12px !important;
 		}
-	.spy-report .detection{padding-top:3px;}	
+        .spy-report .spy-report-resources{
+            clear:both;
+            width:100%;
+            max-width:320px;
+        }
+        .spy-report .spy-report-resources .row{
+            text-align:center;
+        }
+        .spy-report .spy-report-data{
+            float:left;
+            padding:2px 10px;
+        }
+        .spy-report .spy-report-data .number{
+            text-align:right;
+        }
+/*
+        .spy-report .spy-report-data.collapsed .row{
+            display:none;
+        }
+*/
+        .spy-report .spy-report-fleet{
+        }
+        .spy-report .spy-report-defence{
+        }
+        .spy-report .spy-report-buildings{
+        }
+        .spy-report .spy-report-techs{
+        }
+	.spy-report .spy-report-detection{
+        clear:both;
+        padding-top:3px;
+        padding-left:20px;
+    }
 
 	.fleet-resources-table *{
 		font-size:9px !important;	
