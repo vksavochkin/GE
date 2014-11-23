@@ -72,7 +72,7 @@
 						</div>\
 						<div>\
 							<div>'+lang._T('in_jump_gate_finish_moon')+'</div>\
-							<div><select name="jmpto" class="jump_id" style="width:70px;">'+gate_dest_moons+'</select>\</div>\
+							<div><select name="jmpto" class="jump_id" style="width:70px;">'+gate_dest_moons+'</select></div>\
 						</div>\
 						'+gate_fleet_rows+'\
 						<div>\
@@ -206,7 +206,7 @@
 	jump:function(){
 		var ship_count = 0;
 		var ships = {};
-		$('.shipyard_input').each(function(){
+		$('.jumpgate .shipyard_input').each(function(){
 			if(parseInt($(this).val()) > 0){
 				var name = $(this).data('name');
 				var amount = parseInt($(this).val());

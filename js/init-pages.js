@@ -465,9 +465,11 @@ function changeAvatar(rel){
 
 
 function maxShipBtn(el){
-	var max = $('.ship_'+el).data('max');
-	$('.ship_'+el).val(max);
-
+	// there can be more than one shipyard_ships table rendered on page
+	$('.ship_'+el).each(function(){
+		var max = $(this).data('max');
+		$(this).val(max);
+	});
 };
 function removeAllShipsBtn(){
 	$('.shipyard_input').each(function(){

@@ -302,7 +302,7 @@ var Mail= {
 			report += '<div class="row"><div class="cell">'+lang._T('Please upgrade Espionage Technology to see target Defense.')+'</div></div>';
 		}	
 		report += '</div>';
-		
+
 		//Buildings
 		report += '<div class="table spy-report-data spy-report-buildings"><div class="caption">'+lang._T('Buildings')+'</div>';
 		if(!Check.isEmpty(data.buildings)){
@@ -315,7 +315,7 @@ var Mail= {
 		report += '</div>';
 		
 		//Technology
-		report += '<div class="table spy-report-data spy-report-techs"><div class="caption" onclick="${}">'+lang._T('Technology')+'</div>';
+		report += '<div class="table spy-report-data spy-report-techs"><div class="caption">'+lang._T('Technology')+'</div>';
 		if(!Check.isEmpty(data.tech)){
 			foreach(data.tech, function(k, v){
 				report  += '<div class="row"><div class="cell">'+lang._T('tech_'+k)+'</div><div class="cell number">'+v+'</div></div>';
