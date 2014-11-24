@@ -483,7 +483,7 @@
 			sim += '<div>\
 					<div>'+lang._T('tech_'+ship)+'</div>\
 					<div></div>\
-					<div><input data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+'  defender_input" name="ship_'+ship+'2"  placeholder="0" value=""/></div>\
+					<div><input data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+'  defender_input" name="ship_'+ship+'2"  placeholder="0" value="'+(target && !Check.isEmpty(target.defense) && !Check.isEmpty(target.defense[ship]) ? target.defense[ship] : '')+'"/></div>\
 				</div>\
 			';
 		});
