@@ -133,6 +133,7 @@ function run(){
 			return false;
 		}else{
 			IAP.initialize();
+			AIAP.initialize();
 			initGame();
 			return false;
 		}		

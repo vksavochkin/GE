@@ -148,112 +148,79 @@ var AIAP = {
         // Check availability of the storekit plugin
         if (typeof inappbilling == 'undefined' || Check.isEmpty(inappbilling)) {
             console.log('Android In-App Purchases not available');
-            return;
+            return false;
         }
 		
-		/*Request.send({'object':'store', 'action':'androidlist', });
+		Request.send({'object':'store', 'action':'androidlist', });
 		if(responseObj.status != 100){
 			alertify.alert(lang._T(responseObj.error));
 			return false;
 		}else{
             AIAP.list = [];
-            foreach(responseObj.androidlist.list, function(k,v){
+            foreach(responseObj.storeandroidlist.list, function(k,v){
                 AIAP.list.push(v);
             });
-		}*/
-		
+		}
+		console.log(AIAP.list);
         // Initialize
         inappbilling.init(
             AIAP.onReady, 
             function(error){console.log('Error: can\'t initialize InApps: ' + error);}, 
             {showLog:true},
-            [
-	            "com.seazonegames.geredesigned.1000",
-	            "com.seazonegames.geredesigned.3000",
-				"com.seazonegames.geredesigned.5000",
-				"com.seazonegames.geredesigned.10000",
-				"com.seazonegames.geredesigned.20000"
-			]
+            AIAP.list
         );
+        return false;
 	},
 
 	onReady: function () {
-        // Once setup is done, load all product data.
-        
-        
-        inappbilling.getProductDetails(function(data, data2,data3){
-        console.log(data);
-        console.log(data2);
-        console.log(data3);
-            console.log('IAPs loading done:');
-            console.log(data);
-            
-            AIAP.loaded = true;
-        }, function(error){
-            console.log('Error: could not load InApps: ' + error);
-        }, AIAP.list);
-        
-        /*storekit.load(IAP.list, function (products, invalidIds) {
-            console.log('IAPs loading done:');
-            for (var j = 0; j < products.length; ++j) {
-                var p = products[j];
-                console.log('Loaded IAP(' + j + '). title:' + p.title +
-                            ' description:' + p.description +
-                            ' price:' + p.price +
-                            ' id:' + p.id);
-                IAP.products[p.id] = p;
-            }
-            IAP.loaded = true;
-            for (var i = 0; i < invalidIds.length; ++i) {
-                console.log('Error: could not load ' + invalidIds[i]);
-            }
-        });*/
-    },
-
-    onPurchase: function (transactionId, productId) {
-        var n = (IAP.localStorage['storekit.' + productId]|0) + 1;
-        IAP.localStorage['storekit.' + productId] = n;
-        IAP.validateIAP(transactionId, productId);
-        
-        /*if (IAP.purchaseCallback) {
-            IAP.purchaseCallback(transactionId, productId, receipt);
-            delete IAP.purchaseCallbackl;
-        }*/
+        console.log('Android In-App Purchases loaded');
+		return false;
     },
     
-    validateIAP: function(transactionId, productId){
-		console.log('validating productId: ' + productId);
-		console.log('validating transactionId: ' + transactionId);
+    validateIAP: function(signature, purchaseData, productId){
+		console.log('Product Id: ' + productId);
+		console.log('validating signature: ' + signature);
+		console.log('validating transactionId: '+purchaseData);
 		
-		var receipt = '';
-		window.storekit.loadReceipts(function (receipts) {
-		    receipt = receipts.appStoreReceipt; // null or base64 encoded receipt (iOS >= 7)
-		    receipt_transaction = receipts.forTransaction(transactionId); // null or base64 encoded receipt (iOS < 7)
-			receipt_product = receipts.forProduct(productId); // null or base64 encoded receipt (iOS < 7)
-			
-			try {
-				
-				Request.send({object:'store',action:'validate',receipt:receipt, transactionId:transactionId,productId:productId, receipt_transaction:receipt_transaction, receipt_transaction:receipt_transaction});
-				if(responseObj.status != 100){
-					alertify.alert(lang._T(responseObj.error));
-					return false;
-				}else{
-					if(!Check.isEmpty(responseObj.storevalidate.success)){
-						alertify.alert(lang._T(responseObj.storevalidate.success));
-					}
-					 if(!Check.isEmpty(responseObj.storevalidate.error_msg)){
-						alertify.alert(lang._T(responseObj.storevalidate.error_msg));
-					}		
+		
+		try {
+			var obj = jQuery.parseJSON( purchaseData );
+			Request.send({
+				object:'store',
+				action:'validateandroid',
+				signature:signature, 
+				purchaseData:obj,
+				productId:productId
+			});
+			if(responseObj.status != 100){
+				alertify.alert(lang._T(responseObj.error));
+				return false;
+			}else{
+				if(!Check.isEmpty(responseObj.storevalidateandroid.success)){
+					alertify.alert(lang._T(responseObj.storevalidateandroid.success));
 				}
-				
-				//InApp.sendMessage( InApp.validatePurchaseURL, receipt, InApp.validateInAppSuccess, InApp.validateInAppFailure);
-			} catch(e) {
-				alertify.alert(lang._T("Your in-app purchase could not be validated. Transaction ID: "+transactionId));
+				 if(!Check.isEmpty(responseObj.storevalidateandroid.error_msg)){
+					alertify.alert(lang._T(responseObj.storevalidateandroid.error_msg));
+				}		
 			}
-		});
+			
+			//InApp.sendMessage( InApp.validatePurchaseURL, receipt, InApp.validateInAppSuccess, InApp.validateInAppFailure);
+		} catch(e) {
+			alertify.alert(lang._T("Your in-app purchase could not be validated. Transaction ID: "+transactionId));
+		}
 		
 	},
-
+	
+	consume: function(signature, purchaseData, productId){
+    	console.log(productId);
+		inappbilling.consumePurchase(function(data){
+			AIAP.validateIAP(signature, purchaseData, productId);
+		}, 
+		function(error){
+			alertify.alert(lang._T("Your in-app purchase could not be validated. Error: "+error));
+		}, productId);
+	},
+	
     onError: function (errorCode, errorMessage) {
         if(errorCode == 2 || errorCode == 4983503){
 	        alertify.alert('Purchase has been canceled.');
@@ -264,9 +231,11 @@ var AIAP = {
     },
 
 
-    buy: function (productId, callback) {
+    buy: function (productId) {
         inappbilling.buy(
-            callback, 
+            function(data){
+	            AIAP.consume(data.signature, data.purchaseData, productId);
+            }, 
             function(error){
                 alertify.alert('Something is wrong. Can\'t make purchase.');
                 console.log('Error: when buy: ' + error);
@@ -277,17 +246,27 @@ var AIAP = {
 };
 
 var renderAIAPs = function (el) {
-	if (AIAP.loaded) {
-		var html = '<div class="table inapp-list">';
-		for (var id in AIAP.products) {
-			var prod = AIAP.products[id];
-			html += '<div><div><p style="padding:10px 0px 5px;">'+prod.title+'</p></div><div style="width:70px;"><a class="btn fr" onclick="AIAP.buy(\''+prod.id+'\')">'+prod.price+'</a></div></div>';
+	inappbilling.getPurchases(function(data){
+		foreach(data, function(k,p) {
+			var obj = jQuery.parseJSON( p.purchaseData );
+			AIAP.consume(p.signature, p.purchaseData, obj.productId);
+		});
+	}, function(){});
+	
+	inappbilling.getAvailableProducts(
+		function(purchases){
+			var html = '<div class="table inapp-list">';
+			foreach(purchases, function(k,p) {
+				html += '<div><div><p style="padding:10px 0px 5px;">'+p.title+'</p></div><div style="width:70px;"><a class="btn fr" onclick="AIAP.buy(\''+p.productId+'\')">'+p.price+'</a></div></div>';
+			});
+			html += '</div>';
+			$('.inapp-block').html(html);
+		}, 
+		function(error){
+			var html = '<p style="text-align:center">In-App Purchases not available.<br/><small>Error: '+error+'</small></p>';
+			$('.inapp-block').html(html);
 		}
-		html += '</div>';
-	}else{
-    	var html = '<p style="text-align:center">In-App Purchases not available.</p>';
-	}
-	return html;
+	);
 };
 
 
@@ -333,9 +312,7 @@ var renderAIAPs = function (el) {
 		
 		if (typeof inappbilling !== 'undefined') {
 			//Load In-App
-			
-			//AIAP.initialize();
-			//$('.inapp-block').html(renderAIAPs());
+			renderAIAPs();
         }
 		
 		//Load Paypal
