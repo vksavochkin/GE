@@ -98,7 +98,7 @@ function onDeviceReady() {
 		}
 		if(!Check.isEmpty(AppRate)){
 			AppRate.preferences.openStoreInApp = true;
-			AppRate.preferences.storeAppURL.ios = 'id374559518';
+			AppRate.preferences.storeAppURL.ios = '374559518';
 			AppRate.preferences.storeAppURL.android = 'market://details?id=com.seazonegames.geredesigned';
 			//AppRate.preferences.storeAppURL.windows8 = 'ms-windows-store:Review?name=f91701b7-7b09-4b1c-bc54-f72f27a93682';
 			AppRate.preferences.displayAppName = 'Galactic Empires: Universe';
