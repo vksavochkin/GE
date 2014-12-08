@@ -1,14 +1,14 @@
 var Ally= {
 	pageID: '.page-alliance',
 	scrollID: 'allyScroll',
-	init: function () {		
+	init: function () {
+		onPage = 'alliance';
 		$('.page-content').hide();
-		onPage = 'alliance';	
-		$('.bar-title h1').html('Alliance');
-		$('.bar-title span').html('');		
 		this.content();
+		$('.bar-title h1').html('Alliance');
+		$('.bar-title span').html('');
 		$(this.pageID).show();
-		makeScroll('allyScroll');
+		makeScroll(this.scrollID);
 		return false;
 		
 	},
@@ -272,14 +272,14 @@ var Ally= {
 								<div class="table">\
 									<div class="caption">'+lang._T('Alliance Members')+'</div>\
 									'+table2+'\
-								</table>\
+								</div>\
 							</div>\
 						</div>\
 					</div>\
-					<nav class="b-menu">\
+					<div class="b-menu">\
 						<a class="fl btn" style="margin-left:10px;" onclick="Ally.quit();">'+lang._T('Quit Ally')+'</a>\
 						<a class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</a>\
-					</nav>');
+					</div>');
 				$(".ranks_table").change(function(){
 					var change_data = $(this).val();
 					var change_data_array = change_data.split(';');
