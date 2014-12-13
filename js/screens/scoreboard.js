@@ -1,10 +1,9 @@
 var Scoreboard= {
 	pageID: '#statistics-screen',
 	scrollID: 'page_statistic_scroll',
+	userID: undefined,
 	init: function (uid) {
-	
-		var uid = typeof uid !== 'undefined' ? uid : 0;
-
+		this.userID = typeof uid !== 'undefined' ? uid : 0;
 		onPage = 'statistics';
 		$('.page-content').hide();	
 		this.content(uid);
@@ -26,14 +25,16 @@ var Scoreboard= {
 		return false;
 	},
 	showStatistics: function(uid){
-		var uid = typeof uid !== 'undefined' ? uid : 0;
+		var uid = typeof uid !== 'undefined' ? uid : (typeof this.userID !== 'undefined' ? this.userID : 0);
 		var show = $('.statistic-select-show option:selected').val();
 		var by = $('.statistic-select-by option:selected').val();
 		var range = $('.statistic-select-rank option:selected').val();
 		
-		Request.send({'object':'statistic', 'action':show, by:by,range:range, uid:uid});
+		Request.send({'object':'statistic', 'action':show, by:by, range:range, uid:uid});
 		if(responseObj.status == 100){
-			
+
+			var my_uid = responseObj.state.user.id;
+			var my_ally_id = responseObj.state.user.ally_id;
 			$('.statistic-select-rank').html(responseObj['statistic'+show].range);
 			if(show == 'ally'){
 				var out = '<div class="row">\
@@ -44,7 +45,8 @@ var Scoreboard= {
 								<div class="statistic-table-per-user">Per User</div>\
 							</div>';
 				foreach(responseObj.statistically.rows, function(key, m) {
-					out += '<div class="row">\
+					var my = m.ally_id == my_ally_id ? 'friend' : '';
+					out += '<div class="row '+my+'">\
 								<div class="statistic-table-rank">'+m.rank+'</div>\
 								<div class="statistic-table-name">'+m.ally_name+' ('+m.ally_tag+')</div>\
 								<div class="statistic-table-members">'+m.ally_users+'</div>\
@@ -53,14 +55,16 @@ var Scoreboard= {
 							</div>';
 				});			
 			}else{
-				var out = '<div class="row">\
+				var out = '<div class="row ">\
 								<div class="statistic-table-rank">Rank</div>\
 								<div class="statistic-table-name">Name</div>\
 								<div class="statistic-table-alliance">Alliance</div>\
 								<div class="statistic-table-points">Points</div>\
 							</div>';
 				foreach(responseObj.statisticuser.rows, function(key, m) {
-					out += '<div class="row">\
+					var my = (m.ally_id == my_ally_id ) ? 'friend' : '';
+					my = (m.user_id == my_uid || m.user_id == uid) ? 'own' : my;
+					out += '<div class="row '+my+'">\
 								<div class="statistic-table-rank">'+m.rank+'</div>\
 								<div class="statistic-table-name">'+m.username+'</div>\
 								<div class="statistic-table-alliance">'+m.ally_name+'</div>\

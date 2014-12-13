@@ -1993,7 +1993,8 @@ Statistic
 			overflow: hidden;
 		}		
 		.statistic-list ul{
-			list-style: none;display: block;
+			list-style: none;
+			display: block;
 			padding: 0;
 			margin: 0;
 			width:100%;
@@ -2002,7 +2003,12 @@ Statistic
 			.statistic-row{
 				vertical-align: top; padding: 4px 5px;position: relative;list-style: none;display: block;margin: 0;
 			}
-
+			.statistic-table .friend > div {
+				color: lightgreen;
+			}
+			.statistic-table .own > div {
+				color: yellow;
+			}
 
 		.recordboard-list{
 			display:block;
