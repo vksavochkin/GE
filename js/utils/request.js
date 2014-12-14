@@ -39,8 +39,7 @@ var Request = {
 						}
 						Overview.updateHeader();
 					}
-					
-						
+
 				}else{
 					responseObj.status = parseInt(respond.status);
 					responseObj.error = respond.error;
@@ -51,7 +50,10 @@ var Request = {
 				if(!Check.isEmpty(respond.token)){
 					storage.set('token',respond.token);
 				}
-				$('.server_time').html(respond.server_time);
+				// user's clock may drift from server's
+				user.timestampLocal = Math.floor(Date.now() / 1000);
+				$('.server_time').html(formatServerDateTimeTZ(respond.timestamp));
+				$('.local_time').html(formatUserDateTimeTZ(respond.timestamp));
 				return;
 			}else if(textStatus == 'timeout'){
 				alertify.alert('Server Timeout. Please try again.');

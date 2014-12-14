@@ -116,8 +116,13 @@ var Timers = {
 	},
 	
 	doTimer: function (obj,eventTime,afterFunc,bar) {
-		var now 	= new Date();
-		var left	= eventTime-(Math.round(now.getTime()/1000) - responseObj.timestamp);
+		// Here the dragons: user device's clock may not match server's clock.
+		// Slow internet connection may cause some delay even when clocks match.
+		// responseObj.timestamp stores server's clock,
+		// user.timestampLocal stores user's clock.
+		// Date.now() gets user's current clock, so we subtract user.timestampLocal from it.
+		var now 	= Math.round(Date.now()/1000);
+		var left	= eventTime-(now - user.timestampLocal);
 		var time	= this.getLeftTime(left);
 		obj.html(time);	
 		

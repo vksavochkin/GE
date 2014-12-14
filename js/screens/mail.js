@@ -97,8 +97,6 @@ var Mail= {
 		$('.bar-title span').html(cat_name+' (<a onclick="Mail.deleteAll('+c+');">Delete All</a>)');
 		if(c == 100){
 			foreach(Mail.mails,function(k,m){
-				var localDate = new Date(m.message_time*1000); 
-				
 				var mail_class = (parseInt(m['new']) == 1 ? 'mail-new' : '');
 				
 				var message_form = '';
@@ -119,7 +117,7 @@ var Mail= {
 					<div class="cell mail-message">\
 						<a class="delete-message" onclick="Mail._delete('+m.message_id+')">Delete</a>\
 						<small>\
-							<b>'+localDate.format("m/dd/yy h:MM:ss TT")+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
+							<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 							</b>\
 						</small>\
 						<div class="allow_selection">'+message_text+'</div>\
@@ -129,8 +127,6 @@ var Mail= {
 		}else{
 			foreach(Mail.mails,function(k,m){
 				if(parseInt(m.message_type) == c){
-					var localDate = new Date(m.message_time*1000); 
-					
 					var mail_class = (parseInt(m['new']) == 1 ? 'mail-new' : '');
 					
 					var message_form = '';
@@ -151,7 +147,7 @@ var Mail= {
 						<div class="cell mail-message">\
 							<a class="delete-message" onclick="Mail._delete('+m.message_id+')">Delete</a>\
 							<small>\
-								<b>'+localDate.format("m/dd/yy h:MM:ss TT")+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
+								<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 								</b>\
 							</small>\
 							<p class="allow_selection">'+message_text+'</p>\

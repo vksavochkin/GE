@@ -137,13 +137,13 @@
 				var buildArr = curBuild.split(',');
 				
 				var restTime = parseInt(planet.b_building) - parseInt(responseObj.timestamp);
-				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div><div style="padding:2px;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
 			}
 			if(parseInt(user.b_tech_planet) > 0){
 				var research_planet = responseObj.state.planets[user.b_tech_planet];
 				
 				var restTime = parseInt(research_planet.b_tech) - parseInt(responseObj.timestamp);
-				timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+research_planet.b_tech_id)+' ('+(parseInt(user[research_planet.b_tech_id]) +1)+')'+'</div><div style="padding:2px;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+				timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+research_planet.b_tech_id)+' ('+(parseInt(user[research_planet.b_tech_id]) +1)+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
 			}
 			$('.planet-timer').html('<div class="table">'+timer_building+timer_research+'</div>');		
 			
@@ -358,17 +358,17 @@
 			//Show arrival rite
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Target:</b>: '+f.fleet_start_time_real+'<br/>';
+					arrival_time += '<b>Arrival to Target:</b>: '+asDate(f.fleet_start_time).adjust().format()+'<br/>';
 					if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
-						arrival_time += '<b>Arrival back to Home:</b>: '+f.fleet_end_time_real+'<br/>';
+						arrival_time += '<b>Arrival back to Home:</b>: '+asDate(f.fleet_end_time).adjust().format()+'<br/>';
 					}					
 				}else{
-					arrival_time += '<b>Arrival back to Home:</b>: '+f.fleet_end_time_real+'<br/>';
+					arrival_time += '<b>Arrival back to Home:</b>: '+asDate(f.fleet_end_time).adjust().format()+'<br/>';
 				}
 				
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Planet:</b>: '+f.fleet_start_time_real+'<br/>';
+					arrival_time += '<b>Arrival to Planet:</b>: '+asDate(f.fleet_start_time).adjust().format()+'<br/>';
 				}
 			}
 			

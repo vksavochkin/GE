@@ -42,7 +42,8 @@
 		var lid = 0;
 		foreach(responseObj.chatshow, function(key, m) {
 			lid++;
-			c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+localize_date(parseInt(m.timestamp), true)+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
+			var d = asDate(m.timestamp).format(Date.formats.chat);
+			c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
 		});
 		$('.chat-holder').html(c);	
 		
@@ -64,7 +65,8 @@
 			var lid = 0;
 			foreach(responseObj.chatshow, function(key, m) {
 				lid++;
-				c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+localize_date(parseInt(m.timestamp), true)+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
+				var d = asDate(m.timestamp).format(Date.formats.chat);
+				c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
 			});
 			return c;
 		}else{

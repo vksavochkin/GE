@@ -33,7 +33,7 @@
 				foreach(responseObj.forumcategories[key], function(keyc, mc) {
 					c+= '<div onclick="Forum.showTopics('+mc.fid+');" class="forum-category">\
 					<div><small>'+mc.forum_last_post_subject+'<br/>\
-					'+(mc.forum_last_post_time>0 ? localize_date(parseInt(mc.forum_last_post_time)) : '')+'<br/>\
+					'+(mc.forum_last_post_time>0 ? asDate(m.topic_last_post_time).format(Date.formats.forum) : '')+'<br/>\
 					'+mc.forum_last_post_username+'</small></div>\
 					<b>'+mc.forum_name+'</b><br/><small>'+mc.forum_desc+'</small></div>';
 				});
@@ -98,7 +98,7 @@
 		foreach(responseObj.forumtopics.topics, function(key, m) {
 			o+= '<div class="forum-topic t'+m.tid+'" onclick="Forum.showPosts('+m.tid+');">\
 				<div class="last-reply">\
-					'+localize_date(parseInt(m.topic_last_post_time))+'<br/>'+m.topic_last_post_username+'\
+					'+asDate(m.topic_last_post_time).format(Date.formats.forum)+'<br/>'+m.topic_last_post_username+'\
 				</div>\
 				<div class="replies-count">'+m.topic_replies+'</div>\
 				<b>'+m.subject+'</b><br/><small>'+lang._T('Posted by')+' '+m.topic_postrer_username+'</small>\
@@ -117,7 +117,7 @@
 			foreach(responseObj.forumtopics.topics, function(key, m) {
 				o+= '<div class="forum-topic t'+m.tid+'" onclick="Forum.showPosts('+m.tid+');">\
 					<div class="last-reply">\
-						'+localize_date(parseInt(m.topic_last_post_time))+'<br/>'+m.topic_last_post_username+'\
+						'+asDate(m.topic_last_post_time).format(Date.formats.forum)+'<br/>'+m.topic_last_post_username+'\
 					</div>\
 					<div class="replies-count">'+m.topic_replies+'</div>\
 					<b>'+m.subject+'</b><br/><small>'+lang._T('Posted by')+' '+m.topic_postrer_username+'</small>\
@@ -277,7 +277,7 @@
 		foreach(responseObj.forumposts.posts, function(key, m) {
 			o+= '<div class="forum-post p'+m.pid+'">\
 				<div class="post-statusbar">\
-					<b>'+m.post_username+'</b> '+(can_delete==false ? '' : '(<b onClick="Forum.DeleteMessage('+m.pid+');">Delete</b>)')+' <small>'+localize_date(parseInt(m.post_time))+'</small>\
+					<b>'+m.post_username+'</b> '+(can_delete==false ? '' : '(<b onClick="Forum.DeleteMessage('+m.pid+');">Delete</b>)')+' <small>'+asDate(m.post_time).format(Date.formats.forum)+'</small>\
 				</div>\
 				<div class="post-message">\
 					<div class="post-avatar user-link" rel="'+m.post_username+'" onclick="UserInfo.showPage(\''+m.post_username+'\');" style="background:url(images/avatars/'+m.avatar+'.gif) no-repeat;"></div>\

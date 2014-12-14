@@ -37,6 +37,7 @@ var isMobile = {
 };
 
 
+// These pages require reinit when switching planets.
 planetPages = {
 	'shipyard': Shipyard,
 	'buildings': Buildings,
@@ -48,6 +49,9 @@ planetPages = {
 	'ships': Ships
 };
 
+
+// These pages stay same when switching planets.
+// Maybe open some of planetPages instead?
 globalPages = {
 	'alliance': Ally,
 	'chat': Chat,

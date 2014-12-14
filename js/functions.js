@@ -860,6 +860,7 @@ dateFormat.masks = {
 	shortTime:      "h:MM TT",
 	mediumTime:     "h:MM:ss TT",
 	longTime:       "h:MM:ss TT Z",
+	phpDateTime:    "m/d/yyyy h:MM:ss TT",
 	isoDate:        "yyyy-mm-dd",
 	isoTime:        "HH:MM:ss",
 	isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
@@ -880,39 +881,58 @@ dateFormat.i18n = {
 
 // For convenience...
 Date.prototype.format = function (mask, utc) {
+	if (typeof mask == 'undefined') {
+		mask = Date.formats.default;
+	}
 	return dateFormat(this, mask, utc);
 };
 
-function localize_date(nd,tt,ll,yy){
-	var inputtext = (nd*1);
-	var epoch=inputtext;
-	var outputtext = "";
-	if(inputtext > 1000000000000){	
-		epoch=Math.round(inputtext/1000);
-	}else{
-		if(inputtext > 10000000000)extraInfo=1;
-		inputtext=(inputtext*1000);
+// Application-specific formats. Common formats usually not fit page design.
+Date.formats = {
+	forum: "mmm dd, HH:MM TT",
+	chat: dateFormat.masks.isoTime,
+	default: dateFormat.masks.phpDateTime
+};
+
+// Even worse: user's clock may drift from server's.
+// This function is for fleet timestamps, when every second matters.
+Date.prototype.adjust = function () {
+	var adjustment = 1000 * (user.timestampLocal - responseObj.timestamp);
+	this.setTime(this.getTime() + adjustment);
+	return this;
+};
+
+function asDate(obj) {
+	if (typeof obj == 'number' || typeof obj == 'string') {
+		return obj < 2147483647 ? new Date(1000 * obj) : new Date(obj);
+	} else {
+		// Assume it is Date :).
+		return obj;
 	}
-	var datum = new Date(inputtext);
-	var localeString = datum.toLocaleString();
-	var localeStringEnd = localeString.search(/GMT/i);
-	if(localeStringEnd>0){ localeString=localeString.substring(0,localeStringEnd); }
-	outputtext += "<span>"+localeString+"</span>";//"<b>GMT</b>: "+datum.toGMTString()+"
-	//return outputtext;
-	if(tt == true){
-		return datum.format("HH:MM TT");
-	}else if(ll == true){
-		return datum.format("mmm dd yyyy HH:MM:ss TT");
-	}else if(yy == true){
-		return datum.format("m/d/yy");
-	}else{
-		return datum.format("mmm dd, HH:MM TT");
-	}
-	
 }
 
+// Note:
+// Don't ever think about Date.toLocaleString() crap :).
+// User phones never get no updates for that.
+// User browser knows only UTC and _current_ local time offset.
+// Anything more is very optional and full of bugs.
+function formatServerDateTimeTZ(t){
+	/*
+	// TODO Server time zone offset should be in server response along with tzName and ID (like America/New_York).
+	var tzOffset = 5 * 60 * 60 * 1000;
+	var tzName = responseObj.server_time.substr(-3);
+	var d = new Date(asDate(t).getTime() - tzOffset);
+	return d.format(Date.formats.default, true) + ' ' + tzName;
+	*/
+	return responseObj.server_time;
+}
 
-
+function formatUserDateTimeTZ(t){
+	var tzName = new Date().toString().replace(/.*[(]([a-zA-Z]+)[)]$/, '$1');
+	var d = asDate(t).adjust();
+	//return d.format(Date.formats.default, false) + ' ' + tzName;
+	return d.format(dateFormat.masks.phpDateTime, false) + ' ' + tzName;
+}
 
 
 /*
