@@ -902,6 +902,13 @@ Date.prototype.adjust = function () {
 	return this;
 };
 
+// For very old phones.
+if (!Date.now) {
+	Date.now = function now() {
+		return new Date().getTime();
+	};
+}
+
 function asDate(obj) {
 	if (typeof obj == 'number' || typeof obj == 'string') {
 		return obj < 2147483647 ? new Date(1000 * obj) : new Date(obj);
