@@ -521,21 +521,20 @@ function GetElementPrice (el, userfactor, level){
 		}
 	});
 	return text;
-}  
+}
 
+/**
+ * @return {boolean}
+ */
 function IsTechnologieAccessible(el){
 	if (isset(requeriments[el])){
 		var enabled = true;
 		
 		foreach(requeriments[el], function(element, level){
 			if (isset(user[element]) && parseInt(user[element]) >= level){
-				
 			}else if (isset(planet[element]) && parseInt(planet[element]) >= level){
-				enabled = true;
 			}else{
-				//console.log(element+''+planet[element]+':'+level);
-				enabled = false;
-				return false;
+				enabled &= false;
 			}
 		});
 		return enabled;
