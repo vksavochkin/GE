@@ -33,7 +33,7 @@
 				foreach(responseObj.forumcategories[key], function(keyc, mc) {
 					c+= '<div onclick="Forum.showTopics('+mc.fid+');" class="forum-category">\
 					<div><small>'+mc.forum_last_post_subject+'<br/>\
-					'+(mc.forum_last_post_time>0 ? asDate(m.topic_last_post_time).format(Date.formats.forum) : '')+'<br/>\
+					'+(mc.forum_last_post_time>0 ? asDate(mc.forum_last_post_time).format(Date.formats.forum) : '')+'<br/>\
 					'+mc.forum_last_post_username+'</small></div>\
 					<b>'+mc.forum_name+'</b><br/><small>'+mc.forum_desc+'</small></div>';
 				});
