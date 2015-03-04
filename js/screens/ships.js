@@ -58,7 +58,7 @@
 			var CanBuildOne         = IsElementBuyable(Element, false);
 			var BuildOneElementTime = GetBuildingTime(Element);
 			var ElementCount        = parseInt(planet[Element]);
-			var ElementNbre         = ElementCount == 0 ? '' : ' ('+ lang._T('bd_available') + prettyNumber(ElementCount) + ')';
+			var ElementNbre         = ElementCount == 0 ? '' : ' ('+ lang._T('bd_available') + exactNumber(ElementCount) + ')';
 
 			var price = GetElementPrice(Element, false);
 			var time = ShowBuildTime(BuildOneElementTime);
