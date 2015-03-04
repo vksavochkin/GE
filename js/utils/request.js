@@ -1,4 +1,7 @@
 var Request = {
+	timestampRequestLocalMillis: undefined,
+	timestampResponseLocalMillis: undefined,
+
 	send: function (rData, rUrl, rType) {
 		//if (navigator.onLine == false || navigator.online == false) {
 			//alertify.alert("You dont have a connection to the internet. Please connect via WiFi/3G and try again.");
@@ -12,7 +15,8 @@ var Request = {
 		}else{
 			rData.token = storage.get('token');
 		}
-		$.ajax({ 
+		Request.timestampRequestLocalMillis = Date.now();
+		$.ajax({
 			url: rUrl || config.gameURL,
             data: rData,
             type: rType || "POST",
@@ -51,9 +55,10 @@ var Request = {
 					storage.set('token',respond.token);
 				}
 				// user's clock may drift from server's
-				user.timestampLocal = Math.floor(Date.now() / 1000);
+				Request.timestampResponseLocalMillis = Date.now();
 				$('.server_time').html(formatServerDateTimeTZ(respond.timestamp));
-				$('.local_time').html(formatUserDateTimeTZ(respond.timestamp));
+				$('.local_time').html(formatUserDateTimeTZ(respond.timestamp) + '*');
+				$('.network_latency').html('' + exactNumber(Request.timestampResponseLocalMillis - Request.timestampRequestLocalMillis) + ' ms');
 				return;
 			}else if(textStatus == 'timeout'){
 				alertify.alert('Server Timeout. Please try again.');

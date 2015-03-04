@@ -119,10 +119,10 @@ var Timers = {
 		// Here the dragons: user device's clock may not match server's clock.
 		// Slow internet connection may cause some delay even when clocks match.
 		// responseObj.timestamp stores server's clock,
-		// user.timestampLocal stores user's clock.
-		// Date.now() gets user's current clock, so we subtract user.timestampLocal from it.
-		var now 	= Math.round(Date.now()/1000);
-		var left	= eventTime-(now - user.timestampLocal);
+		// user.timestampResponseLocalMillis stores user's clock.
+		// Date.now() gets user's current clock, so we subtract user.timestampResponseLocalMillis from it.
+		var now 	= Date.now();
+		var left	= eventTime-Math.floor((now - Request.timestampResponseLocalMillis)/1000);
 		var time	= this.getLeftTime(left);
 		obj.html(time);	
 		

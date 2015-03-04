@@ -897,8 +897,10 @@ Date.formats = {
 // Even worse: user's clock may drift from server's.
 // This function is for fleet timestamps, when every second matters.
 Date.prototype.adjust = function () {
-	var adjustment = 1000 * (user.timestampLocal - responseObj.timestamp);
-	this.setTime(this.getTime() + adjustment);
+    if (responseObj.timestamp > 0) {
+		var adjustment = Request.timestampResponseLocalMillis - 1000 * responseObj.timestamp;
+		this.setTime(this.getTime() + adjustment);
+	}
 	return this;
 };
 
