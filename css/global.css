@@ -2003,10 +2003,14 @@ Statistic
 			.statistic-row{
 				vertical-align: top; padding: 4px 5px;position: relative;list-style: none;display: block;margin: 0;
 			}
-			.statistic-table .friend > div {
+			.statistic-table .own > div {
+				font-weight: bold;
+                color: lightgreen;
+			}
+			.statistic-table .ally > div {
 				color: lightgreen;
 			}
-			.statistic-table .own > div {
+			.statistic-table .target > div {
 				color: yellow;
 			}
 
