@@ -384,13 +384,14 @@
         			to += ' (M)';
     			}
 			}else{
+				// reverse to and from
 				to = (!Check.isEmpty(f.fleet_start_username) ? f.fleet_start_username+' ' : '')+f.fleet_start_planet_name+' ['+f.fleet_start_galaxy+':'+f.fleet_start_system+':'+f.fleet_start_planet+']';
 				from = (!Check.isEmpty(f.fleet_end_username) ? f.fleet_end_username+' ' : '')+f.fleet_end_planet_name+' ['+f.fleet_end_galaxy+':'+f.fleet_end_system+':'+f.fleet_end_planet+']';
-                if(parseInt(f.fleet_start_type) == 3){
-        			from += ' (M)';
+				if(parseInt(f.fleet_start_type) == 3){
+					to += ' (M)';
     			}
     			if(parseInt(f.fleet_end_type) == 3){
-        			to += ' (M)';
+					from += ' (M)';
     			}
 			}
 			
