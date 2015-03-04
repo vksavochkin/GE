@@ -149,6 +149,9 @@
 			
 		}
 	},
+	toggleTime:function(){
+
+	},
 	changePlanet:function(pid){
 		pid = typeof pid !== 'undefined' ? pid : $('.planet-select option:selected').val();
 		Request.send({object:'planet', action:'set', pid:pid});
@@ -503,7 +506,10 @@
 		}else{
 			links_bottom = '<div class="help-page-links-bottom">'+links+'</div>';
 		}
-		
+
+		if(id == 1){
+			links_bottom += '<div style="text-align:right; font-size:smaller; color:#aabbcc">Version: '+config.version+'</small>';
+		}
 		
 		Modal.init(back_link+responseObj.pageshow.title, '<div class="user-profile">'+links_top+'<div class="help-page-middle">'+responseObj.pageshow.content+'</div>'+links_bottom+'</div>');
     }
