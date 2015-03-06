@@ -361,17 +361,17 @@
 			//Show arrival rite
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Target:</b>: '+asDate(f.fleet_start_time).adjust().format()+'*<br/>';
+					arrival_time += '<b>Arrival to Target:</b>: '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 					if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
-						arrival_time += '<b>Arrival back to Home:</b>: '+asDate(f.fleet_end_time).adjust().format()+'*<br/>';
+						arrival_time += '<b>Arrival back to Home:</b>: '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 					}					
 				}else{
-					arrival_time += '<b>Arrival back to Home:</b>: '+asDate(f.fleet_end_time).adjust().format()+'*<br/>';
+					arrival_time += '<b>Arrival back to Home:</b>: '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 				}
 				
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Planet:</b>: '+asDate(f.fleet_start_time).adjust().format()+'*<br/>';
+					arrival_time += '<b>Arrival to Planet:</b>: '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 				}
 			}
 			

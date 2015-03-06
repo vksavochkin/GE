@@ -919,6 +919,15 @@ function asDate(obj) {
 	}
 }
 
+function showFleetTime(d, s) {
+	var date = asDate(d);
+	if (date) {
+		return date.adjust().format() + '*';
+	} else {
+		return s;
+	}
+}
+
 // Note:
 // Don't ever think about Date.toLocaleString() crap :).
 // User phones never get no updates for that.
