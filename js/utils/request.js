@@ -61,17 +61,21 @@ var Request = {
 				$('.network_latency').html('' + exactNumber(Request.timestampResponseLocalMillis - Request.timestampRequestLocalMillis) + ' ms');
 				return;
 			}else if(textStatus == 'timeout'){
-				alertify.alert('Server Timeout. Please try again.');
+				responseObj.status = 503;
+				responseObj.error = lang._T('Server Timeout. Please try again.');
 				return;
-			}else{					
-				alertify.alert('An unknown error occurred while processing the request on the server.');
+			}else{
+				responseObj.status = 500;
+				responseObj.error = lang._T('An unknown error occurred while processing the request on the server: %VAL1%', textStatus);
 				return;
 			}
 			return; 
 		}).fail(function(jqXHR, textStatus, errorThrown) { 
 			$('#loading-div').hide();
 			//alert('Here: '+log.object_toString(jqXHR));
-			alertify.alert('An unknown error occurred while processing the request on the server1. ');	
+			responseObj.status = 504;
+			responseObj.error = lang._T('An error occurred while connecting to server. Please check your internet connection and try again.', textStatus, errorThrown);
+
 			return; 
 		});
 		return;

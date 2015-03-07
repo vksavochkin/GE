@@ -27,6 +27,6 @@ var config = {
 	/* XHR */
 	gameURL: 'http://ge.seazonegames.com/api.php',
 	domain: 'http://ge.seazonegames.com/',
-	timeout: 10000,
+	timeout: 30000,
 	dataType: 'json'	
 };
