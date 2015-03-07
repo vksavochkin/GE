@@ -919,13 +919,14 @@ function asDate(obj) {
 	}
 }
 
+/** @type string */
 function showFleetTime(d, s) {
 	var date = asDate(d);
+	var result = '<span style="white-space: nowrap;">' + s + '</span>';
 	if (date) {
-		return date.adjust().format() + '*';
-	} else {
-		return s;
+		result += ' <span style="white-space: nowrap;">(' + formatUserDateTimeTZ(d) + '*)</span>';
 	}
+	return result;
 }
 
 // Note:
@@ -945,10 +946,10 @@ function formatServerDateTimeTZ(t){
 }
 
 function formatUserDateTimeTZ(t){
-	var tzName = new Date().toString().replace(/.*[(]([a-zA-Z]+)[)]$/, '$1');
+	var tzCode = new Date().toString().replace(/.*[(]([a-zA-Z]+)[)]$/, '$1');
 	var d = asDate(t).adjust();
 	//return d.format(Date.formats.default, false) + ' ' + tzName;
-	return d.format(dateFormat.masks.phpDateTime, false) + ' ' + tzName;
+	return d.format(dateFormat.masks.phpDateTime, false) + ' ' + tzCode;
 }
 
 

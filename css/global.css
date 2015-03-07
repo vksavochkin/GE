@@ -91,6 +91,7 @@ pre
 .row, .table > div { display: table-row; }
 .cell, .table > div > div { display: table-cell; vertical-align: middle; padding: 5px; font-size:11px; line-height: 13px; }
 .row:nth-child(even), .table > div:nth-child(even) { background-color: rgba(51, 51, 51, 0.5); }
+.plain .row:nth-child(even), .table.plain > div:nth-child(even) { background-color: transparent; }
 .table .caption { display: table-caption; padding: 0.5em; border-bottom: 1px solid #000;font-weight: bold; }
 
 .clear:after{ content: "."; display: block; height: 0; clear: both; visibility: hidden; }
@@ -2662,6 +2663,11 @@ Statistic
 	.phalanx-details-toggle.show{
 		display:block !important;
 	}		
+
+.time-warning {
+    color:yellow;
+}
+
 /*
 Copyright (c) 2010-2012 Ivan Vanderbyl
 Originally found at http://ivan.ly/ui

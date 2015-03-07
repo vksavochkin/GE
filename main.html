@@ -49,7 +49,7 @@
 				<div class="servers-box-inside overthrow" id="page-servers-login-inside-scroll">
 					<div>      
 					</div>
-				</div>    
+				</div>
 		    </div>
 	    </div>
 
@@ -385,19 +385,25 @@
 				<li><a href="#" onclick="Settings.init();">Settings</a></li>
 				<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
 				<li class="Label">Server Settings</li>
-				<li class="server_status" style="padding: 5px 10px">
-					<div class="table small">
+				<li class="server_status">
+					<div style="margin: 5px 10px">
+					<div class="table plain" >
 						<div>
 							<div style="text-align:left;">Server Time:</div><div class="server_time" style="text-align:right;">unknown</div>
 						</div>
 						<div>
 							<div style="text-align:left;">Your Time:</div><div class="local_time" style="text-align:right;">unknown</div>
 						</div>
+					</div>
+					<div class="table plain time_optional">
 						<div>
-							<div style="text-align:left;">Network latency:</div><div class="network_latency" style="text-align:right;">unknown</div>
+							<div style="text-align:left;">Time Difference:</div><div class="time_difference" style="text-align:right;">unknown</div>
+						</div>
+						<div>
+							<div style="text-align:left;">Page Load Time:</div><div class="page_load_time" style="text-align:right;">unknown</div>
 						</div>
 					</div>
-					<div class="table small">
+					<div class="table small plain">
 						<div>
 							<div>Game Speed:</div>
 							<div>Fleet Speed:</div>
@@ -412,6 +418,7 @@
 							<div><span class="server_attacks"></span></div>
 							<div><span class="server_df_percent"></span></div>
 						</div>
+					</div>
 					</div>
 				</li>
 				<li><a href="#" class="btn" onclick="Login.showServersInside();" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</a></li>

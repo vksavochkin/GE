@@ -54,11 +54,10 @@ var Request = {
 				if(!Check.isEmpty(respond.token)){
 					storage.set('token',respond.token);
 				}
+
 				// user's clock may drift from server's
 				Request.timestampResponseLocalMillis = Date.now();
-				$('.server_time').html(formatServerDateTimeTZ(respond.timestamp));
-				$('.local_time').html(formatUserDateTimeTZ(respond.timestamp) + '*');
-				$('.network_latency').html('' + exactNumber(Request.timestampResponseLocalMillis - Request.timestampRequestLocalMillis) + ' ms');
+				Request.updateTime(respond);
 				return;
 			}else if(textStatus == 'timeout'){
 				responseObj.status = 503;
@@ -79,5 +78,44 @@ var Request = {
 			return; 
 		});
 		return;
+	},
+	updateTime:function(respond){
+		// user's clock may drift from server's
+		if (isset(respond.timestamp)) {
+			$('.server_time').html(formatServerDateTimeTZ(respond.timestamp) + '&nbsp;');
+			var local_time = $('.local_time');
+			local_time.html(formatUserDateTimeTZ(respond.timestamp) + '*');
+
+			var pageLoadTimeThreshold = 3000;
+			var second = 1000;
+
+			var pageLoadTime = Request.timestampResponseLocalMillis - Request.timestampRequestLocalMillis;
+			var timeDifference = Math.abs(asDate(respond.timestamp).getTime() - Request.timestampResponseLocalMillis);
+
+			// respond.timestamp is rounded to seconds
+			var time_difference = $('.time_difference');
+			time_difference.html('' + exactNumber(timeDifference) + ' ms');
+			if (timeDifference > pageLoadTime + second){
+				local_time.addClass('time-warning');
+				time_difference.addClass('time-warning');
+			}else{
+				local_time.removeClass('time-warning');
+				time_difference.removeClass('time-warning');
+			}
+
+			var page_load_time = $('.page_load_time');
+			page_load_time.html('' + exactNumber(pageLoadTime) + ' ms');
+			if (pageLoadTime > pageLoadTimeThreshold){
+				page_load_time.addClass('time-warning');
+			}else{
+				page_load_time.removeClass('time-warning');
+			}
+
+			if (timeDifference > pageLoadTime + second || pageLoadTime > pageLoadTimeThreshold){
+				$('.time_optional').show();
+			}else{
+				$('.time_optional').hide();
+			}
+		}
 	}
 };
