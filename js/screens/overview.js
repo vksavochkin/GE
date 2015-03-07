@@ -240,12 +240,22 @@
 		
 		var out = '';
 		foreach(fleet_array, function(k,f){
-			if(parseInt(f.fleet_mess) == 0){
-				var timer = parseInt(f.fleet_start_time) - parseInt(responseObj.timestamp);
-				var msg = 'Arrival to target planet:';
+
+			var ships_total;
+			if(!Check.isEmpty(f.fleet_amount)){
+				ships_total = 'Fleet of '+exactNumber(f.fleet_amount)+' ships';
 			}else{
-				var timer = parseInt(f.fleet_end_time) - parseInt(responseObj.timestamp);
-				var msg = 'Arrival back to planet:';
+				ships_total = 'Fleet of unknown size';
+			}
+
+			var msg;
+			var timer;
+			if(parseInt(f.fleet_mess) == 0){
+				timer = parseInt(f.fleet_start_time) - parseInt(responseObj.timestamp);
+				msg = 'Arrival to target:';
+			}else{
+				timer = parseInt(f.fleet_end_time) - parseInt(responseObj.timestamp);
+				msg = 'Arrival back to home:';
 			}
 			
 			var fleet_out = '';
@@ -294,14 +304,10 @@
 				fleet_out = '<p>Fleet is invisible</p>';
 			}
 			
-			var ships_total = '';
-			if(!Check.isEmpty(f.fleet_amount)){
-				ships_total = 'of '+exactNumber(f.fleet_amount)+' Ships';
-			}
-			
-			
-			
-			
+
+
+
+
 			var mission = '';
 			if(parseInt(f.fleet_mission) == 1){ mission = 'Attack';}
 			else if(parseInt(f.fleet_mission) == 2){ mission = 'ACS Attack';}
@@ -361,41 +367,33 @@
 			//Show arrival rite
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Target:</b>: '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
+					arrival_time += '<b>Arrival to Target:</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 					if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
-						arrival_time += '<b>Arrival back to Home:</b>: '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+						arrival_time += '<b>Arrival back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 					}					
 				}else{
-					arrival_time += '<b>Arrival back to Home:</b>: '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+					arrival_time += '<b>Arrival back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 				}
 				
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Planet:</b>: '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
+					arrival_time += '<b>Arrival to Planet:</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 				}
 			}
 			
-			var from = '';
-			var to = '';
-			if(parseInt(f.fleet_mess) == 0){
-				from = (!Check.isEmpty(f.fleet_start_username) ? f.fleet_start_username+' ' : '')+f.fleet_start_planet_name+' ['+f.fleet_start_galaxy+':'+f.fleet_start_system+':'+f.fleet_start_planet+']';
-				to = (!Check.isEmpty(f.fleet_end_username) ? f.fleet_end_username+' ' : '')+f.fleet_end_planet_name+' ['+f.fleet_end_galaxy+':'+f.fleet_end_system+':'+f.fleet_end_planet+']';
-                if(parseInt(f.fleet_start_type) == 3){
-        			from += ' (M)';
-    			}
-    			if(parseInt(f.fleet_end_type) == 3){
-        			to += ' (M)';
-    			}
-			}else{
-				// reverse to and from
-				to = (!Check.isEmpty(f.fleet_start_username) ? f.fleet_start_username+' ' : '')+f.fleet_start_planet_name+' ['+f.fleet_start_galaxy+':'+f.fleet_start_system+':'+f.fleet_start_planet+']';
-				from = (!Check.isEmpty(f.fleet_end_username) ? f.fleet_end_username+' ' : '')+f.fleet_end_planet_name+' ['+f.fleet_end_galaxy+':'+f.fleet_end_system+':'+f.fleet_end_planet+']';
-				if(parseInt(f.fleet_start_type) == 3){
-					to += ' (M)';
-    			}
-    			if(parseInt(f.fleet_end_type) == 3){
-					from += ' (M)';
-    			}
+			var from = (!Check.isEmpty(f.fleet_start_username) ? f.fleet_start_username+' ' : '')+f.fleet_start_planet_name+' ['+f.fleet_start_galaxy+':'+f.fleet_start_system+':'+f.fleet_start_planet+']';
+			var to = (!Check.isEmpty(f.fleet_end_username) ? f.fleet_end_username+' ' : '')+f.fleet_end_planet_name+' ['+f.fleet_end_galaxy+':'+f.fleet_end_system+':'+f.fleet_end_planet+']';
+			if(parseInt(f.fleet_start_type) == 3){
+				from += ' (M)';
+			}
+			if(parseInt(f.fleet_end_type) == 3){
+				to += ' (M)';
+			}
+			// reverse to and from
+			if (parseInt(f.fleet_mess) != 0) {
+				var tempTo = to;
+				to = from;
+				from = tempTo;
 			}
 			
 			
@@ -442,7 +440,7 @@
 							From '+from+'<br/>\
 							To '+to+'\
 						</span>\
-						<div class="ui-progress-bar ui-container" id="progress_bar">\
+						<div class="ui-progress-bar ui-container">\
 				            <div class="ui-progress" style="width: '+f.fleet_time_percent+'%;"></div>\
 				            <div class="ui-label">\
 				                '+msg+' <div class="flying-fleet-timer js_timer" timer="'+f.fleet_time_left+'|1|'+f.fleet_time_total+'"></div>\
@@ -452,12 +450,12 @@
 							<li style="position:relative;width:100%;height:100%;">\
 								<div class="side-fleet-info overthrow" id="scrollasc'+f.fleet_id+'" style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;overflow:hidden;"><div>\
 									<p>\
-										<b>Mission</b>: '+mission+'<br/>\
-										<b>From</b>: '+from+'<br/>\
-										<b>To</b>: '+to+'<br/>\
+										<b>Mission:</b> '+mission+'<br/>\
+										<b>From:</b> '+from+'<br/>\
+										<b>To:</b> '+to+'<br/>\
 										'+arrival_time+'\
 									</p>\
-									<h3>Fleet '+ships_total+'</h3>\
+									<h3>'+ships_total+'</h3>\
 									'+fleet_out+'\
 									'+resources+'\
 									<p style="margin-top:5px">'+buttons+'</p>\

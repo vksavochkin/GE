@@ -151,7 +151,7 @@
 								From '+from+'<br/>\
 								To '+to+'\
 							</span>\
-							<div class="ui-progress-bar ui-container" id="progress_bar">\
+							<div class="ui-progress-bar ui-container">\
 					            <div class="ui-progress" style="width: '+f.fleet_time_percent+'%;"></div>\
 					            <div class="ui-label">\
 					                '+msg+' <div class="flying-fleet-timer js_timer" timer="'+f.fleet_time_left+'|1|'+f.fleet_time_total+'"></div>\
