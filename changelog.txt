@@ -1,0 +1,10 @@
+Changes 1.6.9:
+ * take into account difference between server's and user's clock
+ when rendering production and fleet timers and fleet timestamps;
+ * show both server time and user time (marked with "*")
+ in menu and fleet screen;
+ * fix returning fleet to/from (M) indicator;
+ * build screens: show exact number of available def and ships;
+ * help: show game version;
+ * fix server timeout error handling (no more "Message sent" after timeout),
+ server timeout changed from 10s to 30s;
