@@ -248,9 +248,12 @@
 				ships_total = 'Fleet of unknown size';
 			}
 
+			var target_types = {1: 'planet', 2: 'debris', 3: 'moon'};
+			var target_type = target_types[parseInt(f.fleet_end_type)] || 'planet';
+
 			var msg;
 			if(parseInt(f.fleet_mess) == 0){
-				msg = 'Arrival to target:';
+				msg = 'Arrival to target '+target_type+':';
 			}else{
 				msg = 'Arrival back to home:';
 			}
@@ -345,22 +348,22 @@
 					fleet_status = 'friend';
 				}
 			}
-			
-			
+
+
 			//Show arrival rite
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Target:</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
+					arrival_time += '<b>Arrival to target '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 					if(f.fleet_mission != 4){
-						arrival_time += '<b>Returning back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+						arrival_time += '<b>Returning back to home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 					}
 				}else{
-					arrival_time += '<b>Returning back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+					arrival_time += '<b>Returning back to home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 				}
 				
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to Planet:</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
+					arrival_time += '<b>Arrival to your '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
 				}
 			}
 			

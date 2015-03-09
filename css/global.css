@@ -2501,8 +2501,8 @@ Statistic
 .flying-fleet-timer{
 	display:inline-block;
 	font-size:10px !important;
-		line-height: 12px !important;
-		color:rgba(0,0,0,0.6);
+	line-height: 12px !important;
+	color:rgba(0,0,0,0.6);
 }
 
 	.side-fleet-info{
