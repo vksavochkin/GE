@@ -87,7 +87,7 @@ var Request = {
 			local_time.html(formatUserDateTimeTZ(respond.timestamp) + '*');
 
 			var pageLoadTimeThreshold = 3000;
-			var second = 1000;
+			var timeDifferenceThreshold = 3000;
 
 			var pageLoadTime = Request.timestampResponseLocalMillis - Request.timestampRequestLocalMillis;
 			var timeDifference = Math.abs(asDate(respond.timestamp).getTime() - Request.timestampResponseLocalMillis);
@@ -95,11 +95,9 @@ var Request = {
 			// respond.timestamp is rounded to seconds
 			var time_difference = $('.time_difference');
 			time_difference.html('' + exactNumber(timeDifference) + ' ms');
-			if (timeDifference > pageLoadTime + second){
-				local_time.addClass('time-warning');
+			if (timeDifference > pageLoadTime + timeDifferenceThreshold){
 				time_difference.addClass('time-warning');
 			}else{
-				local_time.removeClass('time-warning');
 				time_difference.removeClass('time-warning');
 			}
 
@@ -111,7 +109,7 @@ var Request = {
 				page_load_time.removeClass('time-warning');
 			}
 
-			if (timeDifference > pageLoadTime + second || pageLoadTime > pageLoadTimeThreshold){
+			if (timeDifference > pageLoadTime + timeDifferenceThreshold || pageLoadTime > pageLoadTimeThreshold){
 				$('.time_optional').show();
 			}else{
 				$('.time_optional').hide();

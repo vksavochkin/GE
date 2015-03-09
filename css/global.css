@@ -2664,6 +2664,9 @@ Statistic
 		display:block !important;
 	}		
 
+.time-user {
+    color:#abc;
+}
 .time-warning {
     color:yellow;
 }

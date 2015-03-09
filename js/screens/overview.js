@@ -249,30 +249,13 @@
 			}
 
 			var msg;
-			var timer;
 			if(parseInt(f.fleet_mess) == 0){
-				timer = parseInt(f.fleet_start_time) - parseInt(responseObj.timestamp);
 				msg = 'Arrival to target:';
 			}else{
-				timer = parseInt(f.fleet_end_time) - parseInt(responseObj.timestamp);
 				msg = 'Arrival back to home:';
 			}
 			
 			var fleet_out = '';
-			/*var tmp = f.fleet_array;
-			
-			if(!Check.isEmpty(tmp)){
-				ship_array = tmp.split(';');
-				foreach(ship_array, function(ship,v){
-					var ships = v.split(',');
-					if(!Check.isEmpty(ships[0])){
-						fleet_out += '<b>'+lang._T('tech_'+ships[0])+'</b>: '+ships[1]+'<br/>';
-					}
-				});
-			}else{
-				fleet_out = 'Fleet is invisible';
-			}	*/
-			
 			if(!Check.isEmpty(f.fleet_types)){
 				var i = 1;
 				var end = false;
@@ -368,11 +351,11 @@
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
 					arrival_time += '<b>Arrival to Target:</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
-					if(f.fleet_mission != 4 && f.fleet_owner != f.fleet_target_owner){
-						arrival_time += '<b>Arrival back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
-					}					
+					if(f.fleet_mission != 4){
+						arrival_time += '<b>Returning back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+					}
 				}else{
-					arrival_time += '<b>Arrival back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+					arrival_time += '<b>Returning back to Home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 				}
 				
 			}else{
