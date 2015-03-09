@@ -354,13 +354,13 @@
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0){
 					arrival_time += '<b>Arrival to target '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
-					if(f.fleet_mission != 4){
-						arrival_time += '<b>Returning back to home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
-					}
-				}else{
+				}
+				if(f.fleet_mission == 5 && asDate(responseObj.timestamp) < asDate(f.fleet_end_stay)){
+					arrival_time += '<b>End of mission:</b> '+showFleetTime(f.fleet_end_stay, f.fleet_end_stay_real)+'<br/>';
+				}
+				if(parseInt(f.fleet_mess) != 0 && f.fleet_mission != 4){
 					arrival_time += '<b>Returning back to home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
 				}
-				
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
 					arrival_time += '<b>Arrival to your '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';

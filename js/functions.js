@@ -922,7 +922,10 @@ function asDate(obj) {
 /** @type string */
 function showFleetTime(d, s) {
 	var date = asDate(d);
-	var result = '<span style="white-space: nowrap;">' + s + '</span>';
+	var result = '';
+	if (s) {
+		result += '<span style="white-space: nowrap;">' + s + '</span>';
+	}
 	if (date) {
 		result += ' <span class="time-user" style="white-space: nowrap;">(' + formatUserDateTimeTZ(d) + '*)</span>';
 	}
