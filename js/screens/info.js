@@ -299,11 +299,12 @@
 	BuildJumpableMoonCombo: function(){
 		var moons = {};
 		var out = '';
-		foreach(responseObj.state.planets, function(id, v){
+		foreach(responseObj.state.planets_sorted, function(id, v){
 			if(parseInt(v.planet_type) == 3 && v.id != planet.id){
-				RestString = Info.GetNextJumpWaitTime ( v );
-				if(parseInt(v['jump_gate']) >= 1){
-					out += '<option value="'+ v['id'] +'">['+ v['g'] +':'+ v['s'] +':'+ v['p'] +'] '+ v['name'] + RestString['string'] +'</option>';
+				var p = responseObj.state.planets[v.id];
+				var RestString = Info.GetNextJumpWaitTime(p);
+				if(parseInt(p.jump_gate) >= 1){
+					out += '<option value="'+ p.id +'">['+ p.g +':'+ p.s +':'+ p.p +'] '+ p.name + RestString['string'] +'</option>';
 				}			
 			}
 		});
