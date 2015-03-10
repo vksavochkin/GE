@@ -2458,7 +2458,7 @@ Statistic
 }
 .side-fleet-row{
 	padding:5px 0px 5px 5px !important;
-	height:52px;
+	/*height:52px; horrible when From/To are carried over*/
 }
 .side-phalanx-row{
 	height: auto !important;
