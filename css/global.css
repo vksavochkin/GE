@@ -2217,7 +2217,7 @@ Statistic
             width:85%;
         }
 		.shipyard-destination .cell-input{
-			width:135px;
+			width:150px;
 		}
 
 .shipyard-ships-control{
@@ -2241,7 +2241,7 @@ Statistic
     width:122px;
 }
 .shipyard-destination input[type=number]{
-	width:30px;
+	width:35px;
 }		
 
 .shipyard_galaxy, .shipyard_system, .shipyard_planet{

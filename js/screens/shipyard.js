@@ -226,9 +226,10 @@
 						</div>\
 					</div>\
 					<div class="row"><div class="cell">Distance</div><div class="cell shipyard_distance">-</div></div>\
-					<div class="row"><div class="cell">Flying Time</div><div class="cell shipyard_time">-</div></div>\
-					<div class="row"><div class="cell">Fuel</div><div class="cell shipyard_fuel">-</div></div>\
 					<div class="row"><div class="cell">Max. Speed</div><div class="cell shipyard_max_speed"-></div></div>\
+					<div class="row"><div class="cell">Flying Time</div><div class="cell"><span class="shipyard_arrival_duration">-</span> <span class="shipyard_arrival_time time-user"></span></div></div>\
+					<div class="row"><div class="cell">Return Time</div><div class="cell"><span class="shipyard_roundtrip_duration">-</span> <span class="shipyard_roundtrip_time time-user"></span></div></div>\
+					<div class="row"><div class="cell">Fuel</div><div class="cell shipyard_fuel">-</div></div>\
 					<div class="row"><div class="cell">Cargo capacity</div><div class="cell shipyard_cargo">-</div></div>\
 				</div>';
 				$('.step-destination').html('').html(out_page2);
@@ -623,39 +624,37 @@ function validateStep(step){
 	var tmp_p = parseInt($('.shipyard_planet').val());
 	if(Check.isEmpty(tmp_g) || tmp_g < 0 || Check.isEmpty(tmp_s) || tmp_s < 0 || Check.isEmpty(tmp_p) || tmp_p < 0){
 		$('.shipyard_distance').html('0');
-		$('.shipyard_time').html('0');
+		$('.shipyard_arrival_duration').html('0');
+		$('.shipyard_roundtrip_duration').html('0');
+		$('.shipyard_arrival_time').html('');
+		$('.shipyard_roundtrip_time').html('');
 		$('.shipyard_fuel').html('0');
 	}else{
 		$('.shipyard_distance').html(tsdpkt(distance));
 		//Calculate time
 		var fleet_speed = parseInt($('.shipyard_speed option:selected').val());
-		var duration = GetMissionDuration (fleet_speed, max_speed, distance, speedfactor)
-		
-		var seconds = duration;
-		var hours = Math.floor(seconds / 3600);
-		seconds -= hours * 3600;
-	
-		var minutes = Math.floor(seconds / 60);
-		seconds -= minutes * 60;
-	
-		if (minutes < 10) minutes = "0" + minutes;
-		if (seconds < 10) seconds = "0" + seconds;
-	
-		var time = hours + ':' + minutes + ':' + seconds + ' h';
-		
-		var fuel = GetFleetConsumption (ships, speedfactor, duration, distance, max_speed)
+		var duration = GetMissionDuration(fleet_speed, max_speed, distance, speedfactor);
+		var fuel = GetFleetConsumption(ships, speedfactor, duration, distance, max_speed);
 
-		
-		$('.shipyard_time').html(time);
-		
+		// iphone 320*480, need to fit in one line
+		var now = Date.now();
+		var arrival_time = '(' + asDate(now + 1000*duration).format(Date.formats.fleetTimeShort) + '*)';
+		var roundtrip_time = '(' + asDate(now + 1000*2*duration).format(Date.formats.fleetTimeShort) + '*)';
+
+		$('.shipyard_arrival_duration').html(Timers.getLeftTime(duration));
+		$('.shipyard_roundtrip_duration').html(Timers.getLeftTime(duration*2));
+		$('.shipyard_arrival_time').html(arrival_time);
+		$('.shipyard_roundtrip_time').html(roundtrip_time);
+
 		//Fuel
-		$('.shipyard_fuel').html(exactNumber(fuel));
+		var shipyard_fuel = $('.shipyard_fuel');
+		shipyard_fuel.html(exactNumber(fuel));
 		$('.shipyard_all_fuel').val(fuel);
 
 		if (total_cargo < fuel){
-			$('.shipyard_fuel').css('color', 'red');
+			shipyard_fuel.css('color', 'red');
 		}else{
-			$('.shipyard_fuel').css('color', 'white');
+			shipyard_fuel.css('color', 'white');
 		}
 	}
 	

@@ -188,8 +188,8 @@ var Timers = {
 
 		if(hour<10){hour = "0"+ hour;}
 
-		if (days>0){days = days + ":";}
-		return	 days+hour +":"+min +":"+ seconds;
+		if (days>0){days = days + "d ";}
+		return days + hour + ":" + min + ":" + seconds;
 	}
 }
 

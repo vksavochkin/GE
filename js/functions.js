@@ -887,9 +887,11 @@ Date.prototype.format = function (mask, utc) {
 };
 
 // Application-specific formats. Common formats usually not fit page design.
+// We may localize formats here.
 Date.formats = {
 	forum: "mmm dd, HH:MM TT",
 	chat: dateFormat.masks.isoTime,
+	fleetTimeShort: dateFormat.masks.mediumTime,
 	default: dateFormat.masks.phpDateTime
 };
 
