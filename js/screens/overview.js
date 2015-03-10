@@ -358,8 +358,8 @@
 				if(f.fleet_mission == 5 && asDate(responseObj.timestamp) < asDate(f.fleet_end_stay)){
 					arrival_time += '<b>End of mission:</b> '+showFleetTime(f.fleet_end_stay, f.fleet_end_stay_real)+'<br/>';
 				}
-				if(parseInt(f.fleet_mess) != 0 && f.fleet_mission != 4){
-					arrival_time += '<b>Returning back to home:</b> '+showFleetTime(f.fleet_end_time, f.fleet_end_time_real)+'<br/>';
+				if (!(parseInt(f.fleet_mess) == 0 && f.fleet_mission == 4)) {
+					arrival_time += '<b>Returning back to home:</b> ' + showFleetTime(f.fleet_end_time, f.fleet_end_time_real) + '<br/>';
 				}
 			}else{
 				if(parseInt(f.fleet_mess) == 0){
