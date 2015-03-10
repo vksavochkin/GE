@@ -47,6 +47,7 @@ body {
  overflow: hidden;
 -ms-content-zooming: none;
 -ms-touch-action:none;
+background:#323849;
 }
 body, div, p
 {
@@ -637,26 +638,29 @@ input, textarea, select {
 }
 
 #page {
-    -webkit-transition: -webkit-transform 0ms;
+    -webkit-transition: all .5s ease;
+	   -moz-transition: all .5s ease;
+	    -ms-transition: all .5s ease;
+	     -o-transition: all .5s ease;
+	        transition: all .5s ease;
+   /* -webkit-transition: -webkit-transform 0ms;
     transform: translate3d(0,0,0) scale3d(1,1,1);
     -o-transform: translate3d(0,0,0) scale3d(1,1,1);
     -ms-transform: translate3d(0,0,0) scale3d(1,1,1);
     -moz-transform: translate3d(0,0,0) scale3d(1,1,1);
-    -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
+    -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);*/
 	
 	
 	
 	
-	/*position: relative;
+	position: relative;
     -webkit-backface-visibility: hidden;
 
 	width:100% !important;
 	min-width:320px !important;
 	max-width:100% !important;
 	height:100% !important;
-	max-height:1280px !important;
-	min-height:440px !important;
-	display:block;*/
+	display:block;
 }
 
 

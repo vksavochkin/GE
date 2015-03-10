@@ -24,7 +24,76 @@
 		//document.addEventListener('touchmove', function (e) { e.preventDefault();}, false);
 	</script>
 </head>
-<body>
+<body>		
+	<nav id="menu-left" class="overthrow">
+		<ul>
+			<li><p class="planet-select-holder" style="padding:0px 10px;height:20px;"></p></li>
+			<li><a href="#" onclick="Overview.init();">Overview</a></li>
+			<!--<li><a href="#" onclick="Empire.init();">Empire</a></li>-->
+			<li><a href="#" onclick="Galaxy.init();">Galaxy</a></li>
+			<li><a href="#" onclick="Shipyard.init();">Fleet</a></li>
+			<li><a href="#" onclick="Ally.init();">Alliance</a></li>
+			<li class="Label">Production</li>
+			<li><a href="#" onclick="Buildings.init();">Buildings</a></li>
+			<li><a href="#" onclick="Research.init();">Research</a></li>
+			<li><a href="#" onclick="Defense.init();">Defense</a></li>
+			<li><a href="#" onclick="Ships.init();">Shipyard</a></li>
+			<li class="Label">Communication</li>
+			<li><a href="#" onclick="Forum.init();">Forum</a></li>
+			<li><a href="#" onclick="Chat.init();">Chat</a></li>
+			<li class="Label">Statistic</li>
+			<li><a href="#" onclick="Scoreboard.init();">Scoreboard</a></li>
+			<li><a href="#" onclick="Recordboard.init();">Recordboard</a></li>
+			<li><a href="#" onclick="Search.init();">Search</a></li>
+			<li class="Label">Officers</li>
+			<li><a href="#" onclick="Officers.init();">Officers</a></li>
+			<li><a href="#" onclick="Store.init();">Store</a></li>
+			<li class="Label">Settings</li>
+			<li><a href="#" onclick="Settings.init();">Settings</a></li>
+			<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
+			<li class="Label">Server Settings</li>
+			<li class="server_status">
+				<div style="margin: 5px 10px">
+				<div class="table plain" >
+					<div>
+						<div style="text-align:left;">Server Time:</div><div class="server_time" style="text-align:right;">unknown</div>
+					</div>
+					<div>
+						<div class="time-user" style="text-align:left;">Your Time:</div><div class="local_time time-user" style="text-align:right;">unknown</div>
+					</div>
+				</div>
+				<div class="table plain time_optional">
+					<div>
+						<div style="text-align:left;">Time Difference:</div><div class="time_difference" style="text-align:right;">unknown</div>
+					</div>
+					<div>
+						<div style="text-align:left;">Page Load Time:</div><div class="page_load_time" style="text-align:right;">unknown</div>
+					</div>
+				</div>
+				<div class="table small plain">
+					<div>
+						<div>Game Speed:</div>
+						<div>Fleet Speed:</div>
+						<div>Resources:</div>
+						<div>Attacks:</div>
+						<div>Debris:</div>
+					</div>
+					<div>
+						<div><span class="server_game_speed"></span></div>
+						<div><span class="server_fleet_speed"></span></div>
+						<div><span class="server_resources"></span></div>
+						<div><span class="server_attacks"></span></div>
+						<div><span class="server_df_percent"></span></div>
+					</div>
+				</div>
+				</div>
+			</li>
+			<li><a href="#" class="btn" onclick="Login.showServersInside();" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</a></li>
+			<li class="Label"></li>
+			<li class="Label"></li>
+		</ul>
+	</nav>
+	
 	<div id="page">
 		<div class="overlay"></div>
 		<div class="planet-control-modal">
@@ -357,78 +426,66 @@
 				<div class="page-content page-help-page"></div>
 			</div>
 		</div>
-		
-		<nav id="menu-left">
-			<ul>
-				<li><p class="planet-select-holder" style="padding:0px 10px;height:20px;"></p></li>
-				<li><a href="#" onclick="Overview.init();">Overview</a></li>
-				<!--<li><a href="#" onclick="Empire.init();">Empire</a></li>-->
-				<li><a href="#" onclick="Galaxy.init();">Galaxy</a></li>
-				<li><a href="#" onclick="Shipyard.init();">Fleet</a></li>
-				<li><a href="#" onclick="Ally.init();">Alliance</a></li>
-				<li class="Label">Production</li>
-				<li><a href="#" onclick="Buildings.init();">Buildings</a></li>
-				<li><a href="#" onclick="Research.init();">Research</a></li>
-				<li><a href="#" onclick="Defense.init();">Defense</a></li>
-				<li><a href="#" onclick="Ships.init();">Shipyard</a></li>
-				<li class="Label">Communication</li>
-				<li><a href="#" onclick="Forum.init();">Forum</a></li>
-				<li><a href="#" onclick="Chat.init();">Chat</a></li>
-				<li class="Label">Statistic</li>
-				<li><a href="#" onclick="Scoreboard.init();">Scoreboard</a></li>
-				<li><a href="#" onclick="Recordboard.init();">Recordboard</a></li>
-				<li><a href="#" onclick="Search.init();">Search</a></li>
-				<li class="Label">Officers</li>
-				<li><a href="#" onclick="Officers.init();">Officers</a></li>
-				<li><a href="#" onclick="Store.init();">Store</a></li>
-				<li class="Label">Settings</li>
-				<li><a href="#" onclick="Settings.init();">Settings</a></li>
-				<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
-				<li class="Label">Server Settings</li>
-				<li class="server_status">
-					<div style="margin: 5px 10px">
-					<div class="table plain" >
-						<div>
-							<div style="text-align:left;">Server Time:</div><div class="server_time" style="text-align:right;">unknown</div>
-						</div>
-						<div>
-							<div class="time-user" style="text-align:left;">Your Time:</div><div class="local_time time-user" style="text-align:right;">unknown</div>
-						</div>
-					</div>
-					<div class="table plain time_optional">
-						<div>
-							<div style="text-align:left;">Time Difference:</div><div class="time_difference" style="text-align:right;">unknown</div>
-						</div>
-						<div>
-							<div style="text-align:left;">Page Load Time:</div><div class="page_load_time" style="text-align:right;">unknown</div>
-						</div>
-					</div>
-					<div class="table small plain">
-						<div>
-							<div>Game Speed:</div>
-							<div>Fleet Speed:</div>
-							<div>Resources:</div>
-							<div>Attacks:</div>
-							<div>Debris:</div>
-						</div>
-						<div>
-							<div><span class="server_game_speed"></span></div>
-							<div><span class="server_fleet_speed"></span></div>
-							<div><span class="server_resources"></span></div>
-							<div><span class="server_attacks"></span></div>
-							<div><span class="server_df_percent"></span></div>
-						</div>
-					</div>
-					</div>
-				</li>
-				<li><a href="#" class="btn" onclick="Login.showServersInside();" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</a></li>
-				<li class="Label"></li>
-				<li class="Label"></li>
-			</ul>
-		</nav>
-		<nav id="menu-right" style="padding-top:0px;">
-		</nav>
+		<div id="menu_overflow"></div>
 	</div>	
+	<nav id="menu-right" style="padding-top:0px;">
+    	<ul class="mm-list mm-panel mm-opened mm-current" id="mm-m1-p0">
+        	<li rel="3883755" class="side-fleet-row own">
+        	    <b class="icon mission3"></b>
+        	    <a href="#mm-m1-p1" class="mm-subopen mm-fullsubopen"></a>
+        	    <span>From Ddialer Home Planet [1:1:7]<br>To surcora Paisa Jr [1:1:2]</span>
+        	    <div id="mm-progress_bar" class="ui-progress-bar ui-container">
+            	    <div style="width: 6%;" class="ui-progress"></div>
+            	    <div class="ui-label">
+                	    Arrival to target planet: 
+                	    <div timer="711|1|711" class="flying-fleet-timer js_timer">00:11:08</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    	<ul style="height:100%;display:none;" class="mm-list mm-panel mm-highest mm-current mm-opened" id="mm-m1-p1">
+        	<li class="mm-subtitle">
+        	    <a href="#mm-m1-p0" class="mm-subclose">From Ddialer Home Planet [1:1:7] To surcora Paisa Jr [1:1:2]</a>
+            </li>
+            <li style="position:relative;width:100%;height:100%;">
+                <div style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;overflow:hidden;" id="mm-scrollasc3883755" class="side-fleet-info overthrow">
+                    <div>
+                        <p>
+                            <b>Mission</b>: Transport<br>
+                            <b>From</b>: Ddialer Home Planet [1:1:7]<br>
+                            <b>To</b>: surcora Paisa Jr [1:1:2]<br>
+                            <b>Arrival to Target:</b>: 3/10/2015 4:11:25 PM EDT<br>
+                            <b>Arrival back to Home:</b>: 3/10/2015 4:23:16 PM EDT<br>
+                        </p>
+                        <h3>Fleet of 3 Ships</h3>
+                        <div class="table fleet-resources-table">
+                            <div>
+                                <div><b>Light Fighter</b>: 1</div>
+                                <div><b>Heavy Fighter</b>: 1</div>
+                            </div>
+                            <div>
+                                <div><b>Cruiser</b>: 1</div>
+                            </div>
+                        </div>
+                        <h3>Resources</h3>
+                        <div class="table fleet-resources-table">
+                            <div>
+                                <div><b>Metal:</b> 14</div>
+                                <div><b>Crystal:</b> 14</div>
+                                <div><b>Deuterium:</b> 14</div>
+                            </div>
+                        </div>
+                        <p><button onclick="fleetCallback('3883755');" rel="3883755" class="side-fleet-return btn">Recall</button></p>
+                        <div class="clear"></div>
+                        
+                        <div class="side-acs-block asc-block-3883755"></div>
+                        <br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+            </li>
+        </ul>
+	</nav>
+	
 	<!-- SCRIPTS -->
 	<!--Library JS-->
 	<script src="js/libs/modernizr.js" type="text/javascript"></script>

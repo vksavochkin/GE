@@ -187,58 +187,26 @@ function initGame() {
 		initLeftMenu();
     });
 	
+	$('#menu_overflow').on('click', function(){
+    	$('body').removeClass('show_left_sidebar').removeClass('show_right_sidebar');
+    	$('#menu-right').html('');
+    	$('#menu_overflow').hide();
+	});
 };
 
 
 function initLeftMenu(){
-	//Init Menu
-	$('nav#menu-left').mmenu(
-		{
-			"classes": "overthrow",
-			position:'left'
-		},
-		{
-			panelNodetype: 'ul',
-			clone:true
-		}
-	);
-	
-	//Open Menu
-	$('#mm-menu-left').trigger( 'open.mm' ).on('closed.mm', function(e){
-		$('#mm-menu-left').html('').remove();
-	});
-	
-	//Make it scroll
-	makeScroll('mm-menu-left');
+    $('body').removeClass('show_right_sidebar');
+    $('#menu_overflow').show();
+	$("body").toggleClass("show_left_sidebar");
 };
 
 function initRightMenu(){
+    $('body').removeClass('show_left_sidebar');
 	//Generate Fleet table
 	Overview.generateFleet();
-	
-	//Init Menu
-	$('nav#menu-right').mmenu(
-		{
-			"classes": "overthrow",
-			position:'right'
-		},
-		{
-			panelNodetype: 'ul',
-			clone:true
-		}
-	);
-	
-	//Open Menu
-	$('#mm-menu-right').trigger( 'open.mm' ).on('closed.mm', function(e){
-		$('#mm-menu-right').html('').remove();
-		onSubPage = '';
-	}).on('close.mm', function(e){
-		onSubPage = '';
-	}).on('closing.mm', function(e){
-		onSubPage = '';
-	});
-	
-	//Make it scroll
-	makeScroll('mm-menu-right');
+	$('#menu_overflow').show();
+	$("body").toggleClass("show_right_sidebar");
+
 	onSubPage = 'fleet';
 };
