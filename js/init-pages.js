@@ -269,7 +269,7 @@ function fleetCallback(rel){
 		return false;
 	}else{	
 		//Overview.generateFleet();
-		$('#mm-menu-right').html('').remove();
+		$('#menu-right').html('');
 		initRightMenu();		
 		alertify.alert(lang._T('You successfully sent ships back to planet.'));
 	}

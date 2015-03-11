@@ -10,6 +10,11 @@
 		this.content(g,s,p,t,m);
 		$(this.pageID).show();
 		this.initForm(0);
+		
+		$('body').removeClass('show_right_sidebar');
+		$('#menu-right').html('');
+		$('#menu_overflow').hide();
+		
 		makeScroll('step_ships_scroll');
 		makeScroll('step_destination_scroll');
 		makeScroll('step_mission_scroll');

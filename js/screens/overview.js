@@ -420,13 +420,13 @@
 					</div>';
 			}
 			
-			out += '<li class="side-fleet-row '+fleet_status+' phalanx-toggle" rel="'+f.fleet_id+'" onclick="togglePhalanx('+f.fleet_id+');" data-id="'+f.fleet_id+'">\
-						<b class="icon mission'+f.fleet_mission+'"></b>\
-						<span>\
+			out += '<li class="side-fleet-row '+fleet_status+' phalanx-toggle" rel="'+f.fleet_id+'" data-id="'+f.fleet_id+'">\
+						<b class="icon mission'+f.fleet_mission+'" onclick="togglePhalanx('+f.fleet_id+');"></b>\
+						<span onclick="togglePhalanx('+f.fleet_id+');">\
 							From '+from+'<br/>\
 							To '+to+'\
 						</span>\
-						<div class="ui-progress-bar ui-container">\
+						<div class="ui-progress-bar ui-container" onclick="togglePhalanx('+f.fleet_id+');">\
 				            <div class="ui-progress" style="width: '+f.fleet_time_percent+'%;"></div>\
 				            <div class="ui-label">\
 				                '+msg+' <div class="flying-fleet-timer js_timer" timer="'+f.fleet_time_left+'|1|'+f.fleet_time_total+'"></div>\
