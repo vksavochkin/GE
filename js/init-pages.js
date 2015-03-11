@@ -8,15 +8,7 @@ $('body').on('click', '.menu-left a', function(){
 });
 Timers.init();
 
-/*Choose Server*/
 
-
-
-$('body').on('click', '#mm-menu-right .mm-subopen.mm-fullsubopen', function(){
-	var rel = $(this).parent().attr('rel');
-	//console.log(rel);
-	makeScroll('mm-scrollasc'+rel);
-});
 
 /*
     Overview
@@ -138,12 +130,10 @@ $('body').on('keyup', '.shipyard_metal, .shipyard_crystal, .shipyard_deuterium',
 function togglePhalanx(rel){
 	
 	$('.phalanx-details-toggle-'+rel).toggle();
-	makeScroll('ppScrollPage');
 };
 
 function toggleRound(rel){
 	$('.round-content-'+rel).toggle();
-	makeScroll('crScrollPage');
 };
 
 function showACSBtn(rel){

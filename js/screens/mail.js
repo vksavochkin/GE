@@ -11,13 +11,10 @@ var Mail= {
 		$(this.pageID).show();
 		$('.bar-title h1').html('Mail (<a onclick="Mail.new_message(\'\',\'\');">New Message</a>)');
 		$('.bar-title span').html('');
-		makeScroll('page_mail_scroll');	
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		onPage = 'overview';
 		Mail.mails = {};
 		this.mails ={};
@@ -158,7 +155,6 @@ var Mail= {
 		}
 		$('.mail-list').html('<ul><li><div class="table mail-table messages-table">'+out+'</div></li></ul>');	
 		$('#mail-screen').show();
-		makeScroll('page_mail_scroll');	
 		
 		return false;
 
@@ -180,7 +176,6 @@ var Mail= {
 					<a class="fl btn" style="margin-left:10px;" onclick="Mail.closePage();">'+lang._T('close')+'</a>\
 					<a class="fr btn" onclick="Mail.send();">'+lang._T('Send')+'</a>\
 				</nav>').show().css('z-index','10');
-		makeScroll('messageScrollPage');
 		return false;
 
 	},

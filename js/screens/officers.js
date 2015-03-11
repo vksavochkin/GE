@@ -8,7 +8,6 @@
 		Request.send({object:'officer', action: 'show'});		
 		this.content();
 		$(this.pageID).show();
-		makeScroll('page-officers-scroll');
 		return false;
 	},
 	close: function(){

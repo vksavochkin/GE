@@ -8,13 +8,10 @@ var Recordboard= {
 		$('.bar-title span').html('');	
 		this.content();
 		$(this.pageID).show();
-		makeScroll('page-recordboard-scroll');
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		onPage = 'overview';
 		return false;
 	},

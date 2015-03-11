@@ -16,7 +16,6 @@
 		$('#content').hide();
 		var out = Login.buildServersList();	
 		$('.servers-box-inside > div').html('<ul>'+out+'</ul>');
-		makeScroll('page-servers-login-inside-scroll');
 		return false;
 	},
 	showServers: function(){
@@ -26,7 +25,6 @@
 		$('.register-servers').show();
 		var out = Login.buildServersList();	
 		$('.servers-box-inside > div').html('<ul>'+out+'</ul>');
-		makeScroll('page-servers-login-scroll');
 	},
 	buildServersList: function(){
 		var out = '';

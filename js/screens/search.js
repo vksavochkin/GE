@@ -40,7 +40,6 @@ var Search= {
 				});
 				out += '</div></li></ul>';
 				$('#page_search_scroll').html(out);
-				makeScroll('page_search_scroll');
 			}
 		}else{
 			Request.send({'object':'search', 'action':'search', 'search_value':users_search_value, 'search_type':users_search_type});
@@ -69,7 +68,6 @@ var Search= {
 				});
 				out += '</div></li></ul>';
 				$('#page_search_scroll').html(out);
-				makeScroll('page_search_scroll');
 			}
 		}
 		

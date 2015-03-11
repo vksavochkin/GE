@@ -8,15 +8,12 @@ var Scoreboard= {
 		$('.page-content').hide();	
 		this.content(uid);
 		$(this.pageID).show();
-		makeScroll(this.scrollID);
 		$('.bar-title h1').html('Scoreboard');
 		$('.bar-title span').html('');	
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		onPage = 'overview';
 		return false;
 	},
@@ -76,7 +73,6 @@ var Scoreboard= {
 			}
 
 			$('.statistic-list').html('<ul><li class="table statistic-table">'+out+'</li></ul>');
-			makeScroll(Scoreboard.scrollID);
 		}else{
 			alertify.alert(lang._T(responseObj.error));
 		}

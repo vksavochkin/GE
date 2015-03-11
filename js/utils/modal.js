@@ -15,8 +15,6 @@ var Modal = {
 				
 			$('.modal_box').fadeIn();
 		}	
-		
-		makeScroll('modal_scroller');
 	},
 	close:function(){
 		$('.block_page, .modal_overlay').fadeOut().remove();

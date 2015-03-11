@@ -8,7 +8,6 @@ var PlanetChooser = {
 		$(".planetchooser-source-icon-active").show();
 		this.content();
 		$(this.pageID).show();
-		makeScroll('planetchooser_scroll');
 		return false;
 	},
 	close: function(){

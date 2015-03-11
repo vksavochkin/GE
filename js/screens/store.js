@@ -294,7 +294,7 @@ var renderAIAPs = function (el) {
 		$('.bar-title span').html('');		
 		this.content();
 		$(this.pageID).show();
-		makeScroll('page-store-scroll');
+		
 		return false;
 	},
 	close: function(){

@@ -30,7 +30,6 @@
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();
-		makeScroll('crScrollPage');
 
 		
 	},
@@ -43,7 +42,6 @@
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();
-		makeScroll('crScrollPage');
 
 		
 	},

@@ -7,14 +7,11 @@
 		this.content();
 		$(this.pageID).show();
 		$('.bar-title h1').html('Forum');
-		$('.bar-title span').html('');	
-		makeScroll(this.scrollID);
+		$('.bar-title span').html('');
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		onPage = 'main';
 		return false;
 	},
@@ -84,13 +81,9 @@
 			onchange: function(newPage) {		
 				Forum.showTopicsPage(sfid,newPage)
             },
-            afterchange: function(newPage) {		
-				refreshScroll('forumTopicsScroll');				
-				toScroll('forumTopicsScroll',0,0);
-            }
+            afterchange: function(newPage) {}
         });
-		$('#forum-topics-screen').show();
-		makeScroll('forumTopicsScroll');				
+		$('#forum-topics-screen').show();				
 		return false;
 	},
 	showTopicsContent: function(){
@@ -134,14 +127,11 @@
 			});
 		}
 		
-		$('#forum-topics-screen').show();
-		makeScroll('forumTopicsScroll');				
+		$('#forum-topics-screen').show();			
 		return false;
 	},
 	closeTopics: function(){
-		$('#forum-topics-screen').hide();
-		destroyScroll('forumTopicsScroll');
-		$('#forum-topics-screen').empty();
+		$('#forum-topics-screen').hide().empty();
 		return false;
 	},
 	newTopic: function(n){
@@ -227,13 +217,9 @@
 			datacontainer: 'forum-posts', 
             dataelement: '>div',
             theme: 'red', 
-            afterchange: function(newPage) {		
-				refreshScroll('forumPostsScroll');				
-				toScroll('forumPostsScroll',0,0);
-            }
+            afterchange: function(newPage) {}
         });
-		$('#forum-posts-screen').show();
-		makeScroll('forumPostsScroll');				
+		$('#forum-posts-screen').show();			
 		return false;
 	},
 	DeleteTopic: function(n){
@@ -313,9 +299,7 @@
 		return false;
 	},
 	closePosts: function(){
-		$('#forum-posts-screen').hide();
-		destroyScroll('forumPostsScroll');
-		$('#forum-posts-screen').empty();
+		$('#forum-posts-screen').hide().empty();
 		return false;
 	},
 	newReply: function(n){

@@ -10,7 +10,6 @@
 		$(this.pageID).show();
 		$('.page-buildings .tab-bar-content .sel').removeClass('sel');
 		$('.page-buildings .tab-bar-content .tab-defense').addClass('sel');
-		makeScroll('page_buildings_scroll');
 		return false;
 	},
 	close: function(){

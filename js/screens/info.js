@@ -2,7 +2,6 @@
 	init: function (el) {
 
 		Info.content(el);
-		//makeScroll('info-modal');
 		return false;
 	},
 	close: function(){

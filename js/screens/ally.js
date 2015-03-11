@@ -8,7 +8,6 @@ var Ally= {
 		$('.bar-title h1').html('Alliance');
 		$('.bar-title span').html('');
 		$(this.pageID).show();
-		makeScroll(this.scrollID);
 		return false;
 		
 	},
@@ -117,7 +116,6 @@ var Ally= {
 				<nav class="b-menu">\
 					<button class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</button>\
 				</nav>');		
-		makeScroll('allyScroll');
 		return false;
 	},
 	doRegister: function(){
@@ -178,7 +176,6 @@ var Ally= {
 				</nav>');
 				
 		$('.bar-title span').html('<a onclick="Ally.init()">Alliance</a> > Search Alliance');
-		makeScroll('allyScroll');
 		return false;
 	},
 	doSearchAlly: function(){
@@ -201,7 +198,6 @@ var Ally= {
 			});
 			out += '</div>';
 			$('#ally_search_result').html(out);
-			makeScroll('allyScroll');
 		}
 		return false;
 	},
@@ -316,7 +312,6 @@ var Ally= {
 					}	
 					return false;
 				});	
-				makeScroll('allyScroll');
 				return false;
 			}
 		return false;
@@ -404,7 +399,6 @@ var Ally= {
 					<a class="fl btn" onclick="Ally.rightsScreen();">'+lang._T('Rights')+'</a>\
 					<a class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</a>\
 				</nav>');
-		makeScroll('allyScroll');
 		return false;
 	},
 	saveHall: function(){
@@ -559,7 +553,6 @@ var Ally= {
 				<nav class="b-menu">\
 					<button class="fr btn" onclick="Ally.hall();">'+lang._T('Back')+'</button>\
 				</nav>');
-		makeScroll('allyScroll');
 		
 		
 		return false;
@@ -692,7 +685,6 @@ var Ally= {
 				<nav class="b-menu">\
 					<a class="fr btn" onclick="Ally.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show().css('z-index','1');
-		makeScroll('allyScrollPage');
 		return false;
 
 		
@@ -719,13 +711,10 @@ var Ally= {
 		$('#ally-info-screen').css('z-index', '7');
 		this.content(tag);
 		$(this.pageID).show();
-		makeScroll(this.scrollID);
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		$('#content').removeClass('building');
 		return false;
 	},

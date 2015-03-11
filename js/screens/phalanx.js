@@ -16,7 +16,6 @@
 				<nav class="b-menu" style="background:#323849;">\
 					<a class="fr btn" onclick="Phalanx.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show();
-		makeScroll('ppScrollPage');
 	},
 	
 	closePage: function(){

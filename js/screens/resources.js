@@ -8,7 +8,6 @@
 		Request.send({});	
 		this.content();
 		$(this.pageID).show();
-		makeScroll('page_resources_scroll');
 		return false;
 	},
 	close: function(){

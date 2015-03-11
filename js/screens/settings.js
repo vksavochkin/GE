@@ -10,7 +10,6 @@
 		$('.bar-title span').html('');		
 		this.content();
 		$(this.pageID).show();
-		makeScroll('page-settings-scroll');
 		return false;
 	},
 	close: function(){

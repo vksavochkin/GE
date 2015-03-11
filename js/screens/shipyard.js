@@ -15,9 +15,6 @@
 		$('#menu-right').html('');
 		$('#menu_overflow').hide();
 		
-		makeScroll('step_ships_scroll');
-		makeScroll('step_destination_scroll');
-		makeScroll('step_mission_scroll');
 		return false;
 	},
 	close: function(){
@@ -505,7 +502,6 @@
 					<a class="fl btn" style="margin-left:10px;" onclick="Shipyard.closeSim();">'+lang._T('close')+'</a>\
 					<a class="fr btn" onclick="Shipyard.doSim();">'+lang._T('Simulate')+'</a>\
 				</nav>').show();
-		makeScroll('simScrollPage');
 		return false;
 	},
 	closeSim: function(){

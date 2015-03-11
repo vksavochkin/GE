@@ -11,15 +11,11 @@
 		$(this.pageID).show();
 		$('.bar-title h1').html('Chat');
 		$('.bar-title span').html('');	
-		makeScroll(this.scrollID);
-		scrollers['chatScroll'].scrollToElement('p.last', 0);
 		Chat.interval = setTimeout ("Chat.refresh(true)", Chat.intervalTimeout);
 		return false;
 	},
 	close: function(){
-		$(this.pageID).hide();
-		destroyScroll(this.scrollID);
-		$(this.pageID).empty();
+		$(this.pageID).hide().empty();
 		clearTimeout(Chat.interval);
 		onPage = 'overview';
 		return false;
@@ -47,7 +43,6 @@
 		});
 		$('.chat-holder').html(c);	
 		
-		refreshScroll(this.scrollID);
 		var height = $('.chat-holder').height() + 8 - 320;
 		
 		if($('#chat-screen').css('display') == 'block'){

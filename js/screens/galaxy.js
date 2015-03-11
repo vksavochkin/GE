@@ -80,8 +80,7 @@
 			$('.galaxy-list').html('<ul><li><div class="table galaxy-table">'+list+'</div></li></ul>');
 		}
 		
-		$(this.pageID).show();
-		makeScroll('page_galaxy_scroll');		
+		$(this.pageID).show();		
 		return false;
 	},
 	showPage: function(rel){
@@ -196,7 +195,6 @@
 					<a class="fr btn" onclick="Galaxy.closePage();">'+lang._T('close')+'</a>\
 				</nav>').show().css('z-index','10');
 				
-		makeScroll('galaxyScrollPage');
 
 		
 	},
