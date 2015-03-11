@@ -2265,7 +2265,6 @@ Statistic
     left:0px; bottom:0px;
     right:0px;
     overflow: hidden;
-    z-index: 10;
     background: url(../images/bg3.png) repeat;
 }
 .planetchooser-current{
