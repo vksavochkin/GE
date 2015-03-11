@@ -195,17 +195,29 @@ function initGame() {
 
 
 function initLeftMenu(){
-    $('body').removeClass('show_right_sidebar');
-    $('#menu_overflow').show();
-	$("body").toggleClass("show_left_sidebar");
+	if ( $('body').is( '.show_right_sidebar' ) ) {
+		$('body').removeClass('show_right_sidebar');
+		$('#menu_overflow').hide();
+	}else if ( $('body').is( '.show_left_sidebar' ) ) {
+		return;
+	}else{
+		$('#menu_overflow').show();
+		$("body").toggleClass("show_left_sidebar");
+	}
+	return;
 };
 
 function initRightMenu(){
-    $('body').removeClass('show_left_sidebar');
-	//Generate Fleet table
-	Overview.generateFleet();
-	$('#menu_overflow').show();
-	$("body").toggleClass("show_right_sidebar");
-
-	onSubPage = 'fleet';
+	if ( $('body').is( '.show_left_sidebar' ) ) {
+		$('body').removeClass('show_left_sidebar');
+		$('#menu_overflow').hide();
+	}else if ( $('body').is( '.show_right_sidebar' ) ) {
+		return;
+	}else{
+		Overview.generateFleet();
+		$('#menu_overflow').show();
+		$("body").toggleClass("show_right_sidebar");
+		onSubPage = 'fleet';
+	}
+	return;
 };
