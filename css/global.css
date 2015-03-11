@@ -2515,7 +2515,7 @@ Statistic
 		padding:5px 10px;
 			font-size:11px;
 	}		
-		.side-fleet-info p, .side-fleet-info p b{
+		.side-fleet-info p, .side-fleet-info p b, .side-fleet-info p span{
 			font-size:11px !important;
 		}
 		.side-fleet-info h3{

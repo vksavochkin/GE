@@ -104,39 +104,14 @@ body.show_right_sidebar #page {
         display: block;
         list-style: outside none none;
         margin: 0;
-        padding: 10px 0 40px;
+        padding: 0px;
         overflow: hidden;
     }
-        #menu-right ul li {
+        #menu-right > ul > li {
             border-bottom: 1px solid rgba(0, 0, 0, 0.15);
             display: block;
             list-style: outside none none;
             width: 100%;
         }
-        /*#menu-right li.Label {
-            color:rgba(255,​ 255,​ 255,​ 0.6);
-            background: none repeat scroll 0 0 rgba(255, 255, 255, 0.05);
-            font-size: 10px;
-            line-height: 25px;
-            overflow: hidden;
-            padding-right: 5px;
-            text-indent: 20px;
-            text-overflow: ellipsis;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-    
-            #menu-right li > a, #menu-right li > span, #menu-right li > a:hover {
-                color: #abc;
-            }
-            #menu-right li > a, #menu-right li > span {
-                display: block;
-                line-height: 20px;
-                margin: 0;
-                overflow: hidden;
-                padding: 10px 10px 10px 20px;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }*/
     
 

@@ -420,7 +420,7 @@
 					</div>';
 			}
 			
-			out += '<li class="side-fleet-row '+fleet_status+'" rel="'+f.fleet_id+'">\
+			out += '<li class="side-fleet-row '+fleet_status+' phalanx-toggle" rel="'+f.fleet_id+'" onclick="togglePhalanx('+f.fleet_id+');" data-id="'+f.fleet_id+'">\
 						<b class="icon mission'+f.fleet_mission+'"></b>\
 						<span>\
 							From '+from+'<br/>\
@@ -432,9 +432,9 @@
 				                '+msg+' <div class="flying-fleet-timer js_timer" timer="'+f.fleet_time_left+'|1|'+f.fleet_time_total+'"></div>\
 				            </div>\
 				        </div>\
-						<ul style="height:100%;">\
-							<li style="position:relative;width:100%;height:100%;">\
-								<div class="side-fleet-info overthrow" id="scrollasc'+f.fleet_id+'" style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;overflow:hidden;"><div>\
+						<ul style="display:none;" class="phalanx-details-toggle phalanx-details-toggle-'+f.fleet_id+'">\
+							<li style="position:relative;width:100%;">\
+								<div class="side-fleet-info overthrow" id="scrollasc'+f.fleet_id+'" style="overflow:hidden;"><div>\
 									<p>\
 										<b>Mission:</b> '+mission+'<br/>\
 										<b>From:</b> '+from+'<br/>\
@@ -447,7 +447,6 @@
 									<p style="margin-top:5px">'+buttons+'</p>\
 									<div class="clear"></div>\
 									<div class="side-acs-block asc-block-'+f.fleet_id+'">'+acs+'</div>\
-									<br><br/><br/><br/><br/><br/><br/><br/><br/>\
 								</div></div>\
 							</li>\
 						</ul>\
