@@ -100,7 +100,7 @@ function onDeviceReady() {
 		    	StatusBar.overlaysWebView(false); 
 	    	}  
 		}
-		if(!Check.isEmpty(AppRate)){
+		/*if(!Check.isEmpty(AppRate)){
 			AppRate.preferences.openStoreInApp = true;
 			AppRate.preferences.storeAppURL.ios = '374559518';
 			AppRate.preferences.storeAppURL.android = 'market://details?id=com.seazonegames.geredesigned';
@@ -109,7 +109,7 @@ function onDeviceReady() {
 			AppRate.preferences.usesUntilPrompt = 50;
 			AppRate.preferences.promptAgainForEachNewVersion = true;
 			AppRate.promptForRating();  
-		}  
+		}*/  
     }
 	
 	run();
@@ -137,7 +137,6 @@ function run(){
 			return false;
 		}else{
 			IAP.initialize();
-			AIAP.initialize();
 			initGame();
 			return false;
 		}		

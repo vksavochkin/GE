@@ -310,16 +310,18 @@ var renderAIAPs = function (el) {
 			$('.inapp-block').html(renderIAPs());
         }
 		
-		if (typeof inappbilling !== 'undefined') {
-			//Load In-App
-			renderAIAPs();
-        }
-		
 		//Load Paypal
 		Request.send({object:'store',action:'paypal'});//, type:Store.type
 		if(responseObj.status == 100){
 			$('.paypal-block').html(responseObj.storepaypal.html);			
 		}
+		
+		if (typeof inappbilling !== 'undefined') {
+			//Load In-App
+			AIAP.initialize();
+			setInterval(function () {renderAIAPs();}, 4000);
+			
+        }
 		
 		
 		return false;
