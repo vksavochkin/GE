@@ -45,7 +45,7 @@ var Scoreboard= {
 								<div class="statistic-table-per-user">Per User</div>\
 							</div>';
 				foreach(responseObj.statistically.rows, function(key, m) {
-					var my = m.ally_id == my_ally_id ? 'friend' : '';
+					var my = m.ally_id == my_ally_id ? 'ally' : '';
 					out += '<div class="row '+my+'">\
 								<div class="statistic-table-rank">'+m.rank+'</div>\
 								<div class="statistic-table-name">'+m.ally_name+' ('+m.ally_tag+')</div>\
@@ -65,7 +65,7 @@ var Scoreboard= {
 					var my =
 						(m.user_id == my_uid) ? 'own' :
 						(m.user_id == uid) ? 'target' :
-						(m.ally_id == my_ally_id ) ? 'ally' : '';
+						(m.ally_id == my_ally_id && my_ally_id > 0 ) ? 'ally' : '';
 					out += '<div class="row '+my+'">\
 								<div class="statistic-table-rank">'+m.rank+'</div>\
 								<div class="statistic-table-name">'+m.username+'</div>\
