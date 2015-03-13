@@ -1,5 +1,5 @@
 #menu_overflow{
-    display:none;
+    display:block;
     clear:both;
     width:100%;
     min-width: 100%;
@@ -9,7 +9,17 @@
     top:0px;
     left:0px;
 }
-
+#menu_overflow.menu_overflow_hidden{
+    display:none;
+    clear:both;
+    width:1px;
+    min-width: 1px;
+    height:1px;
+    min-height: 1px;
+    position:absolute;
+    top:-100%;
+    left:-100%;
+}
 /*left*/
 #menu-left {
 	background: none repeat scroll 0 0 #323849;

@@ -13,7 +13,7 @@
 		
 		$('body').removeClass('show_right_sidebar');
 		$('#menu-right').html('');
-		$('#menu_overflow').hide();
+		$('#menu_overflow').addClass('menu_overflow_hidden');
 		
 		return false;
 	},

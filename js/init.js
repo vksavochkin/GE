@@ -197,7 +197,7 @@ function initSidebars(){
 	$('#menu_overflow, #menu-left a').on('click tap', function(){
     	$('body').removeClass('show_left_sidebar').removeClass('show_right_sidebar');
     	$('#menu-right').html('');
-    	$('#menu_overflow').hide();
+    	$('#menu_overflow').addClass('menu_overflow_hidden');
 	});
 }
 
@@ -205,11 +205,11 @@ function initLeftMenu(){
 	if ( $('body').is( '.show_right_sidebar' ) ) {
 		$('body').removeClass('show_right_sidebar');
 		$('#menu-right').html('');
-		$('#menu_overflow').hide();
+    	$('#menu_overflow').addClass('menu_overflow_hidden');
 	}else if ( $('body').is( '.show_left_sidebar' ) ) {
 		return;
 	}else{
-		$('#menu_overflow').show();
+    	$('#menu_overflow').removeClass('menu_overflow_hidden');
 		$("body").toggleClass("show_left_sidebar");
 	}
 	return;
@@ -218,13 +218,13 @@ function initLeftMenu(){
 function initRightMenu(){
 	if ( $('body').is( '.show_left_sidebar' ) ) {
 		$('body').removeClass('show_left_sidebar');
-		$('#menu_overflow').hide();
+    	$('#menu_overflow').addClass('menu_overflow_hidden');
 	}else if ( $('body').is( '.show_right_sidebar' ) ) {
 		Overview.generateFleet();
 		return;
 	}else{
 		Overview.generateFleet();
-		$('#menu_overflow').show();
+    	$('#menu_overflow').removeClass('menu_overflow_hidden');
 		$("body").toggleClass("show_right_sidebar");
 		onSubPage = 'fleet';
 	}
