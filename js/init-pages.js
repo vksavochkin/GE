@@ -1,7 +1,28 @@
 $(document).ready(function() {
    	
-$('.menu-left a').on('click', function(){
+$('#menu-left a').on('click', function(){
     clearTimeout(Chat.interval);
+    
+    //var rel = $(this).data('page');
+    /*if(rel == 'Overview'){Overview.init();}
+    else if(rel == 'Empire'){Empire.init();}
+    else if(rel == 'Galaxy'){Galaxy.init();}
+    else if(rel == 'Fleet'){Shipyard.init();}
+    else if(rel == 'Alliance'){Ally.init();}
+    else if(rel == 'Buildings'){Buildings.init();}
+    else if(rel == 'Research'){Research.init();}
+    else if(rel == 'Defense'){Defense.init();}
+    else if(rel == 'Ships'){Ships.init();}
+    else if(rel == 'Forum'){Forum.init();}
+    else if(rel == 'Chat'){Chat.init();}
+    else if(rel == 'Scoreboard'){Scoreboard.init();}
+    else if(rel == 'Recordboard'){Recordboard.init();}
+    else if(rel == 'Search'){Search.init();}
+    else if(rel == 'Officers'){Officers.init();}
+    else if(rel == 'Store'){Store.init();}
+    else if(rel == 'Settings'){Settings.init();}
+    else if(rel == 'Logout'){Login.doLogout();}
+    else{Overview.init();}*/
 });
 $('body').on('click', '.menu-left a', function(){
     clearTimeout(Chat.interval);

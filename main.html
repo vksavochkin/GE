@@ -51,6 +51,32 @@
 			<li class="Label">Settings</li>
 			<li><a href="#" onclick="Settings.init();">Settings</a></li>
 			<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
+			
+			<!--
+    			<li><a href="#" data-page="Overview">Overview</a></li>
+			<li><a href="#" data-page="Galaxy">Galaxy</a></li>
+			<li><a href="#" data-page="Fleet">Fleet</a></li>
+			<li><a href="#" data-page="Ally">Alliance</a></li>
+			<li class="Label">Production</li>
+			<li><a href="#" data-page="Buildings">Buildings</a></li>
+			<li><a href="#" data-page="Research">Research</a></li>
+			<li><a href="#" data-page="Defense">Defense</a></li>
+			<li><a href="#" data-page="Ships">Shipyard</a></li>
+			<li class="Label">Communication</li>
+			<li><a href="#" data-page="Forum">Forum</a></li>
+			<li><a href="#" data-page="Chat">Chat</a></li>
+			<li class="Label">Statistic</li>
+			<li><a href="#" data-page="Scoreboard">Scoreboard</a></li>
+			<li><a href="#" data-page="Recordboard">Recordboard</a></li>
+			<li><a href="#" data-page="Search">Search</a></li>
+			<li class="Label">Officers</li>
+			<li><a href="#" data-page="Officers">Officers</a></li>
+			<li><a href="#" data-page="Store">Store</a></li>
+			<li class="Label">Settings</li>
+			<li><a href="#" data-page="Settings">Settings</a></li>
+			<li><a href="#" data-page="Logout">Logout</a></li>
+			-->
+			
 			<li class="Label">Server Settings</li>
 			<li class="server_status">
 				<div style="margin: 5px 10px">
@@ -435,6 +461,7 @@
 	<!--Library JS-->
 	<script src="js/libs/modernizr.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.js" type="text/javascript"></script>
+	<script src="js/libs/jquery.finger.js" type="text/javascript"></script>
 	<script src="js/libs/facebookConnectPlugin.js" type="text/javascript"></script>
 	<script src="js/libs/touch-input-nav.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.cookie.js" type="text/javascript"></script>
@@ -494,5 +521,20 @@
 		//app.initialize();
 	</script>
 	
+	<script>
+
+$.fn.click = function(listener) {
+
+    return this.each(function() {
+
+       var $this = $( this );
+
+       $this.on('vclick', listener);
+
+    });
+
+};
+
+</script>
 </body>
 </html>
