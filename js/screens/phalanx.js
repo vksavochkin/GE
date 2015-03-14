@@ -10,7 +10,7 @@ var Phalanx = {
 				<ul style="list-style:none;margin:0px;padding:0px;">\
 					<li style="padding:5px 0px 50px 0px;">\
 						<h4 style="text-align:center;margin:0px 0px 5px;">Phalanx Report</h4>\
-							<div class="user-profile">'+Phalanx.generateReport(responseObj.phalanxreport.report)+'</div>\
+						<div class="user-profile">'+Phalanx.generateReport(responseObj.phalanxreport.report)+'</div>\
 						</li>\
 				</ul></div>\
 				<nav class="b-menu" style="background:#323849;">\
@@ -149,20 +149,14 @@ var Phalanx = {
 
 
 			//Show arrival rite
-			if(parseInt(f.fleet_owner) == parseInt(user.id)){
-				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to target '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
-				}
-				if(f.fleet_mission == 5 && asDate(responseObj.timestamp) < asDate(f.fleet_end_stay)){
-					arrival_time += '<b>End of mission:</b> '+showFleetTime(f.fleet_end_stay, f.fleet_end_stay_real)+'<br/>';
-				}
-				if (!(parseInt(f.fleet_mess) == 0 && f.fleet_mission == 4)) {
-					arrival_time += '<b>Returning back to home:</b> ' + showFleetTime(f.fleet_end_time, f.fleet_end_time_real) + '<br/>';
-				}
-			}else{
-				if(parseInt(f.fleet_mess) == 0){
-					arrival_time += '<b>Arrival to your '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
-				}
+			if(parseInt(f.fleet_mess) == 0){
+				arrival_time += '<b>Arrival to target '+target_type+':</b> '+showFleetTime(f.fleet_start_time, f.fleet_start_time_real)+'<br/>';
+			}
+			if(f.fleet_mission == 5 && asDate(responseObj.timestamp) < asDate(f.fleet_end_stay)){
+				arrival_time += '<b>End of mission:</b> '+showFleetTime(f.fleet_end_stay, f.fleet_end_stay_real)+'<br/>';
+			}
+			if (!(parseInt(f.fleet_mess) == 0 && f.fleet_mission == 4)) {
+				arrival_time += '<b>Returning back to home:</b> ' + showFleetTime(f.fleet_end_time, f.fleet_end_time_real) + '<br/>';
 			}
 
 			var from = (!Check.isEmpty(f.fleet_start_username) ? f.fleet_start_username+' ' : '')+f.fleet_start_planet_name+' ['+f.fleet_start_galaxy+':'+f.fleet_start_system+':'+f.fleet_start_planet+']';

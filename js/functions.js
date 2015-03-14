@@ -931,7 +931,7 @@ function showFleetTime(d, s) {
 	if (date) {
 		result += ' <span class="time-user" style="white-space: nowrap;">(' + formatUserDateTimeTZ(d) + '*)</span>';
 	}
-	return result;
+	return result || 'unknown';
 }
 
 // Note:
