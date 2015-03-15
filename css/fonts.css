@@ -1,0 +1,67 @@
+.allymember{color:lime;}
+.noob{color:#a0ffa0;}
+.strong{color:#ffa0a0;}
+.vacation{color:skyblue;}
+.inactive{color:CCCCCC;}
+.longinactive{color:999999;}
+.banned{text-decoration:line-through;}
+.flight{}
+.return{}
+.holding{}
+ *.ownattack{color:lime;}
+.flight .ownattack a{color:lime;}
+*.owncolony{color:lime;}
+.flight .owncolony a{color:#E6EBFB;}
+*.owndeploy{color:lime;}
+.flight .owndeploy a{color:lime;}
+*.owndestroy{color:gold;}
+.flight .owndestroy a{color:gold;}
+*.ownespionage{color:orange;}
+.flight .ownespionage a{color:orange;}
+*.ownfederation{color:#33CC00;}
+.flight .ownfederation a{color:#33CC00;}
+*.ownharvest{color:lime;}
+.flight .ownharvest a{color:lime;}
+*.ownhold{color:#80a0C0;}
+.flight .ownhold a{color:#80a0C0;}
+*.ownmissile{color:orange;}
+.flight .ownmissile a{color:orange;}
+*.owntransport{color:lime;}
+*.owndeploy{color:lime;}
+.flight .owndeplay a{color:lime;}
+.flight .owntransport a{color:lime;}
+.return .owntransport a{color:lime;}
+*.attack{color:red;}
+.flight .attack a{color:red;}
+*.colony{color:lime;}
+.flight .colony a{color:lime;}
+*.deploy{color:lime;}
+.flight .deploy a{color:lime;}
+*.destroy{color:gold;}
+.flight .destroy a{color:gold;}
+*.espionage{color:red;}
+.flight .espionage a{color:red;}
+*.federation{color:#CC0000;}
+.flight .federation a{color:#CC0000;}
+*.harvest{color:lime;}
+.flight .harvest a{color:lime;}
+*.hold{color:#80a0C0;}
+.flight .hold a{color:#80a0C0;}
+*.missile{color:red;}
+*.transport{color:lime;}
+.flight .transport a{color:lime;}
+.flight .phalanx_fleet, .phalanx_fleet{	color:lime;}
+.return .phalanx_fleet{color:#3BB9FF;}
+.errormessage a{text-decoration:underline;}
+.warning{color:orange;}
+.notice{color:yellow;}
+.combatreport{color:red;}
+.combatreport_ididattack_iwon{color:#00B000;}
+.combatreport_ididattack_ilost{color:#C00000;}
+.combatreport_ididattack_draw{color:#C0C000;}
+.combatreport_igotattacked_iwon{color:lime;}
+.combatreport_igotattacked_ilost{color:red;}
+.combatreport_igotattacked_draw{color:yellow;}
+.espionagereport{color:orange;}
+.timeremaining{}
+.noresources{color:red;}
