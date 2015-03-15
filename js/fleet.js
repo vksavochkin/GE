@@ -14,18 +14,16 @@ function target() {
 	system = $(".system").last().val();
 	planet = $(".planet").last().val();
 
-	return("["+galaxy+":"+system+":"+planet+"]");
+	return("[" + galaxy + ":" + system + ":" + planet + "]");
 }
 
 function setACS(id) {
-    $('.fleet_group').last().val(id);
-	return;
+	$('.fleet_group').last().val(id);
 }
 
 function setACS_target(tacs) {
-    $('.acs_target_mr').last().val(tacs);
-	return;
-} 
+	$('.acs_target_mr').last().val(tacs);
+}
 
 function setTarget(galaxy, solarsystem, planet, planettype) {
 	$('.galaxy').last().val(galaxy);
@@ -36,7 +34,6 @@ function setTarget(galaxy, solarsystem, planet, planettype) {
 
 function setMission(mission) {
 	$('.order').last().selectedIndex = mission;
-	return;
 }
 
 function setUnion(unionid) {
@@ -62,9 +59,9 @@ function min(a, b) {
 function maxspeed() {
 	var msp = 1000000000;
 	for (i = 200; i < 220; i++) {
-		if ($(".ship" + i).last().length>0) {
+		if ($(".ship" + i).last().length > 0) {
 			if ((Number($(".speed" + i).last().val()) * 1) >= 1
-			&& (Number($(".ship" + i).last().val()) * 1) >= 1) {
+				&& (Number($(".ship" + i).last().val()) * 1) >= 1) {
 				msp = min(msp, Number($(".speed" + i).last().val()));
 			}
 		}
@@ -122,10 +119,10 @@ function consumption2() {
 	var basicConsumption = 0;
 
 	for (i = 200; i < 220; i++) {
-		if ($(".ship" + i).last().length>0) {
+		if ($(".ship" + i).last().length > 0) {
 			basicConsumption = basicConsumption +
-			Number($(".consumption" + i).last().val())
-			* Number($(".ship" + i).last().val());
+				Number($(".consumption" + i).last().val())
+				* Number($(".ship" + i).last().val());
 		}
 	}
 
@@ -151,13 +148,13 @@ function consumption() {
 	dur = duration();
 	speedfactor = Number($(".speedfactor").last().val());
 	for (i = 200; i < 220; i++) {
-		if ($(".ship" + i).length>0) {
+		if ($(".ship" + i).length > 0) {
 			shipspeed = Number($(".speed" + i).last().val());
 			spd = 35000 / (dur * speedfactor - 10) * Math.sqrt(dist * 10 / shipspeed);
 
 			basicConsumption = Number($(".consumption" + i).last().val())
-			* Number($(".ship" + i).last().val());
-			
+				* Number($(".ship" + i).last().val());
+
 			consumption += basicConsumption * dist / 35000 * ((spd / 10) + 1) * ((spd / 10) + 1);
 		}
 	}
@@ -180,12 +177,12 @@ function probeConsumption() {
 	speedfactor = Number($(".speedfactor").last().val());
 
 
-	if ($(".ship210").length>0) {
+	if ($(".ship210").length > 0) {
 		shipspeed = Number($(".speed210").val());
 		spd = 35000 / (dur * speedfactor - 10) * Math.sqrt(dist * 10 / shipspeed);
 
 		basicConsumption = Number($(".consumption210").last().val())
-		* Number($(".ship210").last().val());
+			* Number($(".ship210").last().val());
 		consumption += basicConsumption * dist / 35000 * ((spd / 10) + 1) * ((spd / 10) + 1);
 	}
 
@@ -200,8 +197,8 @@ function probeConsumption() {
 function unusedProbeStorage() {
 
 	var storage = Number($('.capacity210').last().val()) * Number($('.ship210').last().val());
-	var stor =  storage - probeConsumption();
-	return (stor>0)?stor:0;
+	var stor = storage - probeConsumption();
+	return (stor > 0) ? stor : 0;
 
 }
 
@@ -210,18 +207,18 @@ function storage() {
 
 	for (i = 200; i < 300; i++) {
 
-		if ($(".ship" + i).last().length>0) {
+		if ($(".ship" + i).last().length > 0) {
 			if ((Number($(".ship" + i).last().val()) * 1) >= 1) {
 				storage
-				+= Number($(".ship" + i).last().val())
-				*  Number($(".capacity" + i).last().val())
+					+= Number($(".ship" + i).last().val())
+					* Number($(".capacity" + i).last().val())
 			}
 		}
 	}
-	
-	storage  = storage * getStorageFaktor();
+
+	storage = storage * getStorageFaktor();
 	storage -= consumption();
-	if ($(".ship210").last().length>0) {
+	if ($(".ship210").last().length > 0) {
 		storage -= unusedProbeStorage();
 	}
 
@@ -250,11 +247,11 @@ function fleetInfo() {
 	var cons = consumption();
 	$(".maxspeed").last().html(tsdpkt(maxspeed()));
 	if (stor >= 0) {
-		$(".consumption").last().html('<font color="lime">'+cons+'</font>');
-		$(".storage").last().html('<font color="lime">'+stor+'</font>');
+		$(".consumption").last().html('<font color="lime">' + cons + '</font>');
+		$(".storage").last().html('<font color="lime">' + stor + '</font>');
 	} else {
-		$(".consumption").last().html('<font color="red">'+cons+'</font>');
-		$(".storage").last().html('<font color="red">'+stor+'</font>');
+		$(".consumption").last().html('<font color="red">' + cons + '</font>');
+		$(".storage").last().html('<font color="red">' + stor + '</font>');
 	}
 	calculateTransportCapacity();
 }
@@ -278,11 +275,11 @@ function shortInfo() {
 
 	$(".maxspeed").last().html(tsdpkt(maxspeed()));
 	if (stor >= 0) {
-		$(".consumption").last().html('<font color="lime">'+tsdpkt(cons)+'</font>');
-		$(".storage").last().html('<font color="lime">'+tsdpkt(stor)+'</font>');
+		$(".consumption").last().html('<font color="lime">' + tsdpkt(cons) + '</font>');
+		$(".storage").last().html('<font color="lime">' + tsdpkt(stor) + '</font>');
 	} else {
-		$(".consumption").last().html('<font color="red">'+tsdpkt(cons)+'</font>');
-		$(".storage").last().html('<font color="red">'+tsdpkt(stor)+'</font>');
+		$(".consumption").last().html('<font color="red">' + tsdpkt(cons) + '</font>');
+		$(".storage").last().html('<font color="red">' + tsdpkt(stor) + '</font>');
 	}
 
 }
@@ -298,39 +295,39 @@ function maxResource(id) {
 	var thisresource = Number($(".thisresource" + id).last().val());
 	var thisresourcechosen = Number($(".resource" + id).last().val());
 
-	if (isNaN(thisresourcechosen)){
-		thisresourcechosen=0;
+	if (isNaN(thisresourcechosen)) {
+		thisresourcechosen = 0;
 	}
-	if (isNaN(thisresource)){
-		thisresource=0;
+	if (isNaN(thisresource)) {
+		thisresource = 0;
 	}
 
-var storCap = storage();
-    if (id==3){        
-        if ((thisresource - consumption()) < 0)
-            thisresource = 0;
-        else
-            thisresource -= consumption();
-    }
+	var storCap = storage();
+	if (id == 3) {
+		if ((thisresource - consumption()) < 0)
+			thisresource = 0;
+		else
+			thisresource -= consumption();
+	}
 
 	var metalToTransport = Number($(".resource1").last().val());
 	var crystalToTransport = Number($(".resource2").last().val());
 	var deuteriumToTransport = Number($(".resource3").last().val());
 
-	if (isNaN(metalToTransport)){
-		metalToTransport=0;
+	if (isNaN(metalToTransport)) {
+		metalToTransport = 0;
 	}
-	if (isNaN(crystalToTransport)){
-		crystalToTransport=0;
+	if (isNaN(crystalToTransport)) {
+		crystalToTransport = 0;
 	}
-	if (isNaN(deuteriumToTransport)){
-		deuteriumToTransport=0;
+	if (isNaN(deuteriumToTransport)) {
+		deuteriumToTransport = 0;
 	}
 
 	var freeCapacity = Math.max(storCap - metalToTransport - crystalToTransport - deuteriumToTransport, 0);
-	var cargo = Math.min (freeCapacity + thisresourcechosen, thisresource);
+	var cargo = Math.min(freeCapacity + thisresourcechosen, thisresource);
 
-	if ($(".resource" + id).last().length>0) {
+	if ($(".resource" + id).last().length > 0) {
 		$(".resource" + id).last().val(cargo);
 	}
 	calculateTransportCapacity();
@@ -340,8 +337,8 @@ function maxResources() {
 	var id;
 	var storCap = storage();
 	var metalToTransport = Math.round($(".thisresource1").last().val());
-    var crystalToTransport = Math.round($(".thisresource2").last().val());
-    var deuteriumToTransport = Math.round($(".thisresource3").last().val() - consumption());
+	var crystalToTransport = Math.round($(".thisresource2").last().val());
+	var deuteriumToTransport = Math.round($(".thisresource3").last().val() - consumption());
 
 
 	var freeCapacity = storCap - metalToTransport - crystalToTransport - deuteriumToTransport;
@@ -357,62 +354,62 @@ function maxResources() {
 }
 
 function maxShip(id) {
-	if ($('.'+id).last().length>0) {
-		$('.'+id).last().val($(".max" + id).last().val());
-	}	
+	if ($('.' + id).last().length > 0) {
+		$('.' + id).last().val($(".max" + id).last().val());
+	}
 }
 
 function maxShips() {
 	var id;
 	for (i = 200; i < 220; i++) {
-		id = "ship"+i;
+		id = "ship" + i;
 		maxShip(id);
 	}
 }
 
 
 function noShip(id) {
-	if ($('.'+id).last().length>0) {
-		$('.'+id).last().last().val('0');
-	}	
+	if ($('.' + id).last().length > 0) {
+		$('.' + id).last().last().val('0');
+	}
 }
 
 
-function noShips (){
+function noShips() {
 	var id;
 	for (i = 200; i < 220; i++) {
-		id = "ship"+i;
+		id = "ship" + i;
 		noShip(id);
 	}
 }
 
 function calculateTransportCapacity() {
 	var metal = Math.round(Math.abs($(".resource1").last().val()));
-    var crystal = Math.round(Math.abs($(".resource2").last().val()));
-    var deuterium = Math.round(Math.abs($(".resource3").last().val()));
+	var crystal = Math.round(Math.abs($(".resource2").last().val()));
+	var deuterium = Math.round(Math.abs($(".resource3").last().val()));
 
-	transportCapacity =  storage() - metal - crystal - deuterium;
+	transportCapacity = storage() - metal - crystal - deuterium;
 
 	if (transportCapacity < 0) {
-		$(".remainingresources").last().html("<font color=red>"+transportCapacity+"</font>");
+		$(".remainingresources").last().html("<font color=red>" + transportCapacity + "</font>");
 	} else {
-		$(".remainingresources").last().html("<font color=lime>"+transportCapacity+"</font>");
+		$(".remainingresources").last().html("<font color=lime>" + transportCapacity + "</font>");
 	}
 	return transportCapacity;
 }
 
 function getLayerRef(id, document) {
 	if (!document)
-	document = window.document;
+		document = window.document;
 
 	if (document.layers) {
 		for (var l = 0; l < document.layers.length; l++)
-		if (document.layers[l].id == id)
-		return document.layers[l];
+			if (document.layers[l].id == id)
+				return document.layers[l];
 		for (var l = 0; l < document.layers.length; l++) {
 			var result = getLayerRef(id, document.layers[l].document);
 			if (result)
-			return result;
+				return result;
 		}
 		return null;
 	}
@@ -420,53 +417,53 @@ function getLayerRef(id, document) {
 		return document.all[id];
 	}
 	else if ($) {
-		return $('.'+id).last();
+		return $('.' + id).last();
 	}
 }
 
 function setVisibility(objLayer, visible) {
 	if (document.layers) {
 		objLayer.visibility =
-		(visible == true) ? 'show' : 'hide';
+			(visible == true) ? 'show' : 'hide';
 	} else {
 		objLayer.style.visibility =
-		(visible == true) ? 'visible' : 'hidden';
+			(visible == true) ? 'visible' : 'hidden';
 	}
 }
 
 function setVisibilityForDivByPrefix(prefix, visible, d) {
 	if (!d)
-	d = window.document;
+		d = window.document;
 
 	if (document.layers) {
 		for (var i = 0; i < d.layers.length; i++) {
 			if (d.layers[i].id.substr(0, prefix.length) == prefix)
-			setVisibility(d.layers[l], visible);
+				setVisibility(d.layers[l], visible);
 			setVisibilityForDivByPrefix(prefix, visible, d.layers[i].document);
 		}
 	} else if (document.all) {
 		var layers = document.all.tags("div");
 		for (i = 0; i < layers.length; i++) {
 			if (layers[i].id.substr(0, prefix.length) == prefix)
-			setVisibility(document.all.tags("div")[i].visible);
+				setVisibility(document.all.tags("div")[i].visible);
 		}
 	} else if (document.getElementsByTagName) {
 		var layers = document.getElementsByTagName("div");
 		for (i = 0; i < layers.length; i++) {
 			if (layers[i].id.substr(0, prefix.length) == prefix)
-			setVisibility(layers[i].visible);
+				setVisibility(layers[i].visible);
 		}
 	}
 }
 
 
 /*
-function disableSome() {
-document.forms.mission[6].disabled = true;
-document.forms.mission[7].disabled = true;
-document.forms.mission[8].disabled = true;
-}
-*/
+ function disableSome() {
+ document.forms.mission[6].disabled = true;
+ document.forms.mission[7].disabled = true;
+ document.forms.mission[8].disabled = true;
+ }
+ */
 function setPlanet(string) {
 	var splitstring = string.split(":");
 	$('.galaxy').last().val(splitstring[0]);
@@ -479,7 +476,7 @@ function setPlanet(string) {
 function setUnions(cnt) {
 	galaxy = $('.galaxy').last().val();
 	system = $('.system').last().val();
-	planet =   $('.planet').last().val();
+	planet = $('.planet').last().val();
 	planettype = $('.planettype').last().val();
 
 	thisgalaxy = $(".thisgalaxy").last().val();
@@ -492,31 +489,31 @@ function setUnions(cnt) {
 
 	for (i = 0; i < cnt; i++) {
 		//    alert ("set unions called "+ cnt);
-		var string = $(".union"+i).last().html();
-		time = $('.union'+i+'time').last().val();
+		var string = $(".union" + i).last().html();
+		time = $('.union' + i + 'time').last().val();
 		/* alert ("set unions called "+ time);*/
-		targetgalaxy = $('.union'+i+'galaxy').last().val();
-		targetsystem = $('.union'+i+'system').last().val();
-		targetplanet = $('.union'+i+'planet').last().val();
-		targetplanettype = $('.union'+i+'planettype').last().val();
+		targetgalaxy = $('.union' + i + 'galaxy').last().val();
+		targetsystem = $('.union' + i + 'system').last().val();
+		targetplanet = $('.union' + i + 'planet').last().val();
+		targetplanettype = $('.union' + i + 'planettype').last().val();
 
 		if (targetgalaxy == galaxy && targetsystem == system
-		&& targetplanet == planet && targetplanettype == planettype){
+			&& targetplanet == planet && targetplanettype == planettype) {
 
 
 			inSpeedLimit = isInSpeedLimit(flightTime(thisgalaxy, thissystem, thisplanet,
-			targetgalaxy, targetsystem, targetplanet,
-			spd, speedfactor), time);
+				targetgalaxy, targetsystem, targetplanet,
+				spd, speedfactor), time);
 			//      alert ("in here" + inSpeedLimit);
 			if (inSpeedLimit == 2) {
-				$(".union"+i).last().html('<font color="lime">'+string+'</font>');
+				$(".union" + i).last().html('<font color="lime">' + string + '</font>');
 			} else if (inSpeedLimit == 1) {
-				$(".union"+i).last().html('<font color="orange">'+string+'</font>');
+				$(".union" + i).last().html('<font color="orange">' + string + '</font>');
 			} else {
-				$(".union"+i).last().html('<font color="red">'+string+'</font>');
+				$(".union" + i).last().html('<font color="red">' + string + '</font>');
 			}
 		} else {
-			$(".union"+i).last().html('<font color="#00a0ff">'+string+'</font>');
+			$(".union" + i).last().html('<font color="#00a0ff">' + string + '</font>');
 			//      alert("red"+i);
 		}
 	}
@@ -534,9 +531,7 @@ function isInSpeedLimit(flightlength, eventtime) {
 	}
 }
 
-function flightTime(galaxy, system, planet,
-targetgalaxy, targetsystem, targetplanet,
-spd, maxspeed, speedfactor) {
+function flightTime(galaxy, system, planet, targetgalaxy, targetsystem, targetplanet, spd, maxspeed, speedfactor) {
 	//    alert ("flighttime called 1"+galaxy+" "+system+" "+planet+" "+targetgalaxy+" "+targetsystem+" "+targetplanet);
 
 	if ((galaxy - targetgalaxy) != 0) {
@@ -592,56 +587,57 @@ function hideResources() {
 	$('.holdingtime').last().disabled = true;
 }
 
-function setShips(s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s27,s28,s29,s30,s31,s32,s33){
+function setShips(s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s27, s28, s29, s30, s31, s32, s33) {
 
-	setNumber('202',s16);
-	setNumber('203',s17);
-	setNumber('204',s18);
-	setNumber('205',s19);
-	setNumber('206',s20);
-	setNumber('207',s21);
-	setNumber('208',s22);
-	setNumber('209',s23);
-	setNumber('210',s24);
-	setNumber('211',s25);
-	setNumber('213',s27);
-	setNumber('214',s28);
-	setNumber('215',s29);
-	setNumber('216',s30);
-	setNumber('217',s31);
-	setNumber('218',s32);
-	setNumber('219',s33);
+	setNumber('202', s16);
+	setNumber('203', s17);
+	setNumber('204', s18);
+	setNumber('205', s19);
+	setNumber('206', s20);
+	setNumber('207', s21);
+	setNumber('208', s22);
+	setNumber('209', s23);
+	setNumber('210', s24);
+	setNumber('211', s25);
+	setNumber('213', s27);
+	setNumber('214', s28);
+	setNumber('215', s29);
+	setNumber('216', s30);
+	setNumber('217', s31);
+	setNumber('218', s32);
+	setNumber('219', s33);
 
 }
 
-function setNumber(name,number){
-	if (typeof $('.ship'+name).last() != 'undefined'){
-		$('.ship'+name).last().val(number);
+function setNumber(name, number) {
+	if (typeof $('.ship' + name).last() != 'undefined') {
+		$('.ship' + name).last().val(number);
 	}
 }
 
 function tsdpkt(f) {
-  r = "";
-  vz = "";
-  if (f < 0) { vz = "-"; }
-  f = abs(f);
-  r = f % 1000;
-  while (f >= 1000){
-    k1 = "";
-    if ((f % 1000) < 100) { k1 = "0"; }
-    if ((f % 1000) < 10) { k1 = "00"; }
-    if ((f % 1000) == 0) { k1 = "00"; }
-    f = abs((f-(f % 1000)) / 1000);
-    r = f % 1000 + "." + k1 + r;
-  }
-  r = vz + r;
-  return r;
+	r = "";
+	vz = "";
+	if (f < 0) { vz = "-"; }
+	f = abs(f);
+	r = f % 1000;
+	while (f >= 1000) {
+		k1 = "";
+		if ((f % 1000) < 100) { k1 = "0"; }
+		if ((f % 1000) < 10) { k1 = "00"; }
+		if ((f % 1000) == 0) { k1 = "00"; }
+		f = abs((f - (f % 1000)) / 1000);
+		r = f % 1000 + "." + k1 + r;
+	}
+	r = vz + r;
+	return r;
 }
 
 function abs(a) {
-	if(a < 0) return -a;
+	if (a < 0) return -a;
 	return a;
 }
+
 function getStorageFaktor() {
- 		return 1
- 	}
+	return 1
+}

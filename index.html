@@ -1,90 +1,115 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Galactic Empires</title>
-        <style type="text/css" media="screen">
-			@import "css/jqtouch.css";
-			@import "css/theme.css";
-			@import "css/fonts.css";
-		</style>
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/countdown.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/functions.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/ajaxFleet.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/fleet.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/jquery.form.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/chat.js" type="application/x-javascript" charset="utf-8"></script>
-		<script src="js/modal.js" type="application/x-javascript" charset="utf-8"></script>
-        <script type="text/javascript" charset="utf-8">
-            var jQT = new $.jQTouch();
+<head>
+	<meta charset="UTF-8"/>
+	<title>Galactic Empires</title>
+	<style type="text/css" media="screen">
+		@import "css/jqtouch.css";
+		@import "css/theme.css";
+		@import "css/fonts.css";
+	</style>
+	<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/countdown.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/functions.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/ajaxFleet.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/fleet.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/jquery.form.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/chat.js" type="application/x-javascript" charset="utf-8"></script>
+	<script src="js/modal.js" type="application/x-javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		var jQT = new $.jQTouch();
 
-			function onLoad() {
-				document.addEventListener("deviceready", onDeviceReady, false);
-			}
+		function onLoad() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
 
-			// PhoneGap is ready
-			//
-			function onDeviceReady() {
-				run();
-			}
+		// PhoneGap is ready
+		//
+		function onDeviceReady() {
+			run();
+		}
 
-			
-        </script>
+	</script>
 
-    </head>
-    <body onload="onLoad()">
-		<div id="menu" class="selectable">
-			<div class="m_holder">
-				<div class="m_item" id="menu01" onclick="loadPage('game.php?page=overview');jQT.goBack();"><img src="images/menu/m_overview.jpg"></div>
-				<div class="m_item" id="menu02" onclick="loadPage('game.php?page=buildings');jQT.goBack();"><img src="images/menu/m_construct.jpg"></div>
-				<div class="m_item" id="menu03" onclick="loadPage('game.php?page=fleet');jQT.goBack();"><img src="images/menu/m_shipyard.jpg"></div>
-				<div class="m_item" id="menu04" onclick="loadPage('game.php?page=galaxy&mode=0');jQT.goBack();"><img src="images/menu/m_galaxy.jpg"></div>
-				<div class="m_item" id="menu05" onclick="loadPage('game.php?page=alliance');jQT.goBack();"><img src="images/menu/m_alliance.jpg"></div>
-				<div class="m_item" id="menu06" onclick="loadPage('game.php?page=statistics');jQT.goBack();"><img src="images/menu/m_statistics.jpg"></div>
-				<div class="m_item" id="menu07" onclick="loadPage('forum.php');jQT.goBack();"><img src="images/menu/m_contact.jpg"></div>
-				<div class="m_item" id="menu08" onclick="loadPage('game.php?page=officier');jQT.goBack();"><img src="images/menu/m_officers.jpg"></div>
-				<div class="m_item" id="menu09" onclick="loadPage('game.php?page=options');jQT.goBack();"><img src="images/menu/m_settings.jpg"></div>		
-				<div class="clear"></div>
-				<a href="#" class="grayButton goback">Close</a><br/>
-				<!--<div align="center"><a id="menu10" onclick="loadPage('game.php?page=changelog','#s2',true,'slide');">v1.0.0</a> | <a id="menu11" onclick="loadPage('terms.php','#s2',true,'slide');">TOC</a></div>-->
-			</div>	
-		</div>
-        
-		<div id="home" class="current">
-			<div class="toolbar">
-				<div class="menu_btn" id="menu12" ontouchend="jQT.goTo('#menu','slideup');"></div>
-				<div class="resources_bar">
-					<div class="resources_bar_item"><p id="menu13" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Metal</p><small id="metal">-</small></div>
-					<div class="resources_bar_item"><p id="menu14" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Crystal</p><small id="crystal">-</small></div>
-					<div class="resources_bar_item"><p id="menu15" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Deuterium</p><small id="deuterium">-</small></div>	
-					<div class="resources_bar_item"><p id="menu16" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Energy</p><small id="energy">-</small></div>
-					<div class="resources_bar_item" style="width:75px;"><p id="menu17" onclick="loadPage('game.php?page=officier');">Dark Matter</p><small id="darkmatter">-</small></div>					
-				</div>			
-				<div class="email_bar"><img src="images/mail.png" alt="" onclick="loadPage('game.php?page=messages');" id="mes_icon"/></div>
+</head>
+<body onload="onLoad()">
+<div id="menu" class="selectable">
+	<div class="m_holder">
+		<div class="m_item" id="menu01" onclick="loadPage('game.php?page=overview');jQT.goBack();">
+			<img src="images/menu/m_overview.jpg"></div>
+		<div class="m_item" id="menu02" onclick="loadPage('game.php?page=buildings');jQT.goBack();">
+			<img src="images/menu/m_construct.jpg"></div>
+		<div class="m_item" id="menu03" onclick="loadPage('game.php?page=fleet');jQT.goBack();">
+			<img src="images/menu/m_shipyard.jpg"></div>
+		<div class="m_item" id="menu04" onclick="loadPage('game.php?page=galaxy&mode=0');jQT.goBack();">
+			<img src="images/menu/m_galaxy.jpg"></div>
+		<div class="m_item" id="menu05" onclick="loadPage('game.php?page=alliance');jQT.goBack();">
+			<img src="images/menu/m_alliance.jpg"></div>
+		<div class="m_item" id="menu06" onclick="loadPage('game.php?page=statistics');jQT.goBack();">
+			<img src="images/menu/m_statistics.jpg"></div>
+		<div class="m_item" id="menu07" onclick="loadPage('forum.php');jQT.goBack();">
+			<img src="images/menu/m_contact.jpg"></div>
+		<div class="m_item" id="menu08" onclick="loadPage('game.php?page=officier');jQT.goBack();">
+			<img src="images/menu/m_officers.jpg"></div>
+		<div class="m_item" id="menu09" onclick="loadPage('game.php?page=options');jQT.goBack();">
+			<img src="images/menu/m_settings.jpg"></div>
+		<div class="clear"></div>
+		<a href="#" class="grayButton goback">Close</a><br/>
+		<!--<div align="center"><a id="menu10" onclick="loadPage('game.php?page=changelog','#s2',true,'slide');">v1.0.0</a> | <a id="menu11" onclick="loadPage('terms.php','#s2',true,'slide');">TOC</a></div>-->
+	</div>
+</div>
+
+<div id="home" class="current">
+	<div class="toolbar">
+		<div class="menu_btn" id="menu12" ontouchend="jQT.goTo('#menu','slideup');"></div>
+		<div class="resources_bar">
+			<div class="resources_bar_item">
+				<p id="menu13" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Metal</p>
+				<small id="metal">-</small>
 			</div>
-			<div class="info"></div>
-			<div class="error"></div>
-			<div class="succes"></div>
-			<div id="content"></div>
-		</div>
-		<div id="s2"></div>
-		<div id="s3"></div>
-		<div id="s4"></div>
-		<div id="s5"></div>
-		<div id="s6"></div>
-		<div id="res_tab"></div>
-		<div id="write_msg"></div>
-		<div id="progress">Loading...</div>
-		
-		<div id="modalDialog">
-			<div class="bg"> </div>
-			<div class="box">
-				<h1><span></span></h1>
-				<div class="content"></div>
+			<div class="resources_bar_item">
+				<p id="menu14" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Crystal</p>
+				<small id="crystal">-</small>
+			</div>
+			<div class="resources_bar_item">
+				<p id="menu15" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Deuterium</p>
+				<small id="deuterium">-</small>
+			</div>
+			<div class="resources_bar_item">
+				<p id="menu16" onclick="loadPage('game.php?page=resources','#s2',true,'slide');">Energy</p>
+				<small id="energy">-</small>
+			</div>
+			<div class="resources_bar_item" style="width:75px;">
+				<p id="menu17" onclick="loadPage('game.php?page=officier');">Dark Matter</p>
+				<small id="darkmatter">-</small>
 			</div>
 		</div>
-	</body>
+		<div class="email_bar">
+			<img src="images/mail.png" alt="" onclick="loadPage('game.php?page=messages');" id="mes_icon"/></div>
+	</div>
+	<div class="info"></div>
+	<div class="error"></div>
+	<div class="succes"></div>
+	<div id="content"></div>
+</div>
+<div id="s2"></div>
+<div id="s3"></div>
+<div id="s4"></div>
+<div id="s5"></div>
+<div id="s6"></div>
+<div id="res_tab"></div>
+<div id="write_msg"></div>
+<div id="progress">Loading...</div>
+
+<div id="modalDialog">
+	<div class="bg"></div>
+	<div class="box">
+		<h1><span></span></h1>
+
+		<div class="content"></div>
+	</div>
+</div>
+</body>
 </html>
