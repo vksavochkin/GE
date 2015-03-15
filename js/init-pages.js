@@ -22,7 +22,12 @@ $('body').on('click', '#mm-menu-right .mm-subopen.mm-fullsubopen', function(){
     Overview
 */   
 $('.header-bg-middle > div').on('click', function(){
-	Resources.init();
+	if (onPage == 'resources') {
+		// need history of pages...
+		Overview.init();
+	} else {
+		Resources.init();
+	}
 });
 $('.home-overview .title').on('click',function(){
 	$('.planet-control-modal, .overlay').show();
