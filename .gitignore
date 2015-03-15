@@ -1,0 +1,15 @@
+### GE configs
+config.xml
+cordova_fix.js
+droid_config.xml
+ios_config.xml
+res/
+tmp/
+
+### IDEs configs
+.idea/uiDesigner.xml
+.idea/workspace.xml
+
+### Various editor's temp files
+*~
+*.swp
