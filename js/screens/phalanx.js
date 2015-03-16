@@ -225,7 +225,7 @@ var Phalanx = {
 				            </div>\
 				        </div>\
 				        <div class="clear"></div>\
-						<ul style="display:none;" class="phalanx-details-toggle phalanx-details-toggle-'+f.fleet_id+'">\
+						<ul style="display:none;list-style:none;padding:0px;" class="phalanx-details-toggle phalanx-details-toggle-'+f.fleet_id+'">\
 							<li style="position:relative;width:100%;">\
 								<div class="side-fleet-info overthrow" id="scrollasc'+f.fleet_id+'" style="overflow:hidden;"><div>\
 									<p>\
