@@ -102,7 +102,7 @@
 					<div class="userpic user-link" rel="'+data.username+'"><img src="images/avatars/'+data.avatar+'.gif"></div>\
 						<div class="userinfo">\
 							<h1>'+data.username+' ['+data.rank+'] '+data.status+'</h1>\
-							<div class="btn send-message-btn" rel'+data.username+'">Send Message</div>\
+							<div class="btn send-message-btn" rel='+data.username+'">Send Message</div>\
 							<div class="btn user-statistic-btn" rel="'+data.user_id+'">Statistics</div>\
 							</div>\
 						<div class="clear"></div>\

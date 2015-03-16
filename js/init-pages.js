@@ -852,6 +852,11 @@ $(document).ready(function() {
         return false;
 	});
 	
+	$('body').on('tap', '.ally-statistic-btn', function(){
+		Scoreboard.init();
+        return false;
+	});
+	
 	$('body').on('tap', '.send-message-btn', function(){
 		var rel = $(this).attr('rel');
 		Mail.new_message(rel,'');
