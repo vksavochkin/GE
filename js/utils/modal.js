@@ -27,14 +27,14 @@ var Modal = {
 		var pop_up = $('<div class="modal_overlay"></div>'+
 							'<div class="modal_box">'+
 			 					'<h2 class="modal_title">' + title + '</h2>'+
-			 					'<a href="#" class="modal_close"></a>'+
+			 					'<div class="modal_close"></div>'+
 			 					'<div class="inner_modal_box overthrow" id="modal_scroller">'+
 			 						'' + content + ''+
 			 					'</div>'+
 			 				'</div>');
 			 $(pop_up).appendTo('.block_page');
 			 			 
-			 $('.modal_close,.modal_overlay').click(function(){
+			 $('.modal_close,.modal_overlay').on('tap', function(){
 				//$(this).parent().fadeOut().remove();
 				Modal.close();				 
 			 });

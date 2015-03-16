@@ -47,16 +47,16 @@ var Ally= {
 							<p class="ally-message">'+responseObj.allyshow.ally_message_inside_coded+'</p>\
 						</div>\
 						<div align="center" style="margin: 10px;">\
-							'+(user_rank.rank <= 2 ? '<a href="#" class="btn" onclick="Ally.hall();">'+lang._T('Settings')+'</a>' : '')+'\
+							'+(user_rank.rank <= 2 ? '<div class="btn ally-hall-btn">'+lang._T('Settings')+'</div>' : '')+'\
 						</div>\
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<a class="btn fl" onclick="Mail.new_message(\'Alliance\',\'\');" style="margin-left:10px;">'+lang._T('Group Message')+'</a>\
-					<a class="btn fr" onclick="Ally.Plats();">'+lang._T('Members')+'</a>\
+					<div class="btn fl ally-new-message" style="margin-left:10px;">'+lang._T('Group Message')+'</div>\
+					<div class="btn fr ally-plats-link">'+lang._T('Members')+'</div>\
 				</nav>\
 				');
-				$('.bar-title span').html('<a onclick="Ally.init()">Alliance > '+responseObj.allyshow.ally_name+' ['+responseObj.allyshow.ally_tag+']</a>');
+				$('.bar-title span').html('<div class="ally-init-link">Alliance > '+responseObj.allyshow.ally_name+' ['+responseObj.allyshow.ally_tag+']</div>');
 		}else{
 			//User without Ally
 			$(this.pageID).html('<div class="b-main overthrow" id="allyScroll">\
@@ -78,7 +78,7 @@ var Ally= {
 										'+lang._T('Search for Alliances')+'\
 									</td></tr>\
 									<tr><td align="center">\
-										<button class="btn" onclick="Ally.showSearch();">Find an Alliance</button>\
+										<div class="btn ally-show-search-link">Find an Alliance</div>\
 									</td></tr>\
 								</tbody>\
 							</table>\
@@ -175,7 +175,7 @@ var Ally= {
 					<button class="btn fr" onclick="Ally.init();">'+lang._T('Back')+'</button>\
 				</nav>');
 				
-		$('.bar-title span').html('<a onclick="Ally.init()">Alliance</a> > Search Alliance');
+		$('.bar-title span').html('<div class="ally-init-link">Alliance</div> > Search Alliance');
 		return false;
 	},
 	doSearchAlly: function(){
@@ -193,8 +193,8 @@ var Ally= {
 					<div><b>'+lang._T('Alliance Tag')+'</b></div>\
 				</div>';
 			foreach(responseObj.allysearch, function(key, m) { 
-				out += '<div><div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'" onclick="Ally.showPage(\''+m.ally_tag+'\');">'+m.ally_name+'</span></div>\
-					<div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'" onclick="Ally.showPage(\''+m.ally_tag+'\');">'+m.ally_tag+'</span></div></div>';
+				out += '<div><div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'">'+m.ally_name+'</span></div>\
+					<div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'">'+m.ally_tag+'</span></div></div>';
 			});
 			out += '</div>';
 			$('#ally_search_result').html(out);
@@ -239,7 +239,7 @@ var Ally= {
 							}
 							
 							table2 += '<div>\
-									<div><span rel="'+r.username+'" class="user-link" onclick="UserInfo.showPage(\''+r.username+'\');">'+r.username+'</span></div>\
+									<div><span rel="'+r.username+'" class="user-link">'+r.username+'</span></div>\
 									<div>'+ranks_table+'</div>\
 								</div>';
 						}else{
@@ -273,8 +273,8 @@ var Ally= {
 						</div>\
 					</div>\
 					<div class="b-menu">\
-						<a class="fl btn" style="margin-left:10px;" onclick="Ally.quit();">'+lang._T('Quit Ally')+'</a>\
-						<a class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</a>\
+						<div class="fl btn ally-quit-link" style="margin-left:10px;">'+lang._T('Quit Ally')+'</div>\
+						<div class="fr btn ally-init-link">'+lang._T('Back')+'</div>\
 					</div>');
 				$(".ranks_table").change(function(){
 					var change_data = $(this).val();
@@ -386,18 +386,18 @@ var Ally= {
 									<div><div>'+lang._T('Alliance Information:')+'<br/>\
 									<textarea id="ally_message_outside" style="height:100px;">'+responseObj.allyshow.ally_message_outside+'</textarea></div></div>\
 									<div><div>\
-										<a class="btn fr" onclick="Ally.saveHall();">Save</a>\
+										<div class="btn fr ally-save-hall-link">Save</div>\
 									</div></div>\
 									'+(parseInt(responseObj.state.user.ally_rank) != 1 ? '' :'<div><div align="center">\
-										<a class="btn" onclick="Ally.deleteAlly();">Delete a Alliance</a>\
+										<div class="btn ally-delete-ally-link">Delete a Alliance</div>\
 									</div></div> ')+'\
 							</div>\
 						</div>\
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<a class="fl btn" onclick="Ally.rightsScreen();">'+lang._T('Rights')+'</a>\
-					<a class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</a>\
+					<div class="fl btn ally-rights-link">'+lang._T('Rights')+'</div>\
+					<div class="fr btn ally-init-link">'+lang._T('Back')+'</div>\
 				</nav>');
 		return false;
 	},
@@ -683,7 +683,7 @@ var Ally= {
 				</ul>\
 				</div>\
 				<nav class="b-menu">\
-					<a class="fr btn" onclick="Ally.closePage();">'+lang._T('close')+'</a>\
+					<div class="fr btn ally-close-page-link">'+lang._T('close')+'</div>\
 				</nav>').show().css('z-index','1');
 		return false;
 

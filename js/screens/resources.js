@@ -220,7 +220,7 @@
 						        <td></td>\
 						        <td></td>\
 						        <td></td>\
-						        <td><a href="#" class="btn" onclick="Resources.doChange();">Save</a></td>\
+						        <td><div class="btn resources-do-change-link">Save</div></td>\
 						    </tr>';
         }
         

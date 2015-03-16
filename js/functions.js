@@ -208,7 +208,7 @@ function ShowBuildTime(time){
 
 function BuildPlanetAdressLink ( planet )
 {
-	var Link  = '<a onclick="Galaxy.init('+planet.g+','+planet.s+');">['+planet.g+':'+planet.s+':'+planet.p+']</a>';
+	var Link  = '<span class="galaxy-link" rel="'+planet.g+';'+planet.s+'">['+planet.g+':'+planet.s+':'+planet.p+']</span>';
 	return Link;
 }
 

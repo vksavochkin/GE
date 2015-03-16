@@ -15,12 +15,12 @@
 		return false;
 	},
 	content: function(){
-		var out = '<li class="building-row"><h3>Dark Matter: '+responseObj.officershow.dm+' <small onclick="Store.init();">(add more)</small></h3></li>';
+		var out = '<li class="building-row"><h3>Dark Matter: '+responseObj.officershow.dm+' <small class="show-store-page-link">(add more)</small></h3></li>';
 		
 		if(parseInt(user['starter']) == 0){
-			out += '<li class="building-row"><a class="btn officer-starter" style="text-align:center;width:92%;" onclick="buyStarter();">Starter Pack<br/>\
+			out += '<li class="building-row"><span class="btn officer-starter officer-starter-link" style="text-align:center;width:92%;">Starter Pack<br/>\
 						40000 Metal, 20000 Crystal, 10000 Deuterium\
-						<br/><small>3000 Dark Matter</small></a>\
+						<br/><small>3000 Dark Matter</small></span>\
 					</li>';
 		}
 		
@@ -34,13 +34,13 @@
 				var time_left = expire - parseInt(responseObj.timestamp);
 				expire_msg = '(expire in <div class="js_timer" style="display:inline-block;" timer="'+time_left+'|1"></div>)';
 				
-				btn += '<a class="btn officer-link" rel="'+o+';1" onclick="hireOfficer(\''+o+';1\');">Extend for 1 day<br/><small>500 Dark Matter</small></a>';
-				btn += '<a class="btn officer-link" rel="'+o+';2" onclick="hireOfficer(\''+o+';2\');">Extend for 7 days<br/><small>2000 Dark Matter</small></a>';
-				btn += '<a class="btn officer-link" rel="'+o+';3" onclick="hireOfficer(\''+o+';3\');">Extend for 30 days<br/><small>5000 Dark Matter</small></a>';
+				btn += '<div class="btn officer-link" rel="'+o+';1">Extend for 1 day<br/><small>500 Dark Matter</small></div>';
+				btn += '<div class="btn officer-link" rel="'+o+';2">Extend for 7 days<br/><small>2000 Dark Matter</small></div>';
+				btn += '<div class="btn officer-link" rel="'+o+';3">Extend for 30 days<br/><small>5000 Dark Matter</small></div>';
 			}else{
-				btn += '<a class="btn officer-link" rel="'+o+';1" onclick="hireOfficer(\''+o+';1\');">Hire for 1 day<br/><small>500 Dark Matter</small></a>';
-				btn += '<a class="btn officer-link" rel="'+o+';2" onclick="hireOfficer(\''+o+';2\');">Hire for 7 days<br/><small>2000 Dark Matter</small></a>';
-				btn += '<a class="btn officer-link" rel="'+o+';3" onclick="hireOfficer(\''+o+';3\');">Hire for 30 days<br/><small>5000 Dark Matter</small></a>';
+				btn += '<div class="btn officer-link" rel="'+o+';1">Hire for 1 day<br/><small>500 Dark Matter</small></div>';
+				btn += '<div class="btn officer-link" rel="'+o+';2">Hire for 7 days<br/><small>2000 Dark Matter</small></div>';
+				btn += '<div class="btn officer-link" rel="'+o+';3">Hire for 30 days<br/><small>5000 Dark Matter</small></div>';
 			}
 			if(o == 'off_geologist'){
 				var geo = 100;
@@ -77,7 +77,7 @@
 		
 			out += '<li class="building-row">\
 								<h3>'+lang._T('title_'+o)+' '+expire_msg+'</h3>\
-										<div class="buildings-table-image" style="float:left"  onclick="Info.init(\''+o+'\');"><img src="images/resources/'+o+'.png"></div>\
+										<div class="buildings-table-image show-info-page-link" style="float:left"  rel="'+o+'"><img src="images/resources/'+o+'.png"></div>\
 										<div class="buildings-table-action">\
 											'+btn+'\
 										</div>\

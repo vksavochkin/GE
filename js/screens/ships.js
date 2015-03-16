@@ -112,7 +112,7 @@
 								<h3>'+ElementName+''+ElementNbre+'</h3>\
 								<div class="table buildings-table">\
 									<div class="row">\
-										<div class="buildings-table-image"  onclick="Info.init(\''+Element+'\');"><img src="images/resources/'+Element+'.png"></div>\
+										<div class="buildings-table-image show-info-page-link" rel="'+Element+'"><img src="images/resources/'+Element+'.png"></div>\
 										<div class="buildings-table-require">\
 											'+price+'\
 											'+time+'\

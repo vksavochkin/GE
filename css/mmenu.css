@@ -65,10 +65,10 @@ body.show_left_sidebar #page {
             white-space: nowrap;
         }
     
-            #menu-left li > a, #menu-left li > span, #menu-left li > a:hover {
+            #menu-left li .menu-left-link, #menu-left li > span, #menu-left li .menu-left-link:hover {
                 color: #abc;
             }
-            #menu-left li > a, #menu-left li > span {
+            #menu-left li .menu-left-link, #menu-left li > span {
                 display: block;
                 line-height: 20px;
                 margin: 0;

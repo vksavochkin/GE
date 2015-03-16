@@ -28,55 +28,28 @@
 	<nav id="menu-left" class="overthrow">
 		<ul>
 			<li><p class="planet-select-holder" style="padding:0px 10px;height:20px;"></p></li>
-			<li><a href="#" onclick="Overview.init();">Overview</a></li>
-			<!--<li><a href="#" onclick="Empire.init();">Empire</a></li>-->
-			<li><a href="#" onclick="Galaxy.init();">Galaxy</a></li>
-			<li><a href="#" onclick="Shipyard.init();">Fleet</a></li>
-			<li><a href="#" onclick="Ally.init();">Alliance</a></li>
+    		<li><div class="menu-left-link" data-page="Overview">Overview</div></li>
+			<li><div class="menu-left-link" data-page="Galaxy">Galaxy</div></li>
+			<li><div class="menu-left-link" data-page="Fleet">Fleet</div></li>
+			<li><div class="menu-left-link" data-page="Ally">Alliance</div></li>
 			<li class="Label">Production</li>
-			<li><a href="#" onclick="Buildings.init();">Buildings</a></li>
-			<li><a href="#" onclick="Research.init();">Research</a></li>
-			<li><a href="#" onclick="Defense.init();">Defense</a></li>
-			<li><a href="#" onclick="Ships.init();">Shipyard</a></li>
+			<li><div class="menu-left-link" data-page="Buildings">Buildings</div></li>
+			<li><div class="menu-left-link" data-page="Research">Research</div></li>
+			<li><div class="menu-left-link" data-page="Defense">Defense</div></li>
+			<li><div class="menu-left-link" data-page="Ships">Shipyard</div></li>
 			<li class="Label">Communication</li>
-			<li><a href="#" onclick="Forum.init();">Forum</a></li>
-			<li><a href="#" onclick="Chat.init();">Chat</a></li>
+			<li><div class="menu-left-link" data-page="Forum">Forum</div></li>
+			<li><div class="menu-left-link" data-page="Chat">Chat</div></li>
 			<li class="Label">Statistic</li>
-			<li><a href="#" onclick="Scoreboard.init();">Scoreboard</a></li>
-			<li><a href="#" onclick="Recordboard.init();">Recordboard</a></li>
-			<li><a href="#" onclick="Search.init();">Search</a></li>
+			<li><div class="menu-left-link" data-page="Scoreboard">Scoreboard</div></li>
+			<li><div class="menu-left-link" data-page="Recordboard">Recordboard</div></li>
+			<li><div class="menu-left-link" data-page="Search">Search</div></li>
 			<li class="Label">Officers</li>
-			<li><a href="#" onclick="Officers.init();">Officers</a></li>
-			<li><a href="#" onclick="Store.init();">Store</a></li>
+			<li><div class="menu-left-link" data-page="Officers">Officers</div></li>
+			<li><div class="menu-left-link" data-page="Store">Store</div></li>
 			<li class="Label">Settings</li>
-			<li><a href="#" onclick="Settings.init();">Settings</a></li>
-			<li><a href="#" onclick="Login.doLogout();">Logout</a></li>
-			
-			<!--
-    			<li><a href="#" data-page="Overview">Overview</a></li>
-			<li><a href="#" data-page="Galaxy">Galaxy</a></li>
-			<li><a href="#" data-page="Fleet">Fleet</a></li>
-			<li><a href="#" data-page="Ally">Alliance</a></li>
-			<li class="Label">Production</li>
-			<li><a href="#" data-page="Buildings">Buildings</a></li>
-			<li><a href="#" data-page="Research">Research</a></li>
-			<li><a href="#" data-page="Defense">Defense</a></li>
-			<li><a href="#" data-page="Ships">Shipyard</a></li>
-			<li class="Label">Communication</li>
-			<li><a href="#" data-page="Forum">Forum</a></li>
-			<li><a href="#" data-page="Chat">Chat</a></li>
-			<li class="Label">Statistic</li>
-			<li><a href="#" data-page="Scoreboard">Scoreboard</a></li>
-			<li><a href="#" data-page="Recordboard">Recordboard</a></li>
-			<li><a href="#" data-page="Search">Search</a></li>
-			<li class="Label">Officers</li>
-			<li><a href="#" data-page="Officers">Officers</a></li>
-			<li><a href="#" data-page="Store">Store</a></li>
-			<li class="Label">Settings</li>
-			<li><a href="#" data-page="Settings">Settings</a></li>
-			<li><a href="#" data-page="Logout">Logout</a></li>
-			-->
-			
+			<li><div class="menu-left-link" data-page="Settings">Settings</div></li>
+			<li><div class="menu-left-link" data-page="Logout">Logout</div></li>
 			<li class="Label">Server Settings</li>
 			<li class="server_status">
 				<div style="margin: 5px 10px">
@@ -114,7 +87,7 @@
 				</div>
 				</div>
 			</li>
-			<li><a href="#" class="btn" onclick="Login.showServersInside();" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</a></li>
+			<li><div class="btn show-servers-internal-link" style="padding: 4px 0px;margin:10px auto;line-height:14px;text-align:center;width:90%;">Change Server</div></li>
 			<li class="Label"></li>
 			<li class="Label"></li>
 		</ul>
@@ -124,9 +97,9 @@
 		<div class="overlay"></div>
 		<div class="planet-control-modal">
 			<p class="closeBtn"><img src="images/close.png" alt=""></p>
-			<div class="btn" onclick="Overview.renamePlanet();">Rename Planet</div>
-			<div class="btn" onclick="Overview.movePlanet();">Move Planet</div>
-			<div class="btn" onclick="Overview.deletePlanet();">Destroy Planet</div>
+			<div class="btn overview-rename-planet-link">Rename Planet</div>
+			<div class="btn overview-move-planet-link">Move Planet</div>
+			<div class="btn overview-delete-planet-link">Destroy Planet</div>
 		</div>
 		
 		<div class="modal info-modal overthrow">
@@ -161,12 +134,12 @@
 					    <input type="password" value="" name="login-password" class="login-password">
 				    </div>
 				    <div class="row">
-				    	<a class="btn login-btn" onclick="Login.doLogin();">Login</a>
+				    	<div class="btn login-btn login-do-login-link">Login</div>
 				    </div>
 			    </div>
 			    <div class="login-bar">
-				    <a class="login-signup" onclick="Login.showRegister();">Sign Up</a>
-				    <a class="login-forgot" onclick="Login.showForgot();">Forgot Password?</a>
+				    <span class="login-signup login-show-register">Sign Up</span>
+				    <span class="login-forgot login-show-forgot">Forgot Password?</span>
 			    </div>
 		    </div>
 	    	<div class="forgot-screen">
@@ -176,8 +149,8 @@
 					    <input type="email" value="" name="forgot-email" class="forgot-email">
 				    </div>
 				    <div class="row">
-				    	<a class="btn forgot-btn" onclick="Login.doForgot();">Send Password</a>
-				    	<a class="btn back-btn" onclick="Login.init();">Back</a>
+				    	<span class="btn forgot-btn login-do-forgot-link">Send Password</span>
+				    	<span class="btn back-btn login-init-link">Back</span>
 				    </div>
 			    </div>
 		    </div>
@@ -200,8 +173,8 @@
 					    <input type="text" value="" name="register-username" class="register-username">
 				    </div>
 				    <div class="row">
-				    	<a class="btn back-btn" onclick="Login.init();">Back</a>
-				    	<a class="btn register-btn" onclick="Login.doRegister();">Register</a>
+				    	<span class="btn back-btn login-init-link">Back</span>
+				    	<span class="btn register-btn login-do-register-link">Register</span>
 				    </div>
 			    </div>
 		    </div>
@@ -217,7 +190,7 @@
 	    </div>
 	    
 		<div id="header">
-			<a href="#" class="open-left"></a>
+			<div class="open-left"></div>
 			<div class="header-bg-middle">
 				<div class="metal">
 					<span class="title">Metal</span>
@@ -243,13 +216,11 @@
 					<h1>Overview</h1>
 					<span></span>
 				</div>
-				<div class="mailbox" onClick="Mail.init();"></div>
-				<div class="help-icon page-link" onClick="Overview.showHelp();"></div>
+				<div class="mailbox"></div>
+				<div class="help-icon page-link show-help-link"></div>
 				<div class="planetchooser-source">
-					<div class="planetchooser-source-icon"
-						 onclick="PlanetChooser.toggle(Overview.changePlanet);"></div>
-					<div class="planetchooser-source-icon-active page-content"
-						 onclick="PlanetChooser.toggle(Overview.changePlanet);"></div>
+					<div class="planetchooser-source-icon planetchooser-link"></div>
+					<div class="planetchooser-source-icon-active page-content"></div>
 				</div>
 			</div>
 		</div>
@@ -311,17 +282,17 @@
 					<div class="outer-galaxy-bar">
 						<div class="galaxy-bar-content">
 							<div class="bar-item">
-								<div class="galaxy-arrow-left" onclick="decrement('galaxy-bar-galaxy');"></div>
+								<div class="galaxy-arrow-left"></div>
 								<input type="number" value="" class="galaxy-bar-galaxy" pattern="[0-9]*"/>
-								<div class="galaxy-arrow-right" onclick="increment('galaxy-bar-galaxy');"></div>
+								<div class="galaxy-arrow-right"></div>
 							</div>
 							<div class="bar-item" style="width:104px;">
-								<div class="system-arrow-left" onclick="decrement('galaxy-bar-system');"></div>
+								<div class="system-arrow-left"></div>
 								<input type="number" value="" class="galaxy-bar-system" pattern="[0-9]*" style="width:40px;"/>
-								<div class="system-arrow-right" onclick="increment('galaxy-bar-system');"></div>
+								<div class="system-arrow-right"></div>
 							</div>
 							<div class="bar-item-btn">
-								<a href="#" class="btn galaxy-go">GO</a>
+								<div class="btn galaxy-go">GO</div>
 							</div>	
 						</div>
 					</div>
@@ -331,10 +302,10 @@
 				<div class="page-content page-buildings">
 					<div class="outer-tab-bar">
 						<div class="tab-bar-content">
-							<div class="tab-buildings sel" onclick="Buildings.init();"><img src="images/i-buildings.png" alt=""></div>
-							<div class="tab-research" onclick="Research.init();"><img src="images/i-research.png" alt=""></div>
-							<div class="tab-defense" onclick="Defense.init();"><img src="images/i-defense.png" alt=""></div>
-							<div class="tab-ships" onclick="Ships.init();"><img src="images/i-ships.png" alt=""></div>	
+							<div class="tab-buildings sel tab-buildings-link"><img src="images/i-buildings.png" alt=""></div>
+							<div class="tab-research tab-research-link"><img src="images/i-research.png" alt=""></div>
+							<div class="tab-defense tab-defense-link"><img src="images/i-defense.png" alt=""></div>
+							<div class="tab-ships tab-ships-link"><img src="images/i-ships.png" alt=""></div>	
 						</div>
 					</div>
 					<div class="buildings-list overthrow" id="page_buildings_scroll"></div>
@@ -416,7 +387,7 @@
 							<label class="fl" style="width:80px;"><input type="radio" name="users_search_type" value="1" checked="checked"/>Users</label>
 							<label class="fl"><input type="radio" name="users_search_type" value="2"/>Alliances</label><br/><br/>
 							<input type="text" id="users_search_value" class="users_search_value"/>
-							<button class="btn" onclick="Search.doSearch();">Search</button>
+							<div class="btn do-search-link">Search</div>
 						</div>
 					</div>
 					<div class="search-list overthrow" id="page_search_scroll"></div>
@@ -462,7 +433,7 @@
 	<script src="js/libs/modernizr.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.finger.js" type="text/javascript"></script>
-	<script src="js/libs/facebookConnectPlugin.js" type="text/javascript"></script>
+	<!--<script src="js/libs/facebookConnectPlugin.js" type="text/javascript"></script>-->
 	<script src="js/libs/touch-input-nav.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.cookie.js" type="text/javascript"></script>
 	<script src="js/libs/jquery.storageapi.js" type="text/javascript"></script>
@@ -517,24 +488,5 @@
 	<script src="js/init.js" type="text/javascript"></script>
 	<script src="js/init-pages.js" type="text/javascript"></script>
 	<script src="http://ge.seazonegames.com/js/init-after.js" type="text/javascript"></script>
-	<script>
-		//app.initialize();
-	</script>
-	
-	<script>
-
-$.fn.click = function(listener) {
-
-    return this.each(function() {
-
-       var $this = $( this );
-
-       $this.on('vclick', listener);
-
-    });
-
-};
-
-</script>
 </body>
 </html>

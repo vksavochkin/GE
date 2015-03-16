@@ -45,7 +45,7 @@
 						vacationClass = 'vacation';
 					}
 					
-					list += '<div class="row full" rel="'+i+'" onclick="Galaxy.showPage('+i+');">\
+					list += '<div class="row full galaxy-show-page-link" rel="'+i+'">\
 										<div class="galaxy-table-id">'+i+'</div>\
 										<div class="galaxy-table-planet">\
 											<div class="planet" style="background-image:url(images/planets/'+planetsList[i]['image']+'.png);">\
@@ -67,8 +67,8 @@
 										</div>\
 									</div>';
 				}else{
-					var colonize = (parseInt(planet.colony_ship) > 0 ? '<a class="galaxy-colonize" rel="'+g+';'+s+';'+i+'" onclick="galaxyMissionColonize(\''+g+';'+s+';'+i+'\');"></a>' : '');
-					var move = (parseInt(planet.moved) == 0 ? '<a class="galaxy-move" rel="'+g+';'+s+';'+i+'" onclick="galaxyPlanetMove(\''+g+';'+s+';'+i+'\');"></a>' : '');
+					var colonize = (parseInt(planet.colony_ship) > 0 ? '<div class="galaxy-colonize" rel="'+g+';'+s+';'+i+'"></div>' : '');
+					var move = (parseInt(planet.moved) == 0 ? '<div class="galaxy-move" rel="'+g+';'+s+';'+i+'"></div>' : '');
 
 					list += '<div class="row">\
 								<div class="galaxy-table-id">'+i+'</div>\
@@ -99,11 +99,11 @@
 					return false;
 				}
 				user_row = '<div class="user-row">\
-					<div class="userpic user-link""><img src="images/avatars/'+data.avatar+'.gif" rel="'+data.username+'" onclick="UserInfo.showPage(\''+data.username+'\');"></div>\
+					<div class="userpic user-link" rel="'+data.username+'"><img src="images/avatars/'+data.avatar+'.gif"></div>\
 						<div class="userinfo">\
 							<h1>'+data.username+' ['+data.rank+'] '+data.status+'</h1>\
-							<a class="btn send-message-btn" onclick="Mail.new_message(\''+data.username+'\',\'\');" rel="'+data.user_id+'">Send Message</a>\
-							<a class="btn user-statistic-btn" rel="'+data.user_id+'" onclick="Scoreboard.init('+data.user_id+');">Statistics</a>\
+							<div class="btn send-message-btn" rel'+data.username+'" rel="'+data.user_id+'">Send Message</div>\
+							<div class="btn user-statistic-btn" rel="'+data.user_id+'">Statistics</div>\
 							</div>\
 						<div class="clear"></div>\
 					</div>'; 
@@ -114,8 +114,8 @@
 						<div class="allyinfo">\
 							<h1>'+data.ally_name+' ('+data.ally_tag+')</h1>\
 							<!--<h2>38 members</h2>-->\
-							<a class="btn ally-page-btn ally-link" rel="'+data.ally_tag+'" onclick="Ally.showPage(\''+data.ally_tag+'\');">Alliance Page</a>\
-							<a class="btn ally-statistic-btn" rel="'+data.ally_tag+'">Statistic</a>\
+							<div class="btn ally-page-btn ally-link" rel="'+data.ally_tag+'">Alliance Page</div>\
+							<div class="btn ally-statistic-btn" rel="'+data.ally_tag+'">Statistic</div>\
 						</div>\
 						<div class="clear"></div>\
 					</div>';
@@ -126,15 +126,15 @@
 				// trying to fix positions of as much buttons as possible
 				//console.log(data.user_id+':'+user.id);
 				if(parseInt(data.user_id) != parseInt(user.id)){
-					planet_links += parseInt(planet.espionage_probe) > 0 ? '<a class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';1"  onclick="galaxyMissionSpy(\''+data.g+';'+data.s+';'+data.p+';1\');"><img src="images/icon-spy.png"></a>' : '';
-					planet_links += '<a class="btn galaxy-link-attack" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,1);"><img src="images/icon-attack.png"></a>';
-					planet_links += '<a class="btn galaxy-link-stay" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,4);"><img src="images/icon-stay.png"></a>';
+					planet_links += parseInt(planet.espionage_probe) > 0 ? '<div class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';1"><img src="images/icon-spy.png"></div>' : '';
+					planet_links += '<div class="btn galaxy-link-attack" rel="'+data.g+';'+data.s+';'+data.p+';1;1"><img src="images/icon-attack.png"></div>';
+					planet_links += '<div class="btn galaxy-link-stay" rel="'+data.g+';'+data.s+';'+data.p+';1;4"><img src="images/icon-stay.png"></div>';
 				}
-				planet_links += '<a class="btn galaxy-link-transportation" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',1,3);"><img src="images/icon-transportation.png"></a>';
+				planet_links += '<div class="btn galaxy-link-transportation" rel="'+data.g+';'+data.s+';'+data.p+';1;3"><img src="images/icon-transportation.png"></div>';
 
 				if(parseInt(data.user_id) != parseInt(user.id)){
 					if(missiles_range(data.user_id, data.g, data.s)){
-						planet_links += '<a class="btn galaxy-link-missles" rel="'+data.g+';'+data.s+';'+data.p+';1" onclick="Galaxy.showMissles('+data.g+','+data.s+','+data.p+',1);"><img src="images/icon-missles.png"></a>';
+						planet_links += '<div class="btn galaxy-link-missles" rel="'+data.g+';'+data.s+';'+data.p+';1"><img src="images/icon-missles.png"></div>';
 					}
 				}
 
@@ -143,12 +143,12 @@
 							<h2>Debris: '+prettyNumber(data.debries_metal)+' Metal, '+prettyNumber(data.debries_crystal)+' Crystal</h2>\
 						</div>';
 
-					planet_links += '<a class="btn galaxy-link-recycle" rel="'+data.g+';'+data.s+';'+data.p+'" onclick="galaxyMissionRecycle(\''+data.g+';'+data.s+';'+data.p+'\');"><img src="images/icon-recycling.png"></a>';
+					planet_links += '<div class="btn galaxy-link-recycle" rel="'+data.g+';'+data.s+';'+data.p+'"><img src="images/icon-recycling.png"></div>';
 				}
 
 				var phalanx = '';
 				if(!Check.isEmpty(data.phalanx)){
-					phalanx = '(<span class="phalanx-link" rel="'+data.id+'" data-g="'+data.g+'" data-s="'+data.s+'" data-p="'+data.p+'" onclick="galaxyPhalanx('+data.id+','+data.g+','+data.s+','+data.p+');" style="text-decoration:underline;">Phalanx</span>)';
+					phalanx = '(<span class="phalanx-link" rel="'+data.id+';'+data.g+';'+data.s+';'+data.p+'" style="text-decoration:underline;">Phalanx</span>)';
 				}
 				
 				planet_row = '<div class="planet-row">\
@@ -163,13 +163,13 @@
 				
 				if(!Check.isEmpty(data.moon)){
 					if(parseInt(data.user_id) != parseInt(user.id)){
-						moon_links += parseInt(planet.espionage_probe) > 0 ? '<a class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';3"  onclick="galaxyMissionSpy(\''+data.g+';'+data.s+';'+data.p+';3\');"><img src="images/icon-spy.png"></a>' : '';
-						moon_links += '<a class="btn galaxy-link-attack" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,1);"><img src="images/icon-attack.png"></a>';
-						moon_links += '<a class="btn galaxy-link-stay" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,4);"><img src="images/icon-stay.png"></a>';
+						moon_links += parseInt(planet.espionage_probe) > 0 ? '<div class="btn galaxy-link-spy" rel="'+data.g+';'+data.s+';'+data.p+';3"><img src="images/icon-spy.png"></div>' : '';
+						moon_links += '<div class="btn galaxy-link-attack" rel="'+data.g+';'+data.s+';'+data.p+';3;1"><img src="images/icon-attack.png"></div>';
+						moon_links += '<div class="btn galaxy-link-stay" rel="'+data.g+';'+data.s+';'+data.p+';3;4"><img src="images/icon-stay.png"></div>';
 					}
-					moon_links += '<a class="btn galaxy-link-transportation" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,3);"><img src="images/icon-transportation.png"></a>';
+					moon_links += '<div class="btn galaxy-link-transportation" rel="'+data.g+';'+data.s+';'+data.p+';3;3"><img src="images/icon-transportation.png"></div>';
 					if(parseInt(data.user_id) != parseInt(user.id)){
-						moon_links += '<a class="btn galaxy-link-destroy" onclick="Shipyard.init('+data.g+','+data.s+','+data.p+',3,9);"><img src="images/icon-destroy.png"></a>';
+						moon_links += '<div class="btn galaxy-link-destroy" rel="'+data.g+';'+data.s+';'+data.p+';3;9"><img src="images/icon-destroy.png"></div>';
 					}
 
 					moon_row = '<div class="moon-row">\
@@ -192,7 +192,7 @@
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">'+data.name+' ['+data.g+':'+data.s+':'+data.p+']</h4><div class="user-profile">'+user_row+ally_row+planet_row+moon_row+'</div></li>\
 				</ul></div>\
 				<nav class="b-menu">\
-					<a class="fr btn" onclick="Galaxy.closePage();">'+lang._T('close')+'</a>\
+					<div class="fr btn galaxy-close-page">'+lang._T('close')+'</div>\
 				</nav>').show().css('z-index','10');
 				
 
@@ -229,7 +229,7 @@
 			<div>\
 				<div></div>\
 				<div>\
-					<a class="fr btn" onclick="Galaxy.sendMissles('+g+','+s+','+p+','+t+');">'+lang._T('Send Missiles')+'</a>\
+					<div class="fr btn galaxy-send-missles-link" rel="'+g+';'+s+';'+p+';'+t+'">'+lang._T('Send Missiles')+'</div>\
 				</div>\
 			</div>\
 		</div>';

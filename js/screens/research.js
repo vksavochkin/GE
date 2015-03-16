@@ -135,7 +135,7 @@
 								<h3>'+tech_name+''+tech_level+'</h3>\
 								<div class="table buildings-table">\
 									<div class="row">\
-										<div class="buildings-table-image"  onclick="Info.init(\''+el+'\');"><img src="images/resources/'+el+'.png"></div>\
+										<div class="buildings-table-image show-info-page-link" rel="'+el+'"><img src="images/resources/'+el+'.png"></div>\
 										<div class="buildings-table-require">\
 											'+tech_price+'\
 											'+time+'\

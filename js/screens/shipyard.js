@@ -41,10 +41,10 @@
 							</div>\
 							<div id="navigation">\
 								<ul>\
-									<li class="selected shipsStepfocus"><a class="btn" onclick="Shipyard.initForm(1);">Ships</a></li>\
-									<li class="destinationStepfocus"><a class="btn" onclick="Shipyard.initForm(2);">Target</a></li>\
-									<li class="missionsStepfocus"><a class="btn" onclick="Shipyard.initForm(3);">Mission</a></li>\
-									<li><a class="btn" onclick="Shipyard.send();">Send</a></li></ul>\
+									<li class="selected shipsStepfocus"><div class="btn" onclick="Shipyard.initForm(1);">Ships</div></li>\
+									<li class="destinationStepfocus"><div class="btn" onclick="Shipyard.initForm(2);">Target</div></li>\
+									<li class="missionsStepfocus"><div class="btn" onclick="Shipyard.initForm(3);">Mission</div></li>\
+									<li><div class="btn" onclick="Shipyard.send();">Send</div></li></ul>\
 							</div>\
 						</div>');
 		

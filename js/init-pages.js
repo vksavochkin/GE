@@ -1,14 +1,14 @@
 $(document).ready(function() {
    	
-$('#menu-left a').on('click', function(){
+$('#menu-left .menu-left-link').on('tap', function(){
     clearTimeout(Chat.interval);
     
-    //var rel = $(this).data('page');
-    /*if(rel == 'Overview'){Overview.init();}
+    var rel = $(this).data('page');
+    if(rel == 'Overview'){Overview.init();}
     else if(rel == 'Empire'){Empire.init();}
     else if(rel == 'Galaxy'){Galaxy.init();}
     else if(rel == 'Fleet'){Shipyard.init();}
-    else if(rel == 'Alliance'){Ally.init();}
+    else if(rel == 'Ally'){Ally.init();}
     else if(rel == 'Buildings'){Buildings.init();}
     else if(rel == 'Research'){Research.init();}
     else if(rel == 'Defense'){Defense.init();}
@@ -22,9 +22,9 @@ $('#menu-left a').on('click', function(){
     else if(rel == 'Store'){Store.init();}
     else if(rel == 'Settings'){Settings.init();}
     else if(rel == 'Logout'){Login.doLogout();}
-    else{Overview.init();}*/
+    else{Overview.init();}
 });
-$('body').on('click', '.menu-left a', function(){
+$('body').on('tap', '#menu-left .menu-left-link', function(){
     clearTimeout(Chat.interval);
 });
 Timers.init();
@@ -34,14 +34,14 @@ Timers.init();
 /*
     Overview
 */   
-$('.header-bg-middle > div').on('click', function(){
+$('.header-bg-middle > div').on('tap', function(){
 	Resources.init();
 });
-$('.home-overview .title').on('click',function(){
+$('.home-overview .title').on('tap',function(){
 	$('.planet-control-modal, .overlay').show();
 });
 
-$('.planet-control-modal .closeBtn, .overlay').on('click',function(){
+$('.planet-control-modal .closeBtn, .overlay').on('tap',function(){
 	$('.planet-control-modal, .overlay').hide();
 });
 
@@ -59,7 +59,7 @@ $('.planet-select').on('change', function(){
 	return false;
 });
 
-$('.planet-img, .moon-img').on('click', function(event){
+$('.planet-img, .moon-img').on('tap', function(event){
 	var pid = parseInt(event.target.attributes.rel.value);
 	Request.send({object:'planet', action:'set', pid:pid});
 	if(responseObj.status != 100){
@@ -75,7 +75,7 @@ $('.planet-img, .moon-img').on('click', function(event){
 /*
     Galaxy
 */
-$('body').on('click', 'a.galaxy-go', function(){
+$('body').on('tap', '.galaxy-go', function(){
 	var g = $('.galaxy-bar-galaxy').val();
 	var s = $('.galaxy-bar-system').val();
 	Galaxy.content(g,s);
@@ -130,7 +130,7 @@ $('body').on('keyup', '.shipyard_metal, .shipyard_crystal, .shipyard_deuterium',
     Alliance
 */
 //ACCORDION BUTTON ACTION (ON CLICK DO THE FOLLOWING)
-	$('body').on('click','.accordionButton',function() {	
+	$('body').on('tap','.accordionButton',function() {	
 		//REMOVE THE ON CLASS FROM ALL BUTTONS
 		$('.accordionButton').removeClass('on');			  
 		//NO MATTER WHAT WE CLOSE ALL OPEN SLIDES
@@ -159,7 +159,7 @@ function toggleRound(rel){
 
 function showACSBtn(rel){
 	$('.asc-block-'+rel).html('<b>Invite to ASC</b><div class="asc-add-block">'+
-		'<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+rel+'"><div rel="'+rel+'" class="btn" onclick="ascAdd('+rel+');">Add</div>'+
+		'<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+rel+'"><div rel="'+rel+'" class="btn add-acs-link">Add</div>'+
 		'<div class="clear"></div>'+
 	'</div>'+
 	'<div class="acs-users">'+
@@ -402,10 +402,10 @@ function settingsShowAvatars(){
 	var out = '';
 	
 	for(i=1001; i<=1126; i++){
-		out += '<a class="avatar-item" onclick="changeAvatar(\''+i+'\');"><img src="images/avatars/'+i+'.gif"></a>';
+		out += '<div class="avatar-item" rel="'+i+'"><img src="images/avatars/'+i+'.gif"></div>';
 	}
 	for(i=2001; i<=2131; i++){
-		out += '<a class="avatar-item" onclick="changeAvatar(\''+i+'\');"><img src="images/avatars/'+i+'.gif"></a>';
+		out += '<div class="avatar-item" rel="'+i+'"><img src="images/avatars/'+i+'.gif"></div>';
 	}
 	
 	Modal.init('Choose Avatar', '<div class="user-profile">'+out+'<div class="clear"></div></div>');
@@ -622,3 +622,319 @@ function decrement(item){
 	if(Number($("."+item).val()) < 1 || Number($("."+item).val()) == 1 ){$("."+item).val('1');return false;}
 	$("."+item).val( Number($("."+item).val()) - 1 );
 };
+
+
+
+/*
+	temporarly here. need to be sorted by page
+*/
+
+$(document).ready(function() {
+	//global events
+	$('.ally-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		Ally.showPage(rel);
+	});
+	
+	$('.user-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		UserInfo.showPage(rel);
+	});
+	
+	$('.galaxy-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Galaxy.init(parseInt(data[0]), parseInt(data[1]));
+	});
+	
+	$('.phalanx-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		galaxyPhalanx(parseInt(data[0]), parseInt(data[1]),parseInt(data[2]), parseInt(data[3]));
+	});
+	
+	$('.galaxy-link-destroy').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+	});
+	$('.galaxy-link-transportation').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+	});
+	$('.galaxy-link-stay').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+	});
+	$('.galaxy-link-attack').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+	});
+	$('.galaxy-link-spy').on('tap', function(){
+		var rel = $(this).attr('rel');
+		galaxyMissionSpy(rel);
+	});
+	$('.galaxy-link-recycle').on('tap', function(){
+		var rel = $(this).attr('rel');
+		galaxyMissionRecycle(rel);
+	});
+	$('.galaxy-link-missles').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Galaxy.showMissles(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]));
+	});
+	$('.galaxy-send-missles-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Galaxy.sendMissles(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]));
+	});
+	
+	
+	$('.galaxy-colonize').on('tap', function(){
+		var rel = $(this).attr('rel');
+		galaxyMissionColonize(rel);
+	});
+	$('.galaxy-move').on('tap', function(){
+		var rel = $(this).attr('rel');
+		galaxyPlanetMove(rel);
+	});
+	$('.galaxy-close-page').on('tap', function(){
+		Galaxy.closePage();
+	});
+	
+	
+	$('.avatar-item').on('tap', function(){
+		var rel = $(this).attr('rel');
+		changeAvatar(rel);
+	});
+	
+	$('.building-build').on('tap', function(){
+		var rel = $(this).attr('rel');
+		buildingBuild(rel);
+	});
+	
+	$('#chatSend').on('tap', function(){
+		Chat.send();
+		return false;
+	});
+	
+	$('.close-cr-btn').on('tap', function(){
+		CR.closePage();
+	});
+	
+	$('.ally-hall-btn').on('tap', function(){
+		Ally.hall();
+	});
+	
+	$('.ally-new-message').on('tap', function(){
+		Mail.new_message('Alliance','');
+	});
+	
+	$('.ally-plats-link').on('tap', function(){
+		Ally.Plats();
+	});
+	
+	$('.ally-show-search-link').on('tap', function(){
+		Ally.showSearch();
+	});
+	
+	$('.ally-init-link').on('tap', function(){
+		Ally.init();
+	});
+	
+	$('.ally-quit-link').on('tap', function(){
+		Ally.quit();
+	});
+	
+	$('.ally-close-page-link').on('tap', function(){
+		Ally.closePage();
+	});
+	
+	$('.ally-rights-link').on('tap', function(){
+		Ally.rightsScreen();
+	});
+	
+	$('.ally-delete-ally-link').on('tap', function(){
+		Ally.deleteAlly();
+	});
+	
+	$('.ally-save-hall-link').on('tap', function(){
+		Ally.saveHall();
+	});
+	
+	$('.building-cancel').on('tap', function(){
+		var rel = $(this).attr('rel');
+		buildingCancel(rel);
+	});
+	
+	$('.defense-build').on('tap', function(){
+		var rel = $(this).attr('rel');
+		defenseBuild(rel);
+	});
+	
+	$('.user-statistic-btn').on('tap', function(){
+		var rel = $(this).attr('rel');
+		Scoreboard.init(rel);
+	});
+	
+	$('.send-message-btn').on('tap', function(){
+		var rel = $(this).attr('rel');
+		Mail.new_message(rel,'');
+	});
+	
+	$('.login-init-link').on('tap', function(){
+		Login.init();
+	});
+	
+	$('.officer-starter-link').on('tap', function(){
+		buyStarter();
+	});
+	
+	$('.officer-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		hireOfficer(data[0], parseInt(data[1]));
+	});
+	
+	$('.show-servers-internal-link').on('tap', function(){
+		Login.showServersInside();
+	});
+	
+	$('.do-search-link').on('tap', function(){
+		Search.doSearch();
+	});
+	
+	$('.tab-buildings-link').on('tap', function(){
+		Buildings.init();
+	});
+	
+	$('.tab-research-link').on('tap', function(){
+		Research.init();
+	});
+	
+	$('.tab-defense-link').on('tap', function(){
+		Defense.init();
+	});
+	
+	$('.tab-ships-link').on('tap', function(){
+		Ships.init();
+	});
+	
+	$('.galaxy-arrow-left').on('tap', function(){
+		decrement('galaxy-bar-galaxy');
+	});
+	
+	$('.galaxy-arrow-right').on('tap', function(){
+		increment('galaxy-bar-galaxy');
+	});
+	
+	$('.system-arrow-left').on('tap', function(){
+		decrement('galaxy-bar-system');
+	});
+	
+	$('.system-arrow-right').on('tap', function(){
+		increment('galaxy-bar-system');
+	});
+	
+	$('.mailbox').on('tap', function(){
+		Mail.init();
+	});
+	
+	$('.show-help-link').on('tap', function(){
+		Overview.showHelp();
+	});
+	
+	$('.planetchooser-link-one').on('tap', function(){
+		PlanetChooser.toggle(Overview.changePlanet);
+	});
+	
+	$('.login-do-register-link').on('tap', function(){
+		Login.doRegister();
+	});
+	
+	$('.login-do-forgot-link').on('tap', function(){
+		Login.doForgot();
+	});
+	
+	$('.login-show-register').on('tap', function(){
+		Login.showRegister();
+	});
+	
+	$('.login-show-forgot').on('tap', function(){
+		Login.showForgot();
+	});
+	
+	$('.login-do-login-link').on('tap', function(){
+		Login.doLogin();
+	});
+	
+	$('.overview-rename-planet-link').on('tap', function(){
+		Overview.renamePlanet();
+	});
+	
+	$('.overview-move-planet-link').on('tap', function(){
+		Overview.movePlanet();
+	});
+	
+	$('.overview-delete-planet-link').on('tap', function(){
+		Overview.deletePlanet();
+	});
+	
+	$('.add-acs-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		ascAdd(rel);
+	});
+	
+	$('.show-info-page-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		Info.init(rel);
+	});
+	
+	$('.toggle-cr-round-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		toggleRound(rel);return false;
+	});
+	
+	$('.galaxy-show-page-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		Galaxy.showPage(rel);
+	});
+	
+	$('.resources-do-change-link').on('tap', function(){
+		Resources.doChange();
+	});
+	
+	$('.error-message-close-link').on('tap', function(){
+		(this).remove();
+	});
+	
+	$('.server-link').on('tap', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		serverLink(data[0], data[1], data[2]);
+	});
+	
+	$('.show-store-page-link').on('tap', function(){
+		Store.init();
+	});
+	
+	$('').on('tap', function(){
+		var rel = $(this).attr('rel');
+		
+	});
+	
+	$('').on('tap', function(){
+		var rel = $(this).attr('rel');
+		
+	});
+	
+	$('').on('tap', function(){
+		var rel = $(this).attr('rel');
+		
+	});
+	
+	
+});

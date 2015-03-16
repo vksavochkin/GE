@@ -69,17 +69,17 @@
 					if (queue['lenght'] == 0){
 						if (NextBuildLevel == 1){
 							if ( HaveRessources == true )
-								click = '<a class="btn building-build" rel="'+el+'" onclick="buildingBuild(\''+el+'\');">'+lang._T('bd_build')+'</a>';
+								click = '<div class="btn building-build" rel="'+el+'">'+lang._T('bd_build')+'</div>';
 							else
 								click = "<b>"+lang._T('bd_build')+"</b>";
 						}else{
 							if ( HaveRessources == true )
-								click = '<a class="btn building-build" rel="'+el+'" onclick="buildingBuild(\''+el+'\');">'+ lang._T('bd_build_next_level') + NextBuildLevel +'</a>';
+								click = '<div class="btn building-build" rel="'+el+'">'+ lang._T('bd_build_next_level') + NextBuildLevel +'</div>';
 							else
 								click = "<b>"+ lang._T('bd_build_next_level') + NextBuildLevel +"</b>";
 						}
 					}else{
-						click = '<a class="btn building-build" rel="'+el+'" onclick="buildingBuild(\''+el+'\');">'+lang._T('bd_add_to_list')+'</a>';
+						click = '<div class="btn building-build" rel="'+el+'">'+lang._T('bd_add_to_list')+'</div>';
 					}
 				}else if (RoomIsOk && !CanBuildElement){
 					if (NextBuildLevel == 1){
@@ -124,7 +124,7 @@
 								<h3>'+n+''+nivel+'</h3>\
 								<div class="table buildings-table">\
 									<div class="row">\
-										<div class="buildings-table-image" onclick="Info.init(\''+i+'\');"><img src="images/resources/'+i+'.png"></div>\
+										<div class="buildings-table-image show-info-page-link" rel="'+i+'"><img src="images/resources/'+i+'.png"></div>\
 										<div class="buildings-table-require">\
 											'+price+'\
 											'+time+'\
@@ -190,10 +190,10 @@
 							//Buttons
 							if (ListID == 1){ 
 								ListIDRow2 = '<div id="blc" class="js_timer" timer="'+BuildTime+'|1"><div>\
-										<a class="btn" rel="'+ListID+':cancel">'+lang._T('bd_interrupt')+'</a>\
+										<div class="btn" rel="'+ListID+':cancel">'+lang._T('bd_interrupt')+'</div>\
 										<b>'+ BuildEndTime +'</b>';
 							}else{
-								ListIDRow2 = '<a class="btn" rel="'+ListID+':remove">'+lang._T('bd_cancel')+'</a>';
+								ListIDRow2 = '<div class="btn" rel="'+ListID+':remove">'+lang._T('bd_cancel')+'</div>';
 							}
 							
 							if (BuildMode == 'build'){
@@ -214,7 +214,7 @@
 												<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
 											</div>\
 											<div class="buildings-table-timer-action">\
-												'+(ListID != 1 ? '<a rel="'+Element+':'+ListID+':remove" class="btn building-cancel" onclick="buildingCancel(\''+Element+':'+ListID+':remove\');">'+lang._T('Remove')+'</a>' : '' )+'\
+												'+(ListID != 1 ? '<div rel="'+Element+':'+ListID+':remove" class="btn building-cancel">'+lang._T('Remove')+'</div>' : '' )+'\
 											</div>\
 										</div>\
 									';

@@ -74,8 +74,8 @@
 		Timers.init();
 	});
 </script>
-<p><a href="#" onclick="Timers.createTimer(5);">Add Timer</a></p>
-<p><a href="#" onclick="Timers.init();">ReInit</a></p>
+<p><span>Add Timer</span></p> Timers.createTimer(5);
+<p><span>ReInit</span></p> Timers.init();
 */
 var Timers = {
 	lastRequest: 0,

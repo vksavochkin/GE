@@ -60,7 +60,7 @@
 					restart = 'Next restart: '+row['restart'];
 				}
 				
-				out += '<li class="server-link '+rClass+'" onclick="serverLink(\''+srv+'\','+data_reg+',\''+row['name']+'\');">\
+				out += '<li class="server-link '+rClass+'">\
 								    <span class="server-name" style="display:none;">'+row['name']+'</span>\
 								    <div class="server-info">\
 								    	<span class="server-name">'+row['name']+'</span>\
@@ -80,7 +80,7 @@
 		}
 		
 		if(Check.isEmpty(out)){
-			out = '<p style="text-align:center">No Servers found.<br/><br/> <a onclick="Login.init();"><< Go back to login screen</a></p>';
+			out = '<p style="text-align:center">No Servers found.<br/><br/> <span class="login-init-link"><< Go back to login screen</span></p>';
 		}
 		
 		return out;

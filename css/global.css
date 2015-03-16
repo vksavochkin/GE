@@ -113,11 +113,11 @@ pre
 		display:inline-block;
 	}
 	.btn:hover,
-	.btn:focus,#navigation ul li.selected a {
+	.btn:focus,#navigation ul li.selected div {
 		outline: none;
 		border: 1px solid #10bac8;
 	}
-	.btn:focus,#navigation ul li.selected a {
+	.btn:focus,#navigation ul li.selected div {
 		box-shadow: 0 0 7px #2B72D5;
 	}
 	.btn:active {
@@ -1845,7 +1845,7 @@ Production
           
 /* PAGINATOR*/
 /*Pagination*/
-.pager ul li a.normal{
+.pager ul li .normal{
 	display:block;
 	cursor:pointer;
 	overflow:hidden;
@@ -1863,7 +1863,7 @@ Production
 	-webkit-box-shadow:0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 2px 4px rgba(0, 0, 0, 0.15);
 	box-shadow:0px 2px 2px rgba(0, 0, 0, 0.2), inset 0px 2px 4px rgba(0, 0, 0, 0.15);*/
 }
-.pager ul li a.normal:active{color:#200b04;}
+.pager ul li .normal:active{color:#200b04;}
 .pager
 {
 	/*width: 100%;*/
@@ -1907,7 +1907,7 @@ Production
 	display: inline;
 	margin-left: 2px;
 }
-.pager ul li a.normal
+.pager ul li .normal
 {
 	text-decoration: none;
 	display: inline-table;
@@ -1936,7 +1936,7 @@ Production
 	cursor: pointer;
 	padding:2px;
 }
-.pager ul li a.active
+.pager ul li .active
 {
 	text-decoration: none;
 	display: inline-table;

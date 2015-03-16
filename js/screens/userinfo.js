@@ -45,8 +45,8 @@
 						'<div class="allyinfo">'+
 							'<h1>'+info.ally_name+' ('+info.ally_tag+')</h1>'+
 							'<!--<h2>38 members</h2>-->'+
-							'<a class="btn ally-page-btn ally-link" rel="'+info.ally_tag+'" onclick="Ally.showPage(\''+info.ally_tag+'\');">Alliance Page</a>'+
-							'<a class="btn ally-statistic-btn" rel="'+info.ally_tag+'">Statistic</a>'+
+							'<div class="btn ally-page-btn ally-link" rel="'+info.ally_tag+'">Alliance Page</div>'+
+							'<div class="btn ally-statistic-btn" rel="'+info.ally_tag+'">Statistic</div>'+
 						'</div>'+
 						'<div class="clear"></div>'+
 					'</div>';
@@ -56,7 +56,7 @@
 		planet_row = '<div class="planet-row">'+
 						'<div class="planetpic"><img src="images/planets/'+info.image+'.png"></div>'+
 						'<div class="planetinfo">'+
-							'<h1 class="galaxy-link" rel="'+info.g+';'+info.s+'" onclick="Galaxy.init('+info.g+', '+info.s+');"><b>Home Planet:</b><br/>'+info.name+' ['+info.g+':'+info.s+':'+info.p+']</h1>'+
+							'<h1 class="galaxy-link" rel="'+info.g+';'+info.s+'"><b>Home Planet:</b><br/>'+info.name+' ['+info.g+':'+info.s+':'+info.p+']</h1>'+
 						'</div>'+
 						'<div class="clear"></div>'+
 					'</div>';

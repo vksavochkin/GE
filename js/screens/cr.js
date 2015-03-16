@@ -28,7 +28,7 @@
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">Combat Report</h4><div class="user-profile">'+CR.generateReport(responseObj.actionreport.report)+'</div></li>\
 				</ul></div>\
 				<nav class="b-menu">\
-					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
+					<div class="fr btn close-cr-btn">'+lang._T('close')+'</div>\
 				</nav>').show();
 
 		
@@ -40,7 +40,7 @@
 						<li style="padding:5px 5px 50px 5px;"><h4 style="text-align:center;margin:0px 0px 5px;">Combat Report</h4><div class="user-profile">'+CR.generateReport(report)+'</div></li>\
 				</ul></div>\
 				<nav class="b-menu">\
-					<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>\
+					<div class="fr btn close-cr-btn">'+lang._T('close')+'</div>\
 				</nav>').show();
 
 		
@@ -56,7 +56,7 @@
 		
 		foreach(report.rounds, function(r,round){
 			out += '<div class="round round-'+r+'">\
-				<div class="round-title" rel="'+r+'" onclick="toggleRound('+r+');return false;">Round '+(parseInt(r)+1)+'</div>\
+				<div class="round-title toggle-cr-round-link" rel="'+r+'">Round '+(parseInt(r)+1)+'</div>\
 				<div class="round-content round-content-'+r+'">\
 					'+CR.generateUsersRow(round.attackers, true)+'\
 					'+CR.generateUsersRow(round.defenders, false)+'\

@@ -24,7 +24,7 @@
 		$(this.pageID).html('<div class="b-main overthrow" id="chatScroll">\
 					<div class="scroll-holder" style="min-height:100%;overflow:auto;"><div class="chat-holder" style="">'+this.showChat()+'</div></div>\
 				</div>\
-				<div class="chatControl"><input class="fl" type="text" name="chatMsg" id="chatMsg"> <a href="#" class="fr btn" id="chatSend" onclick="Chat.send();return false;">'+lang._T('Send')+'</a></div>\
+				<div class="chatControl"><input class="fl" type="text" name="chatMsg" id="chatMsg"> <div class="fr btn" id="chatSend">'+lang._T('Send')+'</div></div>\
 		');			
 		return false;
 	},
@@ -39,7 +39,7 @@
 		foreach(responseObj.chatshow, function(key, m) {
 			lid++;
 			var d = asDate(m.timestamp).format(Date.formats.chat);
-			c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
+			c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
 		});
 		$('.chat-holder').html(c);	
 		
@@ -61,7 +61,7 @@
 			foreach(responseObj.chatshow, function(key, m) {
 				lid++;
 				var d = asDate(m.timestamp).format(Date.formats.chat);
-				c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
+				c+= '<p '+(lid==total_msgs ? 'class="last"' : '')+'>('+d+') <b class="user-link" rel="'+m.username+'">'+m.username+'</b>: <span '+(Check.isEmpty(m.color) ? '':'style="color:'+m.color+';"')+'>'+m.message+'</span></p>';
 			});
 			return c;
 		}else{

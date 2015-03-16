@@ -35,8 +35,8 @@ var Search= {
 						<div><b>'+lang._T('Alliance Tag')+'</b></div>\
 					</div>';
 				foreach(responseObj.allysearch, function(key, m) { 
-					out += '<div><div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'" onclick="Ally.showPage(\''+m.ally_tag+'\');">'+m.ally_name+'</span></div>\
-						<div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'" onclick="Ally.showPage(\''+m.ally_tag+'\');">'+m.ally_tag+'</span></div></div>';
+					out += '<div><div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'">'+m.ally_name+'</span></div>\
+						<div style="padding:10px 5px"><span class="ally-link" rel="'+m.ally_tag+'">'+m.ally_tag+'</span></div></div>';
 				});
 				out += '</div></li></ul>';
 				$('#page_search_scroll').html(out);
@@ -56,13 +56,13 @@ var Search= {
 				foreach(responseObj.searchsearch, function(key, m) { 
 					out += '<div>\
 								<div style="padding:10px 5px">\
-									<span class="user-link" rel="'+m.username+'" onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'<br/><small>Rank: '+m.rank+'</small></span>\
+									<span class="user-link" rel="'+m.username+'">'+m.username+'<br/><small>Rank: '+m.rank+'</small></span>\
 								</div>\
 								<div style="padding:10px 5px">\
-									<span class="galaxy-link" rel="'+m.g+';'+m.s+'" onclick="Galaxy.init('+m.g+', '+m.s+');">['+m.g+':'+m.s+':'+m.p+']</span>\
+									<span class="galaxy-link" rel="'+m.g+';'+m.s+'">['+m.g+':'+m.s+':'+m.p+']</span>\
 								</div>\
 								<div style="padding:10px 5px">\
-									<span class="ally-link" rel="'+m.ally_tag+'" onclick="Ally.showPage(\''+m.ally_tag+'\');">'+m.ally_name+'<br/><small>'+(Check.isEmpty(m.ally_tag) ? '' : 'TAG:')+' '+m.ally_tag+'</small></span>\
+									<span class="ally-link" rel="'+m.ally_tag+'">'+m.ally_name+'<br/><small>'+(Check.isEmpty(m.ally_tag) ? '' : 'TAG:')+' '+m.ally_tag+'</small></span>\
 								</div>\
 							</div>';
 				});

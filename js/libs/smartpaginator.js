@@ -35,8 +35,8 @@
                     dataElements = $('' + settings.dataelement + '', dataContainer);
                 }
                 var list = $('<ul/>');
-                var btnPrev = $('<div/>').text(settings.prev).click(function() { currentPage = parseInt(list.find('li a.active').text()) - 1; navigate(--currentPage); }).addClass('btn');
-                var btnNext = $('<div/>').text(settings.next).click(function() { currentPage = parseInt(list.find('li a.active').text()); navigate(currentPage); }).addClass('btn');
+                var btnPrev = $('<div/>').text(settings.prev).click(function() { currentPage = parseInt(list.find('li span.active').text()) - 1; navigate(--currentPage); }).addClass('btn');
+                var btnNext = $('<div/>').text(settings.next).click(function() { currentPage = parseInt(list.find('li span.active').text()); navigate(currentPage); }).addClass('btn');
                 var btnFirst = $('<div/>').text(settings.first).click(function() { currentPage = 0; navigate(0); }).addClass('btn');
                 var btnLast = $('<div/>').text(settings.last).click(function() { currentPage = totalpages - 1; navigate(currentPage); }).addClass('btn');
                 var inputPage = $('<input/>').attr('type', 'text').keydown(function(e) {
@@ -73,19 +73,17 @@
                     for (var i = startPage; i < startPage + settings.length; i++) {
                         if (i == totalpages) break;
                         list.append($('<li/>')
-                                    .append($('<a>').attr('id', (i + 1)).addClass(settings.theme).addClass('normal')
-                                    .attr('href', 'javascript:void(0)')
-									.attr('onclick', 'return false;')
+                                    .append($('<span>').attr('id', (i + 1)).addClass(settings.theme).addClass('normal')
                                     .text(i + 1))
-                                    .click(function() {
+                                    .on('tap',function() {
                                         currentPage = startPage + $(this).closest('li').prevAll().length;
                                         navigate(currentPage);
                                     }));
                     }
                     //showLabels(startPage);
                     inputPage.val((startPage + 1));
-                    list.find('li a').addClass(settings.theme).removeClass('active');
-                    list.find('li:eq(0) a').addClass(settings.theme).addClass('active');
+                    list.find('li span').addClass(settings.theme).removeClass('active');
+                    list.find('li:eq(0) span').addClass(settings.theme).addClass('active');
                     showRequiredButtons(startPage);
                 }
                 function navigate(topage) {
@@ -102,9 +100,9 @@
                                 startIndex = totalpages - settings.length;
                         }
                         buildNavigation(startIndex); //showLabels(currentPage);
-                        list.find('li a').removeClass('active');
+                        list.find('li span').removeClass('active');
                         inputPage.val(currentPage + 1);
-                        list.find('li a[id="' + (index + 1) + '"]').addClass('active');
+                        list.find('li span[id="' + (index + 1) + '"]').addClass('active');
                         var recordStartIndex = currentPage * settings.recordsperpage;
                         var recordsEndIndex = recordStartIndex + settings.recordsperpage;
                         if (recordsEndIndex > settings.totalrecords)

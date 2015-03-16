@@ -266,7 +266,7 @@
 					<b>'+m.post_username+'</b> '+(can_delete==false ? '' : '(<b onClick="Forum.DeleteMessage('+m.pid+');">Delete</b>)')+' <small>'+asDate(m.post_time).format(Date.formats.forum)+'</small>\
 				</div>\
 				<div class="post-message">\
-					<div class="post-avatar user-link" rel="'+m.post_username+'" onclick="UserInfo.showPage(\''+m.post_username+'\');" style="background:url(images/avatars/'+m.avatar+'.gif) no-repeat;"></div>\
+					<div class="post-avatar user-link" rel="'+m.post_username+'" style="background:url(images/avatars/'+m.avatar+'.gif) no-repeat;"></div>\
 					'+recover(m.message)+'\
 				</div>\
 			</div>';

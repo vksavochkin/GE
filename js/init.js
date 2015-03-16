@@ -175,11 +175,11 @@ function initGame() {
 
 function initSidebars(){
     //nav buttons
-    $('.open-left').on('click', function(){
+    $('.open-left').on('tap', function(){
 		initLeftMenu();
 	});	
 	
-	$('.outer-fleet-bar').on('click', function(){
+	$('.outer-fleet-bar').on('tap', function(){
 		initRightMenu();
 	});
 	
@@ -194,7 +194,7 @@ function initSidebars(){
     });
 	
 	//support
-	$('#menu_overflow, #menu-left a').on('click tap', function(){
+	$('#menu_overflow, #menu-left .menu-left-link').on('tap', function(){
     	$('body').removeClass('show_left_sidebar').removeClass('show_right_sidebar');
     	$('#menu-right').html('');
     	$('#menu_overflow').addClass('menu_overflow_hidden');
