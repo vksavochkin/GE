@@ -54,7 +54,7 @@ var PlanetChooser = {
 				//var status2 = (!Check.isEmpty(c_planet['last_activity_update']) ? '<div class="status2">'+c_planet['last_activity_update']+'</div>' : '');
 				var moon = c_planet.moon_id > 0 ? '<div class="moon"></div>' : '';
 
-				rows[formatPlanetCoords(c_planet)] = '<div class="cell" onclick="PlanetChooser.choose('+planet_id+');">\
+				rows[formatPlanetCoords(c_planet)] = '<div class="cell planet-chooser-choose-link" rel="'+planet_id+'">\
 						<div class="galaxy-table-planet">\
 							<div class="planet" style="background-image:url(images/planets/'+c_planet['image']+'.png); width: 35px; height: 35px">\
 								'+status+'\
@@ -62,7 +62,7 @@ var PlanetChooser = {
 							</div>\
 						</div>\
 					</div>';
-				rows[formatPlanetCoords(c_planet)] += '<div class="cell '+is_current+'" onclick="PlanetChooser.choose('+planet_id+');">\
+				rows[formatPlanetCoords(c_planet)] += '<div class="cell planet-chooser-choose-link '+is_current+'" rel="'+planet_id+'">\
 						<div class="planetchooser-planet-label">'+c_planet['name']+' <span class="planetchooser-inline-coords">'+formatPlanetCoords(c_planet)+'</span></div>\
 						<div class="planetchooser-construction">'+timer_building+'</div>\
 					</div>';
@@ -71,7 +71,7 @@ var PlanetChooser = {
 					rows[formatPlanetCoords(c_planet)] += '<div class="cell planetchooser-moon-label"></div>';
 				}
 			}else if (planet_type == 3){
-				rows[formatPlanetCoords(c_planet)] += '<div class="cell '+is_current+'" onclick="PlanetChooser.choose('+planet_id+');">\
+				rows[formatPlanetCoords(c_planet)] += '<div class="cell planet-chooser-choose-link '+is_current+'" rel="'+planet_id+'">\
 						<div class="planetchooser-moon-label">'+c_planet['name']+'</div>\
 						<div class="planetchooser-construction">'+timer_building+'</div>\
 					</div>';

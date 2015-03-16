@@ -28,7 +28,7 @@
 			foreach(responseObj.forumcategories, function(key, m) {
 				c+= '<div class="forum-title"><b>'+key+'</b></div>';
 				foreach(responseObj.forumcategories[key], function(keyc, mc) {
-					c+= '<div onclick="Forum.showTopics('+mc.fid+');" class="forum-category">\
+					c+= '<div rel="'+mc.fid+'" class="forum-category forum-show-topics-link">\
 					<div><small>'+mc.forum_last_post_subject+'<br/>\
 					'+(mc.forum_last_post_time>0 ? asDate(mc.forum_last_post_time).format(Date.formats.forum) : '')+'<br/>\
 					'+mc.forum_last_post_username+'</small></div>\
@@ -58,8 +58,8 @@
 					</div>\
 				</div>\
 				<div class="b-menu">\
-					'+(parseInt(responseObj.forumtopics.category.auth_post) > parseInt(responseObj.state.user.level) ? '' : '<button class="fl btn" style="margin-left:10px;" onclick="Forum.newTopic('+responseObj.forumtopics.category.fid+');">'+lang._T('New Topic')+'</button>')+'\
-					<button class="fr btn" onclick="Forum.closeTopics();">'+lang._T('Close')+'</button>\
+					'+(parseInt(responseObj.forumtopics.category.auth_post) > parseInt(responseObj.state.user.level) ? '' : '<div class="fl btn forum-new-topic-link" style="margin-left:10px;" rel="'+responseObj.forumtopics.category.fid+'">'+lang._T('New Topic')+'</div>')+'\
+					<div class="fr btn forum-close-topics-link">'+lang._T('Close')+'</div>\
 				</div>');
 		}else{
 			alertify.confirm(lang._T('Connection Error. Please try again.'), function (e) {
@@ -89,7 +89,7 @@
 	showTopicsContent: function(){
 		var o='';
 		foreach(responseObj.forumtopics.topics, function(key, m) {
-			o+= '<div class="forum-topic t'+m.tid+'" onclick="Forum.showPosts('+m.tid+');">\
+			o+= '<div class="forum-topic t'+m.tid+' forum-show-posts-link" rel="'+m.tid+'">\
 				<div class="last-reply">\
 					'+asDate(m.topic_last_post_time).format(Date.formats.forum)+'<br/>'+m.topic_last_post_username+'\
 				</div>\
@@ -108,7 +108,7 @@
 		if(responseObj.status == 100){
 			var o='';
 			foreach(responseObj.forumtopics.topics, function(key, m) {
-				o+= '<div class="forum-topic t'+m.tid+'" onclick="Forum.showPosts('+m.tid+');">\
+				o+= '<div class="forum-topic t'+m.tid+' forum-show-posts-link" rel="'+m.tid+'">\
 					<div class="last-reply">\
 						'+asDate(m.topic_last_post_time).format(Date.formats.forum)+'<br/>'+m.topic_last_post_username+'\
 					</div>\
@@ -142,8 +142,8 @@
 					</div></div>\
 				</div>\
 				<div class="b-menu">\
-					<button class="fl btn" style="margin-left:10px;" onclick="Forum.closeNewTopic();">'+lang._T('Close')+'</button>\
-					<div><button class="fr btn" onclick="Forum.createTopic('+n+');">'+lang._T('Create')+'</button></div>\
+					<div class="fl btn forum-close-new-topic-link" style="margin-left:10px;">'+lang._T('Close')+'</div>\
+					<div class="fr btn forum-create-topic-link" rel="'+n+'">'+lang._T('Create')+'</div>\
 				</div>');
 		$('#forum-newposts-screen').show();				
 		return false;
@@ -193,13 +193,13 @@
 			$('#forum-posts-screen').html('<div class="b-main overthrow" id="forumPostsScroll" style="bottom:40px;">\
 					<div class="scroll-holder" >\
 						<div class="forum-holder" id="forum-posts">'+this.showPostsContent()+'</div>\
-						'+( can_delete == false ? '' : '<button class="btn" onClick="Forum.DeleteTopic('+n+');" class="fl">Delete</button>')+'\
+						'+( can_delete == false ? '' : '<div class="btn forum-delete-topic-link" rel="'+n+'" class="fl">Delete</div>')+'\
 						<div id="post-nav"></div>\
 					</div>\
 				</div>\
 				<div class="b-menu">\
-					<button class="fl btn" style="margin-left:10px;" onclick="Forum.newReply('+responseObj.forumposts.topic.tid+');">'+lang._T('Reply')+'</button>\
-					<button class="fr btn" onclick="Forum.closePosts();">'+lang._T('Close')+'</button>\
+					<div class="fl btn forum-new-reply-link" style="margin-left:10px;" rel="'+responseObj.forumposts.topic.tid+'">'+lang._T('Reply')+'</div>\
+					<div class="fr btn forum-close-posts-link">'+lang._T('Close')+'</div>\
 				</div>');
 		}else{
 			alertify.confirm(lang._T('Connection Error. Please try again.'), function (e) {
@@ -263,7 +263,7 @@
 		foreach(responseObj.forumposts.posts, function(key, m) {
 			o+= '<div class="forum-post p'+m.pid+'">\
 				<div class="post-statusbar">\
-					<b>'+m.post_username+'</b> '+(can_delete==false ? '' : '(<b onClick="Forum.DeleteMessage('+m.pid+');">Delete</b>)')+' <small>'+asDate(m.post_time).format(Date.formats.forum)+'</small>\
+					<b>'+m.post_username+'</b> '+(can_delete==false ? '' : '(<b class="forum-delete-message-link" rel="'+m.pid+'">Delete</b>)')+' <small>'+asDate(m.post_time).format(Date.formats.forum)+'</small>\
 				</div>\
 				<div class="post-message">\
 					<div class="post-avatar user-link" rel="'+m.post_username+'" style="background:url(images/avatars/'+m.avatar+'.gif) no-repeat;"></div>\
@@ -309,8 +309,8 @@
 					</div></div>\
 				</div>\
 				<div class="b-menu">\
-					<button class="fl btn" style="margin-left:10px;" onclick="Forum.closeReply();">'+lang._T('Close')+'</button>\
-					<div><button class="fr btn" onclick="Forum.createReply('+n+');">'+lang._T('Reply')+'</button></div>\
+					<div class="fl btn forum-close-reply-link" style="margin-left:10px;">'+lang._T('Close')+'</div>\
+					<div><div class="fr btn forum-create-reply-link" rel="'+n+'">'+lang._T('Reply')+'</div></div>\
 				</div>');
 		$('#forum-newposts-screen').show();				
 		return false;

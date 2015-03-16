@@ -881,7 +881,7 @@ dateFormat.i18n = {
 // For convenience...
 Date.prototype.format = function (mask, utc) {
 	if (typeof mask == 'undefined') {
-		mask = Date.formats.default;
+		mask = dateFormat.masks.phpDateTime;//Date.formats.default;
 	}
 	return dateFormat(this, mask, utc);
 };
@@ -892,7 +892,7 @@ Date.formats = {
 	forum: "mmm dd, HH:MM TT",
 	chat: dateFormat.masks.isoTime,
 	fleetTimeShort: dateFormat.masks.mediumTime,
-	default: dateFormat.masks.phpDateTime
+	'default': dateFormat.masks.phpDateTime
 };
 
 // Even worse: user's clock may drift from server's.

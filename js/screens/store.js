@@ -126,7 +126,7 @@ var renderIAPs = function (el) {
 		var html = '<div class="table inapp-list">';
 		for (var id in IAP.products) {
 			var prod = IAP.products[id];
-			html += '<div><div><p style="padding:10px 0px 5px;">'+prod.title+'</p></div><div style="width:70px;"><a class="btn fr" onclick="IAP.buy(\''+prod.id+'\')">'+prod.price+'</a></div></div>';
+			html += '<div><div><p style="padding:10px 0px 5px;">'+prod.title+'</p></div><div style="width:70px;"><div class="btn fr iap-buy-link" rel="'+prod.id+'">'+prod.price+'</div></div></div>';
 		}
 		html += '</div>';
 	}else{
@@ -257,7 +257,7 @@ var renderAIAPs = function (el) {
 		function(purchases){
 			var html = '<div class="table inapp-list">';
 			foreach(purchases, function(k,p) {
-				html += '<div><div><p style="padding:10px 0px 5px;">'+p.title+'</p></div><div style="width:70px;"><a class="btn fr" onclick="AIAP.buy(\''+p.productId+'\')">'+p.price+'</a></div></div>';
+				html += '<div><div><p style="padding:10px 0px 5px;">'+p.title+'</p></div><div style="width:70px;"><div class="btn fr aiap-buy-link" rel="'+p.productId+'">'+p.price+'</div></div></div>';
 			});
 			html += '</div>';
 			$('.inapp-block').html(html);

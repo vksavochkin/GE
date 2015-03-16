@@ -44,10 +44,10 @@
 			if(parseInt(user.vacation_time) > 0){
 				vacation = '<div class="js_timer" timer="'+user.vacation_time+'|1"></div>';
 			}else{
-				vacation = '<a class="settings-vacation-stop" onclick="settingsVacationStop();">Exit</a>';
+				vacation = '<div class="settings-vacation-stop">Exit</div>';
 			}
 		}else{
-			vacation = '<a class="settings-vacation-start" onclick="settingsVacationStart();">Enable</a>';
+			vacation = '<div class="settings-vacation-start">Enable</div>';
 		}
 		
 		var out = '<ul>\
@@ -155,7 +155,7 @@
 							<div class="row">\
 								<div class="settings-table-title">Avatar:</div>\
 								<div class="settings-table-action">\
-									<img src="images/avatars/'+user.avatar+'.gif" class="settings-avatar" alt="" onclick="settingsShowAvatars();">\
+									<img src="images/avatars/'+user.avatar+'.gif" class="settings-avatar settings-show-avatars-link" alt="">\
 								</div>\
 							</div>\
 							<div class="row">\
@@ -176,7 +176,7 @@
 								</div>\
 							</div>\
 						</div>\
-						<div class="title-blue"><a class="btn settings-save" onclick="saveSettings();">Save</a></div><br/><br/><br/><br/>\
+						<div class="title-blue"><div class="btn settings-save setting-save-link">Save</div></div><br/><br/><br/><br/>\
 					</li>\
 				</ul>';
 		

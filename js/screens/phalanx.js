@@ -14,7 +14,7 @@
 						</li>\
 				</ul></div>\
 				<nav class="b-menu" style="background:#323849;">\
-					<a class="fr btn" onclick="Phalanx.closePage();">'+lang._T('close')+'</a>\
+					<div class="fr btn phalanx-close-page-link">'+lang._T('close')+'</div>\
 				</nav>').show();
 	},
 	
@@ -144,7 +144,7 @@
 			}
 			
 			out += '<li class="side-fleet-row side-phalanx-row '+fleet_status+'">\
-						<div class="phalanx-toggle" data-id="'+k+'" onclick="togglePhalanx('+k+');">\
+						<div class="phalanx-toggle phalanx-toggle-link" rel="'+k+'">\
 							<b class="icon mission'+f.fleet_mission+'"></b>\
 							<span>\
 								From '+from+'<br/>\
@@ -177,7 +177,7 @@
 		});
 		
 		if(Check.isEmpty(out)){
-			out = '<li class="side-fleet-row"><span style="text-align:center;width:100%;">You don\'t have any fleet activity right now</span><a href="#" class="btn" style="display:block;clear:both;margin:0px auto;width:100px;height:20px;line-height:20px;padding:4px 10px;text-align:center;margin-bottom:10px;" onclick="Shipyard.init();">Send Fleet</a></li>';
+			out = '<li class="side-fleet-row"><span style="text-align:center;width:100%;">You don\'t have any fleet activity right now</span><div class="btn shipyard-init-link" style="display:block;clear:both;margin:0px auto;width:100px;height:20px;line-height:20px;padding:4px 10px;text-align:center;margin-bottom:10px;">Send Fleet</div></li>';
 		}
 		return '<ul style="list-style:none;padding:0px;">'+out+'</ul>';
 		

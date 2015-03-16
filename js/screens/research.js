@@ -93,9 +93,9 @@
 						}
 					}else{
 						if (LevelToDo == 1){
-							TechnoLink = '<a class="btn research-build" rel="'+el+'" onclick="doResearch(\''+el+'\');">'+lang._T('bd_research')+'</a>';
+							TechnoLink = '<div class="btn research-build research-build-link" rel="'+el+'">'+lang._T('bd_research')+'</div>';
 						}else{
-							TechnoLink = '<a class="btn research-build" rel="'+el+'" onclick="doResearch(\''+el+'\');">'+lang._T('bd_research')+' '+lang._T('bd_lvl')+' '+LevelToDo+'</a>';
+							TechnoLink = '<div class="btn research-build research-build-link" rel="'+el+'">'+lang._T('bd_research')+' '+lang._T('bd_lvl')+' '+LevelToDo+'</div>';
 						}
 					}
 				}else{
@@ -165,7 +165,7 @@
 											<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
 										</div>\
 										<!--<div class="buildings-table-timer-action">\
-											<a rel="'+planet.b_tech_id+'" class="btn research-cancel" onclick="cancelResearch(\''+planet.b_tech_id+'\');">'+lang._T('bd_cancel')+'</a>\
+											<div rel="'+planet.b_tech_id+'" class="btn research-cancel research-cancel-link">'+lang._T('bd_cancel')+'</div>\
 										</div>-->\
 									</div>\
 								</div>';

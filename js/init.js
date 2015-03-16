@@ -1,4 +1,4 @@
-window.onerror = function (message, filename, lineno, colno, error) {
+/*window.onerror = function (message, filename, lineno, colno, error) {
     if ("\v" === "v") {
         return;
     }
@@ -11,7 +11,7 @@ window.onerror = function (message, filename, lineno, colno, error) {
     var stack = error ? (error.stack || '').toString() : '';
 
     Request.send({object: 'auth', action: 'log', msg:message, url:filename, line:lineno, col:colno, stack:stack, agent:agent});           
-};
+};*/
 
 
 
@@ -177,10 +177,12 @@ function initSidebars(){
     //nav buttons
     $('.open-left').on('tap', function(){
 		initLeftMenu();
+		return false;
 	});	
 	
 	$('.outer-fleet-bar').on('tap', function(){
 		initRightMenu();
+		return false;
 	});
 	
 	//Touch gestures
@@ -188,9 +190,11 @@ function initSidebars(){
 	var Swipe = new Hammer(bodyElement);
 	Swipe.on("swipeleft", function(ev) {
         initRightMenu();
+		return false;
     });
     Swipe.on("swiperight", function(ev) {
         initLeftMenu();
+		return false;
     });
 	
 	//support

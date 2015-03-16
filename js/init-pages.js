@@ -23,6 +23,7 @@ $('#menu-left .menu-left-link').on('tap', function(){
     else if(rel == 'Settings'){Settings.init();}
     else if(rel == 'Logout'){Login.doLogout();}
     else{Overview.init();}
+    return;
 });
 $('body').on('tap', '#menu-left .menu-left-link', function(){
     clearTimeout(Chat.interval);
@@ -36,13 +37,16 @@ Timers.init();
 */   
 $('.header-bg-middle > div').on('tap', function(){
 	Resources.init();
+    return false;
 });
 $('.home-overview .title').on('tap',function(){
 	$('.planet-control-modal, .overlay').show();
+    return false;
 });
 
 $('.planet-control-modal .closeBtn, .overlay').on('tap',function(){
 	$('.planet-control-modal, .overlay').hide();
+    return false;
 });
 
 $('#chatSend').keydown(function (e){
@@ -50,6 +54,7 @@ $('#chatSend').keydown(function (e){
         Chat.send();
         return false;
     }
+    return false;
 });
 
 
@@ -79,6 +84,7 @@ $('body').on('tap', '.galaxy-go', function(){
 	var g = $('.galaxy-bar-galaxy').val();
 	var s = $('.galaxy-bar-system').val();
 	Galaxy.content(g,s);
+    return false;
 });
 
 
@@ -96,6 +102,7 @@ $('body').on('change', '.shipyard_galaxy, .shipyard_system, .shipyard_planet', f
 	    validateStep(2);
     }
     
+    return false;
 });
 
 
@@ -108,6 +115,7 @@ $('body').on('change', '.shipyard_type, .shipyard_speed', function(){
 	    validateStep(2);
     }
     
+    return false;
 });
 
 $('body').on('change', '.shipyard_own_planets', function(){
@@ -120,10 +128,12 @@ $('body').on('change', '.shipyard_own_planets', function(){
     $('.shipyard_type').val(parseInt(data[3]));
     validateStep(2);
     
+    return false;
 });
 
 $('body').on('keyup', '.shipyard_metal, .shipyard_crystal, .shipyard_deuterium', function(){
 	calculateTransportCapacity();
+    return false;
 });
 
 /*
@@ -142,6 +152,7 @@ $('body').on('keyup', '.shipyard_metal, .shipyard_crystal, .shipyard_deuterium',
 			//OPEN THE SLIDE
 			$(this).next().slideDown('normal');
 		 }
+         return;
 	  
 	 });
 
@@ -151,10 +162,12 @@ $('body').on('keyup', '.shipyard_metal, .shipyard_crystal, .shipyard_deuterium',
 function togglePhalanx(rel){
 	
 	$('.phalanx-details-toggle-'+rel).toggle();
+         return;
 };
 
 function toggleRound(rel){
 	$('.round-content-'+rel).toggle();
+         return;
 };
 
 function showACSBtn(rel){
@@ -166,6 +179,7 @@ function showACSBtn(rel){
 		'<b>Already Invited:</b>'+
 		'<div class="asc-invited asc-invited-'+rel+'"><div>'+
 	'</div>');
+         return;
 };
 
 function ascAdd(rel){
@@ -178,6 +192,7 @@ function ascAdd(rel){
 		alertify.alert(lang._T('User '+username+' successfully invited.'));
 		$('.asc-invited-'+rel).append('<p>'+username+'</p>');
 	}
+         return;
 };
 
 
@@ -198,6 +213,7 @@ function galaxyPhalanx(rel,g,s,p){
 	        // user clicked "cancel"
 	    //}
 	//});
+         return;
 	
 	
 };
@@ -220,6 +236,7 @@ function galaxyPlanetMove(rel){
 	        // user clicked "cancel"
 	    }
 	});
+         return;
 	
 	
 };
@@ -240,6 +257,7 @@ function galaxyMissionColonize(rel){
 	        // user clicked "cancel"
 	    }
 	});
+         return;
 	
 };
 //spy
@@ -259,6 +277,7 @@ function galaxyMissionSpy(rel){
 			timeout: 1500
 		});
 	}
+         return;
 };
 //recycling
 function galaxyMissionRecycle(rel){
@@ -270,6 +289,7 @@ function galaxyMissionRecycle(rel){
 	}else{			
 		alertify.alert(lang._T('You successfully sent Recyclers to debris on planet ['+data[0]+':'+data[1]+':'+data[2]+']'));
 	}
+         return;
 };
 
 //recall
@@ -284,6 +304,7 @@ function fleetCallback(rel){
 		initRightMenu();		
 		alertify.alert(lang._T('You successfully sent ships back to planet.'));
 	}
+         return;
 };
 
 /*
@@ -305,6 +326,7 @@ function buildingBuild(el){
 	        // user clicked "cancel"
 	    }
 	});
+         return;
 };
 function buildingCancel(el){
 	var arr = el.split(':');
@@ -315,6 +337,7 @@ function buildingCancel(el){
 	}else{			
 		Buildings.init();
 	}
+         return;
 };
 function buildingDestroy(el){
 	var current_level = parseInt(planet[el]);
@@ -333,6 +356,7 @@ function buildingDestroy(el){
 	        // user clicked "cancel"
 	    }
 	});
+         return;
 };
 
 /*
@@ -354,6 +378,7 @@ function doResearch(el){
 	        // user clicked "cancel"
 	    }
 	});
+         return;
 };
 function cancelResearch(el){
 	Request.send({object:'research', action:'research', cmd:'cancel', prod:el});
@@ -363,6 +388,7 @@ function cancelResearch(el){
 	}else{			
 		Research.init();
 	}
+         return;
 };
 /*
     Production - Defense
@@ -376,6 +402,7 @@ function defenseBuild(el){
 	}else{			
 		Defense.init();
 	}
+         return;
 };
 /*
     Production - Ships
@@ -389,6 +416,7 @@ function shipsBuild(el){
 	}else{			
 		Ships.init();
 	}
+         return;
 };
 
 
@@ -410,6 +438,7 @@ function settingsShowAvatars(){
 	
 	Modal.init('Choose Avatar', '<div class="user-profile">'+out+'<div class="clear"></div></div>');
 	
+    return;
 };
 
 function settingsVacationStart(){
@@ -428,6 +457,7 @@ function settingsVacationStart(){
 	        // user clicked "cancel"
 	    }
 	});
+    return;
 	
 	
 };
@@ -449,6 +479,7 @@ function settingsVacationStop(){
 	        // user clicked "cancel"
 	    }
 	});
+    return;
 	
 };
 
@@ -470,6 +501,7 @@ function changeAvatar(rel){
 	        // user clicked "cancel"
 	    }
 	});
+    return;
 	
 	
 };
@@ -481,17 +513,20 @@ function maxShipBtn(el){
 		var max = $(this).data('max');
 		$(this).val(max);
 	});
+    return;
 };
 function removeAllShipsBtn(){
 	$('.shipyard_input').each(function(){
 		$(this).val('');
 	});
+    return;
 };
 function maxAllShipsBtn(){
 	$('.shipyard_input').each(function(){
 		var max = $(this).data('max');
 		$(this).val(max);
 	});
+    return;
 };
 
 function hireOfficer(rel){
@@ -519,6 +554,7 @@ function hireOfficer(rel){
 	        // user clicked "cancel"
 	    }
 	});
+    return;
 	
 	
 };
@@ -539,6 +575,7 @@ function buyStarter(){
 	        // user clicked "cancel"
 	    }
 	});
+    return;
 	
 	
 };
@@ -571,6 +608,7 @@ function serverLink(srv, registered, server_name){
 			window.location.reload();
 		}
 	}
+    return;
 };
 
 function saveSettings(){
@@ -610,17 +648,20 @@ function saveSettings(){
 		Settings.init();
 		alertify.alert(lang._T('Settings was successfully saved.'));
 	}
+    return;
 	
 };
 
 function increment(item){
 	if(Number($("."+item).val()) < 1){$("."+item).val('1');return false;}
 	$("."+item).val( Number($("."+item).val()) + 1 );
+    return;
 };
 	
 function decrement(item){
 	if(Number($("."+item).val()) < 1 || Number($("."+item).val()) == 1 ){$("."+item).val('1');return false;}
 	$("."+item).val( Number($("."+item).val()) - 1 );
+    return;
 };
 
 
@@ -631,310 +672,746 @@ function decrement(item){
 
 $(document).ready(function() {
 	//global events
-	$('.ally-link').on('tap', function(){
+	$('body').on('tap', '.ally-link', function(){
 		var rel = $(this).attr('rel');
 		Ally.showPage(rel);
+        return false;
 	});
 	
-	$('.user-link').on('tap', function(){
+	$('body').on('tap', '.user-link', function(){
 		var rel = $(this).attr('rel');
 		UserInfo.showPage(rel);
+        return false;
 	});
 	
-	$('.galaxy-link').on('tap', function(){
+	$('body').on('tap', '.galaxy-link', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Galaxy.init(parseInt(data[0]), parseInt(data[1]));
+        return false;
 	});
 	
-	$('.phalanx-link').on('tap', function(){
+	$('body').on('tap', '.phalanx-link', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		galaxyPhalanx(parseInt(data[0]), parseInt(data[1]),parseInt(data[2]), parseInt(data[3]));
+        return false;
 	});
 	
-	$('.galaxy-link-destroy').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-destroy', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+        return false;
 	});
-	$('.galaxy-link-transportation').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-transportation', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+        return false;
 	});
-	$('.galaxy-link-stay').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-stay', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+        return false;
 	});
-	$('.galaxy-link-attack').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-attack', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]), parseInt(data[4]));
+        return false;
 	});
-	$('.galaxy-link-spy').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-spy', function(){
 		var rel = $(this).attr('rel');
 		galaxyMissionSpy(rel);
+        return false;
 	});
-	$('.galaxy-link-recycle').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-recycle', function(){
 		var rel = $(this).attr('rel');
 		galaxyMissionRecycle(rel);
+        return false;
 	});
-	$('.galaxy-link-missles').on('tap', function(){
+	$('body').on('tap', '.galaxy-link-missles', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Galaxy.showMissles(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]));
+        return false;
 	});
-	$('.galaxy-send-missles-link').on('tap', function(){
+	$('body').on('tap', '.galaxy-send-missles-link', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		Galaxy.sendMissles(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]));
+        return false;
 	});
 	
 	
-	$('.galaxy-colonize').on('tap', function(){
+	$('body').on('tap', '.galaxy-colonize', function(){
 		var rel = $(this).attr('rel');
 		galaxyMissionColonize(rel);
+        return false;
 	});
-	$('.galaxy-move').on('tap', function(){
+	$('body').on('tap', '.galaxy-move', function(){
 		var rel = $(this).attr('rel');
 		galaxyPlanetMove(rel);
+        return false;
 	});
-	$('.galaxy-close-page').on('tap', function(){
+	$('body').on('tap', '.galaxy-close-page', function(){
 		Galaxy.closePage();
+        return false;
 	});
 	
 	
-	$('.avatar-item').on('tap', function(){
+	$('body').on('tap', '.avatar-item', function(){
 		var rel = $(this).attr('rel');
 		changeAvatar(rel);
+        return false;
 	});
 	
-	$('.building-build').on('tap', function(){
+	$('body').on('tap', '.building-build', function(){
 		var rel = $(this).attr('rel');
 		buildingBuild(rel);
+        return false;
 	});
 	
-	$('#chatSend').on('tap', function(){
+	$('body').on('tap', '#chatSend', function(){
 		Chat.send();
 		return false;
 	});
 	
-	$('.close-cr-btn').on('tap', function(){
+	$('body').on('tap', '.close-cr-btn', function(){
 		CR.closePage();
+        return false;
 	});
 	
-	$('.ally-hall-btn').on('tap', function(){
+	$('body').on('tap', '.ally-hall-btn', function(){
 		Ally.hall();
+        return false;
 	});
 	
-	$('.ally-new-message').on('tap', function(){
+	$('body').on('tap', '.ally-new-message', function(){
 		Mail.new_message('Alliance','');
+        return false;
 	});
 	
-	$('.ally-plats-link').on('tap', function(){
+	$('body').on('tap', '.ally-plats-link', function(){
 		Ally.Plats();
+        return false;
 	});
 	
-	$('.ally-show-search-link').on('tap', function(){
+	$('body').on('tap', '.ally-show-search-link', function(){
 		Ally.showSearch();
+        return false;
 	});
 	
-	$('.ally-init-link').on('tap', function(){
+	$('body').on('tap', '.ally-init-link', function(){
 		Ally.init();
+        return false;
 	});
 	
-	$('.ally-quit-link').on('tap', function(){
+	$('body').on('tap', '.ally-quit-link', function(){
 		Ally.quit();
+        return false;
 	});
 	
-	$('.ally-close-page-link').on('tap', function(){
+	$('body').on('tap', '.ally-close-page-link', function(){
 		Ally.closePage();
+        return false;
 	});
 	
-	$('.ally-rights-link').on('tap', function(){
+	$('body').on('tap', '.ally-rights-link', function(){
 		Ally.rightsScreen();
+        return false;
 	});
 	
-	$('.ally-delete-ally-link').on('tap', function(){
+	$('body').on('tap', '.ally-delete-ally-link', function(){
 		Ally.deleteAlly();
+        return false;
 	});
 	
-	$('.ally-save-hall-link').on('tap', function(){
+	$('body').on('tap', '.ally-save-hall-link', function(){
 		Ally.saveHall();
+        return false;
 	});
 	
-	$('.building-cancel').on('tap', function(){
+	$('body').on('tap', '.building-cancel', function(){
 		var rel = $(this).attr('rel');
 		buildingCancel(rel);
+        return false;
 	});
 	
-	$('.defense-build').on('tap', function(){
+	$('body').on('tap', '.defense-build', function(){
 		var rel = $(this).attr('rel');
 		defenseBuild(rel);
+        return false;
 	});
 	
-	$('.user-statistic-btn').on('tap', function(){
+	$('body').on('tap', '.user-statistic-btn', function(){
 		var rel = $(this).attr('rel');
 		Scoreboard.init(rel);
+        return false;
 	});
 	
-	$('.send-message-btn').on('tap', function(){
+	$('body').on('tap', '.send-message-btn', function(){
 		var rel = $(this).attr('rel');
 		Mail.new_message(rel,'');
+        return false;
 	});
 	
-	$('.login-init-link').on('tap', function(){
+	$('body').on('tap', '.login-init-link', function(){
 		Login.init();
+        return false;
 	});
 	
-	$('.officer-starter-link').on('tap', function(){
+	$('body').on('tap', '.officer-starter-link', function(){
 		buyStarter();
+        return false;
 	});
 	
-	$('.officer-link').on('tap', function(){
+	$('body').on('tap', '.officer-link', function(){
 		var rel = $(this).attr('rel');
-		var data = rel.split(';');
-		hireOfficer(data[0], parseInt(data[1]));
+		hireOfficer(rel);
+        return false;
 	});
 	
-	$('.show-servers-internal-link').on('tap', function(){
+	$('body').on('tap', '.show-servers-internal-link', function(){
+		$('body').removeClass('show_left_sidebar').removeClass('show_right_sidebar');
+    	$('#menu-right').html('');
+    	$('#menu_overflow').addClass('menu_overflow_hidden');
+		clearTimeout(Chat.interval);
 		Login.showServersInside();
+        return false;
 	});
 	
-	$('.do-search-link').on('tap', function(){
+	$('body').on('tap', '.do-search-link', function(){
 		Search.doSearch();
+        return false;
 	});
 	
-	$('.tab-buildings-link').on('tap', function(){
+	$('body').on('tap', '.tab-buildings-link', function(){
 		Buildings.init();
+        return false;
 	});
 	
-	$('.tab-research-link').on('tap', function(){
+	$('body').on('tap', '.tab-research-link', function(){
 		Research.init();
+        return false;
 	});
 	
-	$('.tab-defense-link').on('tap', function(){
+	$('body').on('tap', '.tab-defense-link', function(){
 		Defense.init();
+        return false;
 	});
 	
-	$('.tab-ships-link').on('tap', function(){
+	$('body').on('tap', '.tab-ships-link', function(){
 		Ships.init();
+        return false;
 	});
 	
-	$('.galaxy-arrow-left').on('tap', function(){
+	$('body').on('tap', '.galaxy-arrow-left', function(){
 		decrement('galaxy-bar-galaxy');
+        return false;
 	});
 	
-	$('.galaxy-arrow-right').on('tap', function(){
+	$('body').on('tap', '.galaxy-arrow-right', function(){
 		increment('galaxy-bar-galaxy');
+        return false;
 	});
 	
-	$('.system-arrow-left').on('tap', function(){
+	$('body').on('tap', '.system-arrow-left', function(){
 		decrement('galaxy-bar-system');
+        return false;
 	});
 	
-	$('.system-arrow-right').on('tap', function(){
+	$('body').on('tap', '.system-arrow-right', function(){
 		increment('galaxy-bar-system');
+        return false;
 	});
 	
-	$('.mailbox').on('tap', function(){
+	$('body').on('tap', '.mailbox', function(){
 		Mail.init();
+        return false;
 	});
 	
-	$('.show-help-link').on('tap', function(){
+	$('body').on('tap', '.show-help-link', function(){
 		Overview.showHelp();
+        return false;
 	});
 	
-	$('.planetchooser-link-one').on('tap', function(){
+	$('body').on('tap', '.planetchooser-link', function(){
 		PlanetChooser.toggle(Overview.changePlanet);
+        return false;
 	});
 	
-	$('.login-do-register-link').on('tap', function(){
+	$('body').on('tap', '.login-do-register-link', function(){
 		Login.doRegister();
+        return false;
 	});
 	
-	$('.login-do-forgot-link').on('tap', function(){
+	$('body').on('tap', '.login-do-forgot-link', function(){
 		Login.doForgot();
+        return false;
 	});
 	
-	$('.login-show-register').on('tap', function(){
+	$('body').on('tap', '.login-show-register', function(){
 		Login.showRegister();
+        return false;
 	});
 	
-	$('.login-show-forgot').on('tap', function(){
+	$('body').on('tap', '.login-show-forgot', function(){
 		Login.showForgot();
+        return false;
 	});
 	
-	$('.login-do-login-link').on('tap', function(){
+	$('body').on('tap', '.login-do-login-link', function(){
 		Login.doLogin();
+        return false;
 	});
 	
-	$('.overview-rename-planet-link').on('tap', function(){
+	$('body').on('tap', '.overview-rename-planet-link', function(){
 		Overview.renamePlanet();
+        return false;
 	});
 	
-	$('.overview-move-planet-link').on('tap', function(){
+	$('body').on('tap', '.overview-move-planet-link', function(){
 		Overview.movePlanet();
+        return false;
 	});
 	
-	$('.overview-delete-planet-link').on('tap', function(){
+	$('body').on('tap', '.overview-delete-planet-link', function(){
 		Overview.deletePlanet();
+        return false;
 	});
 	
-	$('.add-acs-link').on('tap', function(){
+	$('body').on('tap', '.add-acs-link', function(){
 		var rel = $(this).attr('rel');
 		ascAdd(rel);
+        return false;
 	});
 	
-	$('.show-info-page-link').on('tap', function(){
+	$('body').on('tap', '.show-info-page-link', function(){
 		var rel = $(this).attr('rel');
 		Info.init(rel);
+        return false;
 	});
 	
-	$('.toggle-cr-round-link').on('tap', function(){
+	$('body').on('tap', '.toggle-cr-round-link', function(){
 		var rel = $(this).attr('rel');
-		toggleRound(rel);return false;
+		toggleRound(rel);
+		return false;
 	});
 	
-	$('.galaxy-show-page-link').on('tap', function(){
+	$('body').on('tap', '.galaxy-show-page-link', function(){
 		var rel = $(this).attr('rel');
 		Galaxy.showPage(rel);
+        return false;
 	});
 	
-	$('.resources-do-change-link').on('tap', function(){
+	$('body').on('tap', '.resources-do-change-link', function(){
 		Resources.doChange();
+        return false;
 	});
 	
-	$('.error-message-close-link').on('tap', function(){
+	$('body').on('tap', '.error-message-close-link', function(){
 		(this).remove();
+        return false;
 	});
 	
-	$('.server-link').on('tap', function(){
+	$('body').on('tap', '.server-link', function(){
 		var rel = $(this).attr('rel');
 		var data = rel.split(';');
 		serverLink(data[0], data[1], data[2]);
+        return false;
 	});
 	
-	$('.show-store-page-link').on('tap', function(){
+	$('body').on('tap', '.show-store-page-link', function(){
 		Store.init();
+        return false;
 	});
 	
-	$('').on('tap', function(){
+	$('body').on('tap', '.ally-cancel-apply-register-link', function(){
+		AllyP.cancelApplyRegister();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-close-link', function(){
+		AllyP.close();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-cancel-apply', function(){
+		AllyP.cancelApply();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-apply-link', function(){
+		AllyP.apply();
+        return false;
+	});
+	
+	$('body').on('tap', '.userinfo-show-page-link', function(){
 		var rel = $(this).attr('rel');
+		UserInfo.showPage(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-hall-link', function(){
+		Ally.hall();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-add-rank-link', function(){
+		Ally.addRank();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-save-rank-link', function(){
+		var rel = $(this).attr('rel');
+		Ally.saveRank(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-relete-rank-link', function(){
+		var rel = $(this).attr('rel');
+		Ally.deleteRank(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-relete-rank-link', function(){
+		var rel = $(this).attr('rel');
+        return false;
 		
 	});
 	
-	$('').on('tap', function(){
+	$('body').on('tap', '.ally-plats-accept-link', function(){
 		var rel = $(this).attr('rel');
-		
+		Ally.PlatsAccept(rel);
+        return false;
 	});
 	
-	$('').on('tap', function(){
+	$('body').on('tap', '.ally-plats-decline-link', function(){
 		var rel = $(this).attr('rel');
-		
+		Ally.PlatsDecline(rel);
+        return false;
 	});
 	
+	$('body').on('tap', '.ally-do-search-ally-link', function(){
+		Ally.doSearchAlly();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-do-register-ally', function(){
+		Ally.doRegister();
+        return false;
+	});
+	
+	$('body').on('tap', '.ally-show-register-link', function(){
+		Ally.showRegister();
+        return false;
+	});
+	
+	$('body').on('tap', '.aiap-buy-link', function(){
+		var rel = $(this).attr('rel');
+		AIAP.buy(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.iap-buy-link', function(){
+		var rel = $(this).attr('rel');
+		IAP.buy(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.setting-save-link', function(){
+		saveSettings();
+        return false;
+	});
+	
+	$('body').on('tap', '.settings-show-avatars-link', function(){
+		settingsShowAvatars();
+        return false;
+	});
+	
+	$('body').on('tap', '.settings-vacation-start', function(){
+		settingsVacationStart();
+        return false;
+	});
+	
+	$('body').on('tap', '.settings-vacation-stop', function(){
+		settingsVacationStop();
+        return false;
+	});
+	
+	$('body').on('tap', '.cr-close-page-link', function(){
+		CR.closePage();
+        return false;
+	});
+	
+	$('body').on('tap', '.scoreboard-init-user-link', function(){
+		var rel = $(this).attr('rel');
+		Scoreboard.init(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.ships-build-link', function(){
+		var rel = $(this).attr('rel');
+		shipsBuild(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.research-cancel-link', function(){
+		var rel = $(this).attr('rel');
+		cancelResearch(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.research-build-link', function(){
+		var rel = $(this).attr('rel');
+		doResearch(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.shipyard-init-link', function(){
+		Shipyard.init();
+        return false;
+	});
+	
+	$('body').on('tap', '.phalanx-toggle-link', function(){
+		var rel = $(this).attr('rel');
+		togglePhalanx(rel);
+		return false;
+	});
+	
+	$('body').on('tap', '.phalanx-close-page-link', function(){
+		Phalanx.closePage();
+        return false;
+	});
+	
+	$('body').on('tap', '.planet-chooser-choose-link', function(){
+		var rel = $(this).attr('rel');
+		PlanetChooser.choose(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.max-ship-btn', function(){
+		var rel = $(this).attr('rel');
+		maxShipBtn(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.destroy-building-link', function(){
+		var rel = $(this).attr('rel');
+		buildingDestroy(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.info-jump-link', function(){
+		Info.jump();
+        return false;
+	});
+	
+	$('body').on('tap', '.remove-ships', function(){
+		removeAllShipsBtn();
+        return false;
+	});
+	
+	$('body').on('tap', '.max-ships-all', function(){
+		maxAllShipsBtn();
+        return false;
+	});
+	
+	$('body').on('tap', '.show-help-page-link', function(){
+		var rel = $(this).attr('rel');
+		Overview.showHelp(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.side-fleet-acs-link', function(){
+		var rel = $(this).attr('rel');
+		showACSBtn(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.side-fleet-return', function(){
+		var rel = $(this).attr('rel');
+		fleetCallback(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-create-reply-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.createReply(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-close-reply-link', function(){
+		Forum.closeReply();
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-delete-message-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.DeleteMessage(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-close-posts-link', function(){
+		Forum.closePosts();
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-new-reply-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.newReply(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-delete-topic-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.DeleteTopic(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-close-new-topic-link', function(){
+		Forum.closeNewTopic();
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-create-topic-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.createTopic(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-show-posts-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.showPosts(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-close-topics-link', function(){
+		Forum.closeTopics();
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-new-topic-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.newTopic(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.forum-show-topics-link', function(){
+		var rel = $(this).attr('rel');
+		Forum.showTopics(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.shipyard-close-sim-link', function(){
+		Shipyard.closeSim();
+        return false;
+	});
+	
+	$('body').on('tap', '.shipyard-do-sim-link', function(){
+		Shipyard.doSim();
+        return false;
+	});
+	
+	$('body').on('tap', '.shipyard-send-link', function(){
+		Shipyard.send();
+        return false;
+	});
+	
+	$('body').on('tap', '.max-resources-all-btn', function(){
+		maxResources();
+        return false;
+	});
+	
+	$('body').on('tap', '.max-resources-btn', function(){
+	    var rel = $(this).attr('rel');
+	    maxResource(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.planet-chooser-shipyard-link', function(){
+		PlanetChooser.toggle(Shipyard.destination);
+        return false;
+	});
+	
+	$('body').on('tap', '.max-ships-all', function(){
+		maxAllShipsBtn();
+        return false;
+	});
+	
+	$('body').on('tap', '.remove-ships', function(){
+		removeAllShipsBtn();
+        return false;
+	});
+	
+	$('body').on('tap', '.max-ship-btn', function(){
+		var rel = $(this).attr('rel');
+		maxShipBtn(rel);
+        return false;
+	});
+	
+	$('body').on('tap', '.shipsStepfocus', function(){
+		Shipyard.initForm(1);
+        return false;
+	});
+	
+	$('body').on('tap', '.destinationStepfocus', function(){
+		Shipyard.initForm(2);
+        return false;
+	});
+	
+	$('body').on('tap', '.missionsStepfocus', function(){
+		Shipyard.initForm(3);
+        return false;
+	});
+	
+	$('body').on('tap', '.combat-sim-link', function(){
+		Shipyard.showSim();
+        return false;
+	});
+	
+	$('body').on('tap', '.sim-link', function(){
+		var rel = $(this).attr('rel');
+		Shipyard.showSim(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.shipyard-init-mail-link', function(){
+		var rel = $(this).attr('rel');
+		var data = rel.split(';');
+		Shipyard.init(parseInt(data[0]), parseInt(data[1]), parseInt(data[2]), parseInt(data[3]));	
+        return false;	
+	});
+	
+	$('body').on('tap', '.mail-send-link', function(){
+		Mail.send();
+        return false;
+	});
+	
+	$('body').on('tap', '.mail-close-page-link', function(){
+		Mail.closePage();
+        return false;
+	});
+	
+	$('body').on('tap', '.delete-message', function(){
+		var rel = $(this).attr('rel');
+		Mail._delete(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.mail-delete-all-link', function(){
+		var rel = $(this).attr('rel');
+		Mail.deleteAll(parseInt(rel));
+        return false;
+	});
+	
+	$('body').on('tap', '.mail-categoty-link', function(){
+		var rel = $(this).attr('rel');
+		Mail.category(parseInt(rel));
+        return false;
+	});	
 	
 });

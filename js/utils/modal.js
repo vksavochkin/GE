@@ -110,7 +110,7 @@ var Modal = {
 			});
 			$('.inner_modal_box').css({
 				'position':'absolute',
-				'top':'30px',
+				'top':'40px',
 				'left':'10px',
 				'right':'10px',
 				'bottom':'10px',

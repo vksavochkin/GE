@@ -15,13 +15,13 @@
 	line-height: 14px;
 }
 
-/*.allow_selection, .allow_selection *{
+.allow_selection, .allow_selection *{
 	-webkit-touch-callout:default !important;
     -webkit-user-select:text !important;
     -moz-user-select:text !important;
     -ms-user-select:text !important;
     user-select:text !important;
-}*/
+}
 
 html, body
 {
@@ -317,7 +317,7 @@ input, textarea, select {
 		margin-left:-130px;
 		text-align:center;
 	}
-	.login-bar a{
+	.login-bar span{
 		padding:0px 20px;
 	}
 	
@@ -554,7 +554,7 @@ input, textarea, select {
 		overflow:hidden;
 		font-size:11px;		
 	}
-	#help-bar .bar-title span a{
+	#help-bar .bar-title span span{
 		font-size:11px;		
 		color:#fff;
 		text-decoration:underline;
@@ -728,7 +728,7 @@ input, textarea, select {
 	width:100%;
     background: url(../images/bg2.png) repeat;
 }
-	.outer-fleet-bar a{
+	.outer-fleet-bar span{
 		display:block;
 		clear:both;
 		padding:12px;
@@ -1434,7 +1434,7 @@ Production
 		.buildings-table-action{
 			width:70px;
 		}
-			.buildings-table-action a{
+			.buildings-table-action div{
 				text-align: center;
 			}
 		.buildings-table-action b{
@@ -1468,7 +1468,7 @@ Production
 		.buildings-table-timer-action{
 			width:80px;
 		}
-		.buildings-table-timer-action a{
+		.buildings-table-timer-action div{
 			color:#FF0000;
 			display:block;
 			float:right;
@@ -1502,7 +1502,7 @@ Production
 	.officers-list .buildings-table-action {
 	    width: auto;
 	}
-	.officers-list .buildings-table-action a{
+	.officers-list .buildings-table-action div{
 	    width: 180px;
 	    margin-bottom:5px;
 	}
@@ -2090,7 +2090,7 @@ Statistic
     position:relative;
 	width:25%;
 }
-#navigation ul li a{
+#navigation ul li div{
     display:block;
     padding:10px 0px;
     margin:0px auto;
@@ -2229,7 +2229,7 @@ Statistic
 		float:left;
 		width:50%;
 	}
-		.shipyard-ships-control > div a{
+		.shipyard-ships-control > div span{
 			display:block;
 			margin:5px auto;
 			width:100px;
@@ -2977,7 +2977,7 @@ global-message-holder{
 	padding:10px 0px;
 }
 
-h2.modal_title a{
+h2.modal_title span{
 	font-size:15px !important;
 }
 
@@ -2986,7 +2986,7 @@ h2.modal_title a{
 	clear:both;
 }
 	
-.help-page-links-top a, .help-page-links-bottom a{
+.help-page-links-top div, .help-page-links-bottom div{
 	display:block;
 	clear:both;
 	padding:4px 0px;

@@ -76,15 +76,15 @@
 						'+gate_fleet_rows+'\
 						<div>\
 							<div>\
-								<a class="btn remove-ships" onclick="removeAllShipsBtn();">Remove Ships</a>\
-								<a class="btn max-ships-all" onclick="maxAllShipsBtn();">All Ships</a>\
+								<div class="btn remove-ships">Remove Ships</div>\
+								<div class="btn max-ships-all">All Ships</div>\
 							</div>\
 							<div></div>\
 						</div>\
 						<div style="display:none;"><input type="text" value="" name="input_fix" class="input_fix"></div>\
 						<div>\
 							<div></div>\
-							<div><a class="btn" onclick="Info.jump();"> '+lang._T('in_jump_gate_jump')+'</a></div>\
+							<div><div class="btn info-jump-link"> '+lang._T('in_jump_gate_jump')+'</div></div>\
 						</div>\
 					</div>';
 			}
@@ -187,7 +187,7 @@
 						'+lang._T('Crystal')+': <b>'+prettyNumber(NeededRessources['crystal'])+'</b><br/>\
 						'+lang._T('Deuterium')+': <b>'+prettyNumber(NeededRessources['deuterium'])+'</b><br>\
 						'+lang._T('in_dest_durati')+': '+prettyTime(DestroyTime)+'<br>\
-						<a class="btn destroy-building fr" rel="'+el+'" onclick="buildingDestroy(\''+el+'\');">'+lang._T('Destroy')+'</a>\
+						<div class="btn destroy-building fr destroy-building-link" rel="'+el+'">'+lang._T('Destroy')+'</div>\
 					</div>\
 				</div>\
 			</div>';
@@ -281,7 +281,7 @@
 			if(parseInt(planet[ship]) > 0 && ship != 'solar_satellite'){
 				out += '<div class="row">\
 					<div class="cell">\
-						<a class="btn max-ship-btn fr" rel="'+ship+'" onclick="maxShipBtn(\''+ship+'\');">Max.</a>\
+						<div class="btn max-ship-btn fr" rel="'+ship+'">Max.</div>\
 						'+lang._T('tech_'+ship)+' ('+planet[ship]+')<br/>\
 					</div>\
 					<div class="cell cell-input"><input data-max="'+planet[ship]+'" pattern="[0-9]*" type="text" class="ship_'+ship+' shipyard_input" name="ship_'+ship+'" data-name="'+ship+'"  placeholder="0"/></div>\

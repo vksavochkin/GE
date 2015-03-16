@@ -9,7 +9,7 @@ var Mail= {
 		//Mail.mails = responseObj.maillist;	
 		this.content();
 		$(this.pageID).show();
-		$('.bar-title h1').html('Mail (<a onclick="Mail.new_message(\'\',\'\');">New Message</a>)');
+		$('.bar-title h1').html('Mail (<b class="send-message-btn" rel="">New Message</b>)');
 		$('.bar-title span').html('');
 		return false;
 	},
@@ -24,43 +24,43 @@ var Mail= {
 		var count = responseObj.mailcat;
 	
 		$('.mail-list').html('<ul><li><div class="table mail-table">\
-			<div class="row" onclick="Mail.category(100);">\
+			<div class="row mail-categoty-link" rel="100">\
 				<div class="cell mail-title" rel="100" style="color:#fcfcfc">View all Messages</div>\
 				<div class="cell mail-count" style="color:#fcfcfc"><b>'+count['100']['new']+'</b> / '+count['100']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(1);">\
+			<div class="row mail-categoty-link" rel="1">\
 				<div class="cell mail-title" rel="1" style="color:#FF6699">Private messages</div>\
 				<div class="cell mail-count" style="color:#FF6699"><b>'+count['1']['new']+'</b> / '+count['1']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(2);">\
+			<div class="row mail-categoty-link" rel="2">\
 				<div class="cell mail-title" rel="2" style="color:#FF3300">Alliance messages</div>\
 				<div class="cell mail-count" style="color:#FF3300"><b>'+count['2']['new']+'</b> / '+count['2']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(0);">\
+			<div class="row mail-categoty-link" rel="0">\
 				<div class="cell mail-title" rell="0" style="color:#FFFF00">Spy reports</div>\
 				<div class="cell mail-count" style="color:#FFFF00"><b>'+count['0']['new']+'</b> / '+count['0']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(3);">\
+			<div class="row mail-categoty-link" rel="3">\
 				<div class="cell mail-title" rell="3" style="color:#FF9900">Combat reports</div>\
 				<div class="cell mail-count" style="color:#FF9900"><b>'+count['3']['new']+'</b> / '+count['3']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(5);">\
+			<div class="row mail-categoty-link" rel="5">\
 				<div class="cell mail-title" rell="5" style="color:#009933">Transportation reports</div>\
 				<div class="cell mail-count" style="color:#009933"><b>'+count['5']['new']+'</b> / '+count['5']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(4);">\
+			<div class="row mail-categoty-link" rel="4">\
 				<div class="cell mail-title" rell="4" style="color:#ABABAB">Recycling reports</div>\
 				<div class="cell mail-count" style="color:#ABABAB"><b>'+count['4']['new']+'</b> / '+count['4']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(99);">\
+			<div class="row mail-categoty-link" rel="99">\
 				<div class="cell mail-title" rell="99" style="color:#007070">Construction reports</div>\
 				<div class="cell mail-count" style="color:#007070"><b>'+count['99']['new']+'</b> / '+count['99']['total']+'</div>\
 			</div>\
-			<div class="row" onclick="Mail.category(16);">\
+			<div class="row mail-categoty-link" rel="16">\
 				<div class="cell mail-title" rell="16" style="color:#914048">Phalanx reports</div>\
 				<div class="cell mail-count" style="color:#914048"><b>'+count['16']['new']+'</b> / '+count['16']['total']+'</div>\
 			</div>\
-			'+(parseInt(user.expedition) == 1 ? '<div class="row" onclick="Mail.category(15);"><div class="cell mail-title" rell="15" style="color:#0CF7A9">Expedition reports</div><div class="cell mail-count" style="color:#0CF7A9"><b>'+count['15']['new']+'</b> / '+count['15']['total']+'</div></div>' : '')+'\
+			'+(parseInt(user.expedition) == 1 ? '<div class="row mail-categoty-link" rel="15"><div class="cell mail-title" rell="15" style="color:#0CF7A9">Expedition reports</div><div class="cell mail-count" style="color:#0CF7A9"><b>'+count['15']['new']+'</b> / '+count['15']['total']+'</div></div>' : '')+'\
 		</div><br/><br/><br/><br/></li></ul>');	
 			
 		return false;
@@ -91,14 +91,14 @@ var Mail= {
 		Request.send({object:'mail', action:'list', type:c});
 		Mail.mails = responseObj.maillist;
 		
-		$('.bar-title span').html(cat_name+' (<a onclick="Mail.deleteAll('+c+');">Delete All</a>)');
+		$('.bar-title span').html(cat_name+' (<b class="mail-delete-all-link" rel="'+c+'">Delete All</b>)');
 		if(c == 100){
 			foreach(Mail.mails,function(k,m){
 				var mail_class = (parseInt(m['new']) == 1 ? 'mail-new' : '');
 				
 				var message_form = '';
 				if(parseInt(m.message_type) == 1 || parseInt(m.message_type) == 2){
-					message_form = '<i onclick="Mail.new_message(\''+m.message_from+'\');" style="font-size:15px;text-decoration:underline;">'+ m.message_from+'</i>';
+					message_form = '<i class="send-message-btn" rel="'+m.message_from+'" style="font-size:15px;text-decoration:underline;">'+ m.message_from+'</i>';
 				}else{
 					message_form = '<i>'+ m.message_from+'</i>';
 				}
@@ -112,7 +112,7 @@ var Mail= {
 				
 				out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 					<div class="cell mail-message">\
-						<a class="delete-message" onclick="Mail._delete('+m.message_id+')">Delete</a>\
+						<span class="delete-message" rel="'+m.message_id+'">Delete</span>\
 						<small>\
 							<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 							</b>\
@@ -128,7 +128,7 @@ var Mail= {
 					
 					var message_form = '';
 					if(parseInt(m.message_type) == 1 || parseInt(m.message_type) == 2){
-						message_form = '<i onclick="Mail.new_message(\''+m.message_from+'\');" style="font-size:15px;text-decoration:underline;">'+ m.message_from+'</i>';
+						message_form = '<i class="send-message-btn" rel="'+m.message_from+'" style="font-size:15px;text-decoration:underline;">'+ m.message_from+'</i>';
 					}else{
 						message_form = '<i>'+ m.message_from+'</i>';
 					}
@@ -142,7 +142,7 @@ var Mail= {
 					
 					out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 						<div class="cell mail-message">\
-							<a class="delete-message" onclick="Mail._delete('+m.message_id+')">Delete</a>\
+							<span class="delete-message" rel="'+m.message_id+'">Delete</span>\
 							<small>\
 								<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 								</b>\
@@ -173,8 +173,8 @@ var Mail= {
                     </ul>\
                 </div>\
 				<nav class="b-menu">\
-					<a class="fl btn" style="margin-left:10px;" onclick="Mail.closePage();">'+lang._T('close')+'</a>\
-					<a class="fr btn" onclick="Mail.send();">'+lang._T('Send')+'</a>\
+					<div class="fl btn mail-close-page-link" style="margin-left:10px;">'+lang._T('close')+'</div>\
+					<div class="fr btn mail-send-link">'+lang._T('Send')+'</div>\
 				</nav>').show().css('z-index','10');
 		return false;
 
@@ -328,8 +328,8 @@ var Mail= {
 
 		//control
 		report += '<div class="spy-report-controls">';
-		report += '<a class="btn shipyard-link"  onclick="Shipyard.init('+data.target_g+','+data.target_s+','+data.target_p+','+data.target_planet_type+');" rel="'+data.target_g+','+data.target_s+','+data.target_p+','+data.target_planet_type+'">'+lang._T('Attack')+'</a>'; //<a class="btn sim-link"  onclick="Shipyard.showSim();">'._T('Combat Simulator').'</a>
-		report += '<a class="btn sim-link"  onclick="Shipyard.showSim('+k+');">'+lang._T('Combat Simulator')+'</a>';
+		report += '<div class="btn shipyard-link shipyard-init-mail-link" rel="'+data.target_g+';'+data.target_s+';'+data.target_p+';'+data.target_planet_type+'">'+lang._T('Attack')+'</div>';
+		report += '<div class="btn sim-link" rel="'+k+'">'+lang._T('Combat Simulator')+'</div>';
 		report += '</div>';
 
 		return '<div class="spy-report">'+report+'</div>';

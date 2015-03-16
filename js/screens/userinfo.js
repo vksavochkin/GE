@@ -33,8 +33,8 @@
 						'<div class="userpic"><img src="images/avatars/'+info.avatar+'.gif"></div>'+
 						'<div class="userinfo">'+
 							'<h1>'+info.username+' ['+info.rank+'] '+info.status+'</h1>'+
-							'<a class="btn send-message-btn" onclick="Mail.new_message(\''+info.username+'\',\'\');" rel="'+info.user_id+'">Send Mesage</a>'+
-							'<a class="btn user-statistic-btn" rel="'+info.user_id+'" onclick="Scoreboard.init('+info.user_id+');">Statistic</a>'+
+							'<div class="btn send-message-btn" rel="'+info.username+'">Send Mesage</div>'+
+							'<div class="btn user-statistic-btn scoreboard-init-user-link" rel="'+info.user_id+'">Statistic</div>'+
 						'</div>'+
 						'<div class="clear"></div>'+
 					'</div>'; 
@@ -67,7 +67,7 @@
 						'<li style="padding:5px 5px 50px 5px;"><div class="user-profile">'+user_row+ally_row+planet_row+'<p class="user-description" style="padding-top:20px;">'+info.description+'</p></div></li>'+
 				'</ul></div>'+
 				'<nav class="b-menu">'+
-					'<a class="fr btn" onclick="CR.closePage();">'+lang._T('close')+'</a>'+
+					'<div class="fr btn cr-close-page-link">'+lang._T('close')+'</div>'+
 				'</nav>').show().css('z-index','10');
 
 		return false;

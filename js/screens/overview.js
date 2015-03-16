@@ -315,13 +315,13 @@
 			var fleet_status = 'own';
 			if(parseInt(f.fleet_owner) == parseInt(user.id)){
 				if(parseInt(f.fleet_mess) == 0 && parseInt(f.fleet_mission) != 10){
-					buttons += '<button class="side-fleet-return btn" rel="'+f.fleet_id+'" onclick="fleetCallback(\''+f.fleet_id+'\');">Recall</button>';
+					buttons += '<div class="side-fleet-return btn" rel="'+f.fleet_id+'">Recall</div>';
 					if(parseInt(f.fleet_mission) == 1 || parseInt(f.fleet_mission) == 2 || parseInt(f.fleet_mission) == 9 || parseInt(f.fleet_mission) == 10){
-						buttons += '<a class="galaxy-link-spy btn" rel="'+f.fleet_end_galaxy+';'+f.fleet_end_system+';'+f.fleet_end_planet+';'+f.fleet_end_type+'" style="margin-left:10px;" onclick="galaxyMissionSpy(\''+f.fleet_end_galaxy+';'+f.fleet_end_system+';'+f.fleet_end_planet+';'+f.fleet_end_type+'\');">Spy</a>';
+						buttons += '<div class="galaxy-link-spy btn" rel="'+f.fleet_end_galaxy+';'+f.fleet_end_system+';'+f.fleet_end_planet+';'+f.fleet_end_type+'" style="margin-left:10px;">Spy</div>';
 					}
 				}
 				if(parseInt(f.fleet_mission) == 1 && parseInt(f.fleet_mess) == 0  && parseInt(f.fleet_group) < 1){
-					buttons += '<button class="side-fleet-acs btn" rel="'+f.fleet_id+'" onclick="showACSBtn('+f.fleet_id+');" style="margin-left:10px;">ACS Attack</button>';
+					buttons += '<div class="side-fleet-acs btn side-fleet-acs-link" rel="'+f.fleet_id+'" style="margin-left:10px;">ACS Attack</div>';
 				}
 				
 				if(parseInt(f.fleet_group) > 1 && parseInt(f.fleet_mess) == 0){
@@ -332,7 +332,7 @@
     					});
 					}					
 					acs += '<b>Invite to ACS</b><div class="asc-add-block">\
-							<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+f.fleet_id+'"><div rel="'+f.fleet_id+'" class="btn" onclick="ascAdd('+f.fleet_id+');">Add</div>\
+							<input type="text" value="" placeholder="Username" name="asc-username" class="asc-username asc-username-'+f.fleet_id+'"><div rel="'+f.fleet_id+'" class="btn add-acs-link">Add</div>\
 							<div class="clear"></div>\
 						</div>\
 						<div class="acs-users">\
@@ -421,12 +421,12 @@
 			}
 			
 			out += '<li class="side-fleet-row '+fleet_status+' phalanx-toggle" rel="'+f.fleet_id+'" data-id="'+f.fleet_id+'">\
-						<b class="icon mission'+f.fleet_mission+'" onclick="togglePhalanx('+f.fleet_id+');"></b>\
-						<span onclick="togglePhalanx('+f.fleet_id+');">\
+						<b class="icon mission'+f.fleet_mission+' phalanx-toggle-link" rel="'+f.fleet_id+'"></b>\
+						<span class="phalanx-toggle-link" rel="'+f.fleet_id+'">\
 							From '+from+'<br/>\
 							To '+to+'\
 						</span>\
-						<div class="ui-progress-bar ui-container" onclick="togglePhalanx('+f.fleet_id+');">\
+						<div class="ui-progress-bar ui-container phalanx-toggle-link" rel="'+f.fleet_id+'">\
 				            <div class="ui-progress" style="width: '+f.fleet_time_percent+'%;"></div>\
 				            <div class="ui-label">\
 				                '+msg+' <div class="flying-fleet-timer js_timer" timer="'+f.fleet_time_left+'|1|'+f.fleet_time_total+'"></div>\
@@ -457,7 +457,7 @@
 		});
 		
 		if(Check.isEmpty(out)){
-			out = '<li class="side-fleet-row"><span style="text-align:center;width:100%;">You don\'t have any fleet activity right now</span><a href="#" class="btn" style="display:block;clear:both;margin:0px auto;width:100px;height:20px;line-height:20px;padding:4px 10px;text-align:center;margin-bottom:10px;" onclick="Shipyard.init();">Send Fleet</a></li>';
+			out = '<li class="side-fleet-row"><span style="text-align:center;width:100%;">You don\'t have any fleet activity right now</span><div class="btn shipyard-init-link" style="display:block;clear:both;margin:0px auto;width:100px;height:20px;line-height:20px;padding:4px 10px;text-align:center;margin-bottom:10px;">Send Fleet</div></li>';
 		}
 		$('#menu-right').html('<ul>'+out+'</ul>');
 		
@@ -476,13 +476,13 @@
 		
 		var back_link = '';
 		if(!Check.isEmpty(responseObj.pageshow.back) && !Check.isEmpty(responseObj.pageshow.back.id)){
-			back_link = '<< <a onclick="Overview.showHelp('+responseObj.pageshow.back.id+');">'+responseObj.pageshow.back.title+'</a> | ';
+			back_link = '<< <span class="show-help-page-link" rel="'+responseObj.pageshow.back.id+'">'+responseObj.pageshow.back.title+'</span> | ';
 		}
 		
 		//links
 		var links = '';
 		foreach(responseObj.pageshow.pages, function(k, p){
-			links += '<a onclick="Overview.showHelp('+p.id+');">'+p.title+'</a>';
+			links += '<div class="show-help-page-link" rel="'+p.id+'">'+p.title+'</div>';
 		});
 		
 		var links_top = '';

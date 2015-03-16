@@ -60,7 +60,7 @@
 					restart = 'Next restart: '+row['restart'];
 				}
 				
-				out += '<li class="server-link '+rClass+'">\
+				out += '<li class="server-link '+rClass+'" rel="'+srv+';'+data_reg+';'+row['name']+'">\
 								    <span class="server-name" style="display:none;">'+row['name']+'</span>\
 								    <div class="server-info">\
 								    	<span class="server-name">'+row['name']+'</span>\

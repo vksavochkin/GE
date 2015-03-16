@@ -6,7 +6,7 @@
 		$('.page-content').hide();
 		onPage = 'shipyard';
 		$('.bar-title h1').html('Shipyard');
-		$('.bar-title span').html('Open <a class="combat-sim" onclick="Shipyard.showSim();">Combat Simulator</a>');		
+		$('.bar-title span').html('Open <b class="combat-sim combat-sim-link">Combat Simulator</b>');		
 		this.content(g,s,p,t,m);
 		$(this.pageID).show();
 		this.initForm(0);
@@ -41,10 +41,10 @@
 							</div>\
 							<div id="navigation">\
 								<ul>\
-									<li class="selected shipsStepfocus"><div class="btn" onclick="Shipyard.initForm(1);">Ships</div></li>\
-									<li class="destinationStepfocus"><div class="btn" onclick="Shipyard.initForm(2);">Target</div></li>\
-									<li class="missionsStepfocus"><div class="btn" onclick="Shipyard.initForm(3);">Mission</div></li>\
-									<li><div class="btn" onclick="Shipyard.send();">Send</div></li></ul>\
+									<li class="selected shipsStepfocus"><div class="btn">Ships</div></li>\
+									<li class="destinationStepfocus"><div class="btn">Target</div></li>\
+									<li class="missionsStepfocus"><div class="btn">Mission</div></li>\
+									<li><div class="btn shipyard-send-link">Send</div></li></ul>\
 							</div>\
 						</div>');
 		
@@ -109,7 +109,7 @@
 							'+lang._T('tech_'+ship)+' ('+exactNumber(planet[ship])+')<br/>\
 							<span style="font-size:9px;">'+lang._T('fl_speed_title')+exactNumber(GetFleetMaxSpeed( {}, ship, user ))+' &nbsp;&nbsp;&nbsp; Fuel: '+exactNumber(GetShipConsumption ( ship, user ))+'</span>\
 						</div>\
-						<div class="cell cell-max"><a class="btn max-ship-btn" rel="'+ship+'" onclick="maxShipBtn(\''+ship+'\');">Max.</a></div>\
+						<div class="cell cell-max"><span class="btn max-ship-btn" rel="'+ship+'">Max.</span></div>\
 						<div class="cell cell-input"><input data-max="'+planet[ship]+'" data-fuel="'+GetShipConsumption ( ship, user )+'" data-speed="'+GetFleetMaxSpeed ({}, ship, user)+'" data-cargo="'+pricelist[ship]['capacity']+'" data-name="'+ship+'" pattern="[0-9]*" type="number" class="ship_'+ship+' shipyard_input" name="ship_'+ship+'"  placeholder="0"/></div>\
 					</div>';
 					have_ships = true;
@@ -128,10 +128,10 @@
 						</div>\
 						<div class="shipyard-ships-control">\
 							<div>\
-								<a class="btn remove-ships" onclick="removeAllShipsBtn();">Remove Ships</a>\
+								<span class="btn remove-ships">Remove Ships</span>\
 							</div>\
 							<div>\
-								<a class="btn max-ships-all" onclick="maxAllShipsBtn();">All Ships</a>\
+								<span class="btn max-ships-all">All Ships</span>\
 							</div>\
 						</div>';
 				$('.step-ships').html('').html('<ul><li>'+out_page1+'</li></ul>');
@@ -186,8 +186,7 @@
 					<div class="row">\
 						<div class="cell">Planet Coordinates<br/><small>Not required for ACS</small></div>\
 						<div class="cell cell-input planetchooser-destination">\
-							<a class="btn" onclick="PlanetChooser.toggle(Shipyard.destination);">\
-							'+(isset(target_own_planet) ? target_own_planet.name : 'Choose...')+'</a>\
+							<span class="btn planet-chooser-shipyard-link">'+(isset(target_own_planet) ? target_own_planet.name : 'Choose...')+'</span>\
 							<!--'+own_planets+'-->\
 							<input pattern="[0-9]*" type="number" class="shipyard_galaxy" name="shipyard_galaxy"  placeholder="0" value="'+g+'"/>\
 							<input pattern="[0-9]*" type="number" class="shipyard_system" name="shipyard_system"  placeholder="0" value="'+s+'"/>\
@@ -273,17 +272,17 @@
 					<div class="row"><div class="cell"><h4 style="padding:0px;">Resources</h4></div><div class="cell"></div><div class="cell"></div></div>\
 					<div class="row">\
 						<div class="cell">Metal</div>\
-						<div class="cell cell-max"><a class="btn max-resources-btn" rel="metal" onclick="maxResource(\'metal\');">Max.</a></div>\
+						<div class="cell cell-max"><span class="btn max-resources-btn" rel="metal">Max.</span></div>\
 						<div class="cell cell-input"><input pattern="[0-9]*" type="number" class="shipyard_metal" name="shipyard_metal"  placeholder="0"/></div>\
 					</div>\
 					<div class="row">\
 						<div class="cell">Crystal</div>\
-						<div class="cell cell-max"><a class="btn max-resources-btn" rel="crystal" onclick="maxResource(\'crystal\');">Max.</a></div>\
+						<div class="cell cell-max"><span class="btn max-resources-btn" rel="crystal">Max.</span></div>\
 						<div class="cell cell-input"><input pattern="[0-9]*" type="number" class="shipyard_crystal" name="shipyard_crystal"  placeholder="0"/></div>\
 					</div>\
 					<div class="row">\
 						<div class="cell">Deuterium</div>\
-						<div class="cell cell-max"><a class="btn max-resources-btn" rel="deuterium" onclick="maxResource(\'deuterium\');">Max.</a></div>\
+						<div class="cell cell-max"><span class="btn max-resources-btn" rel="deuterium">Max.</span></div>\
 						<div class="cell cell-input"><input pattern="[0-9]*" type="number" class="shipyard_deuterium" name="shipyard_deuterium"  placeholder="0"/></div>\
 					</div>\
 					<div class="row" style="display:none;">\
@@ -293,13 +292,13 @@
 					</div>\
 					<div class="row">\
 						<div class="cell">Space Left</div>\
-						<div class="cell cell-max"><a class="btn max-resources-all-btn" onclick="maxResources();">Auto</a></div>\
+						<div class="cell cell-max"><span class="btn max-resources-all-btn">Auto</span></div>\
 						<div class="cell cell-input shipyard_space_left"></div>\
 					</div>\
 					<!--<div class="row">\
 						<div class="cell"></div>\
 						<div class="cell cell-max"></div>\
-						<div class="cell cell-input"><a class="btn" onclick="Shipyard.send();" style="padding:10px 0px;width:90%;text-align:center;">Send</a></div>\
+						<div class="cell cell-input"><div class="btn shipyard-send-link" style="padding:10px 0px;width:90%;text-align:center;">Send</div></div>\
 					</div>-->\
 				</div>';
 				
@@ -499,8 +498,8 @@
 					'+sim+'\
 				</div></li></ul></div>\
 				<nav class="b-menu">\
-					<a class="fl btn" style="margin-left:10px;" onclick="Shipyard.closeSim();">'+lang._T('close')+'</a>\
-					<a class="fr btn" onclick="Shipyard.doSim();">'+lang._T('Simulate')+'</a>\
+					<div class="fl btn shipyard-close-sim-link" style="margin-left:10px;">'+lang._T('close')+'</div>\
+					<div class="fr btn shipyard-do-sim-link">'+lang._T('Simulate')+'</div>\
 				</nav>').show();
 		return false;
 	},

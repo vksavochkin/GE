@@ -42,7 +42,7 @@
 			}
 
 			if ( (CurrentBuilding == 'shipyard' || CurrentBuilding == 'robotics_factory' || CurrentBuilding == 'nanite_factory' ) || (Element == 'shipyard' || Element == 'robotics_factory' || Element == 'nanite_factory' ) ){
-				var msg = '<div class="succes" style="display:block;" onclick="(this).remove();">'+lang._T('bd_building_shipyard')+'</div>';
+				var msg = '<div class="succes error-message-close-link" style="display:block;">'+lang._T('bd_building_shipyard')+'</div>';
 				NotBuilding = false;
 			}
 
@@ -84,7 +84,7 @@
 					link = '<div class="upg red">'+lang._T('bd_protection_shield_only_one')+'</div>';
 				}else if(NotBuilding){
 					TabIndex++;
-					link = '<div class="upg"><input pattern="[0-9]*" type="text" name="shipyard_build_'+Element+'" class="shipyard_build_'+Element+'" maxlength="6" placeholder="0"/><a class="btn ships-build" style="width:40px;float:none;margin:0px auto;" rel="'+Element+'" onclick="shipsBuild(\''+Element+'\');">'+lang._T('bd_build_defenses')+'</a></div>';
+					link = '<div class="upg"><input pattern="[0-9]*" type="text" name="shipyard_build_'+Element+'" class="shipyard_build_'+Element+'" maxlength="6" placeholder="0"/><div class="btn ships-build ships-build-link" style="width:40px;float:none;margin:0px auto;" rel="'+Element+'">'+lang._T('bd_build_defenses')+'</div></div>';
 				}
 			}
 			if (!IsTechnologieAccessible(Element)){

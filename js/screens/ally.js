@@ -25,7 +25,7 @@ var Ally= {
 								<div class="caption">'+lang._T('Already Applied')+'</div>\
 								<div><div>\
 									'+lang._T('You already applied to '+responseObj.state.user.ally_apply_name+' ('+responseObj.state.user.ally_apply_tag+') ally. Do you like to cancel your application?')+'\
-									<br/><center><span onclick="AllyP.cancelApplyRegister();">Remove Application.</span></center>\
+									<br/><center><span class="ally-cancel-apply-register-link">Remove Application.</span></center>\
 								</div></div>\
 							</div>\
 						</div>\
@@ -56,7 +56,7 @@ var Ally= {
 					<div class="btn fr ally-plats-link">'+lang._T('Members')+'</div>\
 				</nav>\
 				');
-				$('.bar-title span').html('<div class="ally-init-link">Alliance > '+responseObj.allyshow.ally_name+' ['+responseObj.allyshow.ally_tag+']</div>');
+				$('.bar-title span').html('<b class="ally-init-link">Alliance > '+responseObj.allyshow.ally_name+' ['+responseObj.allyshow.ally_tag+']</b>');
 		}else{
 			//User without Ally
 			$(this.pageID).html('<div class="b-main overthrow" id="allyScroll">\
@@ -68,7 +68,7 @@ var Ally= {
 										'+lang._T('<br/><br/>Register an Alliance')+'\
 									</td></tr>\
 									<tr><td align="center">\
-										<button class="btn" onclick="Ally.showRegister();">Register an Alliance</button>\
+										<div class="btn" class="ally-show-register-link">Register an Alliance</div>\
 									</td></tr>\
 								</tbody>\
 							</table><br/><br/>\
@@ -106,7 +106,7 @@ var Ally= {
 										<small>(2-8 characters)</small>\
 									</td></tr>\
 									<tr><td align="center" colspan=3 style="padding:10px 0px;">\
-										<button class="btn" onclick="Ally.doRegister();">Register a Alliance</button>\
+										<div class="btn ally-do-register-ally">Register a Alliance</div>\
 									</td></tr>\
 								</tbody>\
 							</table>\
@@ -114,7 +114,7 @@ var Ally= {
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<button class="fr btn" onclick="Ally.init();">'+lang._T('Back')+'</button>\
+					<div class="fr btn ally-init-link">'+lang._T('Back')+'</div>\
 				</nav>');		
 		return false;
 	},
@@ -161,7 +161,7 @@ var Ally= {
 								<label class="fl"><input type="radio" name="ally_search_type" value="1" checked="checked"/>'+lang._T('Alliance name')+'</label>\
 								<label class="fl"><input type="radio" name="ally_search_type" value="2"/>'+lang._T('Alliance tag')+'</label><br/><br/>\
 								<input type="text" id="ally_search_value" class="ally_search_value"/>\
-								<button class="btn" onclick="Ally.doSearchAlly();">Search</button>\
+								<div class="btn ally-do-search-ally-link">Search</div>\
 							</div></div>\
 				<div class="b-main overthrow" id="allyScroll" style="top:66px;">\
 					<ul>\
@@ -172,10 +172,10 @@ var Ally= {
 					</ul>\
 				</div>\
 				<nav class="b-menu">\
-					<button class="btn fr" onclick="Ally.init();">'+lang._T('Back')+'</button>\
+					<div class="btn fr ally-init-link">'+lang._T('Back')+'</div>\
 				</nav>');
 				
-		$('.bar-title span').html('<div class="ally-init-link">Alliance</div> > Search Alliance');
+		$('.bar-title span').html('<b class="ally-init-link">Alliance</b> > Search Alliance');
 		return false;
 	},
 	doSearchAlly: function(){
@@ -243,7 +243,7 @@ var Ally= {
 									<div>'+ranks_table+'</div>\
 								</div>';
 						}else{
-							table += '<div><div><span onclick="UserInfo.showPage(\''+r.username+'\');">'+r.username+'</span><br/>'+r.ally_apply_text+'<br/><button class="fl btn" onclick="Ally.PlatsDecline(\''+r.username+'\');">'+lang._T('Decline')+'</button><button class="fr btn" onclick="Ally.PlatsAccept(\''+r.username+'\');">'+lang._T('Accept')+'</button></div></div>';
+							table += '<div><div><span class="userinfo-show-page-link" rel="'+r.username+'">'+r.username+'</span><br/>'+r.ally_apply_text+'<br/><div class="fl btn ally-plats-decline-link" rel="'+r.username+'">'+lang._T('Decline')+'</div><div class="fr btn ally-plats-accept-link" rel="'+r.username+'">'+lang._T('Accept')+'</div></div></div>';
 						}
 					}		
 				});
@@ -489,7 +489,7 @@ var Ally= {
 							</div>-->\
 							<div>\
 								<div></div>\
-								<div>'+(rank['rank'] > 3 ? '<button class="btn fl" onclick="Ally.deleteRank('+rank['rank']+');">'+lang._T('Delete Rank')+'</button>' : '')+'<button class="fr btn" onclick="Ally.saveRank('+rank['rank']+');">'+lang._T('Save Rank')+'</button></div>\
+								<div>'+(rank['rank'] > 3 ? '<div class="btn fl ally-relete-rank-link" rel="'+rank['rank']+'">'+lang._T('Delete Rank')+'</div>' : '')+'<div class="fr btn ally-save-rank-link" rel="'+rank['rank']+'">'+lang._T('Save Rank')+'</div></div>\
 							</div>\
 						</div>\
 					</div>';
@@ -530,7 +530,7 @@ var Ally= {
 							</div>-->\
 							<div>\
 								<div></div>\
-								<div><button class="btn fr" onclick="Ally.addRank();">'+lang._T('Add Rank')+'</button></div>\
+								<div><div class="btn fr ally-add-rank-link">'+lang._T('Add Rank')+'</div></div>\
 							</div>\
 						</div>\
 					</div>';
@@ -551,7 +551,7 @@ var Ally= {
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<button class="fr btn" onclick="Ally.hall();">'+lang._T('Back')+'</button>\
+					<div class="fr btn ally-hall-link">'+lang._T('Back')+'</div>\
 				</nav>');
 		
 		
@@ -631,7 +631,7 @@ var Ally= {
 		var members = '';
 		foreach(responseObj.allyshowinfo.members, function(key, m) { 
 			var user_rank = defineRank(m.ally_stat);
-			members += '<div><div><span onclick="UserInfo.showPage(\''+m.username+'\');">'+m.username+'</span></div><div align="right">'+user_rank['title']+'</div></div>';
+			members += '<div><div><span class="userinfo-show-page-link" rel="'+m.username+'">'+m.username+'</span></div><div align="right">'+user_rank['title']+'</div></div>';
 		});
 		
 		var apply = '';
@@ -641,7 +641,7 @@ var Ally= {
 							<div class="caption">'+lang._T('Apply')+'</div>\
 							<div><div>\
 								'+lang._T('Message:')+'<br/><textarea name="apply_ally_text" id="apply_ally_text" style="height:80px;width:95%;"></textarea>\
-								<br/><button class="fr btn" style="margin-top:10px;" onclick="AllyP.apply();">'+lang._T('Apply')+'</button>\
+								<br/><div class="fr btn ally-apply-link" style="margin-top:10px;">'+lang._T('Apply')+'</div>\
 							</div></div>\
 						</div>';
 			}else if(parseInt(responseObj.state.user.ally_apply_id) == parseInt(responseObj.allyshowinfo.ally_id)){// Show Already applied this Alliance
@@ -649,7 +649,7 @@ var Ally= {
 							<div class="caption">'+lang._T('Already Applied:')+'</div>\
 							<div><div>\
 								'+lang._T('You already applied to this Alliance. Do you like to cancel your application?')+'\
-								<br/><center><span onclick="AllyP.cancelApply();">Remove Application.</span></center>\
+								<br/><center><span class="ally-cancel-apply">Remove Application.</span></center>\
 							</div></div>\
 						</div>';
 			}else{// Show already applied to another Alliance
@@ -657,7 +657,7 @@ var Ally= {
 							<div class="caption">'+lang._T('Already Applied')+'</div>\
 							<div><div>\
 								'+lang._T('You already applied to '+responseObj.state.user.ally_apply_name+' ('+responseObj.state.user.ally_apply_tag+') Alliance. Do you like to cancel your application?')+'\
-								<br/><center><span onclick="AllyP.cancelApply();">Remove Application.</span></center>\
+								<br/><center><span class="ally-cancel-apply">Remove Application.</span></center>\
 							</div></div>\
 						</div>';
 			}
@@ -722,7 +722,7 @@ var Ally= {
 		var members = '';
 		foreach(responseObj.allyshowinfo.members, function(key, m) { 
 			var user_rank = defineRank(m.ally_stat);
-			members += '<tr><td><span onclick="UserInfo.showPage(\''+m.username+'\');"><b class="icon i-race'+m.race+m.gender+'"></b>'+m.username+'</span></td><td align="right">'+user_rank['title']+'</td></tr>';
+			members += '<tr><td><span class="userinfo-show-page-link" rel="'+m.username+'"><b class="icon i-race'+m.race+m.gender+'"></b>'+m.username+'</span></td><td align="right">'+user_rank['title']+'</td></tr>';
 		});
 		
 		var apply = '';
@@ -736,7 +736,7 @@ var Ally= {
 Level: '+responseObj.state.user.level+'\r\
 Glory: '+(parseInt(responseObj.state.user.glory) + parseInt(responseObj.state.user.glory_positive) - parseInt(responseObj.state.user.glory_negative))+'\r\
 </textarea>\
-									<br/><button class="fr" onclick="AllyP.apply();">'+lang._T('Apply')+'</button>\
+									<br/><div class="fr btn ally-apply-link">'+lang._T('Apply')+'</div>\
 									</td></tr>\
 							</tbody>\
 						</table>';
@@ -746,7 +746,7 @@ Glory: '+(parseInt(responseObj.state.user.glory) + parseInt(responseObj.state.us
 							<tbody>\
 								<tr><td colspan=2>\
 									'+lang._T('You already applied to this Alliance. Do you like to cancel your application?')+'\
-									<br/><center><span onclick="AllyP.cancelApply();">Remove Application.</span></center>\
+									<br/><center><span class="ally-cancel-apply">Remove Application.</span></center>\
 									</td></tr>\
 							</tbody>\
 						</table>';
@@ -756,7 +756,7 @@ Glory: '+(parseInt(responseObj.state.user.glory) + parseInt(responseObj.state.us
 							<tbody>\
 								<tr><td colspan=2>\
 									'+lang._T('You already applied to '+responseObj.state.user.ally_apply_name+' ('+responseObj.state.user.ally_apply_tag+') Alliance. Do you like to cancel your application?')+'\
-									<br/><center><span onclick="AllyP.cancelApply();">Remove Application.</span></center>\
+									<br/><center><span class="ally-cancel-apply">Remove Application.</span></center>\
 									</td></tr>\
 							</tbody>\
 						</table>';
@@ -791,7 +791,7 @@ Glory: '+(parseInt(responseObj.state.user.glory) + parseInt(responseObj.state.us
 					</div>\
 				</div>\
 				<nav class="b-menu">\
-					<button class="fr" onclick="AllyP.close();">'+lang._T('Close')+'</button>\
+					<div class="fr btn ally-close-link">'+lang._T('Close')+'</div>\
 				</nav>');	
 		return false;
 	},
