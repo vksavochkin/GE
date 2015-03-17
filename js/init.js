@@ -1,4 +1,4 @@
-/*window.onerror = function (message, filename, lineno, colno, error) {
+window.onerror = function (message, filename, lineno, colno, error) {
     if ("\v" === "v") {
         return;
     }
@@ -10,8 +10,9 @@
     agent = (navigator.userAgent || '').toString();
     var stack = error ? (error.stack || '').toString() : '';
 
-    Request.send({object: 'auth', action: 'log', msg:message, url:filename, line:lineno, col:colno, stack:stack, agent:agent});           
-};*/
+    Request.send({object: 'auth', action: 'log', msg:message, url:filename, line:lineno, col:colno, stack:stack, agent:agent});   
+    return true;        
+};
 
 
 
