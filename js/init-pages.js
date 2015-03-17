@@ -49,14 +49,37 @@ $('.planet-control-modal .closeBtn, .overlay').on('tap',function(){
     return false;
 });
 
+$('.register-email, .register-password, .register-password2, .register-username').keydown(function (e){
+    if(e.keyCode == 13){
+        Login.doRegister();
+        return false;
+    }
+    return;
+});
+
+$('.login-username, .login-password').keydown(function (e){
+    if(e.keyCode == 13){
+        Login.doLogin();
+        return false;
+    }
+    return;
+});
+
+$('.forgot-email').keydown(function (e){
+    if(e.keyCode == 13){
+        Login.doForgot();
+        return false;
+    }
+    return;
+});
+
 $('#chatSend').keydown(function (e){
     if(e.keyCode == 13){
         Chat.send();
         return false;
     }
-    return false;
+    return;
 });
-
 
 
 $('.planet-select').on('change', function(){
