@@ -16,7 +16,7 @@
 		return false;
 	},
 	content: function(){
-		$(this.pageID).html('<div class="b-main overthrow" id="forumScroll">\
+		$(this.pageID).html('<div class="b-main overthrow" id="forumScroll" style="background:none;">\
 					<div class="scroll-holder" >'+this.showCategories()+'</div>\
 				</div>');	
 		return false;
@@ -190,7 +190,7 @@
     			}
 			}
 			
-			$('#forum-posts-screen').html('<div class="b-main overthrow" id="forumPostsScroll" style="bottom:40px;">\
+			$('#forum-posts-screen').html('<div class="b-main overthrow" id="forumPostsScroll" style="bottom:40px;background:none;">\
 					<div class="scroll-holder" >\
 						<div class="forum-holder" id="forum-posts">'+this.showPostsContent()+'</div>\
 						'+( can_delete == false ? '' : '<div class="btn forum-delete-topic-link" rel="'+n+'" class="fl">Delete</div>')+'\
