@@ -88,7 +88,7 @@ $('.planet-select').on('change', function(){
 });
 
 $('.planet-img, .moon-img').on('tap', function(event){
-	var pid = parseInt(event.target.attributes.rel.value);
+	var pid = parseInt($(this).attr('rel'));
 	Request.send({object:'planet', action:'set', pid:pid});
 	if(responseObj.status != 100){
 		alertify.alert(lang._T(responseObj.error));

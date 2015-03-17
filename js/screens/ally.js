@@ -674,6 +674,7 @@ var Ally= {
 		
 		Overview.resetModals();
 		$('.page-alliance-page').html('<div class="b-main overthrow" id="allyScrollPage">\
+		        <input type="hidden" value="'+responseObj.allyshowinfo.ally_tag+'" class="ally-apply-hidden-tag">\
 				<ul>\
 					<li style="padding:5px 5px 50px 5px;">\
 						<h3 style="text-align:center;">'+responseObj.allyshowinfo.ally_name+' ['+responseObj.allyshowinfo.ally_tag+']</h3>\
@@ -797,7 +798,7 @@ Glory: '+(parseInt(responseObj.state.user.glory) + parseInt(responseObj.state.us
 	},
 	apply: function(){
 		var ally_apply_text = $('#apply_ally_text').val();
-		var ally_apply_tag = responseObj.allyshowinfo.ally_tag;
+		var ally_apply_tag = $('.ally-apply-hidden-tag').val();
 		
 		Request.send({'object':'ally', 'action':'apply', 'ally_apply_text':ally_apply_text, 'tag':ally_apply_tag});
 		if(responseObj.status != 100){
