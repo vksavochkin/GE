@@ -25,7 +25,7 @@ var PlanetChooser = {
 		}
 	},
 	content: function(){
-		var _planet = responseObj.state.planets[responseObj.state.user.current_planet];
+		var _planet = planet;
 		var rows = [];
 
 		foreach (responseObj.state.planets_sorted, function(k, pl) {

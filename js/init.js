@@ -204,6 +204,11 @@ function initSidebars(){
     	$('#menu-right').html('');
     	$('#menu_overflow').addClass('menu_overflow_hidden');
 	});
+	$('body').on('tap', '#menu_overflow, #menu-left .menu-left-link', function(){
+    	$('body').removeClass('show_left_sidebar').removeClass('show_right_sidebar');
+    	$('#menu-right').html('');
+    	$('#menu_overflow').addClass('menu_overflow_hidden');
+	});
 }
 
 function initLeftMenu(){

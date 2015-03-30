@@ -112,7 +112,7 @@ var Mail= {
 				
 				out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 					<div class="cell mail-message">\
-						<span class="delete-message" rel="'+m.message_id+'">Delete</span>\
+						<div class="delete-message" rel="'+m.message_id+'">Delete</div>\
 						<small>\
 							<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 							</b>\
@@ -142,7 +142,7 @@ var Mail= {
 					
 					out += '<div class="row message'+m.message_id+' '+mail_class+'">\
 						<div class="cell mail-message">\
-							<span class="delete-message" rel="'+m.message_id+'">Delete</span>\
+							<div class="delete-message" rel="'+m.message_id+'">Delete</div>\
 							<small>\
 								<b>'+asDate(m.message_time).format()+' '+(Check.isEmpty(m.message_from) ? '' : lang._T('From')+' '+message_form)+'\
 								</b>\

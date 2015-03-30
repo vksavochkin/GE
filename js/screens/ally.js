@@ -41,10 +41,10 @@ var Ally= {
 							<div class="ally-bar table">\
 								<div>\
 									<div style="text-align:center"><b>'+lang._T('Your Rank')+'</b>: '+user_rank['title']+'</div>\
-									<div style="text-align:center"><b>'+lang._T('Members')+'</b>: '+responseObj.allyshow.ally_users+'</div>\
+									<div style="text-align:center"><b>'+lang._T('Members')+'</b>: '+(!Check.isEmpty(responseObj.allyshow) && !Check.isEmpty(responseObj.allyshow.ally_users) ? responseObj.allyshow.ally_users : 'N/A')+'</div>\
 								</div>\
 							</div>\
-							<p class="ally-message">'+responseObj.allyshow.ally_message_inside_coded+'</p>\
+							<p class="ally-message">'+(!Check.isEmpty(responseObj.allyshow) && !Check.isEmpty(responseObj.ally_message_inside_coded) ? responseObj.allyshow.ally_message_inside_coded : '')+'</p>\
 						</div>\
 						<div align="center" style="margin: 10px;">\
 							'+(user_rank.rank <= 2 ? '<div class="btn ally-hall-btn">'+lang._T('Settings')+'</div>' : '')+'\

@@ -27,8 +27,11 @@
 			alertify.alert(lang._T(responseObj.error));
 			return false;
 		}else{
-			var planetsList = responseObj.galaxyshow.list;
-			Galaxy.data = responseObj.galaxyshow.list;
+			var planetsList = {};
+			if(!Check.isEmpty(responseObj.galaxyshow) && !Check.isEmpty(responseObj.galaxyshow.list)){
+    			planetsList = responseObj.galaxyshow.list;
+			}
+			Galaxy.data = planetsList;
 			var list = '';
 			for(var i=1; i<=15; i++){
 				if(!Check.isEmpty(planetsList[i])){

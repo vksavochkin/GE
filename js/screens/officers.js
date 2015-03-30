@@ -15,7 +15,7 @@
 		return false;
 	},
 	content: function(){
-		var out = '<li class="building-row"><h3>Dark Matter: '+responseObj.officershow.dm+' <small class="show-store-page-link">(add more)</small></h3></li>';
+		var out = '<li class="building-row"><h3>Dark Matter: '+(!Check.isEmpty(responseObj.officershow) && !Check.isEmpty(responseObj.officershow.dm) ? responseObj.officershow.dm : 0 )+' <small class="show-store-page-link">(add more)</small></h3></li>';
 		
 		if(parseInt(user['starter']) == 0){
 			out += '<li class="building-row"><span class="btn officer-starter officer-starter-link" style="text-align:center;width:92%;">Starter Pack<br/>\

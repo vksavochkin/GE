@@ -58,7 +58,11 @@
 		var out_page1 = '';
 		var out_page2 = '';
 		var out_page3 = '';
-		var user_fleet = responseObj.state.fleet;
+		var user_fleet = {};
+		if(!Check.isEmpty(responseObj.state) && !Check.isEmpty(responseObj.state.fleet)){
+    		user_fleet = responseObj.state.fleet;
+		}
+		
 		var _planet = {};
 		_planet = responseObj.state.planets[responseObj.state.user.current_planet];
 		

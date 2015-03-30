@@ -54,16 +54,18 @@
 	generateReport: function(report){
 		var out = '<div class="cr">';
 		
-		foreach(report.rounds, function(r,round){
-			out += '<div class="round round-'+r+'">\
-				<div class="round-title toggle-cr-round-link" rel="'+r+'">Round '+(parseInt(r)+1)+'</div>\
-				<div class="round-content round-content-'+r+'">\
-					'+CR.generateUsersRow(round.attackers, true)+'\
-					'+CR.generateUsersRow(round.defenders, false)+'\
-					'+(!Check.isEmpty(round.text) ? '<div class="cr-round-result">'+CR.generateRoundResult(round.text)+'</div>' : '')+'\
-				</div>\
-			</div>';
-		});
+    	if(!Check.isEmpty(report.rounds)){
+    		foreach(report.rounds, function(r,round){
+    			out += '<div class="round round-'+r+'">\
+    				<div class="round-title toggle-cr-round-link" rel="'+r+'">Round '+(parseInt(r)+1)+'</div>\
+    				<div class="round-content round-content-'+r+'">\
+    					'+CR.generateUsersRow(round.attackers, true)+'\
+    					'+CR.generateUsersRow(round.defenders, false)+'\
+    					'+(!Check.isEmpty(round.text) ? '<div class="cr-round-result">'+CR.generateRoundResult(round.text)+'</div>' : '')+'\
+    				</div>\
+    			</div>';
+    		});
+		}
 		
 		out += '<div class="cr-result">'+CR.generateResult(report.text)+'</div>';
 		out += '</div>';

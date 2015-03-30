@@ -19,7 +19,10 @@
 		return false;
 	},
 	content: function(){
-		var fleet = Overview.countFleet(responseObj.state.fleet, responseObj.state.user.id);
+		var fleet = {own:0,enemy:0};
+		if(!Check.isEmpty(responseObj.state) && !Check.isEmpty(responseObj.state.fleet)){
+    		fleet = Overview.countFleet(responseObj.state.fleet, responseObj.state.user.id);
+		}
 		$('.fleet-counter').html(fleet.own+'/<b>'+fleet.enemy+'</b>'); 
 		$('.overview-planet-name').html(planet.name);
 		$('.overview-planet-coords').html('['+planet.g+':'+planet.s+':'+planet.p+']');
@@ -236,7 +239,10 @@
 		});
     },
 	generateFleet:function(){
-		var out = Phalanx.generateReportBody(responseObj.state.fleet);
+		var out = '';
+		if(!Check.isEmpty(responseObj.state) && !Check.isEmpty(responseObj.state.fleet)){
+    		out = Phalanx.generateReportBody(responseObj.state.fleet);
+		}		
 
 		if(Check.isEmpty(out)){
 			out = '<li class="side-fleet-row"><span style="text-align:center;width:100%;">You don\'t have any fleet activity right now</span><div class="btn shipyard-init-link" style="display:block;clear:both;margin:0px auto;width:100px;height:20px;line-height:20px;padding:4px 10px;text-align:center;margin-bottom:10px;">Send Fleet</div></li>';

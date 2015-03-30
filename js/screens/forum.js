@@ -70,7 +70,7 @@
 			    }
 			});
 		}
-		var sfid = responseObj.forumtopics.category.fid;
+		var sfid = n;
 		$('#topics-nav').smartpaginator({ 
 			totalrecords: parseInt(responseObj.forumtopics.category.forum_topics), 
             recordsperpage: 20,
@@ -210,8 +210,14 @@
 			    }
 			});
 		}
+		
+		var topic_replies = 0;
+		if(!Check.isEmpty(responseObj) && !Check.isEmpty(responseObj.forumposts) && !Check.isEmpty(responseObj.forumposts.topic) && !Check.isEmpty(responseObj.forumposts.topic.topic_replies)){
+    		topic_replies = parseInt(responseObj.forumposts.topic.topic_replies);
+		}
+		
 		$('#post-nav').smartpaginator({ 
-			totalrecords: parseInt(responseObj.forumposts.topic.topic_replies)+1, 
+			totalrecords: topic_replies+1, 
             recordsperpage: 20,
 			length:3,
 			datacontainer: 'forum-posts', 

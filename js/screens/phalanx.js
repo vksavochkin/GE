@@ -124,7 +124,7 @@ var Phalanx = {
 
 				if(parseInt(f.fleet_group) > 1 && parseInt(f.fleet_mess) == 0){
 					var acs_users='';
-					if(!Check.isEmpty(f.acs.users)){
+					if(!Check.isEmpty(f.acs) && !Check.isEmpty(f.acs.users)){
 						foreach(f.acs.users, function(k,v){
 							acs_users += '<p>'+v+'</p>';
 						});

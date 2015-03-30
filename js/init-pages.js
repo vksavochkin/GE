@@ -23,14 +23,47 @@ $('#menu-left .menu-left-link').on('tap', function(){
     else if(rel == 'Settings'){Settings.init();}
     else if(rel == 'Logout'){Login.doLogout();}
     else{Overview.init();}
-    return;
+    return false;
 });
 $('body').on('tap', '#menu-left .menu-left-link', function(){
     clearTimeout(Chat.interval);
+    
+    var rel = $(this).data('page');
+    if(rel == 'Overview'){Overview.init();}
+    else if(rel == 'Empire'){Empire.init();}
+    else if(rel == 'Galaxy'){Galaxy.init();}
+    else if(rel == 'Fleet'){Shipyard.init();}
+    else if(rel == 'Ally'){Ally.init();}
+    else if(rel == 'Buildings'){Buildings.init();}
+    else if(rel == 'Research'){Research.init();}
+    else if(rel == 'Defense'){Defense.init();}
+    else if(rel == 'Ships'){Ships.init();}
+    else if(rel == 'Forum'){Forum.init();}
+    else if(rel == 'Chat'){Chat.init();}
+    else if(rel == 'Scoreboard'){Scoreboard.init();}
+    else if(rel == 'Recordboard'){Recordboard.init();}
+    else if(rel == 'Search'){Search.init();}
+    else if(rel == 'Officers'){Officers.init();}
+    else if(rel == 'Store'){Store.init();}
+    else if(rel == 'Settings'){Settings.init();}
+    else if(rel == 'Logout'){Login.doLogout();}
+    else{Overview.init();}
+    return false;
 });
+
+function clickLeftSidebar(){
+    
+}
+
 Timers.init();
 
+$('body').on('tap', 'div, span, p, b, i, button', function(){
+    $('input, textarea').blur();
+});
 
+$('div, span, p, b, i, button').on('tap', function(){
+    $('input, textarea').blur();
+});
 
 /*
     Overview
