@@ -34,8 +34,8 @@
 			return false;
 		}else{			
 			var selected_server = responseObj.authservers.servers_list.default_server;
-			if(!Check.isEmpty(storage.get('server'))){
-				selected_server = storage.get('server');
+			if(!Check.isEmpty(appStorage.get('server'))){
+				selected_server = appStorage.get('server');
 			}
 			
 			foreach(responseObj.authservers.servers_list.list, function(srv, row){
@@ -112,7 +112,7 @@
 			alertify.alert(lang._T(responseObj.error));
 			return false;
 		}else{	
-			storage.set('email',username);
+			appStorage.set('email',username);
 			Login.showServers();		
 			//initGame();
 		}
@@ -184,8 +184,8 @@
 		return false;
 	},
 	doLogout:function(){
-		//storage.removeAllStorages();
-		storage.set('token','');
+		//appStorage.removeAllStorages();
+		appStorage.set('token','');
 		window.location.reload();
 	}
 };

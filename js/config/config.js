@@ -1,5 +1,5 @@
 var user = {};
-var storage = {};
+var appStorage = {};
 
 var responseObj = {};
 var planet = {};
@@ -12,6 +12,7 @@ var iconsPath = 'images/theme/items/';
 var graphicPath = 'images/theme/320/';
 
 var config = {
+    fbID: 488244794576887,
     device: 'ios', // 'ios', 'android', 'wp', 'browser'
     app:true,
     debug: false,

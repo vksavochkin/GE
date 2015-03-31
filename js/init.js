@@ -68,6 +68,7 @@ globalPages = {
 
 
 $(document).ready(function() {
+    appStorage=$.localStorage;
     
     $(window).resize(function() {
 	    var item = $('.open-left');
@@ -113,22 +114,45 @@ function onDeviceReady() {
 		}*/  
     }
 	
-	run();
-	
-	   
-	   
+	if (!window.cordova) {
+        setTimeout(function(){
+            console.log('runnning Web version of Facebook');
+            facebookConnectPlugin.browserInit(config.fbID);
+            console.log('Web version of Facebook completed');
+            
+            //test FB API
+            facebookConnectPlugin.getLoginStatus(
+                function(response){
+                    console.log('Success');
+                    console.log(response);
+                }, function(response){
+                    console.log('Error');
+                    console.log(response);
+                });
+                
+                
+            /*
+                facebookConnectPlugin.login( ["email", "public_profile", "user_friends"],
+function (response) { console.log('Success');console.log(response);},
+function (response) { console.log('Error');console.log(response); });
+            */    
+            
+            run();    
+        }, 500);       
+    }else{
+        run();
+    }	 
 };
 
-function run(){
-	storage=$.localStorage;	
+function run(){	
 	
-	if(!Check.isEmpty(storage.get('email'))){
-		$('.login-username').val(storage.get('email'));
+	if(!Check.isEmpty(appStorage.get('email'))){
+		$('.login-username').val(appStorage.get('email'));
 	}
 	
 	$.ytLoad();
-	//storage.deleteAll();
-	if(Check.isEmpty(storage.get('token'))){
+	//appStorage.deleteAll();
+	if(Check.isEmpty(appStorage.get('token'))){
 		Login.init();
 		return false;
 	}else{

@@ -13,7 +13,7 @@ var Request = {
 		if(rData.object == 'auth' && (rData.action == 'login' || rData.action == 'register' ||rData.action == 'forgot')){
 			//nothing
 		}else{
-			rData.token = storage.get('token');
+			rData.token = appStorage.get('token');
 		}
 		Request.timestampRequestLocalMillis = Date.now();
 		$.ajax({
@@ -52,7 +52,7 @@ var Request = {
 					}
 				}
 				if(!Check.isEmpty(respond.token)){
-					storage.set('token',respond.token);
+					appStorage.set('token',respond.token);
 				}
 
 				// user's clock may drift from server's
