@@ -28,7 +28,7 @@ var PlanetChooser = {
 		var _planet = planet;
 		var rows = [];
 
-		foreach (responseObj.state.planets_sorted, function(k, pl) {
+		foreach (responseObj.state.planets, function(k, pl) {
 			var planet_id = parseInt(pl.id);
 			var planet_type = parseInt(pl.planet_type);
 
@@ -36,17 +36,22 @@ var PlanetChooser = {
 			var is_current = _planet.id == planet_id ? 'planetchooser-current' : '';
 
 			var timer_building = '';
-			if(!Check.isEmpty(c_planet.b_building_id)){
-				var buildQueStr = c_planet.b_building_id;
-				var buildQue = buildQueStr.split(';');
-				var curBuild = buildQue[0];
-				var buildArr = curBuild.split(',');
-
-				var restTime = parseInt(c_planet.b_building) - parseInt(responseObj.timestamp);
-				timer_building = '<div class="construction-label"">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div>\
-				    &nbsp;\
-					<div class="construction-timer"><div class="js_timer" timer="'+restTime+'|1"></div></div>';
-			}
+			if(!Check.isEmpty(responseObj.state.user.production.building)){
+                foreach (responseObj.state.user.production.building, function(k, b){
+    				if(parseInt(pl.id) == parseInt(b.planet_id) && Check.isEmpty(timer_building)){
+    				    var restTime = parseInt(b.end_time) - parseInt(responseObj.timestamp);
+    				    var level = pl[b.production];
+    				    if(b.action == 'build'){
+        				    level++;
+    				    }else{
+        				    level--;
+    				    }
+    				    timer_building = '<div class="construction-label"">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div>\
+        				    &nbsp;\
+        					<div class="construction-timer"><div class="js_timer" timer="'+restTime+'|1"></div></div>';
+    				}				
+    			});
+            }
 
 			if (planet_type == 1){
 				var dColor = debriesColor(parseInt(c_planet['debries_metal']), parseInt(c_planet['debries_crystal']));

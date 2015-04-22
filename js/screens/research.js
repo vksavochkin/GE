@@ -27,10 +27,6 @@
 		var total_research = 0;
 		foreach(responseObj.state.planets, function(id, p){
 			levels.push(p.research_lab);
-
-			if(parseInt(user.b_tech_planet) == parseInt(p.id)){
-				var ThePlanet = p;
-			}			
 		});
 		levels.sort(function(a, b){return b-a});
 		
@@ -45,14 +41,14 @@
 			return false;
 		}*/
 
-		if (Research.CheckLabSettingsInQueue() == false)
+		if (Research.CheckLabSettingsInQueue() == true)
 		{
 			NoResearchMessage = lang._T('bd_building_lab');
 			bContinue         = false;
 		}
 		
 		var InResearch = false;
-		if (parseInt(user['b_tech_planet']) != 0){
+		if (!Check.isEmpty(responseObj.state.user.production.research)){
 			InResearch = true;
 		}
 		
@@ -85,7 +81,7 @@
 			if (InResearch == false){
 				var LevelToDo = 1 + parseInt(user[el]);
 				if (CanBeDone){
-					if (Research.CheckLabSettingsInQueue() == false){
+					if (Research.CheckLabSettingsInQueue() == true){
 						if (LevelToDo == 1){
 							TechnoLink = '<b>'+lang._T('bd_research')+'</b>';
 						}else{
@@ -151,12 +147,14 @@
 
 		var que = '';
 		BuildList = '';
-		if (InResearch && !Check.isEmpty(planet.b_tech_id)){
-			BuildTime  = parseInt(planet.b_tech) - parseInt(responseObj.timestamp);
-			ElementTitle = lang._T('tech_'+planet.b_tech_id);
-			BuildLevel = parseInt(user[planet.b_tech_id]) +1;								
+		if (InResearch){
+			var researchRow = responseObj.state.user.production.research;
+			var BuildTime = parseInt(researchRow.end_time) - parseInt(responseObj.timestamp);
+			
+			ElementTitle = lang._T('tech_'+researchRow.production);
+			BuildLevel = parseInt(user[researchRow.production]) +1;								
 			BuildList = '<div class="table buildings-table-timer"><div class="row">\
-										<div rel="'+planet.b_tech_id+'" class="buildings-table-timer-image"><img src="images/resources/'+planet.b_tech_id+'.png"></div>\
+										<div rel="'+researchRow.production+'" class="buildings-table-timer-image"><img src="images/resources/'+researchRow.production+'.png"></div>\
 										<div class="buildings-table-timer-description">\
 											'+ ElementTitle +' '+ BuildLevel+'<br/>\
 											\
@@ -165,7 +163,7 @@
 											<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
 										</div>\
 										<!--<div class="buildings-table-timer-action">\
-											<div rel="'+planet.b_tech_id+'" class="btn research-cancel research-cancel-link">'+lang._T('bd_cancel')+'</div>\
+											<div rel="'+researchRow.production+'" class="btn research-cancel research-cancel-link">'+lang._T('bd_cancel')+'</div>\
 										</div>-->\
 									</div>\
 								</div>';
@@ -182,38 +180,18 @@
 		return false;
 	},
 	CheckLabSettingsInQueue: function(){
-		if (planet['b_building_id'] != 0){
-			var CurrentQueue = planet['b_building_id'];
-			var CurrentBuilding = '';
-			var Element = '';
-			
-			if (strpos (CurrentQueue, ';')){
-				QueueArray		= explode (';', CurrentQueue);
-
-				for(var i = 0; i < 5; i++){
-					ListIDArray	= explode (',', QueueArray[i]);
-					if(!Check.isEmpty(ListIDArray)){
-						Element		= ListIDArray[0];
-
-						if(Element == 'research_lab')
-							break;
+		var ResearchLabInQue = false;
+		if(!Check.isEmpty(responseObj.state.user.production.building)){
+            foreach (responseObj.state.user.production.building, function(k, b){
+				if(parseInt(planet.id) == parseInt(b.planet_id)){
+				    if ( b.production == 'research_lab'){
+						ResearchLabInQue = true;
 					}
-					
-				}
-			}else{
-				CurrentBuilding = CurrentQueue;
-			}
+				}				
+			});
+        }
 
-			if (CurrentBuilding == 'research_lab' || Element == 'research_lab'){
-				var ret = false;
-			}else{
-				var ret = true;
-			}
-		}else{
-			var ret = true;
-		}
-
-		return ret;
+		return ResearchLabInQue;
 	},
 	GetRestPrice: function(el, userfactor){
 		userfactor = typeof userfactor !== 'undefined' ? userfactor : true;

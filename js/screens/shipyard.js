@@ -144,7 +144,7 @@
 				// DO step 2 and 3
 				var own_planets = '';
 				var target_own_planet = undefined;
-				foreach(responseObj.state.planets_sorted, function(k,pl){
+				foreach(responseObj.state.planets, function(k,pl){
 					if(parseInt(pl.id) != parseInt(_planet.id)){
 						own_planets += '<option value="'+pl.g+';'+pl.s+';'+pl.p+';'+pl.planet_type+'">'+pl.name+' ['+pl.g+':'+pl.s+':'+pl.p+']</option>';
 					}

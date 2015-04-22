@@ -24,10 +24,7 @@
 		}
 		var data = Buildings.ShowBuildingQueue();
 
-		var queue = data.queue;	
-		var sprice = data.sprice;
-
-		if (!Check.isEmpty(queue['lenght']) && queue['lenght'] < parseInt(responseObj.state.user.MAX_BUILDING_QUEUE_SIZE)){
+		if (data['count'] < parseInt(responseObj.state.user.MAX_BUILDING_QUEUE_SIZE)){
 			CanBuildElement = true;
 		}else{
 			CanBuildElement = false;
@@ -36,7 +33,7 @@
 		var BuildingPage        = '';
 		
 		foreach(allowed, function(el, nv){
-			if (parseInt(planet.field_current) < (parseInt(planet.field_max) - queue['lenght'])){
+			if (parseInt(planet.field_current) < (parseInt(planet.field_max) - data['count'])){
 				RoomIsOk = true;
 			}else{
 				RoomIsOk = false;
@@ -51,7 +48,7 @@
 				
 				var i            	= el;
 				BuildingLevel       = parseInt(planet[el]);
-				really_lvl 			= !Check.isEmpty(sprice[el]) ? parseInt(sprice[el]) : BuildingLevel;
+				really_lvl 			= !Check.isEmpty(data['object'][el]) ? parseInt(data['object'][el]) : BuildingLevel;
 				ElementBuildTime 	= GetBuildingTime ( el , really_lvl );
 				var price 			= GetElementPrice ( el , true , really_lvl );
 				var time 			= ShowBuildTime ( ElementBuildTime );
@@ -66,7 +63,7 @@
 				NextBuildLevel        	= parseInt(planet[el]) + 1;
 
 				if (RoomIsOk && CanBuildElement){
-					if (queue['lenght'] == 0){
+					if (data['count'] == 0){
 						if (NextBuildLevel == 1){
 							if ( HaveRessources == true )
 								click = '<div class="btn building-build" rel="'+el+'">'+lang._T('bd_build')+'</div>';
@@ -91,7 +88,7 @@
 					click = "<b>"+lang._T('bd_no_more_fields')+"</b>";
 				}
 						
-				if (el == 'research_lab' && parseInt(responseObj.state.user.b_tech_planet) != 0){
+				if (el == 'research_lab' && !Check.isEmpty(responseObj.state.user.production.research)){
 					click = "<b>"+lang._T('bd_working')+"</b>";
 				}
 
@@ -139,97 +136,79 @@
 			//}
 		});
 
-
-		if (queue['lenght'] > 0){
-			var BuildListScript  = '';//InsertBuildListScript ('buildings');
-			var BuildList        = queue['buildlist'];
-		}else{
-			var BuildListScript  = "";
-			var BuildList        = "";
-		}
-
-		var BuildingsList        = BuildingPage;
-
-		$('.buildings-list').html('<ul><li>'+BuildList+'</li>'+BuildingsList+'<li><br/><br/></li><li style="display:none;"><input type="text" value="" name="fix_field" class="fix_field"></li></ul>');	
+		$('.buildings-list').html('<ul><li>'+data['html']+'</li>'+BuildingPage+'<li><br/><br/></li><li style="display:none;"><input type="text" value="" name="fix_field" class="fix_field"></li></ul>');	
 		return false;
 	},
-	ShowBuildingQueue: function( sprice ){
-		sprice = typeof sprice !== 'undefined' ? sprice : false;
+	ShowBuildingQueue: function(){
+    			
+		var ActualCount   = 0;
+		var BuildingsRows = {};
 		
-		var CurrentQueue  = planet.b_building_id;
-		QueueID       = 0;
-		if (!Check.isEmpty(CurrentQueue)){
-			var QueueArray    = CurrentQueue.split(";");;
-			var ActualCount   = QueueArray.length;
-		}else{
-			QueueArray    = '0';
-			ActualCount   = 0;
-		}
-        
-		ListIDRow    = '<div class="table buildings-table-timer">';
-        
-		if (ActualCount != 0){
-			var PlanetID     = planet['id'];
-			for (var QueueID = 0; QueueID < ActualCount; QueueID++){
-				BuildArray   = QueueArray[QueueID].split(',');
-				if(!Check.isEmpty(BuildArray[3])){
-					BuildEndTime = Math.floor(BuildArray[3]);
-					CurrentTime  = Math.floor(responseObj.timestamp);console.log(BuildEndTime+' | '+CurrentTime);
-					if (BuildEndTime >= CurrentTime){
-						ListID       = QueueID + 1;
-						Element      = BuildArray[0];
-						BuildLevel   = parseInt(BuildArray[1]);
-						BuildMode    = BuildArray[4];
-						BuildTime    = parseInt(BuildEndTime) - parseInt(responseObj.timestamp);
-						ElementTitle = lang._T('tech_'+Element);
-						if ( sprice !== false && BuildLevel > sprice[el] )
-							sprice[Element]	=	BuildLevel;
+		var ListIDRow    = '';
+		var html    = '';
+		
+		if(!Check.isEmpty(responseObj.state.user.production.building)){
+            foreach (responseObj.state.user.production.building, function(k, b){
+				if(parseInt(planet.id) == parseInt(b.planet_id)){
+				    var endTime = parseInt(b.end_time);
+				    var currentTime = parseInt(responseObj.timestamp);
+				    if (parseInt(b.end_time) > parseInt(responseObj.timestamp)){
+						var buildingLevel = parseInt(planet[b.production]) + 1;
 						
-						/*if (ListID > 0){
-							ListIDRow += '<div>';
-							//Buttons
-							if (ListID == 1){ 
-								ListIDRow2 = '<div id="blc" class="js_timer" timer="'+BuildTime+'|1"><div>\
-										<div class="btn" rel="'+ListID+':cancel">'+lang._T('bd_interrupt')+'</div>\
-										<b>'+ BuildEndTime +'</b>';
-							}else{
-								ListIDRow2 = '<div class="btn" rel="'+ListID+':remove">'+lang._T('bd_cancel')+'</div>';
-							}
-							
-							if (BuildMode == 'build'){
-								ListIDRow += '<div>'+ ListID +': '+ ElementTitle +' '+ BuildLevel+ListIDRow2+'</div>';
-							}else{
-								ListIDRow += '<div>'+ ListID +': '+ ElementTitle +' '+ BuildLevel+' '+ lang._T('bd_dismantle')+ListIDRow2+'</div>';
-							}
-							ListIDRow += '</div>';
-						}*/
+						//build array of pending buildings with levels
+						if(!Check.isEmpty(BuildingsRows[ b.production ])){
+            				if(b.action == 'build'){
+                				BuildingsRows[ b.production ]++;
+                				buildingLevel = BuildingsRows[ b.production ];
+            				}else{
+                				BuildingsRows[ b.production ]--;
+                				buildingLevel = BuildingsRows[ b.production ];
+            				}
+        				}else{
+            				if(b.action == 'build'){
+                				buildingLevel = parseInt(planet[ b.production ]) + 1;
+                				BuildingsRows[ b.production ] = buildingLevel;
+            				}else{
+                				buildingLevel = parseInt(planet[ b.production ]) - 1;
+                				BuildingsRows[ b.production ] = buildingLevel;
+            				}
+        				}
 						
+						//Building construction html list
+						ActualCount++;					
+						
+						
+						BuildTime    = endTime - currentTime;
 						ListIDRow += '<div class="row">\
-											<div rel="'+Element+'" class="buildings-table-timer-image"><img src="images/resources/'+Element+'.png"></div>\
+											<div rel="'+b.production+'" class="buildings-table-timer-image"><img src="images/resources/'+b.production+'.png"></div>\
 											<div class="buildings-table-timer-description">\
-												'+ ListID +': '+ ElementTitle +' '+ BuildLevel+(BuildMode != 'build' ? ' ('+lang._T('bd_dismantle')+')' : '')+'<br/>\
+												'+ ActualCount +': '+ lang._T('tech_'+b.production) +' '+ buildingLevel+(b.action != 'build' ? ' ('+lang._T('bd_dismantle')+')' : '')+'<br/>\
 												\
 											</div>\
 											<div class="buildings-table-timer-timer">\
 												<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
 											</div>\
 											<div class="buildings-table-timer-action">\
-												'+(ListID != 1 ? '<div rel="'+Element+':'+ListID+':remove" class="btn building-cancel">'+lang._T('Remove')+'</div>' : '' )+'\
+												'+(ActualCount != 1 ? '<div rel="'+b.production+':'+ActualCount+':remove" class="btn building-cancel">'+lang._T('Remove')+'</div>' : '' )+'\
 											</div>\
 										</div>\
 									';
 						
 					}
-				}	
-			}
+				}				
+			});
+        }
+		
+		if(!Check.isEmpty(ListIDRow)){
+    		html += '<div class="table buildings-table-timer">'+ListIDRow+'</div>';
 		}
-		ListIDRow += '</div>';
-		var RetValue = {};
-		RetValue['lenght']    = ActualCount;
-		RetValue['buildlist'] = ListIDRow;
+		
+		
+		
 		var data = {};
-		data['queue'] = RetValue;	
-		data['sprice'] = sprice;
+		data['html'] = html;	
+		data['count'] = ActualCount;	
+		data['object'] = BuildingsRows;
 
 		return data;
 	}

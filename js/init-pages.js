@@ -58,11 +58,13 @@ function clickLeftSidebar(){
 Timers.init();
 
 $('body').on('tap', 'div, span, p, b, i, button', function(){
-    $('input, textarea').blur();
+    //$('input, textarea').blur();
+    //return true;
 });
 
 $('div, span, p, b, i, button').on('tap', function(){
-    $('input, textarea').blur();
+    //$('input, textarea').blur();
+    //return true;
 });
 
 /*

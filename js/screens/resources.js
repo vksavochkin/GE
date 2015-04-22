@@ -15,21 +15,6 @@
 		return false;
 	},
 	content: function(){
-		/*if(planet.planet_type == 3){
-			var allowed = reslist_build_moon;
-		}else{
-			var allowed = reslist_build_planet;
-		}
-		var data = Buildings.ShowBuildingQueue();
-
-		var queue = data.queue;	
-		var sprice = data.sprice;
-
-		if (!Check.isEmpty(queue['lenght']) && queue['lenght'] < (responseObj.state.user.MAX_BUILDING_QUEUE_SIZE)){
-			CanBuildElement = true;
-		}else{
-			CanBuildElement = false;
-		}*/
 		var planet_tmp = planet;
 		
 		var officers = officerCheck(user);

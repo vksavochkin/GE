@@ -18,37 +18,17 @@
 	},
 	content: function(){
 		var NotBuilding = true;
-
-		if (parseInt(planet['b_building_id']) != 0){
-			var CurrentQueue = planet['b_building_id'];
-			var CurrentBuilding = '';
-			var Element = '';
-			
-			if (strpos (CurrentQueue, ';')){
-				var QueueArray		= explode (';', CurrentQueue);
-
-				for(var i = 0; i < 5; i++){
-					var ListIDArray	= explode (',', QueueArray[i]);
-					if(!Check.isEmpty(ListIDArray)){
-						var Element		= ListIDArray[0];
-	
-						if ( Element == 'shipyard' || Element == 'robotics_factory' ||  Element == 'nanite_factory' ){
-							break;
-						}
+        
+        if(!Check.isEmpty(responseObj.state.user.production.building)){
+            foreach (responseObj.state.user.production.building, function(k, b){
+				if(parseInt(planet.id) == parseInt(b.planet_id)){
+				    if ( b.production == 'shipyard' || b.production == 'robotics_factory' ||  b.production == 'nanite_factory' ){
+						NotBuilding = false;
 					}
-				}
-			}else{
-				var CurrentBuilding = CurrentQueue;
-			}
-
-			if ( (CurrentBuilding == 'shipyard' || CurrentBuilding == 'robotics_factory' || CurrentBuilding == 'nanite_factory' ) || (Element == 'shipyard' || Element == 'robotics_factory' || Element == 'nanite_factory' ) ){
-				var msg = '<div class="succes error-message-close-link" style="display:block;">'+lang._T('bd_building_shipyard')+'</div>';
-				NotBuilding = false;
-			}
-
-
-		}
-
+				}				
+			});
+        }
+        
 		TabIndex  = 0;
 		PageTable = '';
 		

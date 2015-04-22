@@ -111,7 +111,7 @@
 
 			var planet_list = '';
 			
-			foreach (responseObj.state.planets_sorted, function(k, p){
+			foreach (responseObj.state.planets, function(k, p){
     			var current = '';
 				if(parseInt(planet.id) == parseInt(p.id)){
 				   current = 'selected="selected"';
@@ -133,20 +133,25 @@
 
 			var timer_building = '';
 			var timer_research = '';
-			if(!Check.isEmpty(planet.b_building_id)){
-				var buildQueStr = planet.b_building_id;
-				var buildQue = buildQueStr.split(';');
-				var curBuild = buildQue[0];
-				var buildArr = curBuild.split(',');
+			if(!Check.isEmpty(responseObj.state.user.production.building)){
+                $.each(responseObj.state.user.production.building, function(k, b){
+    				if(parseInt(planet.id) == parseInt(b.planet_id) && Check.isEmpty(timer_building)){
+    				    var restTime = parseInt(b.end_time) - parseInt(responseObj.timestamp);
+    				    var level = planet[b.production];
+    				    if(b.action == 'build'){
+        				    level++;
+    				    }else{
+        				    level--;
+    				    }
+        				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+    				}				
+    			});
+            }
+			if(!Check.isEmpty(responseObj.state.user.production.research)){
+    			var researchRow = responseObj.state.user.production.research;
 				
-				var restTime = parseInt(planet.b_building) - parseInt(responseObj.timestamp);
-				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+buildArr[0])+' ('+buildArr[1]+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
-			}
-			if(parseInt(user.b_tech_planet) > 0){
-				var research_planet = responseObj.state.planets[user.b_tech_planet];
-				
-				var restTime = parseInt(research_planet.b_tech) - parseInt(responseObj.timestamp);
-				timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+research_planet.b_tech_id)+' ('+(parseInt(user[research_planet.b_tech_id]) +1)+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+				var restTime = parseInt(researchRow.end_time) - parseInt(responseObj.timestamp);
+				timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+researchRow.production)+' ('+(parseInt(user[researchRow.production]) +1)+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
 			}
 			$('.planet-timer').html('<div class="table">'+timer_building+timer_research+'</div>');		
 			

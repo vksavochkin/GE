@@ -298,7 +298,7 @@
 	BuildJumpableMoonCombo: function(){
 		var moons = {};
 		var out = '';
-		foreach(responseObj.state.planets_sorted, function(id, v){
+		foreach(responseObj.state.planets, function(id, v){
 			if(parseInt(v.planet_type) == 3 && v.id != planet.id){
 				var p = responseObj.state.planets[v.id];
 				var RestString = Info.GetNextJumpWaitTime(p);
