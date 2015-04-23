@@ -137,13 +137,15 @@
                 $.each(responseObj.state.user.production.building, function(k, b){
     				if(parseInt(planet.id) == parseInt(b.planet_id) && Check.isEmpty(timer_building)){
     				    var restTime = parseInt(b.end_time) - parseInt(responseObj.timestamp);
-    				    var level = planet[b.production];
-    				    if(b.action == 'build'){
-        				    level++;
-    				    }else{
-        				    level--;
-    				    }
-        				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+    				    if (parseInt(b.end_time) > parseInt(responseObj.timestamp)){
+        				    var level = planet[b.production];
+        				    if(b.action == 'build'){
+            				    level++;
+        				    }else{
+            				    level--;
+        				    }
+            				timer_building = '<div><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+                        }    
     				}				
     			});
             }
@@ -151,7 +153,9 @@
     			var researchRow = responseObj.state.user.production.research;
 				
 				var restTime = parseInt(researchRow.end_time) - parseInt(responseObj.timestamp);
-				timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+researchRow.production)+' ('+(parseInt(user[researchRow.production]) +1)+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+				if (parseInt(researchRow.end_time) > parseInt(responseObj.timestamp)){
+				    timer_research = '<div style="background:none;"><div style="font-size:9px;padding:2px;text-align:left;">'+lang._T('tech_'+researchRow.production)+' ('+(parseInt(user[researchRow.production]) +1)+')'+'</div><div style="padding:2px;text-align:right;"><div id="overview-planet-timer" class="js_timer" timer="'+restTime+'|1" style="font-size:9px;"></div></div></div>';
+                }    
 			}
 			$('.planet-timer').html('<div class="table">'+timer_building+timer_research+'</div>');		
 			

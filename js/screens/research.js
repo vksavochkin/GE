@@ -150,24 +150,24 @@
 		if (InResearch){
 			var researchRow = responseObj.state.user.production.research;
 			var BuildTime = parseInt(researchRow.end_time) - parseInt(responseObj.timestamp);
-			
-			ElementTitle = lang._T('tech_'+researchRow.production);
-			BuildLevel = parseInt(user[researchRow.production]) +1;								
-			BuildList = '<div class="table buildings-table-timer"><div class="row">\
-										<div rel="'+researchRow.production+'" class="buildings-table-timer-image"><img src="images/resources/'+researchRow.production+'.png"></div>\
-										<div class="buildings-table-timer-description">\
-											'+ ElementTitle +' '+ BuildLevel+'<br/>\
-											\
-										</div>\
-										<div class="buildings-table-timer-timer">\
-											<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
-										</div>\
-										<!--<div class="buildings-table-timer-action">\
-											<div rel="'+researchRow.production+'" class="btn research-cancel research-cancel-link">'+lang._T('bd_cancel')+'</div>\
-										</div>-->\
-									</div>\
-								</div>';
-			
+			if (parseInt(researchRow.end_time) > parseInt(responseObj.timestamp)){
+    			ElementTitle = lang._T('tech_'+researchRow.production);
+    			BuildLevel = parseInt(user[researchRow.production]) +1;								
+    			BuildList = '<div class="table buildings-table-timer"><div class="row">\
+    										<div rel="'+researchRow.production+'" class="buildings-table-timer-image"><img src="images/resources/'+researchRow.production+'.png"></div>\
+    										<div class="buildings-table-timer-description">\
+    											'+ ElementTitle +' '+ BuildLevel+'<br/>\
+    											\
+    										</div>\
+    										<div class="buildings-table-timer-timer">\
+    											<div id="blc" class="js_timer" timer="'+BuildTime+'|1"></div>\
+    										</div>\
+    										<!--<div class="buildings-table-timer-action">\
+    											<div rel="'+researchRow.production+'" class="btn research-cancel research-cancel-link">'+lang._T('bd_cancel')+'</div>\
+    										</div>-->\
+    									</div>\
+    								</div>';
+			}
 		}
 		
 

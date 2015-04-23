@@ -39,16 +39,18 @@ var PlanetChooser = {
 			if(!Check.isEmpty(responseObj.state.user.production.building)){
                 foreach (responseObj.state.user.production.building, function(k, b){
     				if(parseInt(pl.id) == parseInt(b.planet_id) && Check.isEmpty(timer_building)){
-    				    var restTime = parseInt(b.end_time) - parseInt(responseObj.timestamp);
-    				    var level = pl[b.production];
-    				    if(b.action == 'build'){
-        				    level++;
-    				    }else{
-        				    level--;
-    				    }
-    				    timer_building = '<div class="construction-label"">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div>\
-        				    &nbsp;\
-        					<div class="construction-timer"><div class="js_timer" timer="'+restTime+'|1"></div></div>';
+    				    if (parseInt(b.end_time) > parseInt(responseObj.timestamp)){
+        				    var restTime = parseInt(b.end_time) - parseInt(responseObj.timestamp);
+        				    var level = pl[b.production];
+        				    if(b.action == 'build'){
+            				    level++;
+        				    }else{
+            				    level--;
+        				    }
+        				    timer_building = '<div class="construction-label"">'+lang._T('tech_'+b.production)+' ('+level+')'+'</div>\
+            				    &nbsp;\
+            					<div class="construction-timer"><div class="js_timer" timer="'+restTime+'|1"></div></div>';
+            			}		
     				}				
     			});
             }
