@@ -113,7 +113,8 @@
 			return false;
 		}else{	
 			appStorage.set('email',username);
-			Login.showServers();		
+			//Login.showServers();	
+			window.location.reload();	
 			//initGame();
 		}
 	},
@@ -146,13 +147,14 @@
 			return false;
 		}
 		
-		Request.send({object: 'auth', action:'register', email:email, username:username, password:password});
+		Request.send({object: 'auth', action:'registerusername', email:email, username:username, password:password});
 		
 		if(responseObj.status != 100){
 			alertify.alert(lang._T(responseObj.error));
 			return false;
 		}else{
-			Login.showServers();
+			window.location.reload();
+			//Login.showServers();
 			//initGame();
 		}
 		
