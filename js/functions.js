@@ -622,8 +622,8 @@ function GetBuildingTime (el, level, total_lab_level){
 		time         = Math.floor((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));
 	}
 
-	if (time < 0){
-		time = 0;
+	if (time < 1){
+		time = 1;
 	}
 	return time;
 }
