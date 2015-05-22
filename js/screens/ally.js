@@ -68,7 +68,7 @@ var Ally= {
 										'+lang._T('<br/><br/>Register an Alliance')+'\
 									</td></tr>\
 									<tr><td align="center">\
-										<div class="btn" class="ally-show-register-link">Register an Alliance</div>\
+										<div class="btn ally-show-register-link">Register an Alliance</div>\
 									</td></tr>\
 								</tbody>\
 							</table><br/><br/>\

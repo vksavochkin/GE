@@ -26,41 +26,41 @@ var Mail= {
 		$('.mail-list').html('<ul><li><div class="table mail-table">\
 			<div class="row mail-categoty-link" rel="100">\
 				<div class="cell mail-title" rel="100" style="color:#fcfcfc">View all Messages</div>\
-				<div class="cell mail-count" style="color:#fcfcfc"><b>'+count['100']['new']+'</b> / '+count['100']['total']+'</div>\
+				<div class="cell mail-count" style="color:#fcfcfc"><b>'+count[100]['new']+'</b> / '+count[100]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="1">\
 				<div class="cell mail-title" rel="1" style="color:#FF6699">Private messages</div>\
-				<div class="cell mail-count" style="color:#FF6699"><b>'+count['1']['new']+'</b> / '+count['1']['total']+'</div>\
+				<div class="cell mail-count" style="color:#FF6699"><b>'+count[1]['new']+'</b> / '+count[1]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="2">\
 				<div class="cell mail-title" rel="2" style="color:#FF3300">Alliance messages</div>\
-				<div class="cell mail-count" style="color:#FF3300"><b>'+count['2']['new']+'</b> / '+count['2']['total']+'</div>\
+				<div class="cell mail-count" style="color:#FF3300"><b>'+count[2]['new']+'</b> / '+count[2]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="0">\
 				<div class="cell mail-title" rell="0" style="color:#FFFF00">Spy reports</div>\
-				<div class="cell mail-count" style="color:#FFFF00"><b>'+count['0']['new']+'</b> / '+count['0']['total']+'</div>\
+				<div class="cell mail-count" style="color:#FFFF00"><b>'+count[0]['new']+'</b> / '+count[0]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="3">\
 				<div class="cell mail-title" rell="3" style="color:#FF9900">Combat reports</div>\
-				<div class="cell mail-count" style="color:#FF9900"><b>'+count['3']['new']+'</b> / '+count['3']['total']+'</div>\
+				<div class="cell mail-count" style="color:#FF9900"><b>'+count[3]['new']+'</b> / '+count[3]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="5">\
 				<div class="cell mail-title" rell="5" style="color:#009933">Transportation reports</div>\
-				<div class="cell mail-count" style="color:#009933"><b>'+count['5']['new']+'</b> / '+count['5']['total']+'</div>\
+				<div class="cell mail-count" style="color:#009933"><b>'+count[5]['new']+'</b> / '+count[5]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="4">\
 				<div class="cell mail-title" rell="4" style="color:#ABABAB">Recycling reports</div>\
-				<div class="cell mail-count" style="color:#ABABAB"><b>'+count['4']['new']+'</b> / '+count['4']['total']+'</div>\
+				<div class="cell mail-count" style="color:#ABABAB"><b>'+count[4]['new']+'</b> / '+count[4]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="99">\
 				<div class="cell mail-title" rell="99" style="color:#007070">Construction reports</div>\
-				<div class="cell mail-count" style="color:#007070"><b>'+count['99']['new']+'</b> / '+count['99']['total']+'</div>\
+				<div class="cell mail-count" style="color:#007070"><b>'+count[99]['new']+'</b> / '+count[99]['total']+'</div>\
 			</div>\
 			<div class="row mail-categoty-link" rel="16">\
 				<div class="cell mail-title" rell="16" style="color:#914048">Phalanx reports</div>\
-				<div class="cell mail-count" style="color:#914048"><b>'+count['16']['new']+'</b> / '+count['16']['total']+'</div>\
+				<div class="cell mail-count" style="color:#914048"><b>'+count[16]['new']+'</b> / '+count[16]['total']+'</div>\
 			</div>\
-			'+(parseInt(user.expedition) == 1 ? '<div class="row mail-categoty-link" rel="15"><div class="cell mail-title" rell="15" style="color:#0CF7A9">Expedition reports</div><div class="cell mail-count" style="color:#0CF7A9"><b>'+count['15']['new']+'</b> / '+count['15']['total']+'</div></div>' : '')+'\
+			'+(parseInt(user.expedition) == 1 ? '<div class="row mail-categoty-link" rel="15"><div class="cell mail-title" rell="15" style="color:#0CF7A9">Expedition reports</div><div class="cell mail-count" style="color:#0CF7A9"><b>'+count[15]['new']+'</b> / '+count[15]['total']+'</div></div>' : '')+'\
 		</div><br/><br/><br/><br/></li></ul>');	
 			
 		return false;
