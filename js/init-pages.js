@@ -453,7 +453,7 @@ function cancelResearch(el){
 */
 function defenseBuild(el){
 	var count = $('.defense_build_'+el).val();
-	Request.send({object:'defense', action:'add', prod:el, count:count});
+	Request.send({object:'ships', action:'add', prod:el, count:count});
 	if(responseObj.status != 100){
 		alertify.alert(lang._T(responseObj.error));
 		return false;
