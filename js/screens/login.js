@@ -113,8 +113,8 @@
 			return false;
 		}else{	
 			appStorage.set('email',username);
-			//Login.showServers();	
-			window.location.reload();	
+			Login.showServers();	
+			//window.location.reload();	
 			//initGame();
 		}
 	},

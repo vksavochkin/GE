@@ -21,7 +21,7 @@ var config = {
     isOnDevice: true,
 	gameName: "GE",
 	gameNameShort: "GE",
-    version: "1.7.3",
+    version: "1.7.4",
 	lang: 'en',
 	live: 1, // 1-on / 0-off
 	gamePaused: false,
