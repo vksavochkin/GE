@@ -28,7 +28,7 @@ var PlanetChooser = {
 		var _planet = planet;
 		var rows = [];
 
-		foreach (responseObj.state.planets, function(k, pl) {
+		foreach (sortPlanets(responseObj.state.planets), function(k, pl) {
 			var planet_id = parseInt(pl.id);
 			var planet_type = parseInt(pl.planet_type);
 

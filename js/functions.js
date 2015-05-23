@@ -637,6 +637,18 @@ function debriesColor(metal, crystal){
 			debriesSum > 0 ? 'lightgreen' : '';
 }
 
+/**
+ * Sort planets using user preferred order
+ * @return planets indexed by sort key instead of planet.id
+ */
+function sortPlanets(planets){
+    var sorted = {};
+    foreach(planets, function(p){
+        sorted[parseInt(100000 * p.g + 100 * p.s + 1 * p.p)] = p;
+    });
+    return sorted;
+}
+
 function officerCheck(){
 	officers = {};
 	if(user['rank'] <= 50 && user['rank'] !='' && user['rank'] != 0){

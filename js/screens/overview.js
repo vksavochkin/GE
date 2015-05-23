@@ -113,7 +113,7 @@
 
 			var planet_list = '';
 			
-			foreach (responseObj.state.planets, function(k, p){
+			foreach (sortPlanets(responseObj.state.planets), function(k, p){
     			var current = '';
 				if(parseInt(planet.id) == parseInt(p.id)){
 				   current = 'selected="selected"';
