@@ -153,9 +153,9 @@ var Timers = {
 			}else if(onPage == 'buildings'){
 				Buildings.init();
 			}else if(onPage == 'ships'){
-				//Ships.init();
+				Ships.init();
 			}else if(onPage == 'defense'){
-				//Defense.init();
+				Defense.init();
 			}else if(onPage == 'research'){
 				Research.init();
 			}else{
