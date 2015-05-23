@@ -56,7 +56,9 @@
 		$('.server_attacks').html((parseInt(responseObj.state.user.attack_enabled) == 1 ? '<span style="color:green">Yes</span>' : '<span style="color:red">No</span>'));
 		
 		if(!Check.isEmpty(responseObj.state.global_notification)){
-			$('.global-message-holder').html('<div class="global_message '+responseObj.state.global_notification_type+'">'+responseObj.state.global_notification+'</div>');
+			if(parseInt(responseObj.state.global_notification_expire) > parseInt(responseObj.timestamp)){
+				$('.global-message-holder').html('<div class="global_message '+responseObj.state.global_notification_type+'">'+responseObj.state.global_notification+'</div>');
+			}
 		}
 		
 		
