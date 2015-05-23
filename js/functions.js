@@ -597,13 +597,13 @@ function GetBuildingTime (el, level, total_lab_level){
 	var time = 0;
 	
 	if (isset(reslist_build[el])){
-		var cost_metal   = Math.floor(pricelist[el]['metal']   * Math.pow(pricelist[el]['factor'], level));
-		var cost_crystal = Math.floor(pricelist[el]['crystal'] * Math.pow(pricelist[el]['factor'], level));
+		var cost_metal   = Math.ceil(pricelist[el]['metal']   * Math.pow(pricelist[el]['factor'], level));//ceil
+		var cost_crystal = Math.ceil(pricelist[el]['crystal'] * Math.pow(pricelist[el]['factor'], level));//ceil
 		time = ((cost_crystal + cost_metal) / user.game_speed) * (1 / (parseInt(planet['robotics_factory']) + 1)) * Math.pow(0.5, planet['nanite_factory']);
-		time = Math.floor((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));
+		time = Math.ceil((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));//ceil
 	}else if (isset(reslist_tech[el])){
-		var cost_metal   = Math.floor(pricelist[el]['metal']   * Math.pow(pricelist[el]['factor'], level));
-		var cost_crystal = Math.floor(pricelist[el]['crystal'] * Math.pow(pricelist[el]['factor'], level));
+		var cost_metal   = Math.ceil(pricelist[el]['metal']   * Math.pow(pricelist[el]['factor'], level));//ceil
+		var cost_crystal = Math.ceil(pricelist[el]['crystal'] * Math.pow(pricelist[el]['factor'], level));//ceil
 		var intergal_lab = parseInt(user['intergalactic_research_tech']);
 
 		if(intergal_lab < 1){
@@ -613,13 +613,13 @@ function GetBuildingTime (el, level, total_lab_level){
 		}
 
 		time         = (cost_metal + cost_crystal) / (user.game_speed * (total_lab_level + 1) * 2);//((cost_metal + cost_crystal) / user.game_speed) / ((lablevel + 1) * 2);
-		time         = Math.floor((time * 60 * 60) * (1 - officers['OFF_SCIENTIST_RES']));
+		time         = Math.ceil((time * 60 * 60) * (1 - officers['OFF_SCIENTIST_RES']));//ceil
 	}else if (isset(reslist_defense[el])){
 		time         = ((pricelist[el]['metal'] + pricelist[el]['crystal']) / user.game_speed) * (1 / (parseInt(planet['shipyard']) + 1)) * Math.pow(1 / 2, planet['nanite_factory']);
-		time         = Math.floor((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));
+		time         = Math.ceil((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));//ceil
 	}else if (isset(reslist_fleet[el])){
 		time         = ((pricelist[el]['metal'] + pricelist[el]['crystal']) / user.game_speed) * (1 / (parseInt(planet['shipyard']) + 1)) * Math.pow(1 / 2, planet['nanite_factory']);
-		time         = Math.floor((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));
+		time         = Math.ceil((time * 60 * 60) * (1 - officers['OFF_ENGINEER']));//ceil
 	}
 
 	if (time < 1){
